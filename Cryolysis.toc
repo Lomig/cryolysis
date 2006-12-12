@@ -6,7 +6,28 @@
 ## DefaultState:
 ## SavedVariables:
 ## SavedVariablesPerCharacter: CryolysisConfig
+
 CryolysisGeneral.xml
+
+Localization.lua
+Locales\Localization-functions-en.lua
+Locales\Localization-functions-de.lua
+Locales\Localization-functions-fr.lua
+Locales\Localization-functions-tw.lua
+Locales\Localization-functions-cn.lua 
+Locales\Localization-dialog-en.lua
+Locales\Localization-dialog-de.lua
+Locales\Localization-dialog-fr.lua
+Locales\Localization-dialog-tw.lua
+Locales\Localization-dialog-cn.lua
+Locales\Speech.lua
+
+Cryolysis.lua
+CryolysisInitialize.lua
+CryolysisMessage.lua
+CryolysisTimerFunction.lua
+CryolysisGraphicalTimer.lua
+	
 Cryolysis.xml
 CryolysisTimer.xml
 CryolysisProvisionMenu.xml

@@ -1,20 +1,20 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
 		<Button name="ReorderTemplate" virtual="true">
-    <Size>
-      <AbsDimension x="29" y="29"/>
-    </Size>
-    <Layers>
-      <Layer level="BACKGROUND">
-        <Texture name="$parentIcon" file="Interface\Icons\INV_Misc_QuestionMark"/>
-      </Layer>
-    </Layers>
-    <HighlightTexture file="Interface\Buttons\CheckButtonHilight" alphaMode="ADD"/>
-    <Scripts>
-      <OnClick>
-        Reorder.OnClick(-1)
-      </OnClick>
-    </Scripts>
-  </Button>
+			<Size>
+				<AbsDimension x="29" y="29"/>
+			</Size>
+			<Layers>
+				<Layer level="BACKGROUND">
+					<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_QuestionMark"/>
+				</Layer>
+			</Layers>
+			<HighlightTexture file="Interface\Buttons\CheckButtonHilight" alphaMode="ADD"/>
+			<Scripts>
+				<OnClick>
+					Reorder.OnClick(-1)
+				</OnClick>
+			</Scripts>
+		</Button>
     			<Slider name="SpellButtonSliderTemplate" inherits="OptionsSliderTemplate" minValue="1" maxValue="8" valueStep="1" virtual="true">
 				<Size>
 					<AbsDimension x="120" y="16"/>
@@ -788,20 +788,10 @@
 					</OnClick>
 				</Scripts>
 			</CheckButton>
-			
-			
-			
-			
-			
-			
-			
-			
-
-  
-       <Button name="ReorderLeft">
-        <Size>
-          <AbsDimension x="29" y="29"/>
-        </Size>
+			<Button name="ReorderLeft">
+				<Size>
+					<AbsDimension x="29" y="29"/>
+				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="CryolysisButtonMenu" relativeFrom="TOPLEFT">
 						<Offset>
@@ -809,90 +799,82 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-        <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
-        <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
-        <DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
-        <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
-        <Scripts>
-          <OnClick>
-            Reorder.Move_OnClick(-1)
-          </OnClick>
-        </Scripts>
-      </Button>
-      <Button name="Reorder1" inherits="ReorderTemplate" id="1">
-        <Anchors>
-          <Anchor point="LEFT" relativeTo="ReorderLeft" relativePoint="RIGHT"/>
-        </Anchors>
-      </Button>
-      <Button name="Reorder2" inherits="ReorderTemplate" id="2">
-        <Anchors>
-          <Anchor point="LEFT" relativeTo="Reorder1" relativePoint="RIGHT"/>
-        </Anchors>
-      </Button>
-      <Button name="Reorder3" inherits="ReorderTemplate" id="3">
-        <Anchors>
-          <Anchor point="LEFT" relativeTo="Reorder2" relativePoint="RIGHT"/>
-        </Anchors>
-      </Button>
-      <Button name="Reorder4" inherits="ReorderTemplate" id="4">
-        <Anchors>
-          <Anchor point="LEFT" relativeTo="Reorder3" relativePoint="RIGHT"/>
-        </Anchors>
-      </Button>
-      <Button name="Reorder5" inherits="ReorderTemplate" id="5">
-        <Anchors>
-          <Anchor point="LEFT" relativeTo="Reorder4" relativePoint="RIGHT"/>
-        </Anchors>
-      </Button>
-	  <Button name="Reorder6" inherits="ReorderTemplate" id="6">
-        <Anchors>
-          <Anchor point="LEFT" relativeTo="Reorder5" relativePoint="RIGHT"/>
-        </Anchors>
-      </Button>
-	  <Button name="Reorder7" inherits="ReorderTemplate" id="7">
-        <Anchors>
-          <Anchor point="LEFT" relativeTo="Reorder6" relativePoint="RIGHT"/>
-        </Anchors>
-      </Button>
-	  <Button name="Reorder8" inherits="ReorderTemplate" id="8">
-        <Anchors>
-          <Anchor point="LEFT" relativeTo="Reorder7" relativePoint="RIGHT"/>
-        </Anchors>
-      </Button>
-	  <Button name="Reorder9" inherits="ReorderTemplate" id="9">
-        <Anchors>
-          <Anchor point="LEFT" relativeTo="Reorder8" relativePoint="RIGHT"/>
-        </Anchors>
-      </Button>
-      <Button name="ReorderRight">
-        <Size>
-          <AbsDimension x="29" y="29"/>
-        </Size>
-        <Anchors>
-          <Anchor point="LEFT" relativeTo="Reorder9" relativePoint="RIGHT"/>
-        </Anchors>
-        <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
-        <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
-        <DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
-        <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
-        <Scripts>
-          <OnClick>
-            Reorder.Move_OnClick(1)
-          </OnClick>
-        </Scripts>
-      </Button>
-
-
-
-
-			
-			
-			
-			
+				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
+				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+				<Scripts>
+					<OnClick>
+						Reorder.Move_OnClick(-1)
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="Reorder1" inherits="ReorderTemplate" id="1">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="ReorderLeft" relativePoint="RIGHT"/>
+				</Anchors>
+			</Button>
+			<Button name="Reorder2" inherits="ReorderTemplate" id="2">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Reorder1" relativePoint="RIGHT"/>
+				</Anchors>
+			</Button>
+			<Button name="Reorder3" inherits="ReorderTemplate" id="3">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Reorder2" relativePoint="RIGHT"/>
+				</Anchors>
+			</Button>
+			<Button name="Reorder4" inherits="ReorderTemplate" id="4">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Reorder3" relativePoint="RIGHT"/>
+				</Anchors>
+			</Button>
+			<Button name="Reorder5" inherits="ReorderTemplate" id="5">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Reorder4" relativePoint="RIGHT"/>
+				</Anchors>
+			</Button>
+			<Button name="Reorder6" inherits="ReorderTemplate" id="6">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Reorder5" relativePoint="RIGHT"/>
+				</Anchors>
+			</Button>
+			<Button name="Reorder7" inherits="ReorderTemplate" id="7">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Reorder6" relativePoint="RIGHT"/>
+				</Anchors>
+			</Button>
+			<Button name="Reorder8" inherits="ReorderTemplate" id="8">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Reorder7" relativePoint="RIGHT"/>
+				</Anchors>
+			</Button>
+			<Button name="Reorder9" inherits="ReorderTemplate" id="9">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Reorder8" relativePoint="RIGHT"/>
+				</Anchors>
+			</Button>
+			<Button name="ReorderRight">
+				<Size>
+					<AbsDimension x="29" y="29"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Reorder9" relativePoint="RIGHT"/>
+				</Anchors>
+				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
+				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+				<Scripts>
+					<OnClick>
+						Reorder.Move_OnClick(1)
+					</OnClick>
+				</Scripts>
+			</Button>
 		</Frames>
      		<Scripts>
-        		<OnLoad>
-					Reorder.OnLoad();
+			<OnLoad>
+				Reorder.OnLoad();
 				HideUIPanel(CryolysisButtonMenu);
 			</OnLoad>
 		</Scripts>
