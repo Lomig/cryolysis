@@ -4,12 +4,10 @@
 	<Script file="Localization-functions-de.lua"/>
 	<Script file="Localization-functions-fr.lua"/>
 	<Script file="Localization-functions-tw.lua"/>
-	<Script file="Localization-functions-cn.lua"/> 
 	<Script file="Localization-dialog-en.lua"/>
 	<Script file="Localization-dialog-de.lua"/>
 	<Script file="Localization-dialog-fr.lua"/>
 	<Script file="Localization-dialog-tw.lua"/>
-	<Script file="Localization-dialog-cn.lua"/> 
 	<Script file="Speech.lua"/>
 	<Script file="Cryolysis.lua"/>
 	<Script file="CryolysisInitialize.lua"/>
@@ -17,6 +15,15 @@
 	<Script file="CryolysisTimerFunction.lua"/>
 	<Script file="CryolysisGraphicalTimer.lua"/>
 	
+	<Frame name="Cryolysis_Variable_Frame" hidden="false">
+		<Scripts>
+			<OnUpdate>
+				Cryolysis_LoadVariables()
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+
 	<Button name="CryolysisSpellTimerButton" frameStrata="MEDIUM" enableMouse="true" movable="true" parent="UIParent">
 		<Size>
 			<AbsDimension x="34" y="34"/>
@@ -71,8 +78,8 @@
 		<PushedTexture file="Interface\AddOns\Cryolysis\UI\SpellTimerButton-Pushed"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\SpellTimerButton-Highlight"/>
 	</Button>
-
-	<Button name="CryolysisButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	
+	<Button name="CryolysisButton" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="58" y="58"/>
 		</Size>
@@ -85,7 +92,7 @@
 		</Anchors>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString name="CryolysisShardCount" inherits="GameFontNormal" text="">
+				<FontString name="CryolysisShardCount" inherits="GameFontNormal" text="00">
 					<Color r="1.0" g="1.0" b="1.0" a="1"/>
 					<Anchors>
 						<Anchor point="CENTER" relativeTo="CryolysisButton" relativeFrom="CENTER">
@@ -98,9 +105,9 @@
 			</Layer>
 		</Layers>
 		<Scripts>
-			<OnClick>
+			<!--<OnClick>
 				Cryolysis_Toggle(arg1);
-			</OnClick>
+			</OnClick>-->
 			<OnDragStart>
 				Cryolysis_OnDragStart(this);
 			</OnDragStart>
@@ -167,10 +174,10 @@
 			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\Shard"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 	</Button>
 
-	<Button name="CryolysisEvocationButton" hidden="false" parent="UIParent" movable="true">
+	<Button name="CryolysisEvocationButton" inherits="SecureActionButtonTemplate" hidden="false" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -207,9 +214,6 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(49);
-			</OnClick>
 			<OnDragStart>
 				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
 			</OnDragStart>
@@ -221,8 +225,9 @@
 			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\EvocationButton-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 	</Button>
+	
 	<Button name="CryolysisRightSpellButton" hidden="false" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
@@ -260,12 +265,12 @@
 			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\Shard"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 	</Button>
 
 
 
-	<Button name="CryolysisManastoneButton" hidden="false" parent="UIParent" movable="true">
+	<Button name="CryolysisManastoneButton" inherits="SecureActionButtonTemplate" hidden="false" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -302,9 +307,6 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_UseItem("Manastone", arg1);
-			</OnClick>
 			<OnDragStart>
 				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
 			</OnDragStart>
@@ -316,10 +318,10 @@
 			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\ManastoneButton-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 	</Button>
 
-	<Button name="CryolysisDrinkButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisDrinkButton" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -356,9 +358,6 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_UseItem("Drink", arg1);
-			</OnClick>
 			<OnDragStart>
 				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
 			</OnDragStart>
@@ -370,10 +369,10 @@
 			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\DrinkButton-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 	</Button>
 
-	<Button name="CryolysisFoodButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisFoodButton" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -410,9 +409,6 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_UseItem("Food", arg1);
-			</OnClick>
 			<OnDragStart>
 				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
 			</OnDragStart>
@@ -424,10 +420,10 @@
 			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\FoodButton-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 	</Button>
 	
-	<Button name="CryolysisMountButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisMountButton" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -464,10 +460,10 @@
 			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\MountButton-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 	</Button>
 
-	<Button name="CryolysisBuffMenuButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisBuffMenuButton" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -505,10 +501,10 @@
 			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\BuffMenuButton-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BuffMenuButton-02"/>
 	</Button>
 
-	<Button name="CryolysisBuffMenu1" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisBuffMenu1" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -530,14 +526,11 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(22, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\FrostArmor-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\FrostArmor-02"/>
 	</Button>
-	<Button name="CryolysisBuffMenu2" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisBuffMenu2" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -573,14 +566,11 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(4, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\ArcaneIntellect-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\ArcaneIntellect-02"/>
 	</Button>
-	<Button name="CryolysisBuffMenu3" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisBuffMenu3" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -602,14 +592,11 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(13, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\DampenMagic-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\DampenMagic-02"/>
 	</Button>
-	<Button name="CryolysisBuffMenu4" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisBuffMenu4" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -631,14 +618,11 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(23, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\ManaShield-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 	</Button>	
-	<Button name="CryolysisBuffMenu5" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisBuffMenu5" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -660,14 +644,11 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(15, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\FireWard-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\FireWard-02"/>
 	</Button>
-		<Button name="CryolysisBuffMenu6" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisBuffMenu6" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -689,14 +670,11 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(50, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\DetectMagic-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\DetectMagic-02"/>
 	</Button>
-	<Button name="CryolysisBuffMenu7" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisBuffMenu7" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -718,14 +696,11 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(33, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\RemoveCurse-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\RemoveCurse-02"/>
 	</Button>	
-	<Button name="CryolysisBuffMenu8" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisBuffMenu8" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -761,15 +736,12 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(35, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\SlowFall-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\SlowFall-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenuButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisPortalMenuButton" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -806,10 +778,10 @@
 			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalMenuButton-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\PortalMenuButton-02"/>
 	</Button>
 	
-	<Button name="CryolysisPortalMenu1" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisPortalMenu1" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -845,15 +817,12 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(1,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportOrgrimmar-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\TeleportOrgrimmar-02"/>
 	</Button>
 	
-	<Button name="CryolysisPortalMenu2" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisPortalMenu2" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -889,15 +858,12 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(2,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportUndercity-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\TeleportUndercity-02"/>
 	</Button>
 	
-	<Button name="CryolysisPortalMenu3" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisPortalMenu3" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -933,15 +899,12 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(3,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportThunderbluff-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\TeleportThunderbluff-02"/>
 	</Button>
 	
-	<Button name="CryolysisPortalMenu4" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisPortalMenu4" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -977,15 +940,12 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(4,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportIronforge-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\TeleportIronforge-02"/>
 	</Button>
 	
-	<Button name="CryolysisPortalMenu5" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisPortalMenu5" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1021,15 +981,12 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-					Cryolysis_PortalCast(5,arg);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportStormwind-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\TeleportStormwind-02"/>
 	</Button>
 	
-	<Button name="CryolysisPortalMenu6" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisPortalMenu6" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1065,15 +1022,12 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(6,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportDarnassus-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\TeleportDarnassus-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu7" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisPortalMenu7" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1109,15 +1063,12 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(7,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalOrgrimmar-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\PortalOrgrimmar-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu8" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisPortalMenu8" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1153,15 +1104,12 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(8,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalUndercity-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\PortalUndercity-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu9" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisPortalMenu9" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1197,15 +1145,12 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(9,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalThunderbluff-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\PortalThunderbluff-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu10" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisPortalMenu10" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1241,16 +1186,13 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(10,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalIronforge-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\PortalIronforge-02"/>
 	</Button>
 	
 
-	<Button name="CryolysisPortalMenu11" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisPortalMenu11" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1286,15 +1228,12 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(11,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalStormwind-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\PortalStormwind-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu12" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisPortalMenu12" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -1330,12 +1269,9 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(12,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalDarnassus-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\PortalDarnassus-02"/>
 	</Button>
 
 	<Button name="CryolysisShadowTranceButton" frameStrata="MEDIUM" movable="true" parent="UIParent">
