@@ -32,6 +32,7 @@
 --
 -- Version 12.12.2006
 ------------------------------------------------------------------------------------------------------
+local _G = getfenv(0)
 
 -- Default Configuations
 -- In case configuations are lost or version is changed
@@ -3281,10 +3282,14 @@ end
 
 function Cryolysis_MoneyToggle()
 	for index=1, 10 do
-		local text = getglobal("CryolysisTooltipTextLeft"..index);
+		local text = _G["CryolysisTooltipTextLeft"..index]
+		if ( text ) then
 			text:SetText(nil);
-			text = getglobal("CryolysisTooltipTextRight"..index);
+		end
+		text = _G["CryolysisTooltipTextRight"..index]
+		if ( text ) then
 			text:SetText(nil);
+		end
 	end
 	CryolysisTooltip:Hide();
 	CryolysisTooltip:SetOwner(WorldFrame, "ANCHOR_NONE");
