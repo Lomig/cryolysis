@@ -143,6 +143,8 @@
 							GameTooltip:SetText(CRYOLYSIS_SPELL_TABLE[7].Name);
 						end
 						CryolysisConfig.Button = this:GetValue();
+
+						Cryolysis_UpdateMainButtonAttributes();
 						</OnValueChanged>
 					<OnLeave>
 						GameTooltip:Hide();

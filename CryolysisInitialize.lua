@@ -333,6 +333,8 @@ function Cryolysis_Initialize()
 			CRYOLYSIS_EVOCATION_ALERT_MESSAGE = CRYOLYSIS_SHORT_MESSAGES[1];
 			CRYOLYSIS_INVOCATION_MESSAGES = CRYOLYSIS_SHORT_MESSAGES[2];
 		end
+		-- Added by Lomig to replace the Toggle function
+		Cryolysis_UpdateMainButtonAttributes();
 	end
 end
 

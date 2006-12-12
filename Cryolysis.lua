@@ -717,6 +717,7 @@ function Cryolysis_OnEvent(event)
 
 	-- If bag concents changed, checks to make sure provisions are in the selected bag
 	if (event == "BAG_UPDATE") then
+
 		for i, v in ipairs(CryolysisPrivate.waterRanks) do
 			local c = GetItemCount(v)
 			if ( c > 0 ) then
@@ -1143,8 +1144,8 @@ function Cryolysis_PolyCheck(type,spell,creatureName)
 			if SpellCastRank == nil then
 				SpellCastRank = CRYOLYSIS_SPELL_TABLE[26].Rank
 			end
-			CryolysisPrivate.PolyWarnTime = (SpellCastRank * 10 + 10) - CryolysisConfig.PolyWarnTime;
-			CryolysisPrivate.PolyBreakTime = SpellCastRank * 10 + 10;
+			CryolysisPrivate.PolyWarnTime = (string.find(SpellCastRank, "(%d+)") * 10 + 10) - CryolysisConfig.PolyWarnTime;
+			CryolysisPrivate.PolyBreakTime = string.find(SpellCastRank, "(%d+)") * 10 + 10;
 			CryolysisPrivate.PolyWarning = true;
 			CryolysisPrivate.PolyTarget = creatureName;
 		end
@@ -1223,7 +1224,7 @@ function Cryolysis_PvPPoly(target)
 	else
 		if retarget then TargetLastTarget(); end
 		if SpellCastRank == nil then SpellCastRank = CRYOLYSIS_SPELL_TABLE[26].Rank; end
-		return SpellCastRank * 10 + 10, floor(GetTime() + (SpellCastRank * 10 + 10));
+		return string.find(SpellCastRank, "(%d+)") * 10 + 10, floor(GetTime() + (string.find(SpellCastRank, "(%d+)") * 10 + 10));
 	end
 end
 
@@ -1507,62 +1508,88 @@ end
 -- FUNCTIONS OF THE INTERFACE -- BONDS XML 
 ------------------------------------------------------------------------------------------------------
 
--- By right clicking on Cryolysis, one eats/drings or opens the control panels 
-function Cryolysis_Toggle(button, keybind)
-	local Ctrl = IsControlKeyDown()
-	if Ctrl and keybind then Ctrl = not Ctrl; end
-	if button == "LeftButton" then		
-		if CryolysisConfig.Button == 1 then
-			local HPPercent = floor(( UnitHealth("player") or 1 ) / ( UnitHealthMax("player") or 1)*100)
-			local MPPercent = floor(( UnitMana("player") or 1 ) / ( UnitManaMax("player") or 1)*100)
-			if HPPercent < CryolysisConfig.HPLimit then
-				if Count.Food > 0 then
-			    	UseContainerItem(FoodLocation[1], FoodLocation[2]);
-			    	CryolysisPrivate.Sitting = true;
-				else
-					Cryolysis_Msg(CRYOLYSIS_MESSAGE.Error.NoFood, "USER");
-				end
-			end
-			if MPPercent < CryolysisConfig.MPLimit then
-				if Count.Drink > 0 then
-					UseContainerItem(DrinkLocation[1], DrinkLocation[2]);
-					CryolysisPrivate.Sitting = true;
-				else
-					Cryolysis_Msg(CRYOLYSIS_MESSAGE.Error.NoDrink, "USER");
-				end
-			end
-     	Cryolysis_BagCheck("Update");
-		elseif CryolysisConfig.Button == 2 then
-			Cryolysis_BuffCast(49);	
-		elseif CryolysisConfig.Button == 3 then
-			Cryolysis_Metamorph();
-		elseif CryolysisConfig.Button == 4 then
-			if PlayerCombat or Ctrl then
-				Cryolysis_UseItem("Manastone",button);
-			else
-			    Cryolysis_UseItem("Manastone","RightButton");
-			end
-		elseif CryolysisConfig.Button == 5 then
-			CastSpell(CRYOLYSIS_SPELL_TABLE[7].ID, "spell");
-		elseif CryolysisConfig.Button == 101 then
-			if sheepSafeConfig.warning then
-				sheepSafeConfig.warning = false;
-			end
-			SheepSafe();
+
+-- Created by Lomig from the Cryolysis_Toggle() function.
+function Cryolysis_UpdateMainButtonAttributes()
+	CryolysisButton:SetAttribute("type2", "Toggle");
+	CryolysisButton.Toggle = function () Cryolysis_Toggle(); end
+	if CryolysisConfig.Button == 1 then
+		CryolysisButton:SetAttribute("type1", "macro");
+		local itemName1, ItemName2 = nil, nil;
+		if Count.Food > 0 then
+			itemName1, _, _, _, _, _, _, _ , _, _ = GetItemInfo(GetContainerItemLink(FoodLocation[1], FoodLocation[2]));
 		end
-		return;
+		if Count.Drink > 0 then
+			itemName2, _, _, _, _, _, _, _ , _, _ = GetItemInfo(GetContainerItemLink(DrinkLocation[1], DrinkLocation[2]));
+		end
+		if itemName1 and itemName2 then
+			CryolysisButton:SetAttribute("macrotext1", "/use "..itemName1.."\n/use "..itemName2);
+		elseif itemName1 then
+			CryolysisButton:SetAttribute("macrotext1", "/use "..itemName1);
+		elseif itemName1 then
+			CryolysisButton:SetAttribute("macrotext1", "/use "..itemName2);
+		end
+	elseif CryolysisConfig.Button == 2 then
+		CryolysisButton:SetAttribute("type1", "spell");
+		CryolysisButton:SetAttribute("spell1", CRYOLYSIS_SPELL_TABLE[49].Name);
+	elseif CryolysisConfig.Button == 3 then
+		local morphs = {26, 48, 52};
+		local availableMorphs = {};
+		local spells = 0;
+		for i=1, #(morphs), 1 do
+			if CRYOLYSIS_SPELL_TABLE[morphs[i]].ID then
+				spells = spells + 1;
+				availableMorphs[spells] = morphs[i];
+			end
+		end
+		CryolysisButton:SetAttribute("type1", "spell");
+		CryolysisButton:SetAttribute("spell1", CRYOLYSIS_SPELL_TABLE[availableMorphs[random(1,#(availableMorphs))]].Name);
+	elseif CryolysisConfig.Button == 4 then
+		CryolysisButton:SetAttribute("type1", "item");
+		if CryolysisConfig.ManaStoneOrder == 2 then
+			for i = StoneMaxRank[2], 1, -1 do
+				-- If there is one in the inventory
+				if Manastone.OnHand[i] then
+					local itemName, _, _, _, _, _, _, _ , _, _ = GetItemInfo(GetContainerItemLink(Manastone.Location[i][1], Manastone.Location[i][2]));
+					CryolysisButton:SetAttribute("item1", itemName);
+					break;
+				end
+			end
+		elseif CryolysisConfig.ManaStoneOrder == 1 then
+			for i = 1, StoneMaxRank[2], 1  do
+				-- If there is one in the inventory
+				if Manastone.OnHand[i] then
+					local itemName, _, _, _, _, _, _, _ , _, _ = GetItemInfo(GetContainerItemLink(Manastone.Location[i][1], Manastone.Location[i][2]));
+					CryolysisButton:SetAttribute("item1", itemName);
+					break;
+				end
+			end
+		end
+		CryolysisButton:SetAttribute("ctrl-type1", "spell");
+		for i = StoneMaxRank[2], 1, -1 do
+			if Manastone.Mode[i] == 1 then
+				CryolysisButton:SetAttribute("ctrl-spell1", CRYOLYSIS_SPELL_TABLE[Manastone.RankID[i]].Name);
+				break;
+			end
+		end
 	end
-	
-	if (CryolysisGeneralFrame:IsVisible()) then
-		HideUIPanel(CryolysisGeneralFrame);
-		return;
-	else
-		if CryolysisConfig.SM then
-			Cryolysis_Msg("!!! Short Messages : <brightGreen>On", "USER");
+end
+
+
+-- By right clicking on Cryolysis, one eats/drings or opens the control panels 
+function Cryolysis_Toggle()
+	if not InCombatLockdown() then
+		if (CryolysisGeneralFrame:IsVisible()) then
+			HideUIPanel(CryolysisGeneralFrame);
+			return;
+		else
+			if CryolysisConfig.SM then
+				Cryolysis_Msg("!!! Short Messages : <brightGreen>On", "USER");
+			end
+			ShowUIPanel(CryolysisGeneralFrame);
+			CryolysisGeneralTab_OnClick(1);
+			return;
 		end
-		ShowUIPanel(CryolysisGeneralFrame);
-		CryolysisGeneralTab_OnClick(1);
-		return;
 	end
 end
 
@@ -2657,6 +2684,10 @@ function Cryolysis_BagExplore()
 			Cryolysis_Msg(CRYOLYSIS_MESSAGE.Bag.FullPrefix..GetBagName(CryolysisConfig.SoulshardContainer)..CRYOLYSIS_MESSAGE.Bag.FullSuffix);
 		end
 	end
+
+	-- Added by Lomig to replace the toggle function
+	Cryolysis_UpdateMainButtonAttributes();
+	-- End of adding
 end
 
 -- -- Function which makes it possible to find/arrange the provisions in the bags 
@@ -3114,19 +3145,7 @@ function Cryolysis_Decursive()
 		Cryolysis_Msg("No curses found", "USER");
 	end
 end
--- Randomly choses which polymorph spell to cast
-function Cryolysis_Metamorph()
-   	local morphs = {26, 48, 52};
-   	local availableMorphs = {};
-   	local spells = 0;
-	for i=1, #(morphs), 1 do
-   		if CRYOLYSIS_SPELL_TABLE[morphs[i]].ID then
-   			spells = spells + 1;
-   			availableMorphs[spells] = morphs[i];
-   		end
-	end
-   	CastSpell(CRYOLYSIS_SPELL_TABLE[availableMorphs[random(1,#(availableMorphs))]].ID, "spell");
-end
+
 
 -- Function to know if a unit undergoes an effect 
 -- F(string, string)->bool
@@ -4103,47 +4122,6 @@ function Cryolysis_UseAction(id, number, onSelf)
 	end
 end
 
-function Cryolysis_CastSpell(spellId, spellbookTabNum)
-	local Name, Rank = GetSpellName(spellId, spellbookTabNum);
-	if Rank ~= nil then
-    		local _, _, Rank2 = string.find(Rank, "(%d+)");
-        	SpellCastRank = tonumber(Rank2);
-	end
-	SpellCastName = Name;
-
-	SpellTargetName = UnitName("target");
-	if not SpellTargetName then
-		SpellTargetName = "";
-	end
-	SpellTargetLevel = UnitLevel("target");
-	if not SpellTargetLevel then
-		SpellTargetLevel = "";
-	end
-end
-
-function Cryolysis_CastSpellByName(Spell)
-	local _, _, Name = string.find(Spell, "(.+)%(");
-	local _, _, Rank = string.find(Spell, "([%d]+)");
-
-	if Rank ~= nil then
-    		local _, _, Rank2 = string.find(Rank, "(%d+)");
-        	SpellCastRank = tonumber(Rank2);
-	end
-
-	if not Name then
-		_, _, Name = string.find(Spell, "(.+)");
-	end
-	SpellCastName = Name;
-
-	SpellTargetName = UnitName("target");
-	if not SpellTargetName then
-		SpellTargetName = "";
-	end
-	SpellTargetLevel = UnitLevel("target");
-	if not SpellTargetLevel then
-		SpellTargetLevel = "";
-	end
-end
 
 function CryolysisTimer(nom, duree)
 	local Cible = UnitName("target");
