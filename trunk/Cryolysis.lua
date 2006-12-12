@@ -4025,52 +4025,6 @@ function CryolysisGeneralTab_OnClick(id)
 	end
 end
 
-
-
--- Bon, pour pouvoir utiliser le Timer sur les sorts instants, j'ai été obligé de m'inspirer de Cosmos
--- Comme je ne voulais pas rendre le mod dépendant de Sea, j'ai repris ses fonctions
--- Apparemment, la version Stand-Alone de ShardTracker a fait pareil :) :)
-Cryolysis_Hook = function (orig,new,type)
-	if(not type) then type = "before"; end
-	if(not Hx_Hooks) then Hx_Hooks = {}; end
-	if(not Hx_Hooks[orig]) then
-		Hx_Hooks[orig] = {}; Hx_Hooks[orig].before = {}; Hx_Hooks[orig].before.n = 0; Hx_Hooks[orig].after = {}; Hx_Hooks[orig].after.n = 0; Hx_Hooks[orig].hide = {}; Hx_Hooks[orig].hide.n = 0; Hx_Hooks[orig].replace = {}; Hx_Hooks[orig].replace.n = 0; Hx_Hooks[orig].orig = getglobal(orig);
-	else
-		for key,value in Hx_Hooks[orig][type] do if(value == getglobal(new)) then return; end end
-	end
-	Cryolysis_Push(Hx_Hooks[orig][type],getglobal(new)); setglobal(orig,function(...) Cryolysis_HookHandler(orig,arg); end);
-end
-
-Cryolysis_HookHandler = function (name,arg)
-	local called = false; local continue = true; local retval;
-	for key,value in Hx_Hooks[name].hide do
-		if(type(value) == "function") then if(not value(unpack(arg))) then continue = false; end called = true; end
-	end
-	if(not continue) then return; end
-	for key,value in Hx_Hooks[name].before do
-		if(type(value) == "function") then value(unpack(arg)); called = true; end
-	end
-	continue = false;
-	local replacedFunction = false;
-	for key,value in Hx_Hooks[name].replace do
-		if(type(value) == "function") then
-			replacedFunction = true; if(value(unpack(arg))) then continue = true; end called = true;
-		end
-	end
-	if(continue or (not replacedFunction)) then retval = Hx_Hooks[name].orig(unpack(arg)); end
-	for key,value in Hx_Hooks[name].after do
-		if(type(value) == "function") then value(unpack(arg)); called = true;end
-	end
-	if(not called) then setglobal(name,Hx_Hooks[name].orig); Hx_Hooks[name] = nil; end
-	return retval;
-end
-
-function Cryolysis_Push (table,val)
-	if(not table or not table.n) then return nil; end
-	table.n = table.n+1;
-	table[table.n] = val;
-end
-
 function Cryolysis_UseAction(id, number, onSelf)
 	Cryolysis_MoneyToggle();
 	CryolysisTooltip:SetAction(id);
