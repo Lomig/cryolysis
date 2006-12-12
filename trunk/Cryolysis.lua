@@ -607,7 +607,7 @@ function Cryolysis_OnUpdate()
 		if CryolysisConfig.ShowSpellTimers then
 			local GraphicalTimer = {texte = {}, TimeMax = {}, Time = {}, titre = {}, temps = {}, Gtimer = {}};
 			if SpellTimer[1] ~= nil then
-				for index = 1, table.getn(SpellTimer), 1 do
+				for index = 1, #(SpellTimer), 1 do
 					if SpellTimer[index] then
 						if (GetTime() <= SpellTimer[index].TimeMax) then
 							-- Création de l'affichage des timers
@@ -663,7 +663,7 @@ function Cryolysis_OnUpdate()
 				else
 					CryolysisListSpells:SetText("");			
 				end
-				for i = 4, table.getn(SpellGroup.Name) do
+				for i = 4, #(SpellGroup.Name) do
 					SpellGroup.Visible[i] = false;
 				end
 			else
@@ -760,7 +760,7 @@ function Cryolysis_OnEvent(event)
 		CryolysisTradeRequest = false;
 		Cryolysis_BagCheck("Update");
     elseif event == "CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE" then  -- WINTERSCHILL will go here
- 		for creatureName, spell in string.gfind(arg1, CRYOLYSIS_DEBUFF_SRCH) do
+ 		for creatureName, spell in string.gmatch(arg1, CRYOLYSIS_DEBUFF_SRCH) do
 			-- Frostbite
 			if spell == CRYOLYSIS_SPELL_TABLE[53].Name then
 				SpellCastName = spell;
@@ -772,7 +772,7 @@ function Cryolysis_OnEvent(event)
 				or spell == CRYOLYSIS_SPELL_TABLE[56].Name
 				or spell == CRYOLYSIS_SPELL_TABLE[57].Name
 				or spell == CRYOLYSIS_SPELL_TABLE[58].Name then
-    			for thistimer=table.getn(SpellTimer), 1, -1 do
+    			for thistimer=#(SpellTimer), 1, -1 do
 					if 	SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[54].Name
 						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[55].Name
 						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[56].Name
@@ -791,7 +791,7 @@ function Cryolysis_OnEvent(event)
 				or spell == CRYOLYSIS_SPELL_TABLE[61].Name
 				or spell == CRYOLYSIS_SPELL_TABLE[62].Name
 				or spell == CRYOLYSIS_SPELL_TABLE[63].Name then
-    			for thistimer=table.getn(SpellTimer), 1, -1 do
+    			for thistimer=#(SpellTimer), 1, -1 do
 					if 	SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[59].Name
 						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[60].Name
 						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[61].Name
@@ -850,7 +850,7 @@ function Cryolysis_OnEvent(event)
 	elseif event == "CHAT_MSG_SPELL_AURA_GONE_SELF" or event == "CHAT_MSG_SPELL_BREAK_AURA" then
 		Cryolysis_SelfEffect("DEBUFF");
 	elseif event == "CHAT_MSG_SPELL_AURA_GONE_OTHER" then
-		for spell, creatureName in string.gfind(arg1, CRYOLYSIS_POLY_SRCH) do
+		for spell, creatureName in string.gmatch(arg1, CRYOLYSIS_POLY_SRCH) do
 			Cryolysis_PolyCheck("break",spell,creatureName);
 		end
 	elseif event == "PLAYER_REGEN_DISABLED" then
@@ -999,7 +999,7 @@ function Cryolysis_SpellManagement()
 		-- If the spell is cold snap, remove frost timers
 		if CryolysisConfig.ShowSpellTimers then
 			if SpellCastName == CRYOLYSIS_SPELL_TABLE[42].Name and CRYOLYSIS_SPELL_TABLE[42].ID ~= nil then
-				for thistimer=table.getn(SpellTimer), 1, -1 do
+				for thistimer=#(SpellTimer), 1, -1 do
 					if 	SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[9].Name
 						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[19].Name
 						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[20].Name
@@ -1011,10 +1011,10 @@ function Cryolysis_SpellManagement()
 				end
 			end
 	--		-- Pour les autres sorts castés, tentative de timer si valable
-			for spell=1, table.getn(CRYOLYSIS_SPELL_TABLE), 1 do
+			for spell=1, #(CRYOLYSIS_SPELL_TABLE), 1 do
 				if SpellCastName == CRYOLYSIS_SPELL_TABLE[spell].Name then -- and not (spell == 10) then  <--- and the spell isn't Enslave Demon
 					-- If a timer already exists, it is updated
-					for thisspell=1, table.getn(SpellTimer), 1 do
+					for thisspell=1, #(SpellTimer), 1 do
 						if SpellTimer[thisspell].Name == SpellCastName
 							and SpellTimer[thisspell].Target == SpellTargetName
 							and SpellTimer[thisspell].TargetLevel == SpellTargetLevel
@@ -1101,7 +1101,7 @@ function Cryolysis_PolyCheck(type,spell,creatureName)
 				PlaySoundFile(CRYOLYSIS_SOUND.SheepBreak);
 				CryolysisPrivate.PolyTarget = nil;
 			end
-           	for thistimer=table.getn(SpellTimer), 1, -1 do
+           	for thistimer=#(SpellTimer), 1, -1 do
 				if 	SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[26].Name
 				    and SpellTimer[thistimer].Target == creatureName then
 					SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(thistimer, SpellTimer, TimerTable);
@@ -1117,7 +1117,7 @@ function Cryolysis_PolyCheck(type,spell,creatureName)
 				PlaySoundFile(CRYOLYSIS_SOUND.PigBreak);
 				CryolysisPrivate.PolyTarget = nil;
 			end
-           	for thistimer=table.getn(SpellTimer), 1, -1 do
+           	for thistimer=#(SpellTimer), 1, -1 do
 				if 	SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[48].Name
 				    and SpellTimer[thistimer].Target == creatureName then
 					SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(thistimer, SpellTimer, TimerTable);
@@ -1178,9 +1178,9 @@ function Cryolysis_ChatMessage(spell, creatureName)
 			if spell == Mount.Title then
 				if CryolysisConfig.SteedMessage and string.find(SpellCastName, Mount.Title) then
 	    			if not CryolysisConfig.SM then
-						local tempnum = random(1, table.getn(CRYOLYSIS_STEED_MESSAGE));
-						while tempnum == CryolysisPrivate.SteedMess and table.getn(CRYOLYSIS_STEED_MESSAGE) >= 2 do
-							tempnum = random(1, table.getn(CRYOLYSIS_STEED_MESSAGE));
+						local tempnum = random(1, #(CRYOLYSIS_STEED_MESSAGE));
+						while tempnum == CryolysisPrivate.SteedMess and #(CRYOLYSIS_STEED_MESSAGE) >= 2 do
+							tempnum = random(1, #(CRYOLYSIS_STEED_MESSAGE));
 						end
 						CryolysisPrivate.SteedMess = tempnum;
 						Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_STEED_MESSAGE[tempnum], nil, nil, Mount.Title), "SAY");
@@ -1198,25 +1198,25 @@ function Cryolysis_ChatMessage(spell, creatureName)
 			   		if not CryolysisConfig.SM then
 					    -- Sheep
 						if spell == CRYOLYSIS_SPELL_TABLE[26].Name then
-							local tempnum = random(1, table.getn(CRYOLYSIS_POLY_MESSAGE.Sheep));
-							while tempnum == CryolysisPrivate.PolyMess and table.getn(CRYOLYSIS_POLY_MESSAGE.Sheep) >= 2 do
-								tempnum = random(1, table.getn(CRYOLYSIS_POLY_MESSAGE.Sheep));
+							local tempnum = random(1, #(CRYOLYSIS_POLY_MESSAGE.Sheep));
+							while tempnum == CryolysisPrivate.PolyMess and #(CRYOLYSIS_POLY_MESSAGE.Sheep) >= 2 do
+								tempnum = random(1, #(CRYOLYSIS_POLY_MESSAGE.Sheep));
 							end
 							CryolysisPrivate.PolyMess = tempnum;
 							Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_POLY_MESSAGE.Sheep[tempnum], creatureName), "GROUP");
 						-- Pig
 			 		    elseif spell == CRYOLYSIS_SPELL_TABLE[48].Name then
-							local tempnum = random(1, table.getn(CRYOLYSIS_POLY_MESSAGE.Pig));
-							while tempnum == CryolysisPrivate.PolyMess and table.getn(CRYOLYSIS_POLY_MESSAGE.Pig) >= 2 do
-								tempnum = random(1, table.getn(CRYOLYSIS_POLY_MESSAGE.Pig));
+							local tempnum = random(1, #(CRYOLYSIS_POLY_MESSAGE.Pig));
+							while tempnum == CryolysisPrivate.PolyMess and #(CRYOLYSIS_POLY_MESSAGE.Pig) >= 2 do
+								tempnum = random(1, #(CRYOLYSIS_POLY_MESSAGE.Pig));
 							end
 							CryolysisPrivate.PolyMess = tempnum;
 							Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_POLY_MESSAGE.Pig[tempnum], creatureName), "GROUP");
 						-- Turtle
 						elseif spell == CRYOLYSIS_SPELL_TABLE[52].Name then
-							local tempnum = random(1, table.getn(CRYOLYSIS_POLY_MESSAGE.Turtle));
-							while tempnum == CryolysisPrivate.PolyMess and table.getn(CRYOLYSIS_POLY_MESSAGE.Turtle) >= 2 do
-								tempnum = random(1, table.getn(CRYOLYSIS_POLY_MESSAGE.Turtle));
+							local tempnum = random(1, #(CRYOLYSIS_POLY_MESSAGE.Turtle));
+							while tempnum == CryolysisPrivate.PolyMess and #(CRYOLYSIS_POLY_MESSAGE.Turtle) >= 2 do
+								tempnum = random(1, #(CRYOLYSIS_POLY_MESSAGE.Turtle));
 							end
 							CryolysisPrivate.PolyMess = tempnum;
 	      					Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_POLY_MESSAGE.Turtle[tempnum], creatureName), "GROUP");
@@ -1231,9 +1231,9 @@ function Cryolysis_ChatMessage(spell, creatureName)
 				end
 			end
 		elseif spell == CRYOLYSIS_SPELL_TABLE[65].Name then
-			local tempnum = random(1, table.getn(CRYOLYSIS_FREEZE_MESSAGE));
-			while tempnum == CryolysisPrivate.PolyMess and table.getn(CRYOLYSIS_FREEZE_MESSAGE) >= 2 do
-				tempnum = random(1, table.getn(CRYOLYSIS_FREEZE_MESSAGE));
+			local tempnum = random(1, #(CRYOLYSIS_FREEZE_MESSAGE));
+			while tempnum == CryolysisPrivate.PolyMess and #(CRYOLYSIS_FREEZE_MESSAGE) >= 2 do
+				tempnum = random(1, #(CRYOLYSIS_FREEZE_MESSAGE));
 			end
 			CryolysisPrivate.PolyMess = tempnum;
 			Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_FREEZE_MESSAGE[tempnum], creatureName), "SAY");
@@ -1250,16 +1250,16 @@ function Cryolysis_ChatMessage(spell, creatureName)
             if CryolysisConfig.PortalMessage then
 				if not CryolysisConfig.SM then
         			if port <= 6 then
-   						local tempnum = random(1, table.getn(CRYOLYSIS_TELEPORT_MESSAGE));
-						while tempnum == CryolysisPrivate.PortalMess and table.getn(CRYOLYSIS_TELEPORT_MESSAGE) >= 2 do
-							tempnum = random(1, table.getn(CRYOLYSIS_TELEPORT_MESSAGE));
+   						local tempnum = random(1, #(CRYOLYSIS_TELEPORT_MESSAGE));
+						while tempnum == CryolysisPrivate.PortalMess and #(CRYOLYSIS_TELEPORT_MESSAGE) >= 2 do
+							tempnum = random(1, #(CRYOLYSIS_TELEPORT_MESSAGE));
 						end
 						CryolysisPrivate.PortalMess = tempnum;
 						Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_TELEPORT_MESSAGE[tempnum], nil, PortalName[port]), "GROUP");
 					else
-				    	local tempnum = random(1, table.getn(CRYOLYSIS_PORTAL_MESSAGE));
-						while tempnum == CryolysisPrivate.PortalMess and table.getn(CRYOLYSIS_PORTAL_MESSAGE) >= 2 do
-							tempnum = random(1, table.getn(CRYOLYSIS_PORTAL_MESSAGE));
+				    	local tempnum = random(1, #(CRYOLYSIS_PORTAL_MESSAGE));
+						while tempnum == CryolysisPrivate.PortalMess and #(CRYOLYSIS_PORTAL_MESSAGE) >= 2 do
+							tempnum = random(1, #(CRYOLYSIS_PORTAL_MESSAGE));
 						end
 						CryolysisPrivate.PortalMess = tempnum;
 						Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_PORTAL_MESSAGE[tempnum], nil, PortalName[port]), "GROUP");
@@ -1373,7 +1373,7 @@ function Cryolysis_Restock()
 		RestockCount[3] = CryolysisConfig.RestockPowder - Count.ArcanePowder;
 	end	
 	for item= 1, MerchItems do
-		for i = 1, table.getn(RestockCount) do
+		for i = 1, #(RestockCount) do
 			local itemString = GetMerchantItemInfo(item)
 			if itemString == RestockNames[i] and RestockCount[i] > 0 then
 				Cryolysis_Msg(CRYOLYSIS_MESSAGE.Information.Restock..RestockCount[i].." "..RestockNames[i], "USER");
@@ -2133,7 +2133,7 @@ function Cryolysis_UpdateIcons()
 	local spellEnable, texture;
 	local alternative = false;
 	for button=1, 3, 2 do
-		for spell=1, table.getn(CryolysisSpellButtons), 1 do
+		for spell=1, #(CryolysisSpellButtons), 1 do
 			if spellNumber[button] == spell then
 				spellEnable = false;
 				alternative = false;
@@ -2324,7 +2324,7 @@ end
 -- T'AS QU'A SAVOIR OU T'AS MIS TES AFFAIRES !
 function Cryolysis_ProvisionSetup()
 	ProvisionSlotID = 1;
-	for slot=1, table.getn(ProvisionSlot), 1 do
+	for slot=1, #(ProvisionSlot), 1 do
 		table.remove(ProvisionSlot, slot);
 	end
 	for slot=1, GetContainerNumSlots(CryolysisConfig.ProvisionContainer), 1 do
@@ -2367,13 +2367,13 @@ function Cryolysis_MountCheck(itemName, container, slot)
 			return;
 		end
 	end
-	for icon=1, table.getn(CRYOLYSIS_MOUNT_TABLE), 1 do
-		for i=1, table.getn(CRYOLYSIS_MOUNT_TABLE[icon]), 1 do
+	for icon=1, #(CRYOLYSIS_MOUNT_TABLE), 1 do
+		for i=1, #(CRYOLYSIS_MOUNT_TABLE[icon]), 1 do
 			if itemName == CRYOLYSIS_MOUNT_TABLE[icon][i] then
 			   	Mount.Available = true;
 			   	Mount.Name = CRYOLYSIS_MOUNT_TABLE[icon][i];
 				Mount.Title = Mount.Name;
-			   	for p=1, table.getn(CRYOLYSIS_MOUNT_PREFIX), 1 do
+			   	for p=1, #(CRYOLYSIS_MOUNT_PREFIX), 1 do
 			   	    if strfind(Mount.Name, CRYOLYSIS_MOUNT_PREFIX[p]) then
 				    	Mount.Title = strsub(Mount.Name, strlen(CRYOLYSIS_MOUNT_PREFIX[p])+1);
 					end
@@ -2391,7 +2391,7 @@ function Cryolysis_MountCheck(itemName, container, slot)
 	end	
 end
 function Cryolysis_AQMountCheck(itemName, container, slot)
-	for i=1, table.getn(CRYOLYSIS_AQMOUNT_TABLE), 1 do
+	for i=1, #(CRYOLYSIS_AQMOUNT_TABLE), 1 do
 		if itemName == CRYOLYSIS_AQMOUNT_TABLE[i] then
 		   	Mount.Available = true;
 		   	Mount.Name = CRYOLYSIS_AQMOUNT_TABLE[i];
@@ -2416,13 +2416,13 @@ function Cryolysis_BagCheck(spell)
 	elseif spell == "Update" then
 		CryolysisPrivate.checkInv = true;
 	elseif spell then
- 		for i=1, table.getn(spellcheck), 1 do
+ 		for i=1, #(spellcheck), 1 do
 		    if spell == CRYOLYSIS_SPELL_TABLE[spellcheck[i]].Name then
 				Cryolysis_BagCheck("Update");
 				break;
 			end
 		end
-		for i=1, table.getn(CRYOLYSIS_MANASTONE_NAMES), 1 do
+		for i=1, #(CRYOLYSIS_MANASTONE_NAMES), 1 do
 			if spell == CRYOLYSIS_MANASTONE_NAMES[i] then
     			Cryolysis_BagCheck("Update");
 				break;
@@ -2746,7 +2746,7 @@ function Cryolysis_SpellSetup()
 			local found = false;
 			local _, _, rank = string.find(subSpellName, CRYOLYSIS_TRANSLATION.Rank .. " (.+)");
 			rank = tonumber(rank);
-			for index=1, table.getn(CurrentSpells.Name), 1 do
+			for index=1, #(CurrentSpells.Name), 1 do
 				if (CurrentSpells.Name[index] == spellName) then
 			found = true;
 					if (CurrentSpells.subName[index] < rank) then
@@ -2764,7 +2764,7 @@ function Cryolysis_SpellSetup()
 			end
 		end
 		-- Check to see if it is a mana gem.  if it is, note it and its information
-		for i=1, table.getn(CRYOLYSIS_MANASTONE_NAMES), 1 do
+		for i=1, #(CRYOLYSIS_MANASTONE_NAMES), 1 do
 		    if spellName == CRYOLYSIS_MANASTONE_NAMES[i] then
 				if i > StoneMaxRank[2] then
 					StoneMaxRank[2] = i;
@@ -2776,7 +2776,7 @@ function Cryolysis_SpellSetup()
 	end
 
 	-- One inserts in the table the stones with the highest rank
-	for stoneID=1, table.getn(StoneType), 1 do
+	for stoneID=1, #(StoneType), 1 do
 		if StoneMaxRank[stoneID] ~= 0 then
 			table.insert(CRYOLYSIS_SPELL_TABLE, {
 				ID = CurrentStone.ID[stoneID],
@@ -2786,12 +2786,12 @@ function Cryolysis_SpellSetup()
 				Length = 0,
 				Type = 0,
 			});
-			StoneIDInSpellTable[stoneID] = table.getn(CRYOLYSIS_SPELL_TABLE);
+			StoneIDInSpellTable[stoneID] = #(CRYOLYSIS_SPELL_TABLE);
 		end
 	end
 	-- Updates the list of the spells with the new ranks
-	for spell=1, table.getn(CRYOLYSIS_SPELL_TABLE), 1 do
-		for index = 1, table.getn(CurrentSpells.Name), 1 do
+	for spell=1, #(CRYOLYSIS_SPELL_TABLE), 1 do
+		for index = 1, #(CurrentSpells.Name), 1 do
 			if (CRYOLYSIS_SPELL_TABLE[spell].Name == CurrentSpells.Name[index])
 				and CRYOLYSIS_SPELL_TABLE[spell].ID ~= StoneIDInSpellTable[3]
 				then
@@ -2802,7 +2802,7 @@ function Cryolysis_SpellSetup()
 	end
 
 	-- Updates the duration of each spell according to its rank
-	for index=1, table.getn(CRYOLYSIS_SPELL_TABLE), 1 do
+	for index=1, #(CRYOLYSIS_SPELL_TABLE), 1 do
 		if (index == 26) then -- For Polymorph
 			if CRYOLYSIS_SPELL_TABLE[index].ID ~= nil then
 				CRYOLYSIS_SPELL_TABLE[index].Length = CRYOLYSIS_SPELL_TABLE[index].Rank * 10 + 10;
@@ -2838,7 +2838,7 @@ function Cryolysis_SpellSetup()
 	for spellID=1, MAX_SPELLS, 1 do
         local spellName, subSpellName = GetSpellName(spellID, "spell");
 		if (spellName) then
-			for index=1, table.getn(CRYOLYSIS_SPELL_TABLE), 1 do
+			for index=1, #(CRYOLYSIS_SPELL_TABLE), 1 do
 				if CRYOLYSIS_SPELL_TABLE[index].Name == spellName then
 					Cryolysis_MoneyToggle();
 					CryolysisTooltip:SetSpell(spellID, 1);
@@ -2875,7 +2875,7 @@ end
 -- Function of extraction of attribute of spells
 -- F(type=string, string, int) -> Spell=table
 function Cryolysis_FindSpellAttribute(type, attribute, array)
-	for index=1, table.getn(CRYOLYSIS_SPELL_TABLE), 1 do
+	for index=1, #(CRYOLYSIS_SPELL_TABLE), 1 do
 		if string.find(CRYOLYSIS_SPELL_TABLE[index][type], attribute) then return CRYOLYSIS_SPELL_TABLE[index][array]; end
 	end
 	return nil;
@@ -3057,13 +3057,13 @@ function Cryolysis_Metamorph()
    	local morphs = {26, 48, 52};
    	local availableMorphs = {};
    	local spells = 0;
-	for i=1, table.getn(morphs), 1 do
+	for i=1, #(morphs), 1 do
    		if CRYOLYSIS_SPELL_TABLE[morphs[i]].ID then
    			spells = spells + 1;
    			availableMorphs[spells] = morphs[i];
    		end
 	end
-   	CastSpell(CRYOLYSIS_SPELL_TABLE[availableMorphs[random(1,table.getn(availableMorphs))]].ID, "spell");
+   	CastSpell(CRYOLYSIS_SPELL_TABLE[availableMorphs[random(1,#(availableMorphs))]].ID, "spell");
 end
 
 -- Function to know if a unit undergoes an effect 
@@ -3383,7 +3383,7 @@ end
 function MsgToTable(msg)
 	if not msg then return end
  	local t = {};
- 	for w in string.gfind( msg, "%S+" ) do
+ 	for w in string.gmatch( msg, "%S+" ) do
  		tinsert( t, w )
  	end
  	return t;
@@ -3708,7 +3708,7 @@ function Cryolysis_CreateMenu()
 		table.insert(PortalMenuCreate, menuVariable);
 	end
 	-- Now that all the buttons are placed the ones beside the others (out of the screen), the available ones are displayed
-	for i = 1, table.getn(PortalMenuCreate), 1 do
+	for i = 1, #(PortalMenuCreate), 1 do
 		ShowUIPanel(PortalMenuCreate[i]);
 	end
 
@@ -3814,7 +3814,7 @@ function Cryolysis_CreateMenu()
 	end
 
 	-- Now that all the buttons are placed the ones beside the others (out of the screen), the available ones are posted 
-	for i = 1, table.getn(BuffMenuCreate), 1 do
+	for i = 1, #(BuffMenuCreate), 1 do
 		ShowUIPanel(BuffMenuCreate[i]);
 	end
 end

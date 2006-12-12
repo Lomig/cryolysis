@@ -174,7 +174,7 @@ end
 
 -- Si on veut supprimer spécifiquement un Timer...
 function Cryolysis_RetraitTimerParNom(name, SpellTimer, TimerTable)
-	for index = 1, table.getn(SpellTimer), 1 do
+	for index = 1, #(SpellTimer), 1 do
 		if SpellTimer[index].Name == name then
 			SpellTimer = Cryolysis_RetraitTimerParIndex(index, SpellTimer, TimerTable);
 			break;
@@ -185,7 +185,7 @@ end
 
 -- Fonction pour enlever les timers de combat lors de la regen
 function Cryolysis_RetraitTimerCombat(SpellGroup, SpellTimer, TimerTable)
-	for index=1, table.getn(SpellTimer), 1 do
+	for index=1, #(SpellTimer), 1 do
 		if SpellTimer[index] then
 			-- Si les cooldowns sont nominatifs, on enlève le nom
 			if SpellTimer[index].Type == 3 then
@@ -199,8 +199,8 @@ function Cryolysis_RetraitTimerCombat(SpellGroup, SpellTimer, TimerTable)
 		end
 	end
 
-	if table.getn(SpellGroup.Name) >= 4 then
-		for index = 4, table.getn(SpellGroup.Name), 1 do
+	if #(SpellGroup.Name) >= 4 then
+		for index = 4, #(SpellGroup.Name), 1 do
 			table.remove(SpellGroup.Name);
 			table.remove(SpellGroup.SubName);
 			table.remove(SpellGroup.Visible);
@@ -214,7 +214,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 function Cryolysis_TimerExisteDeja(Nom, SpellTimer)
-	for index = 1, table.getn(SpellTimer), 1 do
+	for index = 1, #(SpellTimer), 1 do
 		if SpellTimer[index].Name == Nom then
 			return true;
 		end
@@ -230,9 +230,9 @@ end
 -- On définit les groupes de chaque Timer
 function Cryolysis_Parsing(SpellGroup, SpellTimer)
 	local GroupeOK = false;
-	for index = 1, table.getn(SpellTimer), 1 do
+	for index = 1, #(SpellTimer), 1 do
 		local GroupeOK = false;
-		for i = 1, table.getn(SpellGroup.Name), 1 do
+		for i = 1, #(SpellGroup.Name), 1 do
 			if ((SpellTimer[index].Type == i) and (i <= 3)) or 
 			   (SpellTimer[index].Target == SpellGroup.Name[i]
 				and SpellTimer[index].TargetLevel == SpellGroup.SubName[i])
@@ -247,7 +247,7 @@ function Cryolysis_Parsing(SpellGroup, SpellTimer)
 			table.insert(SpellGroup.Name, SpellTimer[index].Target);
 			table.insert(SpellGroup.SubName, SpellTimer[index].TargetLevel);
 			table.insert(SpellGroup.Visible, false);
-			SpellTimer[index].Group = table.getn(SpellGroup.Name);
+			SpellTimer[index].Group = #(SpellGroup.Name);
 		end
 	end
 	
