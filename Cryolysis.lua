@@ -180,7 +180,11 @@ CryolysisPrivate = {
 	-- ADDED by Eternally777, 12/11/2006@11:13EST
 	highestWaterId = 0,
 	highestWaterCount = 0,
-	waterRanks = { 8079, 8078, 8077, 3772, 2136, 2288, 5350 },
+	waterRanks = { 8079, 8078, 8077, 3772, 2136, 2288, 5350 }, -- Item IDs for Mage conjured water, in order from highest amount of mana restored to lowest.  ORDER DOES MATTER
+	
+	highestFoodId = 0,
+	highestFoodCount = 0,
+	foodRanks = { 22895, 8076, 8075, 1487, 1114, 1113, 5349 }, -- Item IDs for Mage conjured bread, in order from highest amount of health restored to lowest.  ORDER DOES MATTER
 	
 	-- Cooldown vars
 	EvocationCooldown = 0,
@@ -722,6 +726,15 @@ function Cryolysis_OnEvent(event)
 			end
 		end
 		Cryolysis_UpdateDrinkButtonAttributes()
+		for i, v in ipairs(CryolysisPrivate.foodRanks) do
+			local c = GetItemCount(v)
+			if ( c > 0 ) then
+				CryolysisPrivate.highestFoodId = v
+				CryolysisPrivate.highestFoodCount = c
+				break
+			end
+		end
+		Cryolysis_UpdateFoodButtonAttributes()
 		if not CryolysisPrivate.LoadCheck then
 			if CryolysisPrivate.checkInv then
 				Cryolysis_BagCheck("Force");
