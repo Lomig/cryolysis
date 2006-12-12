@@ -734,7 +734,7 @@ function Cryolysis_OnEvent(event)
 				break
 			end
 		end
-		Cryolysis_UpdateFoodButtonAttributes()
+		Cryolysis_UpdateFoodButtonAttributes(Count)
 		if not CryolysisPrivate.LoadCheck then
 			if CryolysisPrivate.checkInv then
 				Cryolysis_BagCheck("Force");
@@ -2625,6 +2625,8 @@ function Cryolysis_BagExplore()
 					if string.find(itemName, CRYOLYSIS_ITEM.Hearthstone) then
 						HearthstoneOnHand = true;
 						HearthstoneLocation = {container,slot};
+						CryolysisSpellTimerButton:SetAttribute("type2", "item");
+						CryolysisSpellTimerButton:SetAttribute("item2", CRYOLYSIS_ITEM.Hearthstone);
 					end
 				end
 				-- Mount
@@ -3176,6 +3178,38 @@ end
 --	ConcentrationID = ID;
 --end
 
+
+-- Function by Lomig : Only for now, to respect the file structure. To be changed and rationalized
+function Cryolysis_Trade_Food()
+	Cryolysis_Msg("Debug : Trade Food asked", "USER");
+	if Count.Food > 0 then
+		if (UnitExists("target")
+			and UnitIsPlayer("target")
+			and UnitIsFriend("player", "target")
+			and UnitName("target") ~= UnitName("player"))
+		or CryolysisTradeRequest then
+			Cryolysis_TradeExplore(Count.FoodLastName);
+		end
+	end
+end
+
+-- Function by Lomig : Only for now, to respect the file structure. To be changed and rationalized
+function Cryolysis_Trade_Water()
+	Cryolysis_Msg("Debug : Trade Water asked", "USER");
+	if Count.Drink > 0 then
+		if (UnitExists("target")
+			and UnitIsPlayer("target")
+			and UnitIsFriend("player", "target")
+			and UnitName("target") ~= UnitName("player"))
+		or CryolysisTradeRequest then
+			Cryolysis_TradeExplore(Count.DrinkLastName);
+		end
+	end
+end
+
+
+
+-- LOMIG : FUNCION TO GET RID OF :::::
 -- Function to manage the actions carried out by Cryolysis with the click on a button 
 function Cryolysis_UseItem(type,button,keybind)
 	local Ctrl = IsControlKeyDown();

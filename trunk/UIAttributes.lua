@@ -4,14 +4,22 @@ function Cryolysis_UpdateDrinkButtonAttributes()
 	local f = _G["CryolysisDrinkButton"]
 	assert(f, "Error: Drink button not created or named properly!")
 	if ( not InCombatLockdown() ) then
-		f:SetAttribute("*type1", "item")
+		f:SetAttribute("type1", "item")
 		local highestWaterName = GetItemInfo(CryolysisPrivate.highestWaterId)
 		if ( highestWaterName ) then
 			f:SetAttribute("item1", highestWaterName)
 		end
 		
-		f:SetAttribute("*type2", "spell")
-		f:SetAttribute("spell2", "Conjure Water")
+		f:SetAttribute("type2", "spell")
+		-- Changed by Lomig
+		-- f:SetAttribute("spell2", "Conjure Water")
+		f:SetAttribute("spell2", CRYOLYSIS_SPELL_TABLE[11].Name)
+
+		-- Added By Lomig 12/12/06 12:51pm (GMT+1)
+		f:SetAttribute("type3", "Trade");
+		f.Trade = function() Cryolysis_Trade_Water(); end
+		-- End of adding
+
 	end
 end
 
@@ -19,13 +27,20 @@ function Cryolysis_UpdateFoodButtonAttributes()
 	local f = _G["CryolysisFoodButton"]
 	assert(f, "Error: Food button not created or named properly!")
 	if ( not InCombatLockdown() ) then
-		f:SetAttribute("*type1", "item")
+		f:SetAttribute("type1", "item")
 		local highestFoodName = GetItemInfo(CryolysisPrivate.highestFoodId)
 		if ( highestFoodName ) then
 			f:SetAttribute("item1", highestFoodName)
 		end
 		
-		f:SetAttribute("*type2", "spell")
-		f:SetAttribute("spell2", "Conjure Food")
+		f:SetAttribute("type2", "spell")
+		-- Changed by Lomig
+		-- f:SetAttribute("spell2", "Conjure Food")
+		f:SetAttribute("spell2", CRYOLYSIS_SPELL_TABLE[10].Name)
+
+		-- Added By Lomig 12/12/06 13:03pm (GMT+1)
+		f:SetAttribute("type3", "Trade");
+		CryolysisFoodButton.Trade = function() Cryolysis_Trade_Food(); end
+		-- End of adding
 	end
 end
