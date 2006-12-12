@@ -1,15 +1,38 @@
+--[[
+    Cryolysis
+    Copyright (C) 2006 Cryolysis: Reborn Team
+
+    This file is part of Cryolysis.
+
+    Cryolysis is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    Cryolysis is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Cryolysis; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+--]]
+
+
 ------------------------------------------------------------------------------------------------------
 -- Cryolysis
 --
--- Based on Necrosis LdC by Lomig and Nyx (http://necrosis.larmes-cenarius.net)
--- Original Necrosis Idea : Infernal (http://www.revolvus.com/games/interface/necrosis/)
--- Cryolysis Maintainer : Kaeldra of Aegwynn
+-- Copyright (c) 2006 Cryolysis: Reborn Team
+-- Copyright (c) 2006 Kaeldra (darklyte@gmail.com)
+-- Copyright (c) 2005-2006 Lom Enfroy
 --
--- Contact : darklyte@gmail.com
--- Send me in-game mail!  Yersinia on Aegwynn, Horde side.
--- Guild: <Working as Intended>
--- Version Date: 07.19.2006
+-- Skins: Eliah, Ner'zhul FR
+--
+--
+-- Version 12.12.2006
 ------------------------------------------------------------------------------------------------------
+
 
 -- Default Configuations
 -- In case configuations are lost or version is changed
@@ -264,10 +287,10 @@ function Cryolysis_OnLoad()
 	CryolysisButton:RegisterEvent("UNIT_PET");
 	CryolysisButton:RegisterEvent("MERCHANT_SHOW");
 	CryolysisButton:RegisterEvent("MERCHANT_CLOSED");
-	CryolysisButton:RegisterEvent("SPELLCAST_START");
-	CryolysisButton:RegisterEvent("SPELLCAST_FAILED");
-	CryolysisButton:RegisterEvent("SPELLCAST_INTERRUPTED");
-	CryolysisButton:RegisterEvent("SPELLCAST_STOP");
+	CryolysisButton:RegisterEvent("UNIT_SPELLCAST_FAILED");
+	CryolysisButton:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED");
+	CryolysisButton:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
+	CryolysisButton:RegisterEvent("UNIT_SPELLCAST_SENT");
 	CryolysisButton:RegisterEvent("LEARNED_SPELL_IN_TAB");
 	CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE");
 	CryolysisButton:RegisterEvent("PLAYER_TARGET_CHANGED");
@@ -630,15 +653,39 @@ function Cryolysis_OnEvent(event)
 			Cryolysis_BagExplore();
 		end
 	-- Management of the end of spellcasting
-	elseif (event == "SPELLCAST_FAILED") or (event == "SPELLCAST_INTERRUPTED") then
-		SpellCastName = nil;
-		SpellCastRank = nil;
-		SpellTargetName = nil;
-		SpellTargetLevel = nil;
+-- Changed by Lomig :	elseif (event == "SPELLCAST_FAILED") or (event == "SPELLCAST_INTERRUPTED") then
+	elseif (event == "UNIT_SPELLCAST_FAILED") or (event == "UNIT_SPELLCAST_INTERRUPTED") then
+		-- added by Lomig
+		if arg1 == "player" then
+		-- end of adding
+			SpellCastName = nil;
+			SpellCastRank = nil;
+			SpellTargetName = nil;
+			SpellTargetLevel = nil;
+		-- added by Lomig
+		end
+		-- end of adding
+
+
+
+--[[ Commented by Lomig 12/12/06 2.00 GMT+1
 	elseif (event == "SPELLCAST_STOP") then
 		Cryolysis_PolyCheck("stop",SpellCastName,SpellTargetName);
 		Cryolysis_SpellManagement();
+-- I replace this function by this one :
+--]]
+	elseif (event == "UNIT_SPELLCAST_SUCCEEDED") then
+		SpellCastUnit, SpellCastName = arg1, arg2
+		if SpellCastUnit == "player" then
+			Cryolysis_PolyCheck("stop",SpellCastName,SpellTargetName);
+			Cryolysis_SpellManagement();
+		end
+
+------ end of Lomig's changes.
+
 --		Cryolysis_BagCheck(SpellCastName);
+
+--[[ commented by Lomig 12/12/06 2.00 GMT+1
 	-- When the mage begins to cast a spell, it grabs the name of the spell and saves the name of the spells target's level
 	elseif (event == "SPELLCAST_START") then
 		SpellCastName = arg1;
@@ -652,6 +699,27 @@ function Cryolysis_OnEvent(event)
 		end	
 		Cryolysis_PolyCheck("start",SpellCastName,SpellTargetName);
 		Cryolysis_ChatMessage(SpellCastName, SpellTargetName);
+-- I replace this part by this one :
+--]]
+
+	elseif (event == "UNIT_SPELLCAST_SENT") then
+		_, SpellCastName, SpellCastRank, SpellTargetName = arg1, arg2, arg3, arg4;
+		if (not SpellTargetName or SpellTargetName == "") and UnitName("target") then
+			SpellTargetName = UnitName("target");
+		elseif not SpellTargetName then
+			SpellTargetName = "";
+		end
+		SpellTargetLevel = UnitLevel("target");
+		if not SpellTargetLevel then
+			SpellTargetLevel = "";
+		end
+		Cryolysis_PolyCheck("start",SpellCastName,SpellTargetName);
+		Cryolysis_ChatMessage(SpellCastName, SpellTargetName);
+
+
+------ end of Lomig's changes.
+
+
 	-- When the mage stops casting, clear spell data
 	-- Flag if the trade window is open, in order to be able to trade provisions automatically
 	elseif event == "TRADE_REQUEST" or event == "TRADE_SHOW" then
@@ -779,10 +847,10 @@ function Cryolysis_RegisterManagement(RegistrationType)
 		CryolysisButton:RegisterEvent("UNIT_PET");
 		CryolysisButton:RegisterEvent("MERCHANT_SHOW");
 		CryolysisButton:RegisterEvent("MERCHANT_CLOSED");
-		CryolysisButton:RegisterEvent("SPELLCAST_START");
-		CryolysisButton:RegisterEvent("SPELLCAST_FAILED");
-		CryolysisButton:RegisterEvent("SPELLCAST_INTERRUPTED");
-		CryolysisButton:RegisterEvent("SPELLCAST_STOP");
+		CryolysisButton:RegisterEvent("UNIT_SPELLCAST_FAILED");
+		CryolysisButton:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED");
+		CryolysisButton:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
+		CryolysisButton:RegisterEvent("UNIT_SPELLCAST_SENT");
 		CryolysisButton:RegisterEvent("LEARNED_SPELL_IN_TAB");
 		CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE");
 		CryolysisButton:RegisterEvent("PLAYER_TARGET_CHANGED");
@@ -802,10 +870,10 @@ function Cryolysis_RegisterManagement(RegistrationType)
 		CryolysisButton:UnregisterEvent("UNIT_PET");
 		CryolysisButton:UnregisterEvent("MERCHANT_SHOW");
 		CryolysisButton:UnregisterEvent("MERCHANT_CLOSED");
-		CryolysisButton:UnregisterEvent("SPELLCAST_START");
-		CryolysisButton:UnregisterEvent("SPELLCAST_FAILED");
-		CryolysisButton:UnregisterEvent("SPELLCAST_INTERRUPTED");
-		CryolysisButton:UnregisterEvent("SPELLCAST_STOP");
+		CryolysisButton:UnRegisterEvent("UNIT_SPELLCAST_FAILED");
+		CryolysisButton:UnRegisterEvent("UNIT_SPELLCAST_INTERRUPTED");
+		CryolysisButton:UnRegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
+		CryolysisButton:UnRegisterEvent("UNIT_SPELLCAST_SENT");
 		CryolysisButton:UnregisterEvent("LEARNED_SPELL_IN_TAB");
 		CryolysisButton:UnregisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE");
 		CryolysisButton:UnregisterEvent("PLAYER_TARGET_CHANGED");
@@ -2485,24 +2553,35 @@ function Cryolysis_SpellSetup()
     t=UnitLevel("player");
     t = (t / 10) - ((t % 10)/10) + 1;
     CryolysisDrinkButton:SetAttribute("macrotext1", "/use Conjured" .. CRYOLYSIS_DRINK_RANK[t]);
-    CryolysisDrinkButton:SetAttribute("type2", "macro");
-    CryolysisDrinkButton:SetAttribute("macrotext2", "/cast Conjure Water");
+    -- Do not know why you do not use the "spell" and you use the macro /cast. Anyway, it won't work on non-English Client.
+    -- Changed by Lomig :
+    CryolysisDrinkButton:SetAttribute("type2", "spell");
+    CryolysisDrinkButton:SetAttribute("spell2", CRYOLYSIS_SPELL_TABLE[11].Name);
 
 -- Food Button
     CryolysisFoodButton:SetAttribute("type1", "macro");
     t = UnitLevel("player") - 2;
     t = (t / 10) - ((t % 10)/10) + 1;
     CryolysisFoodButton:SetAttribute("macrotext1", "/use Conjured" .. CRYOLYSIS_FOOD_RANK[t]);
-    CryolysisFoodButton:SetAttribute("type2", "macro");
-    CryolysisFoodButton:SetAttribute("macrotext2", "/cast Conjure Food");
+    -- Do not know why you do not use the "spell" and you use the macro /cast. Anyway, it won't work on non-English Client.
+    -- Changed by Lomig :
+    CryolysisFoodButton:SetAttribute("type2", "spell");
+    CryolysisFoodButton:SetAttribute("spell2",  CRYOLYSIS_SPELL_TABLE[10].Name);
     
 -- Manastone Button
     CryolysisManastoneButton:SetAttribute("type1", "macro");
     t = UnitLevel("player") - 28;
     t = (t / 10) - ((t % 10)/10) + 1;
     CryolysisManastoneButton:SetAttribute("macrotext1", "/use Mana" .. CRYOLYSIS_STONE_RANK[t]);
-    CryolysisManastoneButton:SetAttribute("type2", "macro");
-    CryolysisManastoneButton:SetAttribute("macrotext2", "/cast Conjure Mana" .. CRYOLYSIS_STONE_RANK[t]);
+    CryolysisManastoneButton:SetAttribute("type2", "spell");
+    -- CryolysisManastoneButton:SetAttribute("macrotext2", "/cast Conjure Mana" .. CRYOLYSIS_STONE_RANK[t]);	
+	-- Changed by Lomig : You are forgetting people who do not play on English Client...
+	-- My code instead (must be working, but I do not have a mage to check)
+	if StoneIDInSpellTable[2] > 0 then
+		CryolysisManastoneButton:SetAttribute("spell2", CRYOLYSIS_SPELL_TABLE[StoneIDInSpellTable[2]].Name);
+	end
+
+
 
 -- Buff Spells
     CryolysisBuffMenu1:SetAttribute("type1", "spell");
