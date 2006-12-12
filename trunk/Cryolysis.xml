@@ -52,7 +52,7 @@
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\SpellTimerButton-Highlight"/>
 	</Button>
 
-	<Button name="CryolysisButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisButton" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="58" y="58"/>
 		</Size>
@@ -78,9 +78,6 @@
 			</Layer>
 		</Layers>
 		<Scripts>
-			<OnClick>
-				Cryolysis_Toggle(arg1);
-			</OnClick>
 			<OnDragStart>
 				Cryolysis_OnDragStart(this);
 			</OnDragStart>
