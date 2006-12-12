@@ -302,7 +302,7 @@
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
 
-	<Button name="CryolysisDrinkButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisDrinkButton" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -339,9 +339,6 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_UseItem("Drink", arg1);
-			</OnClick>
 			<OnDragStart>
 				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
 			</OnDragStart>

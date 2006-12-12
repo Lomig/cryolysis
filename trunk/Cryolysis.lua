@@ -65,15 +65,15 @@ Default_CryolysisConfig = {
 	CryolysisAngle = 180;   --          \/          \/
 	StonePosition = {true, true, true, true, true, true, true, true, true};
 	StoneLocation = {	
-	"CryolysisFoodButton",
-	"CryolysisDrinkButton",
-	"CryolysisManastoneButton",
-	"CryolysisLeftSpellButton",
-	"CryolysisEvocationButton",
-	"CryolysisRightSpellButton",
-	"CryolysisBuffMenuButton",
-	"CryolysisMountButton",
-	"CryolysisPortalMenuButton",	
+		"CryolysisFoodButton",
+		"CryolysisDrinkButton",
+		"CryolysisManastoneButton",
+		"CryolysisLeftSpellButton",
+		"CryolysisEvocationButton",
+		"CryolysisRightSpellButton",
+		"CryolysisBuffMenuButton",
+		"CryolysisMountButton",
+		"CryolysisPortalMenuButton",	
 	};
 	CryolysisToolTip = true;
 	LeftSpell = 4;
@@ -151,53 +151,58 @@ for i = 1, 50, 1 do
 end
 CryolysisPrivate = {
 	-- Menus: Shows buff and portal
-	PortalShow = false;
-	PortalMenuShow = false;
-	BuffShow = false;
-	BuffMenuShow = false;
+	PortalShow = false,
+	PortalMenuShow = false,
+	BuffShow = false,
+	BuffMenuShow = false,
 
 	-- Menus: Allows the progressive disappearance of the Portal menu (transparency) 
-	AlphaPortalMenu = 1;
-	AlphaPortalVar = 0;
-	PortalVisible = false;
+	AlphaPortalMenu = 1,
+	AlphaPortalVar = 0,
+	PortalVisible = false,
 
 	-- Menus: Allows the progressive disappearance of the buff menu (transparency) 
-	AlphaBuffMenu = 1;
-	AlphaBuffVar = 0;
-	BuffVisible = false;
+	AlphaBuffMenu = 1,
+	AlphaBuffVar = 0,
+	BuffVisible = false,
 
 	-- Menus : Allows recasting of the last spell by middle clicking
-	LastPortal = 0;
-	LastBuff = 0;
-	PortalMess = nil;
+	LastPortal = 0,
+	LastBuff = 0,
+	PortalMess = nil,
 	-- For Polymorph alerts
-	PolyTarget = nil;
-	PolyWarning = false;
-	PolyWarnTime = 0;
-	PolyMess = nil;
-	PolyBreakTime = 0;
+	PolyTarget = nil,
+	PolyWarning = false,
+	PolyWarnTime = 0,
+	PolyMess = nil,
+	PolyBreakTime = 0,
+	
+	-- ADDED by Eternally777, 12/11/2006@11:13EST
+	highestWaterId = 0,
+	highestWaterCount = 0,
+	waterRanks = { 8079, 8078, 8077, 3772, 2136, 2288, 5350 },
 	
 	-- Cooldown vars
-	EvocationCooldown = 0;
-	EvocationCooldownText = "";
-	ManastoneCooldown = 0;
-	ManastoneCooldownText = "";
-	ColdsnapCooldown = 0;
-	ColdsnapCooldownText = "";
-	IceblockCooldown = 0;
-	IceblockCooldownText = "";
+	EvocationCooldown = 0,
+	EvocationCooldownText = "",
+	ManastoneCooldown = 0,
+	ManastoneCooldownText = "",
+	ColdsnapCooldown = 0,
+	ColdsnapCooldownText = "",
+	IceblockCooldown = 0,
+	IceblockCooldownText = "",
 
 	-- Message vars
-	PortalMess = 0;
-	SteedMess = 0;
-	RezMess = 0;
-	TPMess = 0;
+	PortalMess = 0,
+	SteedMess = 0,
+	RezMess = 0,
+	TPMess = 0,
 	-- Other vars
-	Sitting = false;
-	checkInv = true;
- 	LoadCheck = true;
- 	AQ = false;
- 	ChatSilence = false;
+	Sitting = false,
+	checkInv = true,
+ 	LoadCheck = true,
+ 	AQ = false,
+ 	ChatSilence = false
 };
 local debuff = {
 	-- Winter's Chill
@@ -708,6 +713,15 @@ function Cryolysis_OnEvent(event)
 
 	-- If bag concents changed, checks to make sure provisions are in the selected bag
 	if (event == "BAG_UPDATE") then
+		for i, v in ipairs(CryolysisPrivate.waterRanks) do
+			local c = GetItemCount(v)
+			if ( c > 0 ) then
+				CryolysisPrivate.highestWaterId = v
+				CryolysisPrivate.highestWaterCount = c
+				break
+			end
+		end
+		Cryolysis_UpdateDrinkButtonAttributes()
 		if not CryolysisPrivate.LoadCheck then
 			if CryolysisPrivate.checkInv then
 				Cryolysis_BagCheck("Force");
@@ -3883,11 +3897,11 @@ function Cryolysis_SpellButtonCast(side, click)
 end
 -- management of buff menu casting
 function Cryolysis_BuffCast(type, click, nosave)
-    if CryolysisPrivate.Sitting then
+	if CryolysisPrivate.Sitting then
 		DoEmote("stand");
 	end
 	local TargetEnemy = false;
-	if not UnitIsFriend("player","target") or not UnitExists("target") or IsAltKeyDown() or Ctrl then
+	if (( not UnitIsFriend("player", "target") ) or ( not UnitExists("target") ) or ( IsAltKeyDown() ) or ( Ctrl )) then
 		if type ~= 50 and type ~= 10 and type ~= 11 and type ~= 49 and type ~= 23 and type ~= 25 then
 			TargetUnit("player");
 			TargetEnemy = true;

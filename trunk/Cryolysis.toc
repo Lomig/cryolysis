@@ -35,3 +35,5 @@ CryolysisMessageMenu.xml
 CryolysisButtonMenu.xml
 CryolysisTimerMenu.xml
 CryolysisGraphOptionMenu.xml
+
+UIAttributes.lua
