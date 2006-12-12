@@ -481,7 +481,7 @@ function Cryolysis_SlashHandler(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, 
 		end
 	else
 		if CRYOLYSIS_MESSAGE.Help ~= nil then
-			for i = 1, table.getn(CRYOLYSIS_MESSAGE.Help), 1 do
+			for i = 1, #(CRYOLYSIS_MESSAGE.Help), 1 do
 				Cryolysis_Msg(CRYOLYSIS_MESSAGE.Help[i], "USER");
 			end
 		end

@@ -60,7 +60,7 @@ function CryolysisAfficheTimer(tableau, pointeur)
 		end
 			
 	
-		for index =  1, table.getn(tableau.texte), 1 do
+		for index =  1, #(tableau.texte), 1 do
 			-- If the entry is a title of mob 
 			if tableau.titre[index] then
 				-- On change de groupe de mob
@@ -148,10 +148,10 @@ function CryolysisAfficheTimer(tableau, pointeur)
 end
 
 function Cryolysis_AddFrame(SpellTimer, TimerTable)
-	for i = 1, table.getn(TimerTable), 1 do
+	for i = 1, #(TimerTable), 1 do
 		if not TimerTable[i] then
 			TimerTable[i] = true;
-			SpellTimer[table.getn(SpellTimer)].Gtimer = i;
+			SpellTimer[#(SpellTimer)].Gtimer = i;
 			-- Displaying associated graphic timer
 			if CryolysisConfig.Graphical then
 				local elements = {"Text", "Bar", "Texture", "OutText"}
