@@ -430,10 +430,6 @@ local Cryolysis_In = true;
 
 -- Function applied to login
 function Cryolysis_OnLoad()
-	-- Allows to locate spells? (Permet de repérer les sorts lancés)
-	Cryolysis_Hook("UseAction", "Cryolysis_UseAction", "before");
-	Cryolysis_Hook("CastSpell", "Cryolysis_CastSpell", "before");
-	Cryolysis_Hook("CastSpellByName", "Cryolysis_CastSpellByName", "before");
 	
 	-- Recording events intercepted by Cryolysis
 	this:RegisterEvent("PLAYER_ENTERING_WORLD");
@@ -448,10 +444,10 @@ function Cryolysis_OnLoad()
 	CryolysisButton:RegisterEvent("PLAYER_REGEN_ENABLED");
 	CryolysisButton:RegisterEvent("MERCHANT_SHOW");
 	CryolysisButton:RegisterEvent("MERCHANT_CLOSED");
-	CryolysisButton:RegisterEvent("SPELLCAST_START");
-	CryolysisButton:RegisterEvent("SPELLCAST_FAILED");
-	CryolysisButton:RegisterEvent("SPELLCAST_INTERRUPTED");
-	CryolysisButton:RegisterEvent("SPELLCAST_STOP");
+	CryolysisButton:RegisterEvent("UNIT_SPELLCAST_FAILED");
+	CryolysisButton:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED");
+	CryolysisButton:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
+	CryolysisButton:RegisterEvent("UNIT_SPELLCAST_SENT");
 	CryolysisButton:RegisterEvent("LEARNED_SPELL_IN_TAB");
 	CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE");
 	CryolysisButton:RegisterEvent("PLAYER_TARGET_CHANGED");
@@ -727,16 +723,34 @@ function Cryolysis_OnEvent(event)
 --			Cryolysis_BagExplore();
 --		end
 	-- Management of the end of spellcasting
-	elseif (event == "SPELLCAST_FAILED") or (event == "SPELLCAST_INTERRUPTED") then
-		SpellCastName = nil;
-		SpellCastRank = nil;
-		SpellTargetName = nil;
-		SpellTargetLevel = nil;
+-- Changed by Lomig :	elseif (event == "SPELLCAST_FAILED") or (event == "SPELLCAST_INTERRUPTED") then
+	elseif (event == "UNIT_SPELLCAST_FAILED") or (event == "UNIT_SPELLCAST_INTERRUPTED") then
+		-- added by Lomig
+		if arg1 == "player" then
+		-- end of adding
+			SpellCastName = nil;
+			SpellCastRank = nil;
+			SpellTargetName = nil;
+			SpellTargetLevel = nil;
+		-- added by Lomig
+		end
+		-- end of adding
+--[[ Commented by Lomig 12/12/06 2.00 GMT+1
 	elseif (event == "SPELLCAST_STOP") then
 		Cryolysis_PolyCheck("stop",SpellCastName,SpellTargetName);
-		Cryolysis_BagCheck(SpellCastName);
 		Cryolysis_SpellManagement();
-		CryolysisPrivate.Sitting = false;
+-- I replace this function by this one :
+--]]
+	elseif (event == "UNIT_SPELLCAST_SUCCEEDED") then
+		SpellCastUnit, SpellCastName = arg1, arg2
+		if SpellCastUnit == "player" then
+			Cryolysis_PolyCheck("stop",SpellCastName,SpellTargetName);
+			Cryolysis_BagCheck(SpellCastName);
+			Cryolysis_SpellManagement();
+			CryolysisPrivate.Sitting = false;
+		end
+------ end of Lomig's changes.
+--[[ commented by Lomig 12/12/06 2.00 GMT+1
 	-- When the mage begins to cast a spell, it grabs the name of the spell and saves the name of the spells target's level
 	elseif (event == "SPELLCAST_START") then
 		CryolysisPrivate.Sitting = false;
@@ -751,6 +765,25 @@ function Cryolysis_OnEvent(event)
 		end	
 		Cryolysis_PolyCheck("start",SpellCastName,SpellTargetName);
 		Cryolysis_ChatMessage(SpellCastName, SpellTargetName);
+-- I replace this part by this one :
+--]]
+
+	elseif (event == "UNIT_SPELLCAST_SENT") then
+		_, SpellCastName, SpellCastRank, SpellTargetName = arg1, arg2, arg3, arg4;
+		if (not SpellTargetName or SpellTargetName == "") and UnitName("target") then
+			SpellTargetName = UnitName("target");
+		elseif not SpellTargetName then
+			SpellTargetName = "";
+		end
+		SpellTargetLevel = UnitLevel("target");
+		if not SpellTargetLevel then
+			SpellTargetLevel = "";
+		end
+		Cryolysis_PolyCheck("start",SpellCastName,SpellTargetName);
+		Cryolysis_ChatMessage(SpellCastName, SpellTargetName);
+
+
+------ end of Lomig's changes.
 	-- When the mage stops casting, clear spell data
 	-- Flag if the trade window is open, in order to be able to trade provisions automatically
 	elseif event == "TRADE_REQUEST" or event == "TRADE_SHOW" then
@@ -900,10 +933,10 @@ function Cryolysis_RegisterManagement(RegistrationType)
 		CryolysisButton:RegisterEvent("PLAYER_REGEN_ENABLED");
 		CryolysisButton:RegisterEvent("MERCHANT_SHOW");
 		CryolysisButton:RegisterEvent("MERCHANT_CLOSED");
-		CryolysisButton:RegisterEvent("SPELLCAST_START");
-		CryolysisButton:RegisterEvent("SPELLCAST_FAILED");
-		CryolysisButton:RegisterEvent("SPELLCAST_INTERRUPTED");
-		CryolysisButton:RegisterEvent("SPELLCAST_STOP");
+		CryolysisButton:RegisterEvent("UNIT_SPELLCAST_FAILED");
+		CryolysisButton:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED");
+		CryolysisButton:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
+		CryolysisButton:RegisterEvent("UNIT_SPELLCAST_SENT");
 		CryolysisButton:RegisterEvent("LEARNED_SPELL_IN_TAB");
 		CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE");
 		CryolysisButton:RegisterEvent("PLAYER_TARGET_CHANGED");
@@ -925,10 +958,10 @@ function Cryolysis_RegisterManagement(RegistrationType)
 		CryolysisButton:UnregisterEvent("PLAYER_REGEN_ENABLED");
 		CryolysisButton:UnregisterEvent("MERCHANT_SHOW");
 		CryolysisButton:UnregisterEvent("MERCHANT_CLOSED");
-		CryolysisButton:UnregisterEvent("SPELLCAST_START");
-		CryolysisButton:UnregisterEvent("SPELLCAST_FAILED");
-		CryolysisButton:UnregisterEvent("SPELLCAST_INTERRUPTED");
-		CryolysisButton:UnregisterEvent("SPELLCAST_STOP");
+		CryolysisButton:UnRegisterEvent("UNIT_SPELLCAST_FAILED");
+		CryolysisButton:UnRegisterEvent("UNIT_SPELLCAST_INTERRUPTED");
+		CryolysisButton:UnRegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
+		CryolysisButton:UnRegisterEvent("UNIT_SPELLCAST_SENT");
 		CryolysisButton:UnregisterEvent("LEARNED_SPELL_IN_TAB");
 		CryolysisButton:UnregisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE");
 		CryolysisButton:UnregisterEvent("PLAYER_TARGET_CHANGED");
