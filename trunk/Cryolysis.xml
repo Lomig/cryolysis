@@ -112,8 +112,9 @@
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\Shard"/>
 	</Button>
-
-	<Button name="CryolysisLeftSpellButton" hidden="false" parent="UIParent" movable="true">
+	
+	<!-- SubButton Template -->
+	<Button name="CryolysisSubButtonTemplate" inherits="SecureActionButton" hidden="false" parent="UIParent" movable="true" virtual="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -130,15 +131,9 @@
 				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
 				HideUIPanel(this);
 			</OnLoad>
-			<OnEnter>
-				Cryolysis_BuildSpellTooltip(this, "Left", "ANCHOR_LEFT");
-			</OnEnter>
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_SpellButtonCast("Left", arg1);
-			</OnClick>
 			<OnDragStart>
 				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
 			</OnDragStart>
@@ -149,14 +144,19 @@
 				Cryolysis_OnDragStop(this);
 			</OnMouseUp>
 		</Scripts>
+	</Button>
+
+	<Button name="CryolysisLeftSpellButton" inherits="CryolysisSubButtonTemplate">
+		<Scripts>
+			<OnEnter>
+				Cryolysis_BuildSpellTooltip(this, "Left", "ANCHOR_LEFT");
+			</OnEnter>
+		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\Shard"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
 
-	<Button name="CryolysisEvocationButton" hidden="false" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="34" y="34"/>
-		</Size>
+	<Button name="CryolysisEvocationButton" inherits="CryolysisSubButtonTemplate">
 		<Layers>
 			<Layer level="ARTWORK">
 				<FontString name="CryolysisEvocationCooldown" inherits="GameFontNormal">
@@ -171,87 +171,26 @@
 				</FontString>
 			</Layer>
 		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="-53" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
 		<Scripts>
-			<OnLoad>
-				this:RegisterForDrag("LeftButton");
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(this);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "Evocation", "ANCHOR_LEFT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(49);
-			</OnClick>
-			<OnDragStart>
-				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
-			</OnDragStart>
-			<OnDragStop>
-				Cryolysis_OnDragStop(this);
-			</OnDragStop>
-			<OnMouseUp>
-				Cryolysis_OnDragStop(this);
-			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\EvocationButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
-	<Button name="CryolysisRightSpellButton" hidden="false" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="34" y="34"/>
-		</Size>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="-17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	
+	<Button name="CryolysisRightSpellButton" inherits="CryolysisSubButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForDrag("LeftButton");
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(this);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildSpellTooltip(this, "Right", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_SpellButtonCast("Right", arg1);
-			</OnClick>
-			<OnDragStart>
-				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
-			</OnDragStart>
-			<OnDragStop>
-				Cryolysis_OnDragStop(this);
-			</OnDragStop>
-			<OnMouseUp>
-				Cryolysis_OnDragStop(this);
-			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\Shard"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
-
-
-
-	<Button name="CryolysisManastoneButton" hidden="false" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="34" y="34"/>
-		</Size>
+	
+	<Button name="CryolysisManastoneButton" inherits="CryolysisSubButtonTemplate">
 		<Layers>
 			<Layer level="ARTWORK">
 				<FontString name="CryolysisManastoneCooldown" inherits="GameFontNormal">
@@ -266,46 +205,16 @@
 				</FontString>
 			</Layer>
 		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="-17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
 		<Scripts>
-			<OnLoad>
-				this:RegisterForDrag("LeftButton");
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(this);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "Manastone", "ANCHOR_LEFT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_UseItem("Manastone", arg1);
-			</OnClick>
-			<OnDragStart>
-				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
-			</OnDragStart>
-			<OnDragStop>
-				Cryolysis_OnDragStop(this);
-			</OnDragStop>
-			<OnMouseUp>
-				Cryolysis_OnDragStop(this);
-			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\ManastoneButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
 
-	<Button name="CryolysisDrinkButton" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="34" y="34"/>
-		</Size>
+	<Button name="CryolysisDrinkButton" inherits="CryolysisSubButtonTemplate">
 		<Layers>
 			<Layer level="ARTWORK">
 				<FontString name="CryolysisDrinkCount" inherits="GameFontNormal">
@@ -320,43 +229,16 @@
 				</FontString>
 			</Layer>
 		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
 		<Scripts>
-			<OnLoad>
-				this:RegisterForDrag("LeftButton");
-				this:RegisterForClicks("LeftButtonUp", "MiddleButtonUp", "RightButtonUp");
-				HideUIPanel(this);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "Drink", "ANCHOR_LEFT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnDragStart>
-				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
-			</OnDragStart>
-			<OnDragStop>
-				Cryolysis_OnDragStop(this);
-			</OnDragStop>
-			<OnMouseUp>
-				Cryolysis_OnDragStop(this);
-			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\DrinkButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
 
-	<Button name="CryolysisFoodButton" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="34" y="34"/>
-		</Size>
+	<Button name="CryolysisFoodButton" inherits="CryolysisSubButtonTemplate">
 		<Layers>
 			<Layer level="ARTWORK">
 				<FontString name="CryolysisFoodCount" inherits="GameFontNormal">
@@ -371,115 +253,31 @@
 				</FontString>
 			</Layer>
 		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
 		<Scripts>
-			<OnLoad>
-				this:RegisterForDrag("LeftButton");
-				this:RegisterForClicks("LeftButtonUp", "MiddleButtonUp", "RightButtonUp");
-				HideUIPanel(this);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "Food", "ANCHOR_LEFT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnDragStart>
-				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
-			</OnDragStart>
-			<OnDragStop>
-				Cryolysis_OnDragStop(this);
-			</OnDragStop>
-			<OnMouseUp>
-				Cryolysis_OnDragStop(this);
-			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\FoodButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
 	
-	<Button name="CryolysisMountButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="34" y="34"/>
-		</Size>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	<Button name="CryolysisMountButton" inherits="CryolysisSubButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForDrag("LeftButton");
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(this);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "Mount", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_UseItem("Mount", arg1);
-			</OnClick>
-			<OnDragStart>
-				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
-			</OnDragStart>
-			<OnDragStop>
-				Cryolysis_OnDragStop(this);
-			</OnDragStop>
-			<OnMouseUp>
-				Cryolysis_OnDragStop(this);
-			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\MountButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
 
-	<Button name="CryolysisBuffMenuButton" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="34" y="34"/>
-		</Size>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	<Button name="CryolysisBuffMenuButton" inherits="CryolysisSubButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForDrag("LeftButton");
-				this:RegisterForClicks("LeftButtonUp", "MiddleButtonUp", "RightButtonUp");
-				HideUIPanel(this);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "Buff", "ANCHOR_RIGHT");
 				if CryolysisConfig.QuickBuff then Cryolysis_BuffMenu("LeftButton"); end
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffMenu(arg1);
-			</OnClick>
-			<OnDragStart>
-				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
-			</OnDragStart>
-			<OnDragStop>
-				Cryolysis_OnDragStop(this);
-			</OnDragStop>
-			<OnMouseUp>
-				Cryolysis_OnDragStop(this);
-			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\BuffMenuButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
