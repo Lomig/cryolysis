@@ -168,6 +168,9 @@ CryolysisPrivate = {
 	highestFoodId = 0,
 	highestFoodCount = 0,
 	foodRanks = { 22895, 8076, 8075, 1487, 1114, 1113, 5349 }, -- Item IDs for Mage conjured bread, in order from highest amount of health restored to lowest.  ORDER DOES MATTER
+	
+	manaStones = { 5513, 5514, 8007, 8008 },
+	hasManaStones = { false, false, false, false },
 
 	-- Cooldown vars
 	EvocationCooldown = 0,
@@ -635,9 +638,8 @@ function Cryolysis_OnEvent(event)
 		return;
 	end
 
-	-- If bag concents changed, checks to make sure provisions are in the selected bag
+	-- If bag contents changed, checks to make sure provisions are in the selected bag
 	if (event == "BAG_UPDATE") then
-
 		for i, v in ipairs(CryolysisPrivate.waterRanks) do
 			local c = GetItemCount(v)
 			if ( c > 0 ) then
@@ -655,7 +657,14 @@ function Cryolysis_OnEvent(event)
 				break
 			end
 		end
-		Cryolysis_UpdateFoodButtonAttributes(Count)
+		Cryolysis_UpdateFoodButtonAttributes()
+		for i, v in ipairs(CryolysisPrivate.manaStones) do
+			local c = GetItemCount(v)
+			if ( c > 0 ) then
+				c = true
+			end
+			CryolysisPrivate.hasManaStones[i] = c
+		end
 		if not CryolysisPrivate.LoadCheck then
 			if CryolysisPrivate.checkInv then
 				Cryolysis_BagCheck("Force");
