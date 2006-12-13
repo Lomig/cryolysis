@@ -2907,16 +2907,7 @@ function Cryolysis_FindSpellAttribute(type, attribute, array)
 	return nil;
 end
 
--- Function to cast Shadowbolt with the Shadow Trance button
--- Needs to know the highest rank
---function Cryolysis_CastShadowbolt()
---	local spellID = Cryolysis_FindSpellAttribute("Name", CRYOLYSIS_NIGHTFALL.BoltName, "ID");
---	if (spellID) then
---		CastSpell(spellID, "spell");
---	else
---		Cryolysis_Msg(CRYOLYSIS_NIGHTFALL_TEXT.NoBoltSpell, "USER");
---	end
---end
+
 
 ------------------------------------------------------------------------------------------------------
 -- OTHER FUNCTIONS
@@ -3444,7 +3435,7 @@ function Cryolysis_CreateMenu()
 	Cryolysis_UpdateEvocationAttributes()
 	Cryolysis_UpdateRightSpellAttributes()
 	Cryolysis_UpdateBuffButtonAttributes()
-	Cryolysis_UpdatePortalButtonAttributes()
+	Cryolysis_UpdatePortalButtonAttributes(PortalTempID)
 end
 
 -- management of buff menu casting
@@ -3521,21 +3512,7 @@ function Cryolysis_BuffCast(type, click, nosave)
 	CryolysisPrivate.AlphaBuffVar = GetTime() + 3;
 end
 
--- Management of portal menu casting
-function Cryolysis_PortalCast(type, click)
-	if type <=6 and Count.RuneOfTeleportation == 0 then
-		Cryolysis_Msg(CRYOLYSIS_MESSAGE.Error.RuneOfTeleportationNotPresent, "USER");
-		return;
-	elseif type >= 7 and Count.RuneOfPortals == 0 then
-		Cryolysis_Msg(CRYOLYSIS_MESSAGE.Error.RuneOfPortalsNotPresent, "USER");
-		return;
-	end
-	CryolysisPrivate.LastPortal = type;
-	if click == "RightButton" then CryolysisPrivate.ChatSilence = true; end
-	CastSpell(CRYOLYSIS_SPELL_TABLE[PortalTempID[type]].ID, "spell");
-	CryolysisPrivate.AlphaPortalMenu = 1;
-	CryolysisPrivate.AlphaPortalVar = GetTime() + 3;
-end
+
 -- Function allowing the display of the various pages of the config menu
 function CryolysisGeneralTab_OnClick(id)
 	local TabName;
