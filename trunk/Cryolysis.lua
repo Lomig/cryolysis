@@ -369,8 +369,8 @@ local Manastone = {
 	["Mode"] = {1, 1, 1, 1},
 	["MP"] = { 530, 800, 1130, 1470 },
 	["Restore"] = { "375-425", "550-650", "775-925", "1000-1200", },
-    ["RankID"] = { nil, nil, nil, nil },
-    ["currentStone"] = 0; -- Highest rank stone available, or highest rank if none available
+	["RankID"] = { nil, nil, nil, nil },
+	["currentStone"] = 0; -- Highest rank stone available, or highest rank if none available
 	["conjureStone"] = 1; -- Next stone to be conjured
 	["useableStone"] = 0; -- 0 = Stone not useable; 1 = usable
 	["conjureStoneMP"] = 0;
@@ -404,53 +404,52 @@ local Sphere = {
 local SortActif;
 -- Texture Information for reordering organization
 Cryolysis_ReorderTexture = { };
-
-
-
-
-
-		HideUIPanel(CryolysisRightSpellButton);
+HideUIPanel(CryolysisRightSpellButton);
 -- Management of the tooltips Cryolysis allows (without the money frame)
 local Original_GameTooltip_ClearMoney;
 
 local Cryolysis_In = true;
 
+local cryoEvents = {
+	"BAG_UPDATE",
+	"CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE",
+	"CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS",
+	"CHAT_MSG_SPELL_AURA_GONE_SELF",
+	"CHAT_MSG_SPELL_AURA_GONE_OTHER",
+	"CHAT_MSG_SPELL_BREAK_AURA",
+	"PLAYER_REGEN_DISABLED",
+	"PLAYER_REGEN_ENABLED",
+	"MERCHANT_SHOW",
+	"MERCHANT_CLOSED",
+	"UNIT_SPELLCAST_FAILED",
+	"UNIT_SPELLCAST_INTERRUPTED",
+	"UNIT_SPELLCAST_SUCCEEDED",
+	"UNIT_SPELLCAST_SENT",
+	"LEARNED_SPELL_IN_TAB",
+	"CHAT_MSG_SPELL_SELF_DAMAGE",
+	"PLAYER_TARGET_CHANGED",
+	"TRADE_REQUEST",
+	"TRADE_REQUEST_CANCEL",
+	"TRADE_SHOW",
+	"TRADE_CLOSED",
+	"VARIABLES_LOADED",
+	"PLAYER_LOGIN"
+}
+
 ------------------------------------------------------------------------------------------------------
 -- FUNCTIONS CRYOLYSIS APPLIES WHEN YOU LOG IN
 ------------------------------------------------------------------------------------------------------
-
-
 -- Function applied to login
 function Cryolysis_OnLoad()
 
 	-- Recording events intercepted by Cryolysis
 	this:RegisterEvent("PLAYER_ENTERING_WORLD");
 	this:RegisterEvent("PLAYER_LEAVING_WORLD");
-	CryolysisButton:RegisterEvent("BAG_UPDATE");
-	CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE");
-	CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS");
-	CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_SELF");
-	CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_OTHER");
-	CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_BREAK_AURA");
-	CryolysisButton:RegisterEvent("PLAYER_REGEN_DISABLED");
-	CryolysisButton:RegisterEvent("PLAYER_REGEN_ENABLED");
-	CryolysisButton:RegisterEvent("MERCHANT_SHOW");
-	CryolysisButton:RegisterEvent("MERCHANT_CLOSED");
-	CryolysisButton:RegisterEvent("UNIT_SPELLCAST_FAILED");
-	CryolysisButton:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED");
-	CryolysisButton:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
-	CryolysisButton:RegisterEvent("UNIT_SPELLCAST_SENT");
-	CryolysisButton:RegisterEvent("LEARNED_SPELL_IN_TAB");
-	CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE");
-	CryolysisButton:RegisterEvent("PLAYER_TARGET_CHANGED");
-	CryolysisButton:RegisterEvent("TRADE_REQUEST");
-	CryolysisButton:RegisterEvent("TRADE_REQUEST_CANCEL");
-	CryolysisButton:RegisterEvent("TRADE_SHOW");
-	CryolysisButton:RegisterEvent("TRADE_CLOSED");
-	CryolysisButton:RegisterEvent("VARIABLES_LOADED");
-	CryolysisButton:RegisterEvent("PLAYER_LOGIN");
-	CryolysisButton:RegisterEvent("ZONE_CHANGED_NEW_AREA");
-
+	CryolysisButton:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+	for i in ipairs(cryoEvents) do
+		CryolysisButton:RegisterEvent(cryoEvents[i])
+	end
+	
 	-- Recording of the graphic components
 	CryolysisButton:RegisterForDrag("LeftButton");
 	CryolysisButton:RegisterForClicks("LeftButtonUp", "RightButtonUp");
@@ -882,7 +881,6 @@ end
 ------------------------------------------------------------------------------------------------------
 -- CRYOLYSIS FUNCTION "ON EVENT"
 ------------------------------------------------------------------------------------------------------
-
 -- Events : PLAYER_ENTERING_WORLD and  PLAYER_LEAVING_WORLD
 -- Function applied to each loading screen
 -- When leaving a zone, stop supervising events
@@ -890,57 +888,14 @@ end
 -- Basically, speeds up loading time
 function Cryolysis_RegisterManagement(RegistrationType)
 	if RegistrationType == "IN" then
-		CryolysisButton:RegisterEvent("BAG_UPDATE");
-		CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS");
-		CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE");
-		CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_SELF");
-		CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_OTHER");
-		CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_BREAK_AURA");
-		CryolysisButton:RegisterEvent("PLAYER_REGEN_DISABLED");
-		CryolysisButton:RegisterEvent("PLAYER_REGEN_ENABLED");
-		CryolysisButton:RegisterEvent("MERCHANT_SHOW");
-		CryolysisButton:RegisterEvent("MERCHANT_CLOSED");
-		CryolysisButton:RegisterEvent("UNIT_SPELLCAST_FAILED");
-		CryolysisButton:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED");
-		CryolysisButton:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
-		CryolysisButton:RegisterEvent("UNIT_SPELLCAST_SENT");
-		CryolysisButton:RegisterEvent("LEARNED_SPELL_IN_TAB");
-		CryolysisButton:RegisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE");
-		CryolysisButton:RegisterEvent("PLAYER_TARGET_CHANGED");
-		CryolysisButton:RegisterEvent("TRADE_REQUEST");
-		CryolysisButton:RegisterEvent("TRADE_REQUEST_CANCEL");
-		CryolysisButton:RegisterEvent("TRADE_SHOW");
-		CryolysisButton:RegisterEvent("TRADE_CLOSED");
-		CryolysisButton:RegisterEvent("VARIABLES_LOADED");
-        CryolysisButton:RegisterEvent("PLAYER_LOGIN");
-		CryolysisButton:RegisterEvent("ZONE_CHANGED_NEW_AREA");
+		for i in ipairs(cryoEvents) do
+			CryolysisButton:RegisterEvent(cryoEvents[i])
+		end
 	else
-		CryolysisButton:UnregisterEvent("BAG_UPDATE");
-		CryolysisButton:UnregisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS");
-		CryolysisButton:UnregisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE");
-		CryolysisButton:UnregisterEvent("CHAT_MSG_SPELL_AURA_GONE_SELF");
-		CryolysisButton:UnregisterEvent("CHAT_MSG_SPELL_AURA_GONE_OTHER");
-		CryolysisButton:UnregisterEvent("CHAT_MSG_SPELL_BREAK_AURA");
-		CryolysisButton:UnregisterEvent("PLAYER_REGEN_DISABLED");
-		CryolysisButton:UnregisterEvent("PLAYER_REGEN_ENABLED");
-		CryolysisButton:UnregisterEvent("MERCHANT_SHOW");
-		CryolysisButton:UnregisterEvent("MERCHANT_CLOSED");
-		CryolysisButton:UnRegisterEvent("UNIT_SPELLCAST_FAILED");
-		CryolysisButton:UnRegisterEvent("UNIT_SPELLCAST_INTERRUPTED");
-		CryolysisButton:UnRegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
-		CryolysisButton:UnRegisterEvent("UNIT_SPELLCAST_SENT");
-		CryolysisButton:UnregisterEvent("LEARNED_SPELL_IN_TAB");
-		CryolysisButton:UnregisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE");
-		CryolysisButton:UnregisterEvent("PLAYER_TARGET_CHANGED");
-		CryolysisButton:UnregisterEvent("TRADE_REQUEST");
-		CryolysisButton:UnregisterEvent("TRADE_REQUEST_CANCEL");
-		CryolysisButton:UnregisterEvent("TRADE_SHOW");
-		CryolysisButton:UnregisterEvent("TRADE_CLOSED");
-		CryolysisButton:UnregisterEvent("VARIABLES_LOADED");
-        CryolysisButton:UnregisterEvent("PLAYER_LOGIN");
---		CryolysisButton:UnregisterEvent("ZONE_CHANGED_NEW_AREA");  Needs to be registered even while zoning
+		for i in ipairs(cryoEvents) do
+			CryolysisButton:UnregisterEvent(cryoEvents[i])
+		end
 	end
-	return;
 end
 
 function Cryolysis_SelfEffect(action)
