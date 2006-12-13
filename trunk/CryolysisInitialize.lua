@@ -67,8 +67,8 @@ function Cryolysis_Initialize()
 	end
 
 
-	-- On initialise ! Si le joueur n'est pas Démoniste, on cache Cryolysis (chuuuut !)
-	-- On indique aussi que Nécrosis est initialisé maintenant
+	-- On initialise ! Si le joueur n'est pas Dï¿½oniste, on cache Cryolysis (chuuuut !)
+	-- On indique aussi que Nï¿½rosis est initialisï¿½maintenant
 	if UnitClass("player") ~= CRYOLYSIS_UNIT_MAGE then
 		HideUIPanel(CryolysisProvisionMenu);
 		HideUIPanel(CryolysisSpellTimerButton);
@@ -85,13 +85,13 @@ function Cryolysis_Initialize()
 --		HideUIPanel(CryolysisAntiFearButton);
 --		HideUIPanel(CryolysisConcentrationButton);
 	else
-		-- On charge (ou on crée) la configuration pour le joueur et on l'affiche sur la console
+		-- On charge (ou on crï¿½) la configuration pour le joueur et on l'affiche sur la console
 		if CryolysisConfig == nil or CryolysisConfig.Version ~= Default_CryolysisConfig.Version then
 			CryolysisConfig = {};
 			CryolysisConfig = Default_CryolysisConfig;
 --			if UnitLevel("player") < 40 then CryolysisConfig.StonePosition[8] = false; end
 			Cryolysis_Msg(CRYOLYSIS_MESSAGE.Interface.DefaultConfig, "USER");
-		
+
 			CryolysisButton:ClearAllPoints();
 --			CryolysisConcentrationButton:ClearAllPoints();
 --			CryolysisAntiFearButton:ClearAllPoints();
@@ -105,28 +105,28 @@ function Cryolysis_Initialize()
 			Cryolysis_Msg(CRYOLYSIS_MESSAGE.Interface.UserConfig, "USER");
 		end
 		-----------------------------------------------------------
-		-- Exécution des fonctions de démarrage
+		-- Exï¿½ution des fonctions de dï¿½arrage
 		-----------------------------------------------------------
 
 		-- Affichage d'un message sur la console
 		Cryolysis_Msg(CRYOLYSIS_MESSAGE.Interface.Welcome, "USER");
-		-- Création de la liste des sorts disponibles
+		-- Crï¿½tion de la liste des sorts disponibles
 		Cryolysis_SpellSetup();
-		-- Création de la liste des emplacements des fragments
+		-- Crï¿½tion de la liste des emplacements des fragments
 		Cryolysis_ProvisionSetup();
-		-- Création des menus de buff et d'invocation
+		-- Crï¿½tion des menus de buff et d'invocation
 		Cryolysis_CreateMenu();
 
-		-- Lecture de la configuration dans le SavedVariables.lua, écriture dans les variables définies
+		-- Lecture de la configuration dans le SavedVariables.lua, ï¿½riture dans les variables dï¿½inies
 
 
 		if not CRYOLYSIS_SPELL_TABLE[25].ID then CryolysisConfig.LeftSpell = 1; end
-		if not CRYOLYSIS_SPELL_TABLE[15].ID then 
+		if not CRYOLYSIS_SPELL_TABLE[15].ID then
 			CryolysisConfig.RightSpell = 2;
 			if not CRYOLYSIS_SPELL_TABLE[2].ID then
 				CryolysisConfig.StonePosition[6] = false;
 			end
-		end		
+		end
 		----------------------------------------
 		-- Inventory Menu Setup
 		----------------------------------------
@@ -138,7 +138,7 @@ function Cryolysis_Initialize()
 		CryolysisBag_Slider:SetValue(4 - CryolysisConfig.ProvisionContainer);
 		CryolysisBag_SliderLow:SetText("5");
 		CryolysisBag_SliderHigh:SetText("1");
-		
+
   		CryolysisTeleport_Slider:SetValue(CryolysisConfig.RestockTeleport);
 		CryolysisTeleport_SliderLow:SetText("");
 		CryolysisTeleport_SliderHigh:SetText("");
@@ -146,7 +146,7 @@ function Cryolysis_Initialize()
   		CryolysisPortal_Slider:SetValue(CryolysisConfig.RestockPortals);
 		CryolysisPortal_SliderLow:SetText("");
 		CryolysisPortal_SliderHigh:SetText("");
-        
+
   		CryolysisPowder_Slider:SetValue(CryolysisConfig.RestockPowder);
 		CryolysisPowder_SliderLow:SetText("");
 		CryolysisPowder_SliderHigh:SetText("");
@@ -158,19 +158,19 @@ function Cryolysis_Initialize()
 		CryolysisButton_Slider:SetValue(CryolysisConfig.Button);
 		CryolysisButton_SliderLow:SetText("");
 		CryolysisButton_SliderHigh:SetText("");
-		
+
 		CryolysisCircle_Slider:SetValue(CryolysisConfig.Circle);
 		CryolysisCircle_SliderLow:SetText("");
 		CryolysisCircle_SliderHigh:SetText("");
-		
+
 		CryolysisDrink_Slider:SetValue(CryolysisConfig.MPLimit);
 		CryolysisDrink_SliderLow:SetText("0%");
 		CryolysisDrink_SliderHigh:SetText("100%");
-		
+
 		CryolysisFood_Slider:SetValue(CryolysisConfig.HPLimit);
 		CryolysisFood_SliderLow:SetText("0%");
 		CryolysisFood_SliderHigh:SetText("100%");
-		
+
 		CryolysisPolyWarn_Slider:SetValue(CryolysisConfig.PolyWarnTime);
 		CryolysisPolyWarn_SliderLow:SetText("");
 		CryolysisPolyWarn_SliderHigh:SetText("");
@@ -229,15 +229,15 @@ function Cryolysis_Initialize()
 		if (CryolysisConfig.PowderCountText) then CryolysisPowderText_Button:SetChecked(1); end
 		if (CryolysisConfig.FeatherCountText) then CryolysisFeatherText_Button:SetChecked(1); end
 		if (CryolysisConfig.RuneCountText) then CryolysisRuneText_Button:SetChecked(1); end
-		
+
 		CryolysisLeftSpell_Slider:SetValue(CryolysisConfig.LeftSpell);
 		CryolysisLeftSpell_SliderLow:SetText("");
 		CryolysisLeftSpell_SliderHigh:SetText("");
-		
+
 		CryolysisRightSpell_Slider:SetValue(CryolysisConfig.RightSpell);
 		CryolysisRightSpell_SliderLow:SetText("");
 		CryolysisRightSpell_SliderHigh:SetText("");
-		
+
 		CryolysisManaStoneOrder_Slider:SetValue(CryolysisConfig.ManaStoneOrder);
 		CryolysisManaStoneOrder_SliderLow:SetText("Weakest");
 		CryolysisManaStoneOrder_SliderHigh:SetText("Strongest");
@@ -247,10 +247,10 @@ function Cryolysis_Initialize()
 		----------------------------------------
 		CryolysisListSpells:ClearAllPoints();
 		CryolysisListSpells:SetJustifyH(CryolysisConfig.SpellTimerJust);
-		CryolysisListSpells:SetPoint("TOP"..CryolysisConfig.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", CryolysisConfig.SpellTimerPos * 23, 5);	
+		CryolysisListSpells:SetPoint("TOP"..CryolysisConfig.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", CryolysisConfig.SpellTimerPos * 23, 5);
 		ShowUIPanel(CryolysisButton);
 
-		if CryolysisConfig.SpellTimerJust == -23 then 
+		if CryolysisConfig.SpellTimerJust == -23 then
 			AnchorSpellTimerTooltip = "ANCHOR_LEFT";
 		else
 			AnchorSpellTimerTooltip = "ANCHOR_RIGHT";
@@ -273,9 +273,9 @@ function Cryolysis_Initialize()
 		if (CryolysisConfig.BuffMenuPos == -34) then CryolysisBuffMenu_Button:SetChecked(1); end
 		if (CryolysisConfig.PortalMenuPos == -34) then CryolysisPortalMenu_Button:SetChecked(1); end
 		if (CryolysisConfig.NoDragAll) then CryolysisLock_Button:SetChecked(1); end
-		
 
-		
+
+
 		CryolysisBuffMenuAnchor_Slider:SetValue(CryolysisConfig.BuffMenuAnchor);
 		CryolysisBuffMenuAnchor_SliderLow:SetText("");
 		CryolysisBuffMenuAnchor_SliderHigh:SetText("")
@@ -283,7 +283,7 @@ function Cryolysis_Initialize()
 		CryolysisPortalMenuAnchor_Slider:SetValue(CryolysisConfig.PortalMenuAnchor);
 		CryolysisPortalMenuAnchor_SliderLow:SetText("");
 		CryolysisPortalMenuAnchor_SliderHigh:SetText("")
-		
+
 		CryolysisButtonRotate_Slider:SetValue(CryolysisConfig.CryolysisAngle);
 		CryolysisButtonRotate_SliderLow:SetText("0");
 		CryolysisButtonRotate_SliderHigh:SetText("360");
@@ -291,11 +291,11 @@ function Cryolysis_Initialize()
 		CryolysisButtonScale_Slider:SetValue(CryolysisConfig.CryolysisButtonScale);
 		CryolysisButtonScale_SliderLow:SetText("50 %");
 		CryolysisButtonScale_SliderHigh:SetText("150 %");
-		
+
 		CryolysisStoneScale_Slider:SetValue(CryolysisConfig.CryolysisStoneScale);
 		CryolysisStoneScale_SliderLow:SetText("50 %");
 		CryolysisStoneScale_SliderHigh:SetText("150 %");
-		-- On règle la taille de la pierre et des boutons suivant les réglages du SavedVariables
+		-- On rï¿½le la taille de la pierre et des boutons suivant les rï¿½lages du SavedVariables
 		CryolysisButton:SetScale(CryolysisConfig.CryolysisButtonScale/100);
 		CryolysisFoodButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
 		CryolysisDrinkButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
@@ -321,12 +321,12 @@ function Cryolysis_Initialize()
 
 
 
-		-- On vérifie que les fragments sont dans le sac défini par le Démoniste
+		-- On vï¿½ifie que les fragments sont dans le sac dï¿½ini par le Dï¿½oniste
 --		Cryolysis_ProvisionSwitch("CHECK");
 
-		-- Le Shard est-il vérouillé sur l'interface ?
-		
-		-- Les boutons sont-ils vérouillés sur le Shard ?
+		-- Le Shard est-il vï¿½ouillï¿½sur l'interface ?
+
+		-- Les boutons sont-ils vï¿½ouillï¿½ sur le Shard ?
 		Cryolysis_ButtonSetup();
 		Cryolysis_LanguageInitialize();
 		if CryolysisConfig.SM then
@@ -335,17 +335,33 @@ function Cryolysis_Initialize()
 		end
 		-- Added by Lomig to replace the Toggle function
 		Cryolysis_UpdateMainButtonAttributes();
+
+		-- Added by lomig to manage the open / close menus
+
+		CryolysisBuffMenuButton:SetAttribute("*childraise*", true);
+		CryolysisBuffMenuButton:SetAttribute("*childstate*", "^click");
+		CryolysisBuffMenu0:SetAttribute("statemap-anchor-click", "0-1");
+		CryolysisBuffMenuButton:SetAttribute("anchorchild", CryolysisBuffMenu0);
+		CryolysisBuffMenu0:SetAttribute("headofsx", "0:3000;1:"..((36 / CryolysisConfig.BuffMenuPos) * 31));
+		CryolysisBuffMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.BuffMenuAnchor);
+
+		CryolysisPortalMenuButton:SetAttribute("*childraise*", true);
+		CryolysisPortalMenuButton:SetAttribute("*childstate*", "^click");
+		CryolysisPortalMenu0:SetAttribute("statemap-anchor-click", "0-1");
+		CryolysisPortalMenuButton:SetAttribute("anchorchild", CryolysisPortalMenu0);
+		CryolysisPortalMenu0:SetAttribute("headofsx", "0:3000;1:"..((36 / CryolysisConfig.PortalMenuPos) * 31));
+		CryolysisPortalMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.PortalMenuAnchor);
 	end
 end
 
 function Cryolysis_LanguageInitialize()
-	
+
 	-- Localisation du speech.lua
 	CryolysisLocalization();
 
 	-- Localisation du XML
-	CryolysisVersion:SetText(CryolysisData.Label);		
-	
+	CryolysisVersion:SetText(CryolysisData.Label);
+
 	----------------------------------------
 	-- Inventory Menu Dialog Setup
 	----------------------------------------
@@ -371,7 +387,7 @@ function Cryolysis_LanguageInitialize()
 	----------------------------------------
 	-- Message Menu Dialog Setup
 	----------------------------------------
-	
+
 	CryolysisSound_Option:SetText(CRYOLYSIS_CONFIGURATION.Sound);
 	CryolysisShowMessage_Option:SetText(CRYOLYSIS_CONFIGURATION.ShowMessage);
 	CryolysisShowPolyMessage_Option:SetText(CRYOLYSIS_CONFIGURATION.ShowPolyMessage);
@@ -380,11 +396,11 @@ function Cryolysis_LanguageInitialize()
 	CryolysisPolyWarn_Option:SetText(CRYOLYSIS_CONFIGURATION.Polymorph.Warn);
 	CryolysisPolyBreak_Option:SetText(CRYOLYSIS_CONFIGURATION.Polymorph.Break);
 	CryolysisChatType_Option:SetText(CRYOLYSIS_CONFIGURATION.ChatType);
-	
+
 	----------------------------------------
 	-- Button Menu Dialog Setup
 	----------------------------------------
-	
+
 	CryolysisShowFood_Option:SetText(CRYOLYSIS_CONFIGURATION.Show.Food);
 	CryolysisShowDrink_Option:SetText(CRYOLYSIS_CONFIGURATION.Show.Drink);
 	CryolysisShowManaStone_Option:SetText(CRYOLYSIS_CONFIGURATION.Show.Manastone);
@@ -403,15 +419,15 @@ function Cryolysis_LanguageInitialize()
 	CryolysisFoodText_Option:SetText(CRYOLYSIS_CONFIGURATION.Text.Food);
 	CryolysisDrinkText_Option:SetText(CRYOLYSIS_CONFIGURATION.Text.Drink);
 	CryolysisManaStoneText_Option:SetText(CRYOLYSIS_CONFIGURATION.Text.Manastone);
-	CryolysisEvocationText_Option:SetText(CRYOLYSIS_CONFIGURATION.Text.Evocation);	
+	CryolysisEvocationText_Option:SetText(CRYOLYSIS_CONFIGURATION.Text.Evocation);
 	CryolysisPowderText_Option:SetText(CRYOLYSIS_CONFIGURATION.Text.Powder);
 	CryolysisFeatherText_Option:SetText(CRYOLYSIS_CONFIGURATION.Text.Feather);
 	CryolysisRuneText_Option:SetText(CRYOLYSIS_CONFIGURATION.Text.Rune);
-	
+
 	----------------------------------------
 	-- Timer Menu Dialog Setup
 	----------------------------------------
-	
+
 	CryolysisShowSpellTimers_Option:SetText(CRYOLYSIS_CONFIGURATION.SpellTime);
 	CryolysisTimerButton_Option:SetText(CRYOLYSIS_CONFIGURATION.Show.Spelltimer);
 	CryolysisGraphicalTimer_Section:SetText(CRYOLYSIS_CONFIGURATION.TimerMenu);
@@ -419,7 +435,7 @@ function Cryolysis_LanguageInitialize()
 	CryolysisTimerColor_Option:SetText(CRYOLYSIS_CONFIGURATION.TimerColor);
 
 	CryolysisTimerDirection_Option:SetText(CRYOLYSIS_CONFIGURATION.TimerDirection);
-	
+
 	----------------------------------------
 	-- Graphical Menu Dialog Setup
 	----------------------------------------
@@ -431,9 +447,9 @@ function Cryolysis_LanguageInitialize()
 	CryolysisIconsLock_Option:SetText(CRYOLYSIS_CONFIGURATION.ButtonLock);
 	CryolysisButtonRotate_SliderText:SetText(CRYOLYSIS_CONFIGURATION.MainRotation);
 
-	
-		
-		
+
+
+
 end
 
 
@@ -443,7 +459,7 @@ end
 ------------------------------------------------------------------------------------------------------
 
 function Cryolysis_SlashHandler(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12)
-	-- Blah blah blah, le joueur est-il bien un Démoniste ? On finira par le savoir !
+	-- Blah blah blah, le joueur est-il bien un Dï¿½oniste ? On finira par le savoir !
 	if UnitClass("player") ~= CRYOLYSIS_UNIT_MAGE then
 		return;
 	end
