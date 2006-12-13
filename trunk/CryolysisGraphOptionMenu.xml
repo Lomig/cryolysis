@@ -278,10 +278,6 @@
 						GameTooltip:SetText(this:GetValue());
 						if CryolysisConfig.BuffMenuAnchor ~= this:GetValue() then
 							CryolysisConfig.BuffMenuAnchor = this:GetValue();
-							if CryolysisPrivate.BuffMenuShow then
-								Cryolysis_BuffMenu("LeftButton");
-							end
-							Cryolysis_BuffMenu("LeftButton");
 						end
 					</OnValueChanged>
 					<OnLeave>
@@ -331,10 +327,6 @@
 						GameTooltip:SetText(this:GetValue());
 						if CryolysisConfig.PortalMenuAnchor ~= this:GetValue() then
 							CryolysisConfig.PortalMenuAnchor = this:GetValue();
-							if  CryolysisPrivate.PortalMenuShow then
-								Cryolysis_PortalMenu("LeftButton");
-							end
-							Cryolysis_PortalMenu("LeftButton");
 						end
 					</OnValueChanged>
 					<OnLeave>
