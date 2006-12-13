@@ -266,12 +266,38 @@
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
 
-	<Button name="CryolysisBuffMenuButton" inherits="SecureAnchorButtonTemplate">
+	<Button name="CryolysisBuffMenuButton" inherits="SecureAnchorButtonTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+		<Size>
+			<AbsDimension x="34" y="34"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="17" y="-100"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
 		<Scripts>
+			<OnLoad>
+				this:RegisterForDrag("LeftButton");
+				this:RegisterForClicks("LeftButtonUp", "MiddleButtonUp", "RightButtonUp");
+				HideUIPanel(this);
+			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "Buff", "ANCHOR_RIGHT");
-				if CryolysisConfig.QuickBuff then Cryolysis_BuffMenu("LeftButton"); end
 			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnDragStart>
+				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
+			</OnDragStart>
+			<OnDragStop>
+				Cryolysis_OnDragStop(this);
+			</OnDragStop>
+			<OnMouseUp>
+				Cryolysis_OnDragStop(this);
+			</OnMouseUp>
 		</Scripts>
 		<Frames>
 			<Frame name="CryolysisBuffMenu0" inherits="SecureStateHeaderTemplate">

@@ -342,14 +342,14 @@ function Cryolysis_Initialize()
 		CryolysisBuffMenuButton:SetAttribute("*childstate*", "^click");
 		CryolysisBuffMenu0:SetAttribute("statemap-anchor-click", "0-1");
 		CryolysisBuffMenuButton:SetAttribute("anchorchild", CryolysisBuffMenu0);
-		CryolysisBuffMenu0:SetAttribute("headofsx", "0:3000;1:"..((36 / CryolysisConfig.BuffMenuPos) * 31));
+		CryolysisBuffMenu0:SetAttribute("headofsx", "0:3000;1:1");
 		CryolysisBuffMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.BuffMenuAnchor);
 
 		CryolysisPortalMenuButton:SetAttribute("*childraise*", true);
 		CryolysisPortalMenuButton:SetAttribute("*childstate*", "^click");
 		CryolysisPortalMenu0:SetAttribute("statemap-anchor-click", "0-1");
 		CryolysisPortalMenuButton:SetAttribute("anchorchild", CryolysisPortalMenu0);
-		CryolysisPortalMenu0:SetAttribute("headofsx", "0:3000;1:"..((36 / CryolysisConfig.PortalMenuPos) * 31));
+		CryolysisPortalMenu0:SetAttribute("headofsx", "0:3000;1:1");
 		CryolysisPortalMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.PortalMenuAnchor);
 	end
 end

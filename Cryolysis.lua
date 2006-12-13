@@ -2740,13 +2740,13 @@ function Cryolysis_ButtonSetup()
 		if CryolysisConfig.StonePosition[6] then
 		    ShowUIPanel(CryolysisRightSpellButton);
 		end
-		if CryolysisConfig.StonePosition[7] and BuffMenuCreate ~= {} then
+		if CryolysisConfig.StonePosition[7] and BuffMenuCreate[1] then
 			ShowUIPanel(CryolysisBuffMenuButton);
 		end
 		if CryolysisConfig.StonePosition[8] then
 			ShowUIPanel(CryolysisMountButton);
 		end
-		if CryolysisConfig.StonePosition[9] and PortalMenuCreate ~= {} then
+		if CryolysisConfig.StonePosition[9] and PortalMenuCreate[1] then
 			ShowUIPanel(CryolysisPortalMenuButton);
 		end
 	end
@@ -3418,7 +3418,7 @@ function Cryolysis_UpdateButtonsScale()
 					ShowUIPanel(CryolysisRightSpellButton);
 					indexScale = indexScale + 36;
 				end
-				if CryolysisConfig.StonePosition[7] and CryolysisConfig.StoneLocation[index] == "CryolysisBuffMenuButton" and BuffMenuCreate ~= {} then
+				if CryolysisConfig.StonePosition[7] and CryolysisConfig.StoneLocation[index] == "CryolysisBuffMenuButton" and BuffMenuCreate[1] then
 					CryolysisBuffMenuButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
                     CryolysisBuffMenuButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 					ShowUIPanel(CryolysisBuffMenuButton);
@@ -3430,7 +3430,7 @@ function Cryolysis_UpdateButtonsScale()
 					ShowUIPanel(CryolysisMountButton);
 					indexScale = indexScale + 36;
 				end
-				if CryolysisConfig.StonePosition[9] and CryolysisConfig.StoneLocation[index] == "CryolysisPortalMenuButton" and PortalMenuCreate ~= {} then
+				if CryolysisConfig.StonePosition[9] and CryolysisConfig.StoneLocation[index] == "CryolysisPortalMenuButton" and PortalMenuCreate[1] then
 					CryolysisPortalMenuButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
                     CryolysisPortalMenuButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 					ShowUIPanel(CryolysisPortalMenuButton);
@@ -3627,7 +3627,7 @@ function Cryolysis_CreateMenu()
 	if CRYOLYSIS_SPELL_TABLE[22].ID or CRYOLYSIS_SPELL_TABLE[18].ID then
 		menuVariable = getglobal("CryolysisBuffMenu1");
 		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisBuffMenu"..BuffButtonPosition, "CENTER", 3000, 3000);
+		menuVariable:SetPoint("CENTER", "CryolysisBuffMenu"..BuffButtonPosition, "CENTER", ((36 / CryolysisConfig.BuffMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 		BuffButtonPosition = 1;
 		table.insert(BuffMenuCreate, menuVariable);
