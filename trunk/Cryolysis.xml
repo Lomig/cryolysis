@@ -1,4 +1,4 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\FrameXML\UI.xsd">
 
 	<Button name="CryolysisSpellTimerButton" inherits="SecureActionButtonTemplate" frameStrata="MEDIUM" enableMouse="true" movable="true" parent="UIParent">
 		<Size>
@@ -14,14 +14,14 @@
 		<Layers>
 			<Layer level="ARTWORK">
 				<FontString name="CryolysisListSpells" inherits="GameFontNormalSmall" justifyH="LEFT">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
+			<!--		<Color r="1.0" g="1.0" b="1.0" a="1"/>
 					<Anchors>
 						<Anchor point="LEFT" relativeTo="CryolysisSpellTimerButton">
 							<Offset>
 								<AbsDimension x="23" y="0"/>
 							</Offset>
 						</Anchor>
-					</Anchors>
+					</Anchors> -->
 				</FontString>
 			</Layer>
 		</Layers>
@@ -66,13 +66,6 @@
 			<Layer level="ARTWORK">
 				<FontString name="CryolysisShardCount" inherits="GameFontNormal" text="">
 					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisButton" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
 				</FontString>
 			</Layer>
 		</Layers>
@@ -154,13 +147,6 @@
 			<Layer level="ARTWORK">
 				<FontString name="CryolysisEvocationCooldown" inherits="GameFontNormal">
 					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisEvocationButton" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
 				</FontString>
 			</Layer>
 		</Layers>
@@ -188,13 +174,6 @@
 			<Layer level="ARTWORK">
 				<FontString name="CryolysisManastoneCooldown" inherits="GameFontNormal">
 					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisManastoneButton" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
 				</FontString>
 			</Layer>
 		</Layers>
@@ -212,13 +191,6 @@
 			<Layer level="ARTWORK">
 				<FontString name="CryolysisDrinkCount" inherits="GameFontNormal">
 					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisDrinkButton" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
 				</FontString>
 			</Layer>
 		</Layers>
@@ -236,13 +208,6 @@
 			<Layer level="ARTWORK">
 				<FontString name="CryolysisFoodCount" inherits="GameFontNormal">
 					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisFoodButton" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
 				</FontString>
 			</Layer>
 		</Layers>
