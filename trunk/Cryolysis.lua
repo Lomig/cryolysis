@@ -3504,6 +3504,7 @@ function Cryolysis_CreateMenu()
 		menuVariable = getglobal("CryolysisBuffMenu"..i);
 		menuVariable:Hide();
 	end
+	
 	-- Start placing portals on the menu
 	if CRYOLYSIS_SPELL_TABLE[38].ID then
 		menuVariable = getglobal("CryolysisPortalMenu1");
@@ -3604,84 +3605,38 @@ function Cryolysis_CreateMenu()
 	-- Now that all the buttons are placed the ones beside the others (out of the screen), the available ones are displayed
 	CryolysisPortalMenu0:ClearAllPoints();
 	CryolysisPortalMenu0:SetPoint("CENTER", "CryolysisPortalMenuButton", "CENTER", 3000, 3000);
-	for i = 1, #(PortalMenuCreate), 1 do
+	for i = 1, #PortalMenuCreate, 1 do
 		ShowUIPanel(PortalMenuCreate[i]);
 	end
-
-	-- If Ice Armor exists, it is posted on the buff menu
-	if CRYOLYSIS_SPELL_TABLE[22].ID or CRYOLYSIS_SPELL_TABLE[18].ID then
-		menuVariable = getglobal("CryolysisBuffMenu1");
-		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisBuffMenu"..BuffButtonPosition, "CENTER", ((36 / CryolysisConfig.BuffMenuPos) * 31), 0);
-		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-		BuffButtonPosition = 1;
-		table.insert(BuffMenuCreate, menuVariable);
-	end
-	if CRYOLYSIS_SPELL_TABLE[4].ID then
-		menuVariable = getglobal("CryolysisBuffMenu2");
-		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisBuffMenu"..BuffButtonPosition, "CENTER", ((36 / CryolysisConfig.BuffMenuPos) * 31), 0);
-		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-		BuffButtonPosition = 2;
-		table.insert(BuffMenuCreate, menuVariable);
-	end
-	if CRYOLYSIS_SPELL_TABLE[13].ID then
-		menuVariable = getglobal("CryolysisBuffMenu3");
-		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisBuffMenu"..BuffButtonPosition, "CENTER", ((36 / CryolysisConfig.BuffMenuPos) * 31), 0);
-		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-		BuffButtonPosition = 3;
-		table.insert(BuffMenuCreate, menuVariable);
-	end
-	if CRYOLYSIS_SPELL_TABLE[25].ID or CRYOLYSIS_SPELL_TABLE[23].ID then
-		menuVariable = getglobal("CryolysisBuffMenu4");
-		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisBuffMenu"..BuffButtonPosition, "CENTER", ((36 / CryolysisConfig.BuffMenuPos) * 31), 0);
-		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-		BuffButtonPosition = 4;
-		table.insert(BuffMenuCreate, menuVariable);
-	end
-	if CRYOLYSIS_SPELL_TABLE[15].ID then
-		menuVariable = getglobal("CryolysisBuffMenu5");
-		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisBuffMenu"..BuffButtonPosition, "CENTER", ((36 / CryolysisConfig.BuffMenuPos) * 31), 0);
-		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-		BuffButtonPosition = 5;
-		table.insert(BuffMenuCreate, menuVariable);
-	end
-	if CRYOLYSIS_SPELL_TABLE[50].ID then
-		menuVariable = getglobal("CryolysisBuffMenu6");
-		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisBuffMenu"..BuffButtonPosition, "CENTER", ((36 / CryolysisConfig.BuffMenuPos) * 31), 0);
-		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-		BuffButtonPosition = 6;
-		table.insert(BuffMenuCreate, menuVariable);
-	end
-	if CRYOLYSIS_SPELL_TABLE[33].ID then
-		menuVariable = getglobal("CryolysisBuffMenu7");
-		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisBuffMenu"..BuffButtonPosition, "CENTER", ((36 / CryolysisConfig.BuffMenuPos) * 31), 0);
-		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-		BuffButtonPosition = 7;
-		table.insert(BuffMenuCreate, menuVariable);
-	end
-	if CRYOLYSIS_SPELL_TABLE[35].ID then
-		menuVariable = getglobal("CryolysisBuffMenu8");
-		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisBuffMenu"..BuffButtonPosition, "CENTER", ((36 / CryolysisConfig.BuffMenuPos) * 31), 0);
-		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-		BuffButtonPosition = 8;
-		table.insert(BuffMenuCreate, menuVariable);
+	
+	local buffAssociations = { 22, 4, 13, 25, 15, 50, 33, 35 }
+	for i, v in ipairs(buffAssociations) do
+		local bool
+		if ( CRYOLYSIS_SPELL_TABLE[v].ID ) then
+			bool = true
+		end
+		if (( i == 1 ) and ( not bool ) and ( CRYOLYSIS_SPELL_TABLE[18].ID )) then
+			bool = true
+		end
+		if ( bool ) then
+			menuVariable = _G["CryolysisBuffMenu"..i]
+			menuVariable:ClearAllPoints()
+			menuVariable:SetPoint("CENTER", "CryolysisBuffMenu"..BuffButtonPosition, "CENTER", ((36 / CryolysisConfig.BuffMenuPos) * 31), 0)
+			menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100)
+			BuffButtonPosition = i
+			table.insert(BuffMenuCreate, menuVariable)
+		end
 	end
 
 	-- Now that all the buttons are placed the ones beside the others (out of the screen), the available ones are posted
 	CryolysisBuffMenu0:ClearAllPoints();
 	CryolysisBuffMenu0:SetPoint("CENTER", "CryolysisBuffMenuButton", "CENTER", 3000, 3000);
-	for i = 1, #(BuffMenuCreate), 1 do
+	for i = 1, #BuffMenuCreate, 1 do
 		ShowUIPanel(BuffMenuCreate[i]);
 	end
 	
 	-- Spell attribute updates (Eternally777 @ 12:45 GMT 12/13/2006):
+	Cryolysis_UpdateLeftSpellAttributes()
 	Cryolysis_UpdateEvocationAttributes()
 	Cryolysis_UpdateRightSpellAttributes()
 end
