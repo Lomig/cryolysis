@@ -89,3 +89,23 @@ function Cryolysis_UpdateBuffButtonAttributes()
 		f:SetAttribute("spell", CRYOLYSIS_SPELL_TABLE[ buffButtonAttr[i] ].Name)
 	end
 end
+
+local teleportAssoc = { 38, 40, 39, 37, 51, 36 }
+local portalAssoc = { 47, 31, 30, 28, 29, 27 }
+function Cryolysis_UpdatePortalButtonAttributes()
+	if ( InCombatLockdown() ) then
+		return
+	end
+	local f
+	for i = 1, 6, 1 do
+		f = _G["CryolysisPortalMenu"..i]
+		f:SetAttribute("*type*", "spell")
+		f:SetAttribute("spell", CRYOLYSIS_SPELL_TABLE[ teleportAssoc[i] ].Name)
+	end
+	for i = 7, 12, 1 do
+		f = _G["CryolysisPortalMenu"..i]
+		f:SetAttribute("*type*", "spell")
+		f:SetAttribute("spell", CRYOLYSIS_SPELL_TABLE[ portalAssoc[i-6] ].Name)
+	end
+	
+end

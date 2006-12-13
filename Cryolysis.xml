@@ -299,13 +299,13 @@
 			</OnMouseUp>
 		</Scripts>
 		<Frames>
-			<Frame name="CryolysisBuffMenu0" inherits="SecureStateHeaderTemplate">
-			</Frame>
+			<Frame name="CryolysisBuffMenu0" inherits="SecureStateHeaderTemplate"/>
 		</Frames>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\BuffMenuButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
 	
+	<!-- Buff Button Template -->
 	<Button name="CryolysisBuffMenuButtonTemplate" inherits="SecureActionButtonTemplate" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true" virtual="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
@@ -341,16 +341,7 @@
 	<Button name="CryolysisBuffMenu2" inherits="CryolysisBuffMenuButtonTemplate">
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString name="CryolysisPowderCount" inherits="GameFontNormal">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisBuffMenu2" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
+				<FontString name="CryolysisPowderCount" inherits="GameFontNormal"/>
 			</Layer>
 		</Layers>
 		<Scripts>
@@ -409,16 +400,7 @@
 	<Button name="CryolysisBuffMenu8" inherits="CryolysisBuffMenuButtonTemplate">
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString name="CryolysisFeatherCount" inherits="GameFontNormal">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisBuffMenu8" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
+				<FontString name="CryolysisFeatherCount" inherits="GameFontNormal"/>
 			</Layer>
 		</Layers>
 		<Scripts>
@@ -463,540 +445,119 @@
 			</OnMouseUp>
 		</Scripts>
 		<Frames>
-			<Frame name="CryolysisPortalMenu0" inherits="SecureStateHeaderTemplate">
-			</Frame>
+			<Frame name="CryolysisPortalMenu0" inherits="SecureStateHeaderTemplate"/>
 		</Frames>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalMenuButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
-
-	<Button name="CryolysisPortalMenu1" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="CryolysisTeleportCount1" inherits="GameFontNormal">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisPortalMenu1" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	
+	<Button name="CryolysisPortalMenu1" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisPortalMenu1);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "T:Org", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(1,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportOrgrimmar-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu2" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="CryolysisTeleportCount2" inherits="GameFontNormal">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisPortalMenu2" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	<Button name="CryolysisPortalMenu2" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisPortalMenu2);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "T:UC", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(2,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportUndercity-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu3" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="CryolysisTeleportCount3" inherits="GameFontNormal">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisPortalMenu3" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	<Button name="CryolysisPortalMenu3" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisPortalMenu3);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "T:TB", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(3,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportThunderbluff-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu4" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="CryolysisTeleportCount4" inherits="GameFontNormal">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisPortalMenu4" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	<Button name="CryolysisPortalMenu4" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisPortalMenu4);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "T:IF", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(4,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportIronforge-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu5" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="CryolysisTeleportCount5" inherits="GameFontNormal">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisPortalMenu5" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	<Button name="CryolysisPortalMenu5" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisPortalMenu5);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "T:SW", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-					Cryolysis_PortalCast(5,arg);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportStormwind-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu6" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="CryolysisTeleportCount6" inherits="GameFontNormal">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisPortalMenu6" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	<Button name="CryolysisPortalMenu6" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisPortalMenu6);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "T:Darn", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(6,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportDarnassus-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu7" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="CryolysisPortalCount1" inherits="GameFontNormal">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisPortalMenu7" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	<Button name="CryolysisPortalMenu7" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisPortalMenu7);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "P:Org", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(7,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalOrgrimmar-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu8" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="CryolysisPortalCount2" inherits="GameFontNormal">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisPortalMenu8" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	<Button name="CryolysisPortalMenu8" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisPortalMenu8);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "P:UC", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(8,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalUndercity-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu9" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="CryolysisPortalCount3" inherits="GameFontNormal">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisPortalMenu9" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	<Button name="CryolysisPortalMenu9" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisPortalMenu9);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "P:TB", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(9,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalThunderbluff-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu10" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="CryolysisPortalCount4" inherits="GameFontNormal">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisPortalMenu10" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	<Button name="CryolysisPortalMenu10" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisPortalMenu10);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "P:IF", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(10,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalIronforge-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
-
-	<Button name="CryolysisPortalMenu11" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="CryolysisPortalCount5" inherits="GameFontNormal">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisPortalMenu11" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	<Button name="CryolysisPortalMenu11" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisPortalMenu11);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "P:SW", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(11,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalStormwind-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu12" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="CryolysisPortalCount6" inherits="GameFontNormal">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="CENTER" relativeTo="CryolysisPortalMenu12" relativeFrom="CENTER">
-							<Offset>
-								<AbsDimension x="0" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	<Button name="CryolysisPortalMenu12" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisPortalMenu12);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "P:Darn", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_PortalCast(12,arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalDarnassus-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
+	
 	<GameTooltip name="CryolysisTooltip" frameStrata="LOW" toplevel="true" movable="true" parent="UIParent" inherits="GameTooltipTemplate" />
 </Ui>
