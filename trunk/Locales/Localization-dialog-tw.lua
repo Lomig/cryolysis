@@ -281,6 +281,7 @@ function Cryolysis_Localization_Dialog_Tw()
 	};
 	
 	CRYOLYSIS_CONFIGURATION = {
+		["Credits"] = "Brought to you by The Cryolysis: Reborn Developement Team",
 		["Menu1"] = "背包設定",
 		["Menu2"] = "訊息設定",
 		["Menu3"] = "按鈕設定",
