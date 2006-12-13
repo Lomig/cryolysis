@@ -289,8 +289,8 @@
 						GameTooltip:Hide();
 						if BxOfs > 2000 then
 							CryolysisBuffMenu0:ClearAllPoints();
-							CryolysisBuffMenu0:SetPoint("CENTER", BxOfs, ByOfs);
-						end
+							CryolysisBuffMenu0:SetPoint("CENTER", 3000, 3000);
+							end
 						Cryolysis_UpdateMenuAnchor();
 					</OnLeave>
 				</Scripts>
@@ -348,7 +348,7 @@
 						GameTooltip:Hide();
 						if PxOfs > 2000 then
 							CryolysisPortalMenu0:ClearAllPoints();
-							CryolysisPortalMenu0:SetPoint("CENTER", PxOfs, PyOfs);
+							CryolysisPortalMenu0:SetPoint("CENTER", 3000, 3000);
 						end
 						Cryolysis_UpdateMenuAnchor();
 					</OnLeave>
