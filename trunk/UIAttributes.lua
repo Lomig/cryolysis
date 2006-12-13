@@ -52,3 +52,12 @@ function Cryolysis_UpdateEvocationAttributes()
 		f:SetAttribute("spell", CRYOLYSIS_SPELL_TABLE[49].Name)
 	end
 end
+
+function Cryolysis_UpdateRightSpellAttributes()
+	local f = _G["CryolysisRightSpellButton"]
+	if ( not InCombatLockdown() ) then
+		f:SetAttribute("*type*", "spell")
+		f:SetAttribute("spell1", CRYOLYSIS_SPELL_TABLE[15].Name)
+		f:SetAttribute("spell2", CRYOLYSIS_SPELL_TABLE[20].Name)
+	end
+end
