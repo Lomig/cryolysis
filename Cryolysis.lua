@@ -3639,8 +3639,8 @@ function Cryolysis_CreateMenu()
 	Cryolysis_UpdateLeftSpellAttributes()
 	Cryolysis_UpdateEvocationAttributes()
 	Cryolysis_UpdateRightSpellAttributes()
+	Cryolysis_UpdateBuffButtonAttributes()
 end
-
 
 -- management of spell button casting
 function Cryolysis_SpellButtonCast(side, click)

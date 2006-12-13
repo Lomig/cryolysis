@@ -45,6 +45,14 @@ function Cryolysis_UpdateFoodButtonAttributes()
 	end
 end
 
+function Cryolysis_UpdateLeftSpellAttributes()
+	local f = _G["CryolysisLeftSpellButton"]
+	if ( not InCombatLockdown() ) then
+		f:SetAttribute("*type*", "spell")
+		f:SetAttribute("spell", CRYOLYSIS_SPELL_TABLE[25].Name)
+	end
+end
+
 function Cryolysis_UpdateEvocationAttributes()
 	local f = _G["CryolysisEvocationButton"]
 	if ( not InCombatLockdown() ) then
@@ -59,5 +67,25 @@ function Cryolysis_UpdateRightSpellAttributes()
 		f:SetAttribute("*type*", "spell")
 		f:SetAttribute("spell1", CRYOLYSIS_SPELL_TABLE[15].Name)
 		f:SetAttribute("spell2", CRYOLYSIS_SPELL_TABLE[20].Name)
+	end
+end
+
+local buffButtonAttr = { "22 24", "4 2", "13 1", "23 25", "15 20", 50, 33, 35 }
+function Cryolysis_UpdateBuffButtonAttributes()
+	if ( InCombatLockdown() ) then
+		return
+	end
+	for i = 1, 5, 1 do
+		local f = _G["CryolysisBuffMenu"..i]
+		local spellOne, spellTwo = strsplit(" ", buffButtonAttr[i])
+		
+		f:SetAttribute("*type*", "spell")
+		f:SetAttribute("spell1", CRYOLYSIS_SPELL_TABLE[tonumber(spellOne)].Name)
+		f:SetAttribute("spell2", CRYOLYSIS_SPELL_TABLE[tonumber(spellTwo)].Name)
+	end
+	for i = 6, 8, 1 do
+		local f = _G["CryolysisBuffMenu"..i]
+		f:SetAttribute("*type*", "spell")
+		f:SetAttribute("spell", CRYOLYSIS_SPELL_TABLE[ buffButtonAttr[i] ].Name)
 	end
 end

@@ -305,8 +305,8 @@
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\BuffMenuButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
-
-	<Button name="CryolysisBuffMenu1" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	
+	<Button name="CryolysisBuffMenuButtonTemplate" inherits="SecureActionButtonTemplate" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true" virtual="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -319,26 +319,26 @@
 		</Anchors>
 		<Scripts>
 			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisBuffMenu1);
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+				HideUIPanel(this)
 			</OnLoad>
-			<OnEnter>
-				Cryolysis_BuildTooltip(this, "Armor", "ANCHOR_RIGHT");
-			</OnEnter>
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(22, arg1);
-			</OnClick>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\FrostArmor-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
-	<Button name="CryolysisBuffMenu2" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
+
+	<Button name="CryolysisBuffMenu1" inherits="CryolysisBuffMenuButtonTemplate">
+		<Scripts>
+			<OnEnter>
+				Cryolysis_BuildTooltip(this, "Armor", "ANCHOR_RIGHT");
+			</OnEnter>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\Cryolysis\UI\FrostArmor-01"/>
+	</Button>
+	
+	<Button name="CryolysisBuffMenu2" inherits="CryolysisBuffMenuButtonTemplate">
 		<Layers>
 			<Layer level="ARTWORK">
 				<FontString name="CryolysisPowderCount" inherits="GameFontNormal">
@@ -353,180 +353,60 @@
 				</FontString>
 			</Layer>
 		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisBuffMenu2);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "ArcaneInt", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(4, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\ArcaneIntellect-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
-	<Button name="CryolysisBuffMenu3" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	
+	<Button name="CryolysisBuffMenu3" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisBuffMenu3);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "DampenMagic", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(13, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\DampenMagic-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
-	<Button name="CryolysisBuffMenu4" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	
+	<Button name="CryolysisBuffMenu4" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisBuffMenu4);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildShieldTooltip(this, "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(23, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\ManaShield-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
-	<Button name="CryolysisBuffMenu5" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	
+	<Button name="CryolysisBuffMenu5" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisBuffMenu5);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "FireWard", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(15, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\FireWard-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
-		<Button name="CryolysisBuffMenu6" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	
+	<Button name="CryolysisBuffMenu6" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisBuffMenu6);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "DetectMagic", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(50, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\DetectMagic-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
-	<Button name="CryolysisBuffMenu7" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
+	
+	<Button name="CryolysisBuffMenu7" inherits="CryolysisBuffMenuButtonTemplate">
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisBuffMenu7);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "RemoveCurse", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(33, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\RemoveCurse-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
-	<Button name="CryolysisBuffMenu8" frameStrata="HIGH" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="40" y="40"/>
-		</Size>
+	
+	<Button name="CryolysisBuffMenu8" inherits="CryolysisBuffMenuButtonTemplate">
 		<Layers>
 			<Layer level="ARTWORK">
 				<FontString name="CryolysisFeatherCount" inherits="GameFontNormal">
@@ -541,30 +421,12 @@
 				</FontString>
 			</Layer>
 		</Layers>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="17" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
 		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				HideUIPanel(CryolysisBuffMenu8);
-			</OnLoad>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "SlowFall", "ANCHOR_RIGHT");
 			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnClick>
-				Cryolysis_BuffCast(35, arg1);
-			</OnClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\SlowFall-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
 	<Button name="CryolysisPortalMenuButton" inherits="SecureAnchorButtonTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
