@@ -830,7 +830,6 @@ function Cryolysis_OnEvent(event)
 		Cryolysis_SpellSetup();
 		Cryolysis_CreateMenu();
 		Cryolysis_ButtonSetup();
-
 	-- At the end of combat, stop announcing Concentration
 	-- And removes the timers for that mob
 	elseif (event == "PLAYER_REGEN_ENABLED") then
@@ -1456,8 +1455,6 @@ end
 ------------------------------------------------------------------------------------------------------
 -- FUNCTIONS OF THE INTERFACE -- BONDS XML
 ------------------------------------------------------------------------------------------------------
-
-
 -- Created by Lomig from the Cryolysis_Toggle() function.
 function Cryolysis_UpdateMainButtonAttributes()
 	CryolysisButton:SetAttribute("type2", "Toggle");
@@ -1523,7 +1520,6 @@ function Cryolysis_UpdateMainButtonAttributes()
 		end
 	end
 end
-
 
 -- By right clicking on Cryolysis, one eats/drings or opens the control panels
 function Cryolysis_Toggle()
@@ -1906,7 +1902,6 @@ function Cryolysis_UpdateIcons()
 	local mana = UnitMana("player");
 	local texture;
 
-
 	for i=1, 9, 1 do
 		if CryolysisButtonTexture.Stones.Highlight[i] ~= CryolysisConfig.Skin then
 			getglobal(CryolysisConfig.StoneLocation[i]):SetHighlightTexture("Interface\\Addons\\Cryolysis\\UI\\BaseMenu-02");
@@ -1916,7 +1911,6 @@ function Cryolysis_UpdateIcons()
 			CryolysisButtonTexture.Stones.Highlight[i] = CryolysisConfig.Skin
 		end
 	end
-
 
 	-------------------------------------
 	-- Posting main Cryolysis sphere
@@ -2703,51 +2697,42 @@ end
 ------------------------------------------------------------------------------------------------------
 -- FUNCTIONS OF SPELLS
 ------------------------------------------------------------------------------------------------------
-
-
-
 -- Show or Hide the spell button to each new learned spell
 function Cryolysis_ButtonSetup()
 	if CryolysisConfig.CryolysisLockServ then
 		Cryolysis_NoDrag();
 		Cryolysis_UpdateButtonsScale();
 	else
-		HideUIPanel(CryolysisPortalMenuButton);
-		HideUIPanel(CryolysisBuffMenuButton);
-		HideUIPanel(CryolysisMountButton);
-		HideUIPanel(CryolysisFoodButton);
-		HideUIPanel(CryolysisDrinkButton);
-		HideUIPanel(CryolysisManastoneButton);
-		HideUIPanel(CryolysisEvocationButton);
-		HideUIPanel(CryolysisLeftSpellButton);
-		HideUIPanel(CryolysisRightSpellButton);
-
-        if CryolysisConfig.StonePosition[1] and StoneIDInSpellTable[4] ~= 0 then
-			ShowUIPanel(CryolysisFoodButton);
+		for i, v in ipairs(CryolysisConfig.StoneLocation) do
+			HideUIPanel(_G[v])
+		end
+		
+		if CryolysisConfig.StonePosition[1] and StoneIDInSpellTable[4] ~= 0 then
+			ShowUIPanel(CryolysisFoodButton)
 		end
 		if CryolysisConfig.StonePosition[2] and StoneIDInSpellTable[3] ~= 0 then
-			ShowUIPanel(CryolysisDrinkButton);
+			ShowUIPanel(CryolysisDrinkButton)
 		end
 		if CryolysisConfig.StonePosition[3] and StoneIDInSpellTable[2] ~= 0 then
-			ShowUIPanel(CryolysisManastoneButton);
+			ShowUIPanel(CryolysisManastoneButton)
 		end
 		if CryolysisConfig.StonePosition[4] then
-		    ShowUIPanel(CryolysisLeftSpellButton);
+		    ShowUIPanel(CryolysisLeftSpellButton)
 		end
 		if CryolysisConfig.StonePosition[5] and StoneIDInSpellTable[1] ~= 0 then
-			ShowUIPanel(CryolysisEvocationButton);
+			ShowUIPanel(CryolysisEvocationButton)
 		end
 		if CryolysisConfig.StonePosition[6] then
-		    ShowUIPanel(CryolysisRightSpellButton);
+		    ShowUIPanel(CryolysisRightSpellButton)
 		end
 		if CryolysisConfig.StonePosition[7] and BuffMenuCreate[1] then
-			ShowUIPanel(CryolysisBuffMenuButton);
+			ShowUIPanel(CryolysisBuffMenuButton)
 		end
 		if CryolysisConfig.StonePosition[8] then
-			ShowUIPanel(CryolysisMountButton);
+			ShowUIPanel(CryolysisMountButton)
 		end
 		if CryolysisConfig.StonePosition[9] and PortalMenuCreate[1] then
-			ShowUIPanel(CryolysisPortalMenuButton);
+			ShowUIPanel(CryolysisPortalMenuButton)
 		end
 	end
 end
@@ -2878,7 +2863,7 @@ function Cryolysis_SpellSetup()
 	end
 
 	for spellID=1, MAX_SPELLS, 1 do
-        local spellName, subSpellName = GetSpellName(spellID, "spell");
+		local spellName, subSpellName = GetSpellName(spellID, "spell");
 		if (spellName) then
 			for index=1, #(CRYOLYSIS_SPELL_TABLE), 1 do
 				if CRYOLYSIS_SPELL_TABLE[index].Name == spellName then
@@ -3695,6 +3680,9 @@ function Cryolysis_CreateMenu()
 	for i = 1, #(BuffMenuCreate), 1 do
 		ShowUIPanel(BuffMenuCreate[i]);
 	end
+	
+	-- Spell attribute updates:
+	Cryolysis_UpdateEvocationAttributes()
 end
 
 

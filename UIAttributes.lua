@@ -44,3 +44,11 @@ function Cryolysis_UpdateFoodButtonAttributes()
 		-- End of adding
 	end
 end
+
+function Cryolysis_UpdateEvocationAttributes()
+	local f = _G["CryolysisEvocationButton"]
+	if ( not InCombatLockdown() ) then
+		f:SetAttribute("*type*", "spell")
+		f:SetAttribute("spell", CRYOLYSIS_SPELL_TABLE[49].Name)
+	end
+end

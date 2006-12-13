@@ -27,6 +27,7 @@ CryolysisInitialize.lua
 CryolysisMessage.lua
 CryolysisTimerFunction.lua
 CryolysisGraphicalTimer.lua
+UIAttributes.lua
 	
 Cryolysis.xml
 CryolysisTimer.xml
@@ -35,5 +36,3 @@ CryolysisMessageMenu.xml
 CryolysisButtonMenu.xml
 CryolysisTimerMenu.xml
 CryolysisGraphOptionMenu.xml
-
-UIAttributes.lua
