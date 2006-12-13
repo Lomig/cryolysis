@@ -330,22 +330,9 @@ function Cryolysis_Initialize()
 		end
 		-- Added by Lomig to replace the Toggle function
 		Cryolysis_UpdateMainButtonAttributes();
+		Cryolysis_UpdateMenuAnchor();
 		
-		-- Added by lomig to manage the open / close menus
-		
-		CryolysisBuffMenuButton:SetAttribute("*childraise*", true);
-		CryolysisBuffMenuButton:SetAttribute("*childstate*", "^click");
-		CryolysisBuffMenu0:SetAttribute("statemap-anchor-click", "0-1");
-		CryolysisBuffMenuButton:SetAttribute("anchorchild", CryolysisBuffMenu0);
-		CryolysisBuffMenu0:SetAttribute("headofsx", "0:3000;1:1");
-		CryolysisBuffMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.BuffMenuAnchor);
-		
-		CryolysisPortalMenuButton:SetAttribute("*childraise*", true);
-		CryolysisPortalMenuButton:SetAttribute("*childstate*", "^click");
-		CryolysisPortalMenu0:SetAttribute("statemap-anchor-click", "0-1");
-		CryolysisPortalMenuButton:SetAttribute("anchorchild", CryolysisPortalMenu0);
-		CryolysisPortalMenu0:SetAttribute("headofsx", "0:3000;1:1");
-		CryolysisPortalMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.PortalMenuAnchor);
+
 	end
 end
 
@@ -368,7 +355,7 @@ function Cryolysis_LanguageInitialize()
 	CryolysisRestock_Option:SetText(CRYOLYSIS_CONFIGURATION.Restock.Restock);
 	CryolysisRestockConfirm_Option:SetText(CRYOLYSIS_CONFIGURATION.Restock.Confirm);
 	CryolysisTeleport_SliderText:SetText(CRYOLYSIS_ITEM.RuneOfTeleportation);
-    CryolysisPortal_SliderText:SetText(CRYOLYSIS_ITEM.RuneOfPortals);
+    	CryolysisPortal_SliderText:SetText(CRYOLYSIS_ITEM.RuneOfPortals);
 	CryolysisPowder_SliderText:SetText(CRYOLYSIS_ITEM.ArcanePowder);
 	CryolysisCountType_SliderText:SetText(CRYOLYSIS_CONFIGURATION.CountType);
 	CryolysisFood_SliderText:SetText(CRYOLYSIS_CONFIGURATION.Food);
@@ -387,7 +374,7 @@ function Cryolysis_LanguageInitialize()
 	CryolysisShowMessage_Option:SetText(CRYOLYSIS_CONFIGURATION.ShowMessage);
 	CryolysisShowPolyMessage_Option:SetText(CRYOLYSIS_CONFIGURATION.ShowPolyMessage);
 	CryolysisShowPortalMessage_Option:SetText(CRYOLYSIS_CONFIGURATION.ShowPortalMessage);
-    CryolysisShowSteedMessage_Option:SetText(CRYOLYSIS_CONFIGURATION.ShowSteedMessage);
+   	 CryolysisShowSteedMessage_Option:SetText(CRYOLYSIS_CONFIGURATION.ShowSteedMessage);
 	CryolysisPolyWarn_Option:SetText(CRYOLYSIS_CONFIGURATION.Polymorph.Warn);
 	CryolysisPolyBreak_Option:SetText(CRYOLYSIS_CONFIGURATION.Polymorph.Break);
 	CryolysisChatType_Option:SetText(CRYOLYSIS_CONFIGURATION.ChatType);
@@ -500,4 +487,21 @@ function Cryolysis_SlashHandler(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, 
 		end
 		Cryolysis_Toggle();
 	end
+end
+
+function Cryolysis_UpdateMenuAnchor()
+		
+	CryolysisBuffMenuButton:SetAttribute("*childraise*", true);
+	CryolysisBuffMenuButton:SetAttribute("*childstate*", "^click");
+	CryolysisBuffMenu0:SetAttribute("statemap-anchor-click", "0-1");
+	CryolysisBuffMenuButton:SetAttribute("anchorchild", CryolysisBuffMenu0);
+	CryolysisBuffMenu0:SetAttribute("headofsx", "0:3000;1:1");
+	CryolysisBuffMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.BuffMenuAnchor);
+	
+	CryolysisPortalMenuButton:SetAttribute("*childraise*", true);
+	CryolysisPortalMenuButton:SetAttribute("*childstate*", "^click");
+	CryolysisPortalMenu0:SetAttribute("statemap-anchor-click", "0-1");
+	CryolysisPortalMenuButton:SetAttribute("anchorchild", CryolysisPortalMenu0);
+	CryolysisPortalMenu0:SetAttribute("headofsx", "0:3000;1:1");
+	CryolysisPortalMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.PortalMenuAnchor);
 end
