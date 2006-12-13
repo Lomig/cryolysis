@@ -103,3 +103,16 @@ function Cryolysis_UpdatePortalButtonAttributes(PortalTempID)
 	end
 end
 
+function Cryolysis_UpdateMountButton(MountName, MountType)
+	if ( InCombatLockdown() ) then
+		return
+	end
+	if MountType == "Normal" then
+		CryolysisMountButton:SetAttribute("type1", "item");
+		CryolysisMountButton:SetAttribute("item1", MountName);
+	else
+		CryolysisMountButton:SetAttribute("type1", "item");
+		CryolysisMountButton:SetAttribute("item1", MountName);
+	end
+end
+

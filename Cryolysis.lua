@@ -2346,7 +2346,9 @@ function Cryolysis_MountCheck(itemName, container, slot)
 			   	else
 					Mount.Icon = icon;
 			   	end
+
 			   	Mount.Location = {container, slot}
+				Cryolysis_UpdateMountButton(Mount.Title, "Normal")
 			   	break;
 			end
 		end
@@ -2362,6 +2364,7 @@ function Cryolysis_AQMountCheck(itemName, container, slot)
 			Cryolysis_Msg("AQ Mount Located: "..Mount.Title,"USER");
 			Mount.Icon = "A"..i;
 		   	Mount.Location = {container, slot}
+			Cryolysis_UpdateMountButton(Mount.Title, "AQ");
 		   	Mount.AQMount = true;
 		   	return true;
 		end
@@ -2529,6 +2532,8 @@ function Cryolysis_BagExplore()
 						HearthstoneLocation = {container,slot};
 						CryolysisSpellTimerButton:SetAttribute("type2", "item");
 						CryolysisSpellTimerButton:SetAttribute("item2", CRYOLYSIS_ITEM.Hearthstone);
+						CryolysisMountButton:SetAttribute("type2", "item");
+						CryolysisMountButton:SetAttribute("item2", CRYOLYSIS_ITEM.Hearthstone);
 					end
 				end
 				-- Mount
