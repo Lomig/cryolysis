@@ -19,7 +19,6 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --]]
 
-
 ------------------------------------------------------------------------------------------------------
 -- Cryolysis
 --
@@ -2955,34 +2954,6 @@ function Cryolysis_ButtonTextUpdate()
 	else
 		CryolysisFeatherCount:SetText("");
 	end
-	if CryolysisConfig.RuneCountText then
-		CryolysisTeleportCount1:SetText(Count.RuneOfTeleportation);
-		CryolysisTeleportCount2:SetText(Count.RuneOfTeleportation);
-		CryolysisTeleportCount3:SetText(Count.RuneOfTeleportation);
-		CryolysisTeleportCount4:SetText(Count.RuneOfTeleportation);
-		CryolysisTeleportCount5:SetText(Count.RuneOfTeleportation);
-		CryolysisTeleportCount6:SetText(Count.RuneOfTeleportation);
-		CryolysisPortalCount1:SetText(Count.RuneOfPortals);
-		CryolysisPortalCount2:SetText(Count.RuneOfPortals);
-		CryolysisPortalCount3:SetText(Count.RuneOfPortals);
-		CryolysisPortalCount4:SetText(Count.RuneOfPortals);
-		CryolysisPortalCount5:SetText(Count.RuneOfPortals);
-		CryolysisPortalCount6:SetText(Count.RuneOfPortals);
-	else
-		CryolysisTeleportCount1:SetText("");
-		CryolysisTeleportCount2:SetText("");
-		CryolysisTeleportCount3:SetText("");
-		CryolysisTeleportCount4:SetText("");
-		CryolysisTeleportCount5:SetText("");
-		CryolysisTeleportCount6:SetText("");
-		CryolysisPortalCount1:SetText("");
-		CryolysisPortalCount2:SetText("");
-		CryolysisPortalCount3:SetText("");
-		CryolysisPortalCount4:SetText("");
-		CryolysisPortalCount5:SetText("");
-		CryolysisPortalCount6:SetText("");
-
-	end
 end
 
 -- Converts seconds into minutes:seconds
@@ -3015,7 +2986,6 @@ function Cryolysis_ColdBlock()
 		CastSpell(CRYOLYSIS_SPELL_TABLE[42].ID, "spell");
 	end
 end
-
 
 function Nethaera_FrostyBolt(Clearcast,PI)
 	if Clearcast then
@@ -3160,173 +3130,6 @@ function Cryolysis_Trade_Water()
 	end
 end
 
-
-
--- LOMIG : FUNCION TO GET RID OF :::::
--- Function to manage the actions carried out by Cryolysis with the click on a button
-function Cryolysis_UseItem(type,button,keybind)
-	local Ctrl = IsControlKeyDown();
-	if Ctrl and keybind then Ctrl = not Ctrl; end
-	-- Function to use a hearthstone in the inventory
-	-- If there is one in the inventory and you right-click
-	if type == "Hearthstone" and button == "RightButton" then
-		if (HearthstoneOnHand) then
-			-- Use
-			UseContainerItem(HearthstoneLocation[1], HearthstoneLocation[2]);
-		-- If there isn't one in the inventory and you right-click
-		else
-			Cryolysis_Msg(CRYOLYSIS_MESSAGE.Error.NoHearthStone, "USER");
-		end
-	-- If you click on  the Mana gem :
-	elseif type == "Manastone" and button == "LeftButton" then
-		if (UnitMana("player") == UnitManaMax("player")) then   -- Max mana! Not going to waste it
-			Cryolysis_Msg(CRYOLYSIS_MESSAGE.Error.FullMana, "USER");
-	    elseif CryolysisConfig.ManaStoneOrder == 2 then
-        	for i = StoneMaxRank[2], 1, -1 do
-				-- If there is one in the inventory
-		    	if Manastone.OnHand[i] then
-					local start, duration, enable = GetContainerItemCooldown(Manastone.Location[i][1], Manastone.Location[i][2]);
-					if start > 0 and duration > 0 then
-					    Cryolysis_Msg(CRYOLYSIS_MESSAGE.Error.ManaStoneCooldown, "USER");
-					    break;
-					else
-						SpellStopCasting();
-						UseContainerItem(Manastone.Location[i][1], Manastone.Location[i][2]);
-     				 	CryolysisPrivate.ManastoneCooldown = 120;
-     				 	SpellCastName = "Mana Gem";
-					 	break;
-					end
-				end
-			end
-		elseif CryolysisConfig.ManaStoneOrder == 1 then
-       	for i = 1, StoneMaxRank[2], 1  do
-			-- If there is one in the inventory
-	    	if Manastone.OnHand[i] then
-				local start, duration, enable = GetContainerItemCooldown(Manastone.Location[i][1], Manastone.Location[i][2]);
-				if start > 0 and duration > 0 then
-				    Cryolysis_Msg(CRYOLYSIS_MESSAGE.Error.ManaStoneCooldown, "USER");
-				    break;
-				else
-					SpellStopCasting();
-					UseContainerItem(Manastone.Location[i][1], Manastone.Location[i][2]);
-     				SpellCastName = "Mana Gem";
-   					break;
-					end
-				end
-			end
-		end
-	elseif type == "Manastone" and button == "RightButton" then
-		for i = StoneMaxRank[2], 1, -1 do
-		    if Manastone.Mode[i] == 1 then
-				CastSpell(Manastone.RankID[i], "spell");
-				break;
-			end
-		end
-
-	-- Now for food
- 	elseif type == "Food" and button == "LeftButton" and not Ctrl then
-		if Count.Food > 0 then
-			UseContainerItem(FoodLocation[1], FoodLocation[2]);
-			CryolysisPrivate.Sitting = true;
-		else
-			Cryolysis_Msg(CRYOLYSIS_MESSAGE.Error.NoFood, "USER");
-		end
-	elseif type == "Food" and button == "RightButton" then
-	    if (UnitExists("target") and UnitIsPlayer("target") and UnitIsFriend("player", "target") and UnitName("target") ~= UnitName("player")) then
-			for i=StoneMaxRank[4], 1, -1 do
-				local var = i * 10 - 15
-				if UnitLevel("target") >= var then
-					CastSpellByName(CRYOLYSIS_SPELL_TABLE[10].Name.."("..CRYOLYSIS_TRANSLATION.Rank.." "..i..")");
-					FoodLastRank = i;
-					if GetLocale() == "frFR" then
-					    Count.FoodLastName = CRYOLYSIS_FOOD_RANK[i]..CRYOLYSIS_ITEM.Provision;
-					else
-						Count.FoodLastName = CRYOLYSIS_ITEM.Provision..CRYOLYSIS_FOOD_RANK[i];
-					end
-					break;
-				end
-			end
-		else
-			Cryolysis_BuffCast(10);
-			FoodLastRank = StoneMaxRank[4];
-			if GetLocale() == "frFR" then
-				Count.FoodLastName = CRYOLYSIS_FOOD_RANK[StoneMaxRank[4]]..CRYOLYSIS_ITEM.Provision;
-			else
-				Count.FoodLastName = CRYOLYSIS_ITEM.Provision..CRYOLYSIS_FOOD_RANK[StoneMaxRank[4]];
-			end
-		end
-	elseif type == "Food" then
-		if button == "MiddleButton" or Ctrl then
-			if Count.Food > 0 then
-				if (UnitExists("target") and UnitIsPlayer("target") and UnitIsFriend("player", "target") and UnitName("target") ~= UnitName("player"))
-				or CryolysisTradeRequest then
-					Cryolysis_TradeExplore(Count.FoodLastName);
-				end
-			end
-		end
-	-- And for drinks
-	elseif type == "Drink" and button == "LeftButton" and not Ctrl then
-		if Count.Drink > 0 then
-			UseContainerItem(DrinkLocation[1], DrinkLocation[2]);
-			CryolysisPrivate.Sitting = true;
-		else
-			Cryolysis_Msg(CRYOLYSIS_MESSAGE.Error.NoDrink, "USER");
-		end
-	elseif type == "Drink" and button == "RightButton" then
-        if (UnitExists("target") and UnitIsPlayer("target") and UnitIsFriend("player", "target") and UnitName("target") ~= UnitName("player")) then
-			for i=StoneMaxRank[3], 1, -1 do
-				local var = i * 10 - 15
-			    if UnitLevel("target") >= var then
-					CastSpellByName(CRYOLYSIS_SPELL_TABLE[11].Name.."("..CRYOLYSIS_TRANSLATION.Rank.." "..i..")");
-			        DrinkLastRank = i;
-			        if GetLocale() == "frFR" then
-			        	Count.DrinkLastName = CRYOLYSIS_DRINK_RANK[i]..CRYOLYSIS_ITEM.Provision;
-			        else
-			        	Count.DrinkLastName = CRYOLYSIS_ITEM.Provision..CRYOLYSIS_DRINK_RANK[i];
-			        end
-			        break;
-				end
-			end
-		else
-			Cryolysis_BuffCast(11);
-			DrinkLastRank = StoneMaxRank[3];
-			if GetLocale() == "frFR" then
-				Count.DrinkLastName = CRYOLYSIS_DRINK_RANK[StoneMaxRank[3]]..CRYOLYSIS_ITEM.Provision;
-			else
-				Count.DrinkLastName = CRYOLYSIS_ITEM.Provision..CRYOLYSIS_DRINK_RANK[StoneMaxRank[3]];
-			end
-		end
-	elseif type == "Drink" then
-		if button == "MiddleButton" or Ctrl then
-			if Count.Drink > 0 then
-				if (UnitExists("target") and UnitIsPlayer("target") and UnitIsFriend("player", "target") and UnitName("target") ~= UnitName("player"))
-				or CryolysisTradeRequest then
-					Cryolysis_TradeExplore(Count.DrinkLastName);
-				end
-			end
-		end
-	-- Mount button
-	elseif type == "Mount" and button == "LeftButton" then
-		-- Soit c'est la monture �ique
-		if Mount.Available then
-   			UseContainerItem(Mount.Location[1], Mount.Location[2]);
-			Cryolysis_OnUpdate();
-		-- Soit c'est la monture classique
-		else
-			Cryolysis_Msg(CRYOLYSIS_MESSAGE.Error.NoRiding, "USER");
-		end
-	elseif type == "Mount" and button == "RightButton" then
-	    if (HearthstoneOnHand) then
-			-- Use
-			UseContainerItem(HearthstoneLocation[1], HearthstoneLocation[2]);
-			-- If there isn't one in the inventory and you right-click
-		else
-			Cryolysis_Msg(CRYOLYSIS_MESSAGE.Error.NoHearthStone, "USER");
-		end
-	end
- 	Cryolysis_BagCheck("Update");
-end
-
 function Cryolysis_MoneyToggle()
 	for index=1, 10 do
 		local text = _G["CryolysisTooltipTextLeft"..index]
@@ -3346,7 +3149,6 @@ function Cryolysis_GameTooltip_ClearMoney()
     -- Intentionally empty; don't clear money while we use hidden tooltips
 end
 
-
 --Function to place the buttons around Cryolysis (and to grow/shrink the interface)
 function Cryolysis_UpdateButtonsScale()
 	local NBRScale = (100 + (CryolysisConfig.CryolysisButtonScale - 85)) / 100;
@@ -3365,63 +3167,65 @@ function Cryolysis_UpdateButtonsScale()
 		HideUIPanel(CryolysisLeftSpellButton);
 		HideUIPanel(CryolysisRightSpellButton);
 		local indexScale = -18;
-			for index=1, 9, 1 do
---			if CryolysisConfig.StonePosition[index] then
-				if CryolysisConfig.StonePosition[1] and CryolysisConfig.StoneLocation[index] == "CryolysisFoodButton" and StoneIDInSpellTable[4] ~= 0 then
-					CryolysisFoodButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
-                    CryolysisFoodButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-					ShowUIPanel(CryolysisFoodButton);
-					indexScale = indexScale + 36;
-				end
-				if CryolysisConfig.StonePosition[2] and CryolysisConfig.StoneLocation[index] == "CryolysisDrinkButton" and StoneIDInSpellTable[3] ~= 0 then
-					CryolysisDrinkButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
-					CryolysisDrinkButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-					ShowUIPanel(CryolysisDrinkButton);
-					indexScale = indexScale + 36;
-				end
-				if CryolysisConfig.StonePosition[3] and CryolysisConfig.StoneLocation[index] == "CryolysisManastoneButton" and StoneIDInSpellTable[2] ~= 0 then
-					CryolysisManastoneButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
-					CryolysisManastoneButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-					ShowUIPanel(CryolysisManastoneButton);
-					indexScale = indexScale + 36;
-				end
-				if CryolysisConfig.StonePosition[4] and CryolysisConfig.StoneLocation[index] == "CryolysisLeftSpellButton" then
-					CryolysisLeftSpellButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
-                    CryolysisLeftSpellButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-					ShowUIPanel(CryolysisLeftSpellButton);
-					indexScale = indexScale + 36;
-				end
-				if CryolysisConfig.StonePosition[5] and CryolysisConfig.StoneLocation[index] == "CryolysisEvocationButton" and StoneIDInSpellTable[1] ~= 0 then
-					CryolysisEvocationButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
-                    CryolysisEvocationButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-					ShowUIPanel(CryolysisEvocationButton);
-					indexScale = indexScale + 36;
-				end
-				if CryolysisConfig.StonePosition[6] and CryolysisConfig.StoneLocation[index] == "CryolysisRightSpellButton" then
-					CryolysisRightSpellButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
-                    CryolysisRightSpellButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-					ShowUIPanel(CryolysisRightSpellButton);
-					indexScale = indexScale + 36;
-				end
-				if CryolysisConfig.StonePosition[7] and CryolysisConfig.StoneLocation[index] == "CryolysisBuffMenuButton" and BuffMenuCreate[1] then
-					CryolysisBuffMenuButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
-                    CryolysisBuffMenuButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-					ShowUIPanel(CryolysisBuffMenuButton);
-					indexScale = indexScale + 36;
-				end
-				if CryolysisConfig.StonePosition[8] and CryolysisConfig.StoneLocation[index] == "CryolysisMountButton" and Mount.Available then
-					CryolysisMountButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
-                    CryolysisMountButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-					ShowUIPanel(CryolysisMountButton);
-					indexScale = indexScale + 36;
-				end
-				if CryolysisConfig.StonePosition[9] and CryolysisConfig.StoneLocation[index] == "CryolysisPortalMenuButton" and PortalMenuCreate[1] then
-					CryolysisPortalMenuButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
-                    CryolysisPortalMenuButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-					ShowUIPanel(CryolysisPortalMenuButton);
-					indexScale = indexScale + 36;
-				end
---			end
+		
+		-- Eternally777@ 6:52GMT-12/13/2006:
+		--   Is it necessary to loop this nine times?  Wtf is it doing?
+		
+		for index=1, 9, 1 do
+			if CryolysisConfig.StonePosition[1] and CryolysisConfig.StoneLocation[index] == "CryolysisFoodButton" and StoneIDInSpellTable[4] ~= 0 then
+				CryolysisFoodButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
+				CryolysisFoodButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+				ShowUIPanel(CryolysisFoodButton);
+				indexScale = indexScale + 36;
+			end
+			if CryolysisConfig.StonePosition[2] and CryolysisConfig.StoneLocation[index] == "CryolysisDrinkButton" and StoneIDInSpellTable[3] ~= 0 then
+				CryolysisDrinkButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
+				CryolysisDrinkButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+				ShowUIPanel(CryolysisDrinkButton);
+				indexScale = indexScale + 36;
+			end
+			if CryolysisConfig.StonePosition[3] and CryolysisConfig.StoneLocation[index] == "CryolysisManastoneButton" and StoneIDInSpellTable[2] ~= 0 then
+				CryolysisManastoneButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
+				CryolysisManastoneButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+				ShowUIPanel(CryolysisManastoneButton);
+				indexScale = indexScale + 36;
+			end
+			if CryolysisConfig.StonePosition[4] and CryolysisConfig.StoneLocation[index] == "CryolysisLeftSpellButton" then
+				CryolysisLeftSpellButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
+				CryolysisLeftSpellButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+				ShowUIPanel(CryolysisLeftSpellButton);
+				indexScale = indexScale + 36;
+			end
+			if CryolysisConfig.StonePosition[5] and CryolysisConfig.StoneLocation[index] == "CryolysisEvocationButton" and StoneIDInSpellTable[1] ~= 0 then
+				CryolysisEvocationButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
+				CryolysisEvocationButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+				ShowUIPanel(CryolysisEvocationButton);
+				indexScale = indexScale + 36;
+			end
+			if CryolysisConfig.StonePosition[6] and CryolysisConfig.StoneLocation[index] == "CryolysisRightSpellButton" then
+				CryolysisRightSpellButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
+				CryolysisRightSpellButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+				ShowUIPanel(CryolysisRightSpellButton);
+				indexScale = indexScale + 36;
+			end
+			if CryolysisConfig.StonePosition[7] and CryolysisConfig.StoneLocation[index] == "CryolysisBuffMenuButton" and BuffMenuCreate[1] then
+				CryolysisBuffMenuButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
+				CryolysisBuffMenuButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+				ShowUIPanel(CryolysisBuffMenuButton);
+				indexScale = indexScale + 36;
+			end
+			if CryolysisConfig.StonePosition[8] and CryolysisConfig.StoneLocation[index] == "CryolysisMountButton" and Mount.Available then
+				CryolysisMountButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
+				CryolysisMountButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+				ShowUIPanel(CryolysisMountButton);
+				indexScale = indexScale + 36;
+			end
+			if CryolysisConfig.StonePosition[9] and CryolysisConfig.StoneLocation[index] == "CryolysisPortalMenuButton" and PortalMenuCreate[1] then
+				CryolysisPortalMenuButton:SetPoint("CENTER", "CryolysisButton", "CENTER", ((40 * NBRScale) * cos(CryolysisConfig.CryolysisAngle-indexScale)), ((40 * NBRScale) * sin(CryolysisConfig.CryolysisAngle-indexScale)));
+				CryolysisPortalMenuButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+				ShowUIPanel(CryolysisPortalMenuButton);
+				indexScale = indexScale + 36;
+			end
 		end
 	end
 end
@@ -3640,36 +3444,9 @@ function Cryolysis_CreateMenu()
 	Cryolysis_UpdateEvocationAttributes()
 	Cryolysis_UpdateRightSpellAttributes()
 	Cryolysis_UpdateBuffButtonAttributes()
+	Cryolysis_UpdatePortalButtonAttributes()
 end
 
--- management of spell button casting
-function Cryolysis_SpellButtonCast(side, click)
-	local spell, type;
-	if side == "Left" then
-		spell = CryolysisConfig.LeftSpell;
-	else
-		spell = CryolysisConfig.RightSpell;
-	end
-	-- assign spell based on settings
-	if spell == 1 then
-		type = 22; -- Ice armor, mage armor
-	elseif spell == 2 then
-		type = 4;  -- Arcane Int, Arcane Brill
-	elseif spell == 3 then
-		type = 13; -- Dampen magic, Amplify magic
-	elseif spell == 4 then
-		type = 23; -- ice barrier, mana shield
-	elseif spell == 5 then
-		type = 15; -- Fire ward, frost ward;
-	elseif spell == 6 then
-		type = 50; -- Detect magic
-	elseif spell == 7 then
-		type = 33; -- Decurse
-	elseif spell == 8 then
-		type = 35; -- Slow fall
-	end
-	Cryolysis_BuffCast(type, click, true);
-end
 -- management of buff menu casting
 function Cryolysis_BuffCast(type, click, nosave)
 	if CryolysisPrivate.Sitting then
