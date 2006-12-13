@@ -287,8 +287,10 @@
 					</OnValueChanged>
 					<OnLeave>
 						GameTooltip:Hide();
-						CryolysisBuffMenu0:ClearAllPoints();
-						CryolysisBuffMenu0:SetPoint("CENTER", xOfs, yOfs);
+						if xOfs == 3000 then
+							CryolysisBuffMenu0:ClearAllPoints();
+							CryolysisBuffMenu0:SetPoint("CENTER", xOfs, yOfs);
+						end
 						Cryolysis_UpdateMenuAnchor();
 					</OnLeave>
 				</Scripts>
@@ -344,8 +346,10 @@
 					</OnValueChanged>
 					<OnLeave>
 						GameTooltip:Hide();
-						CryolysisPortalMenu0:ClearAllPoints();
-						CryolysisPortalMenu0:SetPoint("CENTER", xOfs, yOfs);
+						if xOfs == 3000 then
+							CryolysisPortalMenu0:ClearAllPoints();
+							CryolysisPortalMenu0:SetPoint("CENTER", xOfs, yOfs);
+						end
 						Cryolysis_UpdateMenuAnchor();
 					</OnLeave>
 				</Scripts>
