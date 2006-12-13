@@ -1,73 +1,73 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
-		<Button name="ReorderTemplate" virtual="true">
-			<Size>
-				<AbsDimension x="29" y="29"/>
-			</Size>
-			<Layers>
-				<Layer level="BACKGROUND">
-					<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_QuestionMark"/>
-				</Layer>
-			</Layers>
-			<HighlightTexture file="Interface\Buttons\CheckButtonHilight" alphaMode="ADD"/>
-			<Scripts>
-				<OnClick>
-					Reorder.OnClick(-1)
-				</OnClick>
-			</Scripts>
-		</Button>
-    			<Slider name="SpellButtonSliderTemplate" inherits="OptionsSliderTemplate" minValue="1" maxValue="8" valueStep="1" virtual="true">
-				<Size>
-					<AbsDimension x="120" y="16"/>
-				</Size>
-				<Scripts>
-				<OnEnter>
-						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-						if (this:GetValue() == 1) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.Armor);
-						elseif (this:GetValue() == 2) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.ArcaneInt);
-						elseif (this:GetValue() == 3) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.DampenMagic);
-						elseif (this:GetValue() == 4) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.IceBarrier);
-						elseif (this:GetValue() == 5) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.FireWard);
-						elseif (this:GetValue() == 6) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.DetectMagic);
-						elseif (this:GetValue() == 7) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.RemoveCurse);
-						elseif (this:GetValue() == 8) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.SlowFall);
-						end
-					</OnEnter>
-					<OnValueChanged>
-						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-						if (this:GetValue() == 1) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.Armor);
-						elseif (this:GetValue() == 2) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.ArcaneInt);
-						elseif (this:GetValue() == 3) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.DampenMagic);
-						elseif (this:GetValue() == 4) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.IceBarrier);
-						elseif (this:GetValue() == 5) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.FireWard);
-						elseif (this:GetValue() == 6) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.DetectMagic);
-						elseif (this:GetValue() == 7) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.RemoveCurse);
-						elseif (this:GetValue() == 8) then
-							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.SlowFall);
-						end
-						CryolysisConfig.RightSpell = this:GetValue();
-						SerenityButtonTexture.Stones.Base[4] = 0;
-					</OnValueChanged>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
-				</Scripts>
-			</Slider>
-  
+	<Button name="ReorderTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="29" y="29"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_QuestionMark"/>
+			</Layer>
+		</Layers>
+		<HighlightTexture file="Interface\Buttons\CheckButtonHilight" alphaMode="ADD"/>
+		<Scripts>
+			<OnClick>
+				Reorder.OnClick(-1)
+			</OnClick>
+		</Scripts>
+	</Button>
+    	<Slider name="SpellButtonSliderTemplate" inherits="OptionsSliderTemplate" minValue="1" maxValue="8" valueStep="1" virtual="true">
+		<Size>
+			<AbsDimension x="120" y="16"/>
+		</Size>
+		<Scripts>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				if (this:GetValue() == 1) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.Armor);
+				elseif (this:GetValue() == 2) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.ArcaneInt);
+				elseif (this:GetValue() == 3) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.DampenMagic);
+				elseif (this:GetValue() == 4) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.IceBarrier);
+				elseif (this:GetValue() == 5) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.FireWard);
+				elseif (this:GetValue() == 6) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.DetectMagic);
+				elseif (this:GetValue() == 7) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.RemoveCurse);
+				elseif (this:GetValue() == 8) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.SlowFall);
+				end
+			</OnEnter>
+			<OnValueChanged>
+				GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				if (this:GetValue() == 1) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.Armor);
+				elseif (this:GetValue() == 2) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.ArcaneInt);
+				elseif (this:GetValue() == 3) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.DampenMagic);
+				elseif (this:GetValue() == 4) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.IceBarrier);
+				elseif (this:GetValue() == 5) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.FireWard);
+				elseif (this:GetValue() == 6) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.DetectMagic);
+				elseif (this:GetValue() == 7) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.RemoveCurse);
+				elseif (this:GetValue() == 8) then
+					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.SlowFall);
+				end
+				CryolysisConfig.RightSpell = this:GetValue();
+				SerenityButtonTexture.Stones.Base[4] = 0;
+			</OnValueChanged>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Slider>
+	
 	<Frame name="CryolysisButtonMenu" frameStrata="DIALOG" movable="false" enableMouse="true" parent="CryolysisGeneralFrame">
 		<Size>
 			<AbsDimension x="350" y="452"/>
@@ -130,7 +130,6 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
-
 				<FontString name="CryolysisShowLeftSpell_Option" inherits="GameFontNormalSmall">
 					<Color r="1.0" g="1.0" b="1.0" a="1"/>
 					<Anchors>
@@ -141,7 +140,6 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
-
 				<FontString name="CryolysisShowEvocation_Option" inherits="GameFontNormalSmall">
 					<Color r="1.0" g="1.0" b="1.0" a="1"/>
 					<Anchors>
@@ -152,8 +150,6 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
-
-
 				<FontString name="CryolysisShowRightSpell_Option" inherits="GameFontNormalSmall">
 					<Color r="1.0" g="1.0" b="1.0" a="1"/>
 					<Anchors>
@@ -369,8 +365,6 @@
 					</OnClick>
 				</Scripts>
 			</CheckButton>
-
-
 			<CheckButton name="CryolysisShowLeftSpell_Button" enableMouse="true" inherits="UICheckButtonTemplate" checked="false">
 				<Size>
 					<AbsDimension x="24" y="24"/>
@@ -395,8 +389,6 @@
 					</OnClick>
 				</Scripts>
 			</CheckButton>
-
-
 			<CheckButton name="CryolysisShowEvocation_Button" enableMouse="true" inherits="UICheckButtonTemplate" checked="false">
 				<Size>
 					<AbsDimension x="24" y="24"/>
@@ -421,8 +413,6 @@
 					</OnClick>
 				</Scripts>
 			</CheckButton>
-
-
 			<CheckButton name="CryolysisShowRightSpell_Button" enableMouse="true" inherits="UICheckButtonTemplate" checked="false">
 				<Size>
 					<AbsDimension x="24" y="24"/>
@@ -447,8 +437,6 @@
 					</OnClick>
 				</Scripts>
 			</CheckButton>
-
-
 			<CheckButton name="CryolysisShowBuffMenu_Button" enableMouse="true" inherits="UICheckButtonTemplate" checked="false">
 				<Size>
 					<AbsDimension x="24" y="24"/>
