@@ -3681,8 +3681,9 @@ function Cryolysis_CreateMenu()
 		ShowUIPanel(BuffMenuCreate[i]);
 	end
 	
-	-- Spell attribute updates:
+	-- Spell attribute updates (Eternally777 @ 12:45 GMT 12/13/2006):
 	Cryolysis_UpdateEvocationAttributes()
+	Cryolysis_UpdateRightSpellAttributes()
 end
 
 
