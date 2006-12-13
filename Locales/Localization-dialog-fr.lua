@@ -277,6 +277,7 @@ function Cryolysis_Localization_Dialog_Fr()
 	};
 	
 	CRYOLYSIS_CONFIGURATION = {
+		["Credits"] = "Brought to you by The Cryolysis: Reborn Developement Team",
 		["Menu1"] = "R\195\169glages de l'Inventaire",
 		["Menu2"] = "R\195\169glages des Messages",
 		["Menu3"] = "R\195\169glages des Boutons",

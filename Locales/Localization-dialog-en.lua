@@ -284,6 +284,7 @@ function Cryolysis_Localization_Dialog_En()
 	};
 	
 	CRYOLYSIS_CONFIGURATION = {
+		["Credits"] = "Brought to you by The Cryolysis: Reborn Developement Team",
 		["Menu1"] = "Inventory Settings",
 		["Menu2"] = "Message Settings",
 		["Menu3"] = "Button Settings",
