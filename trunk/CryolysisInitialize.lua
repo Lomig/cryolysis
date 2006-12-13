@@ -133,7 +133,7 @@ function Cryolysis_Initialize()
 		if (CryolysisConfig.ProvisionSort) then CryolysisProvisionSort_Button:SetChecked(1); end
 		if (CryolysisConfig.ProvisionDestroy) then CryolysisProvisionDestroy_Button:SetChecked(1); end
 		if (CryolysisConfig.Restock) then CryolysisRestock_Button:SetChecked(1); end
-        if (CryolysisConfig.RestockConfirm) then CryolysisRestockConfirm_Button:SetChecked(1); end
+		if (CryolysisConfig.RestockConfirm) then CryolysisRestockConfirm_Button:SetChecked(1); end
 
 		CryolysisBag_Slider:SetValue(4 - CryolysisConfig.ProvisionContainer);
 		CryolysisBag_SliderLow:SetText("5");
@@ -242,7 +242,7 @@ function Cryolysis_Initialize()
 		CryolysisManaStoneOrder_SliderLow:SetText("Weakest");
 		CryolysisManaStoneOrder_SliderHigh:SetText("Strongest");
 
-        ----------------------------------------
+		----------------------------------------
 		-- Timer Menu Setup
 		----------------------------------------
 		CryolysisListSpells:ClearAllPoints();
@@ -257,14 +257,14 @@ function Cryolysis_Initialize()
 		end
 
 
-        if (CryolysisConfig.ShowSpellTimers) then CryolysisShowSpellTimers_Button:SetChecked(1); end
+		if (CryolysisConfig.ShowSpellTimers) then CryolysisShowSpellTimers_Button:SetChecked(1); end
 		if (CryolysisConfig.ShowSpellTimerButton) then CryolysisTimerButton_Button:SetChecked(1); end
 		if (CryolysisConfig.SpellTimerPos == -1) then CryolysisSTimer_Button:SetChecked(1); end
 		if (CryolysisConfig.Graphical) then CryolysisGraphicalTimer_Button:SetChecked(1); end
 		if not (CryolysisConfig.Yellow) then CryolysisTimerColor_Button:SetChecked(1); end
 		if (CryolysisConfig.SensListe == -1) then CryolysisTimerDirection_Button:SetChecked(1); end
 
-        ----------------------------------------
+		----------------------------------------
 		-- Graphical Menu Setup
 		----------------------------------------
 --		if (CryolysisConfig.AntiFearAlert) then CryolysisAntiFearAlert_Button:SetChecked(1); end
