@@ -306,8 +306,7 @@ function Cryolysis_Initialize()
 		CryolysisBuffMenuButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
 		CryolysisMountButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
 		CryolysisPortalMenuButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
-
-
+		
 		if CryolysisConfig.NoDragAll then
 			Cryolysis_NoDrag();
 			CryolysisButton:RegisterForDrag("");
@@ -317,15 +316,11 @@ function Cryolysis_Initialize()
 			CryolysisButton:RegisterForDrag("LeftButton");
 			CryolysisSpellTimerButton:RegisterForDrag("LeftButton");
 		end
-
-
-
-
 		-- On v�ifie que les fragments sont dans le sac d�ini par le D�oniste
---		Cryolysis_ProvisionSwitch("CHECK");
-
+		-- Cryolysis_ProvisionSwitch("CHECK");
+		
 		-- Le Shard est-il v�ouill�sur l'interface ?
-
+		
 		-- Les boutons sont-ils v�ouill� sur le Shard ?
 		Cryolysis_ButtonSetup();
 		Cryolysis_LanguageInitialize();
@@ -335,16 +330,16 @@ function Cryolysis_Initialize()
 		end
 		-- Added by Lomig to replace the Toggle function
 		Cryolysis_UpdateMainButtonAttributes();
-
+		
 		-- Added by lomig to manage the open / close menus
-
+		
 		CryolysisBuffMenuButton:SetAttribute("*childraise*", true);
 		CryolysisBuffMenuButton:SetAttribute("*childstate*", "^click");
 		CryolysisBuffMenu0:SetAttribute("statemap-anchor-click", "0-1");
 		CryolysisBuffMenuButton:SetAttribute("anchorchild", CryolysisBuffMenu0);
 		CryolysisBuffMenu0:SetAttribute("headofsx", "0:3000;1:1");
 		CryolysisBuffMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.BuffMenuAnchor);
-
+		
 		CryolysisPortalMenuButton:SetAttribute("*childraise*", true);
 		CryolysisPortalMenuButton:SetAttribute("*childstate*", "^click");
 		CryolysisPortalMenu0:SetAttribute("statemap-anchor-click", "0-1");
