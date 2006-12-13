@@ -236,54 +236,40 @@ CryolysisButtonTexture = {
 	["Skin"] = 0,
 	["Text"] = "",
 	["Circle"] = 0,
-	["Stones"] = {
-		["Base"] = { },
-		["Highlight"] = { },
-		["Text"] = { },
-		["Other"] = { },
-		["Other2"] = { },
-	},
-	["Portalmenu"] = {
-		["Base"] = { },
-		["Highlight"] = { },
-		["Other"] = { },
-		},
-	["Buffmenu"] = {
-		["Base"] = { },
-		["Highlight"] = { },
-		["Other"] = { },
-	},
+	["Stones"] = { ["Base"] = {}, ["Highlight"] = {}, ["Text"] = {}, ["Other"] = {}, ["Other2"] = {} },
+	["Portalmenu"] = { ["Base"] = {}, ["Highlight"] = {}, ["Other"] = {} },
+	["Buffmenu"] = { ["Base"] = {}, ["Highlight"] = {}, ["Other"] = {} }
 };
 CryolysisSpellButtons = {
-	[1] = {
+	{
 		["ID"] = 22;
 		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\FrostArmor-0"
 	},
-	[2] = {
+	{
 		["ID"] = 4;
 		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\ArcaneIntellect-0";
 	},
-	[3] = {
+	{
 		["ID"] = 13;
 		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\DampenMagic-0";
 	},
-	[4] = {
+	{
 		["ID"] = 23;
 		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\IceBarrier-0";
 	},
-	[5] = {
+	{
 		["ID"] = 15;
 		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\FireWard-0";
 	},
-	[6] = {
+	{
 		["ID"] = 26;
 		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\DetectMagic-0"
 	},
-	[7] = {
+	{
 		["ID"] = 33;
 		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\RemoveCurse-0";
 	},
-	[8] = {
+	{
 		["ID"] = 35;
 		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\SlowFall-0";
 	},
@@ -395,12 +381,7 @@ local timerDisplay = "";
 local update = false;
 local frameName;
 local frameItem;
-local Sphere = {
- 	["display"] = "",
-	["color"] = 0,
-	["texture"] = 0,
-	["skin"] = "",
-};
+local Sphere = { ["display"] = "", ["color"] = 0, ["texture"] = 0, ["skin"] = "" }
 local SortActif;
 -- Texture Information for reordering organization
 Cryolysis_ReorderTexture = { };
@@ -2074,9 +2055,9 @@ function Cryolysis_UpdateIcons()
 			CryolysisButtonTexture.Stones.Other2[3] = Manastone.useableStone;
 		end
 	end
+	
 	-- Mount Button
 	-----------------------------------------------
-
 	if Cryolysis_UnitHasBuff("player",Mount.Title) then
 		CryolysisMountButton:LockHighlight();
 	elseif Mount.Available then
@@ -2107,17 +2088,14 @@ function Cryolysis_UpdateIcons()
 		end
 	end
 
-
-
-
 	-- Spell Buttons
 	---------------------------------------------------
 	local spellButton = {"CryolysisLeftSpellButton", nil, "CryolysisRightSpellButton"};
 	local spellNumber = { CryolysisConfig.LeftSpell, nil, CryolysisConfig.RightSpell };
 	local spellEnable, texture;
 	local alternative = false;
-	for button=1, 3, 2 do
-		for spell=1, #(CryolysisSpellButtons), 1 do
+	for button = 1, 3, 2 do
+		for spell = 1, #CryolysisSpellButtons, 1 do
 			if spellNumber[button] == spell then
 				spellEnable = false;
 				alternative = false;
@@ -2145,13 +2123,13 @@ function Cryolysis_UpdateIcons()
 			texture = 3;
 			getglobal(spellButton[button]):Disable();
 		end
-		if CryolysisButtonTexture.Stones.Base[3+button] ~= texture then
+		if CryolysisButtonTexture.Stones.Base[3 + button] ~= texture then
 			if alternative then
 				getglobal(spellButton[button]):SetNormalTexture("Interface\\AddOns\\Cryolysis\\UI\\ManaShield-0"..texture);
 			else
 				getglobal(spellButton[button]):SetNormalTexture(CryolysisSpellButtons[spellNumber[button]].Texture..texture);
 			end
-			CryolysisButtonTexture.Stones.Base[3+button] = texture;
+			CryolysisButtonTexture.Stones.Base[3 + button] = texture;
 		end
 	end
 	if Cryolysis_ReorderTexture[1] == nil then
@@ -2362,7 +2340,7 @@ function Cryolysis_MountCheck(itemName, container, slot)
 				    	Mount.Title = strsub(Mount.Name, strlen(CRYOLYSIS_MOUNT_PREFIX[p])+1);
 					end
 			   	end
-                Cryolysis_Msg("Mount Located: "..Mount.Title,"USER");
+				Cryolysis_Msg("Mount Located: "..Mount.Title,"USER");
 				if icon < 10 then
 			   		Mount.Icon = "0"..icon;
 			   	else
@@ -2374,13 +2352,14 @@ function Cryolysis_MountCheck(itemName, container, slot)
 		end
 	end
 end
+
 function Cryolysis_AQMountCheck(itemName, container, slot)
-	for i=1, #(CRYOLYSIS_AQMOUNT_TABLE), 1 do
+	for i=1, #CRYOLYSIS_AQMOUNT_TABLE, 1 do
 		if itemName == CRYOLYSIS_AQMOUNT_TABLE[i] then
 		   	Mount.Available = true;
 		   	Mount.Name = CRYOLYSIS_AQMOUNT_TABLE[i];
 			Mount.Title = CRYOLYSIS_AQMOUNT_NAME[i+1];
-            Cryolysis_Msg("AQ Mount Located: "..Mount.Title,"USER");
+			Cryolysis_Msg("AQ Mount Located: "..Mount.Title,"USER");
 			Mount.Icon = "A"..i;
 		   	Mount.Location = {container, slot}
 		   	Mount.AQMount = true;
@@ -2389,69 +2368,68 @@ function Cryolysis_AQMountCheck(itemName, container, slot)
 	end
 end
 
-
 function Cryolysis_BagCheck(spell)
 	local spellcheck = { 2, 10, 11, 38, 40, 39, 37, 51, 46, 47, 31, 30, 28, 29, 27, 35 } -- Spells that change inv.  Portals, Conjure, mana gems, etc
 	local check = false;
 	local itemName;
 	--
-	if spell == "Force" then
+	if ( spell == "Force" ) then
 	    check = true;
-	elseif spell == "Update" then
+	elseif ( spell == "Update" ) then
 		CryolysisPrivate.checkInv = true;
-	elseif spell then
- 		for i=1, #(spellcheck), 1 do
-		    if spell == CRYOLYSIS_SPELL_TABLE[spellcheck[i]].Name then
+	elseif ( spell ) then
+ 		for i = 1, #spellcheck, 1 do
+			if ( spell == CRYOLYSIS_SPELL_TABLE[spellcheck[i]].Name ) then
 				Cryolysis_BagCheck("Update");
 				break;
 			end
 		end
-		for i=1, #(CRYOLYSIS_MANASTONE_NAMES), 1 do
-			if spell == CRYOLYSIS_MANASTONE_NAMES[i] then
-    			Cryolysis_BagCheck("Update");
+		for i = 1, #CRYOLYSIS_MANASTONE_NAMES, 1 do
+			if ( spell == CRYOLYSIS_MANASTONE_NAMES[i] ) then
+				Cryolysis_BagCheck("Update");
 				break;
 			end
 		end
 	end
-	if not check and Count.Food > 0 then
-	    Cryolysis_MoneyToggle();
+	if (( not check ) and ( Count.Food > 0 )) then
+		Cryolysis_MoneyToggle();
 		CryolysisTooltip:SetBagItem(FoodLocation[1], FoodLocation[2]);
 		itemName = tostring(CryolysisTooltipTextLeft1:GetText());
-		if itemName ~= FoodName then
+		if ( itemName ~= FoodName ) then
 		    check = true;
 		end
 	end
-	if not check and  Count.Drink > 0 then
-	    Cryolysis_MoneyToggle();
+	if ( not check and  Count.Drink > 0 ) then
+		Cryolysis_MoneyToggle();
 		CryolysisTooltip:SetBagItem(DrinkLocation[1], DrinkLocation[2]);
 		itemName = tostring(CryolysisTooltipTextLeft1:GetText());
-		if itemName ~= DrinkName then
+		if ( itemName ~= DrinkName ) then
 		    check = true;
 		end
 	end
-	if not check and Mount.Available then
-	    Cryolysis_MoneyToggle();
+	if ( not check and Mount.Available ) then
+		Cryolysis_MoneyToggle();
 		CryolysisTooltip:SetBagItem(Mount.Location[1], Mount.Location[2]);
 		itemName = tostring(CryolysisTooltipTextLeft1:GetText());
-		if itemName ~= Mount.Name then
+		if ( itemName ~= Mount.Name ) then
 		    check = true;
 			Mount.Checked = false;
 		end
 	end
- 	if not check and StoneMaxRank[2] ~= 0 then
+ 	if ( not check and StoneMaxRank[2] ~= 0 ) then
  	    for i=1, StoneMaxRank[2], 1 do
- 	    	if Manastone.OnHand[i] then
+ 	    	if ( Manastone.OnHand[i] ) then
 				Cryolysis_MoneyToggle();
 				CryolysisTooltip:SetBagItem(Manastone.Location[i][1], Manastone.Location[i][2]);
 				itemName = tostring(CryolysisTooltipTextLeft1:GetText());
-				if not string.find(itemName, CRYOLYSIS_ITEM.Manastone..CRYOLYSIS_STONE_RANK[i]) then
+				if ( not string.find(itemName, CRYOLYSIS_ITEM.Manastone..CRYOLYSIS_STONE_RANK[i]) ) then
 				    check = true;
 				end
 			end
  	    end
 	end
- 	if check == true then
-		if (CryolysisConfig.ProvisionSort) then
+ 	if ( check == true ) then
+		if ( CryolysisConfig.ProvisionSort ) then
 			Cryolysis_ProvisionSwitch("CHECK");
 		else
 			Cryolysis_BagExplore();
@@ -2483,25 +2461,25 @@ function Cryolysis_BagExplore()
 			local itemName = tostring(CryolysisTooltipTextLeft1:GetText());
 --			local itemSwitch = tostring(CryolysisTooltipTextLeft3:GetText());
 --			local itemSwitch2 = tostring(CryolysisTooltipTextLeft4:GetText());
-			if StoneMaxRank[4] ~= 0 then
-				if (CryolysisConfig.CryolysisLanguage == "zhCN") or (CryolysisConfig.CryolysisLanguage == "zhTW") then
+			if ( StoneMaxRank[4] ~= 0 ) then
+				if ( (CryolysisConfig.CryolysisLanguage == "zhCN") or (CryolysisConfig.CryolysisLanguage == "zhTW") ) then
 					FoodName = strsub(CRYOLYSIS_FOOD_RANK[StoneMaxRank[4]], 2, strlen(CRYOLYSIS_FOOD_RANK[StoneMaxRank[4]]));
-				elseif CryolysisConfig.CryolysisLanguage == "frFR" then
+				elseif ( CryolysisConfig.CryolysisLanguage == "frFR" ) then
 					FoodName = CRYOLYSIS_FOOD_RANK[StoneMaxRank[4]]..CRYOLYSIS_ITEM.Provision;
 				else
 					FoodName = CRYOLYSIS_ITEM.Provision..CRYOLYSIS_FOOD_RANK[StoneMaxRank[4]];
 				end
-				if Count.FoodLastName == "none" then Count.FoodLastName = FoodName; end
+				if ( Count.FoodLastName == "none" ) then Count.FoodLastName = FoodName; end
 			end
-			if StoneMaxRank[3] ~= 0 then
-				if (CryolysisConfig.CryolysisLanguage == "zhCN") or (CryolysisConfig.CryolysisLanguage == "zhTW") then
+			if ( StoneMaxRank[3] ~= 0 ) then
+				if ( (CryolysisConfig.CryolysisLanguage == "zhCN") or (CryolysisConfig.CryolysisLanguage == "zhTW") ) then
 					DrinkName = strsub(CRYOLYSIS_DRINK_RANK[StoneMaxRank[3]], 2, strlen(CRYOLYSIS_DRINK_RANK[StoneMaxRank[3]]));
-				elseif CryolysisConfig.CryolysisLanguage == "frFR" then
+				elseif ( CryolysisConfig.CryolysisLanguage == "frFR" ) then
 					DrinkName = CRYOLYSIS_DRINK_RANK[StoneMaxRank[3]]..CRYOLYSIS_ITEM.Provision;
 				else
 					DrinkName = CRYOLYSIS_ITEM.Provision..CRYOLYSIS_DRINK_RANK[StoneMaxRank[3]];
 				end
-				if Count.DrinkLastName == "none" then Count.DrinkLastName = DrinkName; end
+				if ( Count.DrinkLastName == "none" ) then Count.DrinkLastName = DrinkName; end
 			end
 			-- If the bag is defined for provisions
 			-- skip the value of the table whichr represents that bag slot (not the foodstuff)
@@ -2554,7 +2532,7 @@ function Cryolysis_BagExplore()
 					end
 				end
 				-- Mount
-    			if Mount.Location[1] == container and Mount.Location[2] == slot and itemName ~= Mount.Name then
+				if Mount.Location[1] == container and Mount.Location[2] == slot and itemName ~= Mount.Name then
 					Mount.Available = false;
 				end
 				if CryolysisPrivate.AQ and not Mount.AQChecked and not Mount.AQMount then
