@@ -107,10 +107,10 @@ function CryolysisAfficheTimer(tableau, pointeur)
 					frameItem2:ClearAllPoints();
 				frameItem2:SetPoint(CryolysisConfig.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", CryolysisConfig.SpellTimerPos * 23, yPosition);
 				frameItem2:SetMinMaxValues(tableau.TimeMax[index] - tableau.Time[index], tableau.TimeMax[index]);
-				frameItem2:SetValue(2 * tableau.TimeMax[index] - (tableau.Time[index] + floor(GetTime())));
+				frameItem2:SetValue(2 * tableau.TimeMax[index] - (tableau.Time[index] + math.floor(GetTime())));
 				local r, g;
 				local b = 37/255;
-				local PercentColor = (tableau.TimeMax[index] - floor(GetTime())) / tableau.Time[index]
+				local PercentColor = (tableau.TimeMax[index] - math.floor(GetTime())) / tableau.Time[index]
 				if PercentColor > 0.5 then
 					r = (49/255) + (((1 - PercentColor) * 2) * (1 - (49/255)));
      				g = 207/255;
@@ -127,7 +127,7 @@ function CryolysisAfficheTimer(tableau, pointeur)
 				frameItem5:SetPoint(CryolysisConfig.SpellTimerJust, frameItem2, JustifInverse, CryolysisConfig.SpellTimerPos * 5, 1);
 				frameItem5:SetText(tableau.temps[index]);
 
-				local sparkPosition = 150 - ((floor(GetTime()) - (tableau.TimeMax[index] - tableau.Time[index])) / tableau.Time[index]) * 150;
+				local sparkPosition = 150 - ((math.floor(GetTime()) - (tableau.TimeMax[index] - tableau.Time[index])) / tableau.Time[index]) * 150;
 				if (sparkPosition < 1) then
 					sparkPosition = 1;
 				end
