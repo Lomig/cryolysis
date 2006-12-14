@@ -3021,33 +3021,21 @@ end
 --end
 
 
--- Function by Lomig : Only for now, to respect the file structure. To be changed and rationalized
-function Cryolysis_Trade_Food()
-	Cryolysis_Msg("Debug : Trade Food asked", "USER");
-	if Count.Food > 0 then
+
+function Cryolysis_Trade(type)
+	Cryolysis_Msg("Debug : Trade "..type.." asked", "USER");
+	if Count[type] > 0 then
 		if (UnitExists("target")
 			and UnitIsPlayer("target")
 			and UnitIsFriend("player", "target")
 			and UnitName("target") ~= UnitName("player"))
 		or CryolysisTradeRequest then
-			Cryolysis_TradeExplore(Count.FoodLastName);
+			Cryolysis_TradeExplore(Count[type.."LastName"]);
 		end
 	end
 end
 
--- Function by Lomig : Only for now, to respect the file structure. To be changed and rationalized
-function Cryolysis_Trade_Water()
-	Cryolysis_Msg("Debug : Trade Water asked", "USER");
-	if Count.Drink > 0 then
-		if (UnitExists("target")
-			and UnitIsPlayer("target")
-			and UnitIsFriend("player", "target")
-			and UnitName("target") ~= UnitName("player"))
-		or CryolysisTradeRequest then
-			Cryolysis_TradeExplore(Count.DrinkLastName);
-		end
-	end
-end
+
 
 function Cryolysis_MoneyToggle()
 	for index=1, 10 do
