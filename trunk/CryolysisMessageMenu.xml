@@ -119,62 +119,6 @@
 			</Layer>
 		</Layers>
 		<Frames>
-			<Slider name="CryolysisLanguage_Slider" inherits="OptionsSliderTemplate" minValue="1" maxValue="5" valueStep="1" virtual="true">
-				<Size>
-					<AbsDimension x="150" y="16"/>
-				</Size>
-				<Anchors>
-					<Anchor point="CENTER" relativeTo="CryolysisMessageMenu" relativeFrom="TOP">
-						<Offset>
-							<AbsDimension x="0" y="180"/>
-						</Offset>
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnEnter>
-						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-						if (this:GetValue() == 1) then
-							GameTooltip:SetText("Francais");
-						elseif (this:GetValue() == 2) then
-							GameTooltip:SetText("English");
-						elseif (this:GetValue() == 3) then
-							GameTooltip:SetText("Deutsch");
-						elseif (this:GetValue() == 4) then
-							GameTooltip:SetText("繁體中文(Traditional Chinese)");
-						else
-							GameTooltip:SetText("简体中文(Simplified Chinese)");
-						end
-					</OnEnter>
-					<OnValueChanged>
-						GameTooltip:SetText(this:GetValue());
-						if (this:GetValue() == 1) then
-							GameTooltip:SetText("Francais");
-							CryolysisConfig.CryolysisLanguage = "frFR";
-							Cryolysis_Localization_Dialog_Fr();
-						elseif (this:GetValue() == 2) then
-							GameTooltip:SetText("English");
-							CryolysisConfig.CryolysisLanguage = "enUS";
-							Cryolysis_Localization_Dialog_En();
-						elseif (this:GetValue() == 3) then
-							GameTooltip:SetText("Deutsch");
-							CryolysisConfig.CryolysisLanguage = "deDE";
-							Cryolysis_Localization_Dialog_De();
-						elseif (this:GetValue() == 4) then
-							GameTooltip:SetText("繁體中文(Traditional Chinese)");
-							CryolysisConfig.CryolysisLanguage = "zhTW";
-							Cryolysis_Localization_Dialog_Tw();
-						else
-							GameTooltip:SetText("简体中文(Simplified Chinese)");
-							CryolysisConfig.CryolysisLanguage = "zhCN";
-							Cryolysis_Localization_Dialog_Cn();
-						end
-						Cryolysis_LanguageInitialize();
-					</OnValueChanged>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
-				</Scripts>
-			</Slider>
 			<CheckButton name="CryolysisShowTooltips_Button" enableMouse="true" inherits="UICheckButtonTemplate" checked="false">
 				<Size>
 					<AbsDimension x="24" y="24"/>

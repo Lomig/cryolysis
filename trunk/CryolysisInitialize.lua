@@ -179,21 +179,6 @@ function Cryolysis_Initialize()
 		-- Message Menu Setup
 		----------------------------------------
 
-		if CryolysisConfig.CryolysisLanguage == "frFR" then
-			CryolysisLanguage_Slider:SetValue(1);
-		elseif CryolysisConfig.CryolysisLanguage == "enUS" then
-			CryolysisLanguage_Slider:SetValue(2);
-		elseif CryolysisConfig.CryolysisLanguage == "deDE" then
-			CryolysisLanguage_Slider:SetValue(3);
-		elseif CryolysisConfig.CryolysisLanguage == "zhTW" then
-			CryolysisLanguage_Slider:SetValue(4);
-		else
-			CryolysisLanguage_Slider:SetValue(5);  --"zhCN"
-		end
-		CryolysisLanguage_SliderText:SetText("Langue / Language / Sprache / 語言 / 语言");
-		CryolysisLanguage_SliderLow:SetText("");
-		CryolysisLanguage_SliderHigh:SetText("")
-
 		if (CryolysisConfig.CryolysisToolTip) then CryolysisShowTooltips_Button:SetChecked(1); end
 		if (CryolysisConfig.Sound) then CryolysisSound_Button:SetChecked(1); end
    		if (CryolysisConfig.ChatMsg) then CryolysisShowMessage_Button:SetChecked(1); end
