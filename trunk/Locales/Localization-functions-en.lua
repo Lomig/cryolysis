@@ -205,15 +205,17 @@ CRYOLYSIS_ITEM = {
 	["Drink"] = "Drink",
 	["Food"] = "Food",
 };
+
 CRYOLYSIS_FOOD_RANK = {
-	[1] = " Muffin",
-	[2] = " Bread",
-	[3] = " Rye",
-	[4] = " Pumpernickel",
-	[5] = " Sourdough",
-	[6] = " Sweet Roll", 
-	[7] = " Cinnamon Roll",
+	" Muffin",
+	" Bread",
+	" Rye",
+	" Pumpernickel",
+	" Sourdough",
+	" Sweet Roll", 
+	" Cinnamon Roll",
 };
+
 CRYOLYSIS_DRINK_RANK = {
 	[1] = " Water",
 	[2] = " Fresh Water",
@@ -223,12 +225,14 @@ CRYOLYSIS_DRINK_RANK = {
 	[6] = " Sparkling Water",
 	[7] = " Crystal Water",
 };
+
 CRYOLYSIS_STONE_RANK = {
 	[1] = " Agate",		-- Rank Minor
 	[2] = " Jade",		-- Rank Lesser
 	[3] = " Citrine",	-- Rank Greater
 	[4] = " Ruby"		-- Rank Major
 };
+
 CRYOLYSIS_STONE_RANK2 = {
 	[1] = "Agate",		-- Rank Minor
 	[2] = "Jade",		-- Rank Lesser
@@ -243,7 +247,6 @@ CRYOLYSIS_MANASTONE_NAMES = {
 	[4] = "Conjure Mana Ruby"
 };
 	
-
 CRYOLYSIS_CREATE = {
 	[1] = "Evocation",
 	[2] = "Conjure Mana",

@@ -444,14 +444,6 @@ function Cryolysis_SlashHandler(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, 
 			CRYOLYSIS_INVOCATION_MESSAGES = CRYOLYSIS_SHORT_MESSAGES[2];
 			Cryolysis_Msg("Short Messages : <brightGreen>On", "USER");
 		end
-	elseif string.find(string.lower(arg1), "cast") then
-		CryolysisSpellCast(string.lower(arg1));
-	elseif string.find(string.lower(arg1), "decurse") then
-		Cryolysis_Decursive();
-	elseif string.find(string.lower(arg1), "coldblock") then
-		Cryolysis_ColdBlock();
-	elseif string.find(string.lower(arg1), "morph") or string.find(string.lower(arg1), "poly") then
-		Cryolysis_Metamorph();
 	elseif string.find(string.lower(arg1), "reset") then
 		CryolysisConfig.Version = "reboot";
 		Cryolysis_Loaded = false;

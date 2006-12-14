@@ -45,7 +45,7 @@ function Cryolysis_InsertTimerParTable(IndexTable, Target, LevelTarget, SpellGro
 		{
 			Name = CRYOLYSIS_SPELL_TABLE[IndexTable].Name,
 			Time = CRYOLYSIS_SPELL_TABLE[IndexTable].Length,
-			TimeMax = floor(GetTime() + CRYOLYSIS_SPELL_TABLE[IndexTable].Length),
+			TimeMax = math.floor(GetTime() + CRYOLYSIS_SPELL_TABLE[IndexTable].Length),
 			Type = CRYOLYSIS_SPELL_TABLE[IndexTable].Type,
 			Target = Target,
 			TargetLevel = LevelTarget,
@@ -74,7 +74,7 @@ function Cryolysis_InsertTimerStone(Stone, start, duration, SpellGroup, SpellTim
 			{
 				Name = CRYOLYSIS_COOLDOWN.Manastone,
 				Time = 180,
-				TimeMax = floor(GetTime() + 180),
+				TimeMax = math.floor(GetTime() + 180),
 				Type = 2,
 				Target = "",
 				TargetLevel = "",
@@ -90,7 +90,7 @@ function Cryolysis_InsertTimerStone(Stone, start, duration, SpellGroup, SpellTim
 			{
 				Name = CRYOLYSIS_COOLDOWN.Spellstone,
 				Time = 30,
-				TimeMax = floor(GetTime() + 30),
+				TimeMax = math.floor(GetTime() + 30),
 				Type = 2,
 				Target = "",
 				TargetLevel = "",
@@ -105,8 +105,8 @@ function Cryolysis_InsertTimerStone(Stone, start, duration, SpellGroup, SpellTim
 		table.insert(SpellTimer,
 			{
 				Name = CRYOLYSIS_SPELL_TABLE[11].Name,
-				Time = floor(duration - GetTime() + start),
-				TimeMax = floor(start + duration),
+				Time = math.floor(duration - GetTime() + start),
+				TimeMax = math.floor(start + duration),
 				Type = CRYOLYSIS_SPELL_TABLE[11].Type,
 				Target = "???",
 				TargetLevel = "",
@@ -134,7 +134,7 @@ function CryolysisTimerX(nom, duree, truc, Target, LevelTarget, SpellGroup, Spel
 			{
 				Name = nom,
 				Time = duree,
-				TimeMax = floor(GetTime() + duree),
+				TimeMax = math.floor(GetTime() + duree),
 				Type = truc,
 				Target = Target,
 				TargetLevel = LevelTarget,
@@ -278,7 +278,7 @@ function Cryolysis_DisplayTimer(display, index, SpellGroup, SpellTimer, Graphica
 	local affichage;
 	
 	-- Changement de la couleur suivant le temps restant	
-	local percent = (floor(SpellTimer[index].TimeMax - floor(GetTime())) / SpellTimer[index].Time)*100;
+	local percent = (math.floor(SpellTimer[index].TimeMax - math.floor(GetTime())) / SpellTimer[index].Time)*100;
 	local color = CryolysisTimerColor(percent);
 	
 	if not SpellGroup.Visible[SpellTimer[index].Group]
@@ -297,11 +297,11 @@ function Cryolysis_DisplayTimer(display, index, SpellGroup, SpellTimer, Graphica
 
 	-- Mise en place d'un Chrono plutôt qu'un Compte à Rebours pour l'asservissement
 	if SpellTimer[index].Name == CRYOLYSIS_SPELL_TABLE[10].Name then
-		seconds = floor(GetTime()) - (SpellTimer[index].TimeMax - SpellTimer[index].Time);
+		seconds = math.floor(GetTime()) - (SpellTimer[index].TimeMax - SpellTimer[index].Time);
 	else
-		seconds = SpellTimer[index].TimeMax - floor(GetTime());
+		seconds = SpellTimer[index].TimeMax - math.floor(GetTime());
 	end
-	minutes = floor(seconds/60);
+	minutes = math.floor(seconds/60);
 	if (minutes > 0) then
 		if (minutes > 9) then
 			affichage = tostring(minutes)..":";
