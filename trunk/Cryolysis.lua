@@ -246,40 +246,15 @@ CryolysisButtonTexture = {
 	["Buffmenu"] = { ["Base"] = {}, ["Highlight"] = {}, ["Other"] = {} }
 };
 CryolysisSpellButtons = {
-	{
-		["ID"] = 22;
-		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\FrostArmor-0"
-	},
-	{
-		["ID"] = 4;
-		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\ArcaneIntellect-0";
-	},
-	{
-		["ID"] = 13;
-		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\DampenMagic-0";
-	},
-	{
-		["ID"] = 23;
-		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\IceBarrier-0";
-	},
-	{
-		["ID"] = 15;
-		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\FireWard-0";
-	},
-	{
-		["ID"] = 26;
-		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\DetectMagic-0"
-	},
-	{
-		["ID"] = 33;
-		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\RemoveCurse-0";
-	},
-	{
-		["ID"] = 35;
-		["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\SlowFall-0";
-	},
+	{ ["ID"] = 22, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\FrostArmor-0" 	},
+	{ ["ID"] = 04, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\ArcaneIntellect-0" 	},
+	{ ["ID"] = 13, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\DampenMagic-0" 	},
+	{ ["ID"] = 23, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\IceBarrier-0" 	},
+	{ ["ID"] = 15, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\FireWard-0" 		},
+	{ ["ID"] = 26, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\DetectMagic-0" 	},
+	{ ["ID"] = 33, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\RemoveCurse-0" 	},
+	{ ["ID"] = 35, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\SlowFall-0" 		}
 };
-
 
 for i=1, 10, 1 do
 	CryolysisButtonTexture.Stones.Base[i] = 0
@@ -298,10 +273,10 @@ for i=1, 13, 1 do
 	CryolysisButtonTexture.Buffmenu.Other[i] = 0
 end
 local Skin = {
-	[1] = "Bleu";
-	[2] = "Orange";
-	[3] = "Turquoise";
-	[4] = "Violet";
+	"Bleu",
+	"Orange",
+	"Turquoise",
+	"Violet"
 }
 
 -- Variable uses to manage mounting
@@ -317,7 +292,6 @@ local Mount = {
 local CryolysisMounted = false;
 local CryolysisTellMounted = true;
 local PlayerCombat = false;
-
 
 -- Variables used for arcane concentration
 local Concentration = false;
@@ -1162,7 +1136,7 @@ function Cryolysis_ChatMessage(spell, creatureName)
 							CryolysisPrivate.PolyMess = tempnum;
 							Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_POLY_MESSAGE.Sheep[tempnum], creatureName), "GROUP");
 						-- Pig
-			 		    elseif spell == CRYOLYSIS_SPELL_TABLE[48].Name then
+						elseif spell == CRYOLYSIS_SPELL_TABLE[48].Name then
 							local tempnum = random(1, #(CRYOLYSIS_POLY_MESSAGE.Pig));
 							while tempnum == CryolysisPrivate.PolyMess and #(CRYOLYSIS_POLY_MESSAGE.Pig) >= 2 do
 								tempnum = random(1, #(CRYOLYSIS_POLY_MESSAGE.Pig));
@@ -1196,34 +1170,36 @@ function Cryolysis_ChatMessage(spell, creatureName)
 			Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_FREEZE_MESSAGE[tempnum], creatureName), "SAY");
 		-- Portals
 		else
-		    local port;
-		    for i=1, 12, 1 do
-		        if spell == CRYOLYSIS_SPELL_TABLE[PortalTempID[i]].Name then
-		            port = i;
-		            break;
+			local port;
+			for i=1, 12, 1 do
+				if spell == CRYOLYSIS_SPELL_TABLE[PortalTempID[i]].Name then
+					port = i;
+					break;
 				end
 			end
-			if port == nil then return; end
-            if CryolysisConfig.PortalMessage then
+			if port == nil then
+				return
+			end
+			if CryolysisConfig.PortalMessage then
 				if not CryolysisConfig.SM then
-        			if port <= 6 then
-   						local tempnum = random(1, #(CRYOLYSIS_TELEPORT_MESSAGE));
+					if port <= 6 then
+						local tempnum = random(1, #CRYOLYSIS_TELEPORT_MESSAGE);
 						while tempnum == CryolysisPrivate.PortalMess and #(CRYOLYSIS_TELEPORT_MESSAGE) >= 2 do
-							tempnum = random(1, #(CRYOLYSIS_TELEPORT_MESSAGE));
+							tempnum = random(1, #CRYOLYSIS_TELEPORT_MESSAGE);
 						end
 						CryolysisPrivate.PortalMess = tempnum;
 						Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_TELEPORT_MESSAGE[tempnum], nil, PortalName[port]), "GROUP");
 					else
-				    	local tempnum = random(1, #(CRYOLYSIS_PORTAL_MESSAGE));
-						while tempnum == CryolysisPrivate.PortalMess and #(CRYOLYSIS_PORTAL_MESSAGE) >= 2 do
-							tempnum = random(1, #(CRYOLYSIS_PORTAL_MESSAGE));
+						local tempnum = random(1, #CRYOLYSIS_PORTAL_MESSAGE);
+						while tempnum == CryolysisPrivate.PortalMess and #CRYOLYSIS_PORTAL_MESSAGE >= 2 do
+							tempnum = random(1, #CRYOLYSIS_PORTAL_MESSAGE);
 						end
 						CryolysisPrivate.PortalMess = tempnum;
 						Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_PORTAL_MESSAGE[tempnum], nil, PortalName[port]), "GROUP");
 					end
 				elseif CryolysisConfig.SM then
 					if port > 6 then
-	    				Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_SHORT_MESSAGES[1], nil, PortalName[port]), "WORLD");
+						Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_SHORT_MESSAGES[1], nil, PortalName[port]), "WORLD");
 					end
 				end
 			end
@@ -3157,41 +3133,23 @@ end
 
 -- Function (XML) to restore the buttons around the sphere
 function Cryolysis_ClearAllPoints()
-	CryolysisFoodButton:ClearAllPoints();
-	CryolysisDrinkButton:ClearAllPoints();
-	CryolysisManastoneButton:ClearAllPoints();
-	CryolysisLeftSpellButton:ClearAllPoints();
-	CryolysisEvocationButton:ClearAllPoints();
-	CryolysisRightSpellButton:ClearAllPoints();
-	CryolysisMountButton:ClearAllPoints();
-	CryolysisPortalMenuButton:ClearAllPoints();
-	CryolysisBuffMenuButton:ClearAllPoints();
+	for i, v in ipairs(CryolysisConfig.StoneLocation) do
+		_G[v]:ClearAllPoints()
+	end
 end
 
 -- Function (XML) to extend the NoDrag property () principal button of Cryolysis on all its buttons
 function Cryolysis_NoDrag()
-	CryolysisFoodButton:RegisterForDrag("");
-	CryolysisDrinkButton:RegisterForDrag("");
-	CryolysisManastoneButton:RegisterForDrag("");
-	CryolysisLeftSpellButton:RegisterForDrag("");
-	CryolysisEvocationButton:RegisterForDrag("");
-	CryolysisRightSpellButton:RegisterForDrag("");
-	CryolysisMountButton:RegisterForDrag("");
-	CryolysisPortalMenuButton:RegisterForDrag("");
-	CryolysisBuffMenuButton:RegisterForDrag("");
+	for i, v in ipairs(CryolysisConfig.StoneLocation) do
+		_G[v]:RegisterForDrag("")
+	end
 end
 
 -- Function (XML) opposite of above
 function Cryolysis_Drag()
-	CryolysisFoodButton:RegisterForDrag("LeftButton");
-	CryolysisDrinkButton:RegisterForDrag("LeftButton");
-	CryolysisManastoneButton:RegisterForDrag("LeftButton");
-	CryolysisLeftSpellButton:RegisterForDrag("LeftButton");
-	CryolysisEvocationButton:RegisterForDrag("LeftButton");
-	CryolysisRightSpellButton:RegisterForDrag("LeftButton");
-	CryolysisMountButton:RegisterForDrag("LeftButton");
-	CryolysisPortalMenuButton:RegisterForDrag("LeftButton");
-	CryolysisBuffMenuButton:RegisterForDrag("LeftButton");
+	for i, v in ipairs(CryolysisConfig.StoneLocation) do
+		_G[v]:RegisterForDrag("LeftButton")
+	end
 end
 
 -- Whenever the spell book changes, when the mod loads, and when the menu is rotated eith the spell menus
@@ -3401,81 +3359,6 @@ function Cryolysis_CreateMenu()
 	Cryolysis_UpdateManaStoneButtonAttributes(Manastone, CryolysisPrivate.manaStones)
 end
 
--- management of buff menu casting
-function Cryolysis_BuffCast(type, click, nosave)
-	if CryolysisPrivate.Sitting then
-		DoEmote("stand");
-	end
-	local TargetEnemy = false;
-	if (( not UnitIsFriend("player", "target") ) or ( not UnitExists("target") ) or ( IsAltKeyDown() ) or ( Ctrl )) then
-		if type ~= 50 and type ~= 10 and type ~= 11 and type ~= 49 and type ~= 23 and type ~= 25 then
-			TargetUnit("player");
-			TargetEnemy = true;
-		end
-	end
-	-- If the mage has frost armor but not ice armor
-	if not CRYOLYSIS_SPELL_TABLE[type].ID and type ~= 23 then
-		CastSpell(CRYOLYSIS_SPELL_TABLE[18].ID, "spell");
-	elseif click == "RightButton" then
-		-- Ice armor or Mage armor
-		if type == 22 and CRYOLYSIS_SPELL_TABLE[24].ID ~= nil then
-			CastSpell(CRYOLYSIS_SPELL_TABLE[24].ID, "spell");
-			if not nosave then CryolysisPrivate.LastBuff = 24; end
-		-- Arcane Intellect or Arcane Brilliance
-		elseif type == 4 and CRYOLYSIS_SPELL_TABLE[2].ID ~= nil then
-			CastSpell(CRYOLYSIS_SPELL_TABLE[2].ID, "spell");
-			if not nosave then CryolysisPrivate.LastBuff = 2; end
-		-- Dampen or Amplify Magic
-		elseif type == 13 and CRYOLYSIS_SPELL_TABLE[1].ID ~= nil then
-			CastSpell(CRYOLYSIS_SPELL_TABLE[1].ID, "spell");
-			if not nosave then CryolysisPrivate.LastBuff = 1; end
-		-- Ice barrier or mana shield
-		elseif type == 23 and CRYOLYSIS_SPELL_TABLE[25].ID ~= nil then
-			CastSpell(CRYOLYSIS_SPELL_TABLE[25].ID, "spell");
-			if not nosave then CryolysisPrivate.LastBuff = 25; end
-		-- Fire Ward or Frost Ward
-		elseif type == 15 and CRYOLYSIS_SPELL_TABLE[20].ID ~= nil then
-			CastSpell(CRYOLYSIS_SPELL_TABLE[20].ID, "spell");
-			if not nosave then CryolysisPrivate.LastBuff = 20; end
-		elseif type == 33 then
-			Cryolysis_Decursive();
-			if not nosave then CryolysisPrivate.Lastbuff = 33; end
-		else
-			CastSpell(CRYOLYSIS_SPELL_TABLE[type].ID, "spell");
-			if not nosave then CryolysisPrivate.LastBuff = type; end
-		end
-	else
-		if type == 4  then
-			for i=CRYOLYSIS_SPELL_TABLE[4].Rank, 1, -1 do
-				local MinLev = (i * 14) - 24
-				if UnitLevel("target") >= MinLev then
-					CastSpellByName(CRYOLYSIS_SPELL_TABLE[4].Name.."("..CRYOLYSIS_TRANSLATION.Rank.." "..i..")");
-					break;
-				end
-			end
-		elseif type == 33 then
-			Cryolysis_Decursive();
-		elseif type == 23 then
-			if CRYOLYSIS_SPELL_TABLE[23].ID then
-				CastSpell(CRYOLYSIS_SPELL_TABLE[23].ID, "spell");
-			elseif CRYOLYSIS_SPELL_TABLE[25].ID then
-				CastSpell(CRYOLYSIS_SPELL_TABLE[25].ID, "spell");
-			else
-			    CastSpell(CRYOLYSIS_SPELL_TABLE[18].ID, "spell");
-			end
-		else
-			CastSpell(CRYOLYSIS_SPELL_TABLE[type].ID, "spell");
-		end
-		if type ~= 10 and type ~= 11 and type ~= 49 then
-			if not nosave then CryolysisPrivate.LastBuff = type; end
-		end
-	end
-	if TargetEnemy then TargetLastTarget(); end
-	CryolysisPrivate.AlphaBuffMenu = 1;
-	CryolysisPrivate.AlphaBuffVar = GetTime() + 3;
-end
-
-
 -- Function allowing the display of the various pages of the config menu
 function CryolysisGeneralTab_OnClick(id)
 	local TabName;
@@ -3547,7 +3430,6 @@ function Cryolysis_UseAction(id, number, onSelf)
 		end
 	end
 end
-
 
 function CryolysisTimer(nom, duree)
 	local Cible = UnitName("target");
