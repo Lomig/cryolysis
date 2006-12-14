@@ -225,14 +225,14 @@ local PortalName = {
 };
 if CryolysisConfig.CryolysisLanguage == "zhTW" then
 	PortalName = {
-	"奧格瑪", "幽暗城", "雷霆崖", "鐵爐堡", "暴風城", "達納蘇斯",  -- 1-6, Teleports
-	"奧格瑪", "幽暗城", "雷霆崖", "鐵爐堡", "暴風城", "達納蘇斯"   -- 7-12, Portals
+	"奧格瑪", "幽暗城", "雷霆崖", "�?��?堡", "暴風城", "�?��?蘇斯",  -- 1-6, Teleports
+	"奧格瑪", "幽暗城", "雷霆崖", "�?��?堡", "暴風城", "�?��?蘇斯"   -- 7-12, Portals
 }
 end
 if CryolysisConfig.CryolysisLanguage == "zhCN" then
 	PortalName = {
-	"奥格瑞玛", "幽暗城", "雷霆崖", "铁炉堡", "暴风城", "达纳苏斯",  -- 1-6, Teleports
-	"奥格瑞玛", "幽暗城", "雷霆崖", "铁炉堡", "暴风城", "达纳苏斯"   -- 7-12, Portals
+	"奥格瑞玛", "幽暗城", "雷霆崖", "�?炉堡", "暴风城", "达纳�?斯",  -- 1-6, Teleports
+	"奥格瑞玛", "幽暗城", "雷霆崖", "�?炉堡", "暴风城", "达纳�?斯"   -- 7-12, Portals
 	}
 end
 -- List Buttons available for the mage in each menu
@@ -1325,9 +1325,9 @@ function Cryolysis_Restock()
 end
 if CryolysisConfig.CryolysisLanguage == "zhTW" then
 	StaticPopupDialogs["RESTOCK_CONFIRMATION"] = {
-	    text = "購買施法材料？",
+	    text = "購買施法�??料？",
 	    button1 = "確定",
-	    button2 = "取消",
+	    button2 = "�?�消",
 	    OnAccept = function()
 		Cryolysis_Restock();
 	    end,
@@ -1337,9 +1337,9 @@ if CryolysisConfig.CryolysisLanguage == "zhTW" then
 	};
 elseif CryolysisConfig.CryolysisLanguage == "zhCN" then
 	StaticPopupDialogs["RESTOCK_CONFIRMATION"] = {
-	    text = "购买施法材料?",
+	    text = "购买施法�??料?",
 	    button1 = "是",
-	    button2 = "否",
+	    button2 = "�?�",
 	    OnAccept = function()
 		Cryolysis_Restock();
 	    end,
@@ -3052,7 +3052,7 @@ function Cryolysis_CreateMenu()
 	end
 
 	-- Menu des manastones
-	if Manastone.RankID[1] > 0 then
+	if Manastone.RankID[1] then
 		menuVariable = getglobal("CryolysisManaStoneMenu1");
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
@@ -3060,7 +3060,7 @@ function Cryolysis_CreateMenu()
 		ManaStoneButtonPosition = 1;
 		table.insert(PortalMenuCreate, menuVariable);
 	end
-	if Manastone.RankID[2] > 0 then
+	if Manastone.RankID[2] then
 		menuVariable = getglobal("CryolysisManaStoneMenu2");
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
@@ -3068,7 +3068,7 @@ function Cryolysis_CreateMenu()
 		ManaStoneButtonPosition = 2;
 		table.insert(PortalMenuCreate, menuVariable);
 	end
-	if Manastone.RankID[3] > 0 then
+	if Manastone.RankID[3] then
 		menuVariable = getglobal("CryolysisManaStoneMenu3");
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
@@ -3076,7 +3076,7 @@ function Cryolysis_CreateMenu()
 		ManaStoneButtonPosition = 3;
 		table.insert(PortalMenuCreate, menuVariable);
 	end
-	if Manastone.RankID[4] > 0 then
+	if Manastone.RankID[4] then
 		menuVariable = getglobal("CryolysisManaStoneMenu4");
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
