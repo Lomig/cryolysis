@@ -1,9 +1,19 @@
 ## Interface: 20000
-## Title: Cryolysis
+
+## Title: Cryolysis: Reborn
+## Version: 2.0
+## Author: The Cryolysis: Reborn Developement Team
+## X-Credits: 
+## X-eMail: 
+## X-Category: Mage
 ## Notes: Management of Mage spells, abilities, and reagents
+
 ## OptionalDeps:
-## Dependencies:
-## DefaultState:
+## X-Embeds:
+
+## X-RelSite-Curse:
+## X-RelSite-WoWI:
+
 ## SavedVariables:
 ## SavedVariablesPerCharacter: CryolysisConfig
 
