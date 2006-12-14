@@ -489,8 +489,9 @@
 
 		</Frames>
      		<Scripts>
-        		<OnLoad>
+			<OnLoad>
 				HideUIPanel(CryolysisProvisionMenu);
+				Cryolysis_UpdateRevisions("CryolysisProvisionsMenu.xml", "$Rev$")
 			</OnLoad>
 		</Scripts>
 	</Frame>

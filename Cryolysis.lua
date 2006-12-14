@@ -33,6 +33,7 @@
 ------------------------------------------------------------------------------------------------------
 local _G = getfenv(0)
 
+
 -- Default Configuations
 -- In case configuations are lost or version is changed
 Default_CryolysisConfig = {
@@ -549,7 +550,7 @@ function Cryolysis_OnUpdate()
 			else
 				for i = 1, 10, 1 do
 					if _G["CryolysisTarget"..i.."Text"]:IsShown() then
-						_G["CryolysisTarget"..i.."Text":Hide();
+						_G["CryolysisTarget"..i.."Text"]:Hide();
 					end
 				end
 			end
@@ -3316,3 +3317,34 @@ function CryolysisTimer(nom, duree)
 
 	SpellGroup, SpellTimer, TimerTable = CryolysisTimerX(nom, duree, truc, Cible, Niveau, SpellGroup, SpellTimer, TimerTable);
 end
+
+-- This function is to automate our version numbers a little bit.  When using
+-- an SVN server, you can set a property on any file so that when you upload a
+-- new version, the SVN parses the file and replaces every instance of the string
+-- "dollar-sign Rev dollar-sign" with that files revision.  This function will
+-- automatically append the highest revision # it finds to the end of
+-- CryolysisData.Version.
+function Cryolysis_UpdateRevisions(fileName, svnRev)
+	local _, _, rev = string.find(svnRev, "(%d+)")
+	rev = tonumber(rev) or 0
+	if ( not CryolysisRevisions ) then
+		CryolysisRevisions = { [fileName] = rev }
+	else
+		CryolysisRevisions[fileName] = rev
+	end
+	local Max = 0
+	for k, v in next, CryolysisRevisions do
+		if (( Max ) and ( v > Max ) or ( not Max )) then
+			Max = v
+		end
+	end
+	if ( string.len(Max) > 3 ) then
+		Max = string.sub(Max, 1, 1).."."..string.sub(Max, 2)
+	else
+		Max = "0."..Max
+	end
+	CryolysisData.Version = "2."..Max
+	CryolysisData.Label = CryolysisData.AppName.." "..CryolysisData.Version
+end
+
+Cryolysis_UpdateRevisions("Cryolysis.lua", "$Rev$")

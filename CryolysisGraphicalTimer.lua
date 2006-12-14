@@ -181,3 +181,4 @@ function Cryolysis_RemoveFrame(Gtime, TimerTable)
 	
 	return TimerTable;
 end
+Cryolysis_UpdateRevisions("CryolysisGraphicalTimer.lua", "$Rev$")

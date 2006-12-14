@@ -180,3 +180,4 @@ function Cryolysis_MsgReplace(msg, target, portal, mount)
 	end
 	return msg;
 end
+Cryolysis_UpdateRevisions("CryolysisMessage.lua", "$Rev$")

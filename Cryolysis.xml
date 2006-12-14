@@ -27,6 +27,7 @@
 		</Layers>
 		<Scripts>
 			<OnLoad>
+				Cryolysis_UpdateRevisions("Cryolysis.xml", "$Rev$")
 				this:RegisterForDrag("LeftButton");
 				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
 				this:Hide();

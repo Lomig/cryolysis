@@ -33,8 +33,6 @@
 -- Version 12.12.2006
 ------------------------------------------------------------------------------------------------------
 
-
-
 ------------------------------------------------------------------------------------------------------
 -- FONCTION D'INITIALISATION
 ------------------------------------------------------------------------------------------------------
@@ -487,3 +485,4 @@ function Cryolysis_UpdateMenuAnchor()
 	CryolysisPortalMenu0:SetAttribute("headofsx", "0:3000;1:1");
 	CryolysisPortalMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.PortalMenuAnchor);
 end
+Cryolysis_UpdateRevisions("CryolysisInitialize.lua", "$Rev$")

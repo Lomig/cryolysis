@@ -33,7 +33,7 @@
 ------------------------------------------------------------------------------------------------------
 
 CryolysisData = {
-	["Version"] = "2.0.1",
+	["Version"] = "2.0",
 	["Author"] = "The Cryolysis: Reborn Team",
 	["AppName"] = "Cryolysis: Reborn"
 }

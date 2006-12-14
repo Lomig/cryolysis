@@ -342,7 +342,8 @@
 			</CheckButton>
 		</Frames>
      		<Scripts>
-        		<OnLoad>
+			<OnLoad>
+				Cryolysis_UpdateRevisions("CryolysisMessageMenu.xml", "$Rev$")
 				HideUIPanel(CryolysisMessageMenu);
 			</OnLoad>
 		</Scripts>

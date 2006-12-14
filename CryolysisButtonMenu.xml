@@ -864,6 +864,7 @@
 			<OnLoad>
 				Reorder.OnLoad();
 				HideUIPanel(CryolysisButtonMenu);
+				Cryolysis_UpdateRevisions("CryolysisButtonMenu.xml", "$Rev$")
 			</OnLoad>
 		</Scripts>
 	</Frame>
