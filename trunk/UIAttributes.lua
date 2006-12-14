@@ -127,6 +127,7 @@ function Cryolysis_UpdateManaStoneButtonAttributes(Manastone, item)
 		if Manastone.RankID[i] > 0 then
 			local spellName = GetSpellName(Manastone.RankID[i], "spell");
 			local itemName = GetItemInfo(item[i]);
+			Cryolysis_Msg("Debug : Stone = "..itemName, "USER");
 			f:SetAttribute("item1", itemName);
 			f:SetAttribute("spell2", spellName);
 		end
