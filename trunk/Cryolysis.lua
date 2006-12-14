@@ -3256,7 +3256,7 @@ function Cryolysis_CreateMenu()
 
 	-- Now that all the buttons are placed the ones beside the others (out of the screen), the available ones are displayed
 	CryolysisManaStoneMenu0:ClearAllPoints();
-	CryolysisManaStoneMenu0:SetPoint("CENTER", "CryolysisManaStoneButton", "CENTER", 3000, 3000);
+	CryolysisManaStoneMenu0:SetPoint("CENTER", "CryolysisManastoneButton", "CENTER", 3000, 3000);
 	for i = 1, #PortalMenuCreate, 1 do
 		ShowUIPanel(PortalMenuCreate[i]);
 	end
@@ -3397,7 +3397,7 @@ function Cryolysis_CreateMenu()
 	Cryolysis_UpdateRightSpellAttributes()
 	Cryolysis_UpdateBuffButtonAttributes()
 	Cryolysis_UpdatePortalButtonAttributes(PortalTempID)
-	Cryolysis_UpdateManaStoneButtonAttributes(Manastone)
+	Cryolysis_UpdateManaStoneButtonAttributes(Manastone, CryolysisPrivate.manaStones)
 end
 
 -- management of buff menu casting
