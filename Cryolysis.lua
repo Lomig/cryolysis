@@ -1462,7 +1462,8 @@ function Cryolysis_UpdateMainButtonAttributes()
 		CryolysisButton:SetAttribute("ctrl-type1", "spell");
 		for i = StoneMaxRank[2], 1, -1 do
 			if Manastone.Mode[i] == 1 then
-				CryolysisButton:SetAttribute("ctrl-spell1", CRYOLYSIS_SPELL_TABLE[Manastone.RankID[i]].Name);
+				local spellName = GetSpellName(Manastone.RankID[i], "spell");
+				CryolysisButton:SetAttribute("ctrl-spell1", spellName);
 				break;
 			end
 		end

@@ -116,7 +116,7 @@ function Cryolysis_UpdateMountButton(MountName, MountType)
 	end
 end
 
-function Cryolysis_UpdateManaStoneButtonAttributes(Manastone, manaStones)
+function Cryolysis_UpdateManaStoneButtonAttributes(Manastone, item)
 	if ( InCombatLockdown() ) then
 		return
 	end
@@ -125,8 +125,10 @@ function Cryolysis_UpdateManaStoneButtonAttributes(Manastone, manaStones)
 		f:SetAttribute("type1", "item");
 		f:SetAttribute("type2", "spell");
 		if Manastone.RankID[i] > 0 then
-			f:SetAttribute("item1", manaStones[i]);
-			f:SetAttribute("spell2", CRYOLYSIS_SPELL_TABLE[ Manastone.RankID[i] ].Name);
+			local spellName = GetSpellName(Manastone.RankID[i], "spell");
+			local itemName = GetItemInfo(item[i]);
+			f:SetAttribute("item1", itemName);
+			f:SetAttribute("spell2", spellName);
 		end
 	end
 end
