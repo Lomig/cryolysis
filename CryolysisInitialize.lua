@@ -258,9 +258,7 @@ function Cryolysis_Initialize()
 		if (CryolysisConfig.BuffMenuPos == -34) then CryolysisBuffMenu_Button:SetChecked(1); end
 		if (CryolysisConfig.PortalMenuPos == -34) then CryolysisPortalMenu_Button:SetChecked(1); end
 		if (CryolysisConfig.NoDragAll) then CryolysisLock_Button:SetChecked(1); end
-
-
-
+		
 		CryolysisBuffMenuAnchor_Slider:SetValue(CryolysisConfig.BuffMenuAnchor);
 		CryolysisBuffMenuAnchor_SliderLow:SetText("");
 		CryolysisBuffMenuAnchor_SliderHigh:SetText("")
