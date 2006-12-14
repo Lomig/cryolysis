@@ -3748,5 +3748,10 @@
 				<BarColor r="1.0" g="1.0" b="0.0"/>
 			</StatusBar>
 		</Frames>
+		<Scripts>
+			<OnLoad>
+				Cryolysis_UpdateRevisions("CryolysisTimer.xml", "$Rev$")
+			</OnLoad>
+		</Scripts>
 	</Frame>
 </Ui>

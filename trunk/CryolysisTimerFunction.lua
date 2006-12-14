@@ -350,3 +350,4 @@ function Cryolysis_DisplayTimer(display, index, SpellGroup, SpellTimer, Graphica
 
 	return display, SpellGroup, GraphicalTimer, TimerTable;
 end
+Cryolysis_UpdateRevisions("CryolysisTimerFunction.lua", "$Rev$")

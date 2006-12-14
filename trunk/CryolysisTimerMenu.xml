@@ -213,8 +213,9 @@
 			</CheckButton>
 		</Frames>
      		<Scripts>
-        		<OnLoad>
+			<OnLoad>
 				HideUIPanel(CryolysisTimerMenu);
+				Cryolysis_UpdateRevisions("CryolysisTimerMenu.xml", "$Rev$")
 			</OnLoad>
 		</Scripts>
 	</Frame>

@@ -131,3 +131,4 @@ function Cryolysis_UpdateManaStoneButtonAttributes(Manastone, item)
 		end
 	end
 end
+Cryolysis_UpdateRevisions("UIAttributes.lua", "$Rev$")

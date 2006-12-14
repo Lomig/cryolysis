@@ -356,8 +356,9 @@
 			</Slider>
 		</Frames>
      		<Scripts>
-        		<OnLoad>
+			<OnLoad>
 				HideUIPanel(CryolysisGraphOptionMenu);
+				Cryolysis_UpdateRevisions("CryolysisGraphOptionMenu.xml", "$Rev$")
 			</OnLoad>
 		</Scripts>
 	</Frame>
