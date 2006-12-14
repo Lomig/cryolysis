@@ -116,7 +116,7 @@ function Cryolysis_UpdateMountButton(MountName, MountType)
 	end
 end
 
-function Cryolysis_UpdateManaStoneButtonAttributes(Manastone)
+function Cryolysis_UpdateManaStoneButtonAttributes(Manastone, manaStones)
 	if ( InCombatLockdown() ) then
 		return
 	end
