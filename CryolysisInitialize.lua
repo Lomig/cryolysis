@@ -389,7 +389,7 @@ function Cryolysis_LanguageInitialize()
 	CryolysisEvocationText_Option:SetText(CRYOLYSIS_CONFIGURATION.Text.Evocation);
 	CryolysisPowderText_Option:SetText(CRYOLYSIS_CONFIGURATION.Text.Powder);
 	CryolysisFeatherText_Option:SetText(CRYOLYSIS_CONFIGURATION.Text.Feather);
-	CryolysisRuneText_Option:SetText(CRYOLYSIS_CONFIGURATION.Text.Rune);
+	-- CryolysisRuneText_Option:SetText(CRYOLYSIS_CONFIGURATION.Text.Rune);
 
 	----------------------------------------
 	-- Timer Menu Dialog Setup
