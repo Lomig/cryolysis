@@ -306,7 +306,7 @@ function Cryolysis_Initialize()
 		CryolysisBuffMenuButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
 		CryolysisMountButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
 		CryolysisPortalMenuButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
-		
+
 		if CryolysisConfig.NoDragAll then
 			Cryolysis_NoDrag();
 			CryolysisButton:RegisterForDrag("");
@@ -318,9 +318,9 @@ function Cryolysis_Initialize()
 		end
 		-- On v�ifie que les fragments sont dans le sac d�ini par le D�oniste
 		-- Cryolysis_ProvisionSwitch("CHECK");
-		
+
 		-- Le Shard est-il v�ouill�sur l'interface ?
-		
+
 		-- Les boutons sont-ils v�ouill� sur le Shard ?
 		Cryolysis_ButtonSetup();
 		Cryolysis_LanguageInitialize();
@@ -331,7 +331,7 @@ function Cryolysis_Initialize()
 		-- Added by Lomig to replace the Toggle function
 		Cryolysis_UpdateMainButtonAttributes();
 		Cryolysis_UpdateMenuAnchor();
-		
+
 
 	end
 end
@@ -490,14 +490,21 @@ function Cryolysis_SlashHandler(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, 
 end
 
 function Cryolysis_UpdateMenuAnchor()
-		
+
+	CryolysisManastoneButton:SetAttribute("*childraise*", true);
+	CryolysisManastoneButton:SetAttribute("*childstate*", "^click");
+	CryolysisManaStoneMenu0:SetAttribute("statemap-anchor-click", "0-1");
+	CryolysisManastoneButton:SetAttribute("anchorchild", CryolysisManaStoneMenu0);
+	CryolysisManaStoneMenu0:SetAttribute("headofsx", "0:3000;1:1");
+	CryolysisManaStoneMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.ManaStoneMenuAnchor);
+
 	CryolysisBuffMenuButton:SetAttribute("*childraise*", true);
 	CryolysisBuffMenuButton:SetAttribute("*childstate*", "^click");
 	CryolysisBuffMenu0:SetAttribute("statemap-anchor-click", "0-1");
 	CryolysisBuffMenuButton:SetAttribute("anchorchild", CryolysisBuffMenu0);
 	CryolysisBuffMenu0:SetAttribute("headofsx", "0:3000;1:1");
 	CryolysisBuffMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.BuffMenuAnchor);
-	
+
 	CryolysisPortalMenuButton:SetAttribute("*childraise*", true);
 	CryolysisPortalMenuButton:SetAttribute("*childstate*", "^click");
 	CryolysisPortalMenu0:SetAttribute("statemap-anchor-click", "0-1");

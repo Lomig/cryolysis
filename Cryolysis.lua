@@ -78,6 +78,8 @@ Default_CryolysisConfig = {
 	LeftSpell = 4;
 	RightSpell = 5;
 	NoDragAll = false;
+	ManaStoneMenuPos = 34;
+	ManaStoneMenuAnchor = 26;
 	PortalMenuPos = 34;
 	PortalMenuAnchor = -6;
 	BuffMenuPos = 34;
@@ -168,7 +170,7 @@ CryolysisPrivate = {
 	highestFoodId = 0,
 	highestFoodCount = 0,
 	foodRanks = { 22895, 8076, 8075, 1487, 1114, 1113, 5349 }, -- Item IDs for Mage conjured bread, in order from highest amount of health restored to lowest.  ORDER DOES MATTER
-	
+
 	manaStones = { 5513, 5514, 8007, 8008 },
 	hasManaStones = { false, false, false, false },
 
@@ -433,7 +435,7 @@ function Cryolysis_OnLoad()
 	for i in ipairs(cryoEvents) do
 		CryolysisButton:RegisterEvent(cryoEvents[i])
 	end
-	
+
 	-- Recording of the graphic components
 	CryolysisButton:RegisterForDrag("LeftButton");
 	CryolysisButton:RegisterForClicks("LeftButtonUp", "RightButtonUp");
@@ -2066,7 +2068,7 @@ function Cryolysis_UpdateIcons()
 			CryolysisButtonTexture.Stones.Other2[3] = Manastone.useableStone;
 		end
 	end
-	
+
 	-- Mount Button
 	-----------------------------------------------
 	if Cryolysis_UnitHasBuff("player",Mount.Title) then
@@ -2654,7 +2656,7 @@ function Cryolysis_ButtonSetup()
 		for i, v in ipairs(CryolysisConfig.StoneLocation) do
 			HideUIPanel(_G[v])
 		end
-		
+
 		if CryolysisConfig.StonePosition[1] and StoneIDInSpellTable[4] then
 			ShowUIPanel(CryolysisFoodButton)
 		end
@@ -3193,11 +3195,19 @@ end
 
 -- Whenever the spell book changes, when the mod loads, and when the menu is rotated eith the spell menus
 function Cryolysis_CreateMenu()
+	ManaStoneMenuCreate = {};
 	PortalMenuCreate = {};
 	BuffMenuCreate = {};
 	local menuVariable = nil;
+	local ManaStoneButtonPosition = 0;
 	local PortalButtonPosition = 0;
 	local BuffButtonPosition = 0;
+
+	-- Hide manastone menu
+	for i = 1, 4, 1 do
+		menuVariable = getglobal("CryolysisManaStoneMenu"..i);
+		menuVariable:Hide();
+	end
 
 	-- Hide portal menu
 	for i = 1, 12, 1 do
@@ -3209,7 +3219,48 @@ function Cryolysis_CreateMenu()
 		menuVariable = getglobal("CryolysisBuffMenu"..i);
 		menuVariable:Hide();
 	end
-	
+
+	-- Menu des manastones
+	if Manastone.RankID[1] > 0 then
+		menuVariable = getglobal("CryolysisManaStoneMenu1");
+		menuVariable:ClearAllPoints();
+		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
+		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+		ManaStoneButtonPosition = 1;
+		table.insert(PortalMenuCreate, menuVariable);
+	end
+	if Manastone.RankID[2] > 0 then
+		menuVariable = getglobal("CryolysisManaStoneMenu2");
+		menuVariable:ClearAllPoints();
+		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
+		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+		ManaStoneButtonPosition = 2;
+		table.insert(PortalMenuCreate, menuVariable);
+	end
+	if Manastone.RankID[3] > 0 then
+		menuVariable = getglobal("CryolysisManaStoneMenu3");
+		menuVariable:ClearAllPoints();
+		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
+		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+		ManaStoneButtonPosition = 3;
+		table.insert(PortalMenuCreate, menuVariable);
+	end
+	if Manastone.RankID[4] > 0 then
+		menuVariable = getglobal("CryolysisManaStoneMenu4");
+		menuVariable:ClearAllPoints();
+		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
+		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+		ManaStoneButtonPosition = 4;
+		table.insert(PortalMenuCreate, menuVariable);
+	end
+
+	-- Now that all the buttons are placed the ones beside the others (out of the screen), the available ones are displayed
+	CryolysisManaStoneMenu0:ClearAllPoints();
+	CryolysisManaStoneMenu0:SetPoint("CENTER", "CryolysisManaStoneButton", "CENTER", 3000, 3000);
+	for i = 1, #PortalMenuCreate, 1 do
+		ShowUIPanel(PortalMenuCreate[i]);
+	end
+
 	-- Start placing portals on the menu
 	if CRYOLYSIS_SPELL_TABLE[38].ID then
 		menuVariable = getglobal("CryolysisPortalMenu1");
@@ -3313,7 +3364,7 @@ function Cryolysis_CreateMenu()
 	for i = 1, #PortalMenuCreate, 1 do
 		ShowUIPanel(PortalMenuCreate[i]);
 	end
-	
+
 	local buffAssociations = { 22, 4, 13, 25, 15, 50, 33, 35 }
 	for i, v in ipairs(buffAssociations) do
 		local bool
@@ -3339,13 +3390,14 @@ function Cryolysis_CreateMenu()
 	for i = 1, #BuffMenuCreate, 1 do
 		ShowUIPanel(BuffMenuCreate[i]);
 	end
-	
+
 	-- Spell attribute updates (Eternally777 @ 12:45 GMT 12/13/2006):
 	Cryolysis_UpdateLeftSpellAttributes()
 	Cryolysis_UpdateEvocationAttributes()
 	Cryolysis_UpdateRightSpellAttributes()
 	Cryolysis_UpdateBuffButtonAttributes()
 	Cryolysis_UpdatePortalButtonAttributes(PortalTempID)
+	Cryolysis_UpdateManaStoneButtonAttributes(Manastone)
 end
 
 -- management of buff menu casting
