@@ -3224,7 +3224,7 @@ function Cryolysis_CreateMenu()
 	if Manastone.RankID[1] > 0 then
 		menuVariable = getglobal("CryolysisManaStoneMenu1");
 		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
+		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 		ManaStoneButtonPosition = 1;
 		table.insert(PortalMenuCreate, menuVariable);
@@ -3232,7 +3232,7 @@ function Cryolysis_CreateMenu()
 	if Manastone.RankID[2] > 0 then
 		menuVariable = getglobal("CryolysisManaStoneMenu2");
 		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
+		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 		ManaStoneButtonPosition = 2;
 		table.insert(PortalMenuCreate, menuVariable);
@@ -3240,7 +3240,7 @@ function Cryolysis_CreateMenu()
 	if Manastone.RankID[3] > 0 then
 		menuVariable = getglobal("CryolysisManaStoneMenu3");
 		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
+		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 		ManaStoneButtonPosition = 3;
 		table.insert(PortalMenuCreate, menuVariable);
@@ -3248,7 +3248,7 @@ function Cryolysis_CreateMenu()
 	if Manastone.RankID[4] > 0 then
 		menuVariable = getglobal("CryolysisManaStoneMenu4");
 		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
+		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 		ManaStoneButtonPosition = 4;
 		table.insert(PortalMenuCreate, menuVariable);
