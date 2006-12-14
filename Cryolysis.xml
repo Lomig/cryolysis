@@ -237,7 +237,6 @@
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
-
 	<Button name="CryolysisManastoneButton" inherits="SecureAnchorButtonTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
@@ -277,37 +276,89 @@
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\ManastoneButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
+	
 	<Button name="CryolysisManaStoneMenu1" inherits="CryolysisMenuButtonTemplate">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_Gem_Emerald_01">
+					<Size>
+						<AbsDimension x="25" y="25"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
 		<Scripts>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "Manastone", "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
-		<NormalTexture file="Interface\Icons\INV_Misc_Gem_Emerald_01"/>
+		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
 	</Button>
+	
 	<Button name="CryolysisManaStoneMenu2" inherits="CryolysisMenuButtonTemplate">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_Gem_Opal_01">
+					<Size>
+						<AbsDimension x="25" y="25"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
 		<Scripts>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "Manastone", "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
-		<NormalTexture file="Interface\Icons\INV_Misc_Gem_Opal_01"/>
+		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
 	</Button>
+	
 	<Button name="CryolysisManaStoneMenu3" inherits="CryolysisMenuButtonTemplate">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_Gem_Emerald_02">
+					<Size>
+						<AbsDimension x="25" y="25"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
 		<Scripts>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "Manastone", "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
-		<NormalTexture file="Interface\Icons\INV_Misc_Gem_Emerald_02"/>
+		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
 	</Button>
+	
 	<Button name="CryolysisManaStoneMenu4" inherits="CryolysisMenuButtonTemplate">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_Gem_Ruby_01">
+					<Size>
+						<AbsDimension x="25" y="25"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
 		<Scripts>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "Manastone", "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
-		<NormalTexture file="Interface\Icons\INV_Misc_Gem_Ruby_01"/>
+		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
 	</Button>
 
 	<Button name="CryolysisBuffMenuButton" inherits="SecureAnchorButtonTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
