@@ -3345,7 +3345,6 @@ function Cryolysis_CreateMenu()
 	Cryolysis_UpdateEvocationAttributes()
 	Cryolysis_UpdateRightSpellAttributes()
 	Cryolysis_UpdateBuffButtonAttributes()
- 	Cryolysis_UpdateManaStoneButtonAttributes()
 	Cryolysis_UpdatePortalButtonAttributes(PortalTempID)
 end
 
