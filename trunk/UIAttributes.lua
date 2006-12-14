@@ -9,7 +9,7 @@ function Cryolysis_UpdateDrinkButtonAttributes()
 		if ( highestWaterName ) then
 			f:SetAttribute("item1", highestWaterName)
 		end
-		
+
 		f:SetAttribute("type2", "spell")
 		-- Changed by Lomig
 		-- f:SetAttribute("spell2", "Conjure Water")
@@ -32,7 +32,7 @@ function Cryolysis_UpdateFoodButtonAttributes()
 		if ( highestFoodName ) then
 			f:SetAttribute("item1", highestFoodName)
 		end
-		
+
 		f:SetAttribute("type2", "spell")
 		-- Changed by Lomig
 		-- f:SetAttribute("spell2", "Conjure Food")
@@ -78,7 +78,7 @@ function Cryolysis_UpdateBuffButtonAttributes()
 	for i = 1, 5, 1 do
 		local f = _G["CryolysisBuffMenu"..i]
 		local spellOne, spellTwo = strsplit(" ", buffButtonAttr[i])
-		
+
 		f:SetAttribute("*type*", "spell")
 		f:SetAttribute("spell1", CRYOLYSIS_SPELL_TABLE[tonumber(spellOne)].Name)
 		f:SetAttribute("spell2", CRYOLYSIS_SPELL_TABLE[tonumber(spellTwo)].Name)
@@ -116,3 +116,17 @@ function Cryolysis_UpdateMountButton(MountName, MountType)
 	end
 end
 
+function Cryolysis_UpdateManaStoneButtonAttributes(Manastone)
+	if ( InCombatLockdown() ) then
+		return
+	end
+	for i=1, 4, 1 do
+		local f = _G["CryolysisManaStoneMenu"..i];
+		f:SetAttribute("type1", "item");
+		f:SetAttribute("type2", "spell");
+		if Manastone.RankID[i] > 0 then
+			f:SetAttribute("item1", manaStones[i]);
+			f:SetAttribute("spell2", CRYOLYSIS_SPELL_TABLE[ Manastone.RankID[i] ].Name);
+		end
+	end
+end
