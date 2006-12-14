@@ -614,33 +614,6 @@ function Cryolysis_OnEvent(event)
 
 	-- If bag contents changed, checks to make sure provisions are in the selected bag
 	if (event == "BAG_UPDATE") then
-		for i, v in ipairs(CryolysisPrivate.waterRanks) do
-			local c = GetItemCount(v)
-			if ( c > 0 ) then
-				CryolysisPrivate.highestWaterId = v
-				CryolysisPrivate.highestWaterCount = c
-				CryolysisDrinkCount:SetText(c)
-				break
-			end
-		end
-		Cryolysis_UpdateDrinkButtonAttributes()
-		for i, v in ipairs(CryolysisPrivate.foodRanks) do
-			local c = GetItemCount(v)
-			if ( c > 0 ) then
-				CryolysisPrivate.highestFoodId = v
-				CryolysisPrivate.highestFoodCount = c
-				CryolysisFoodCount:SetText(c)
-				break
-			end
-		end
-		Cryolysis_UpdateFoodButtonAttributes()
-		for i, v in ipairs(CryolysisPrivate.manaStones) do
-			local c = GetItemCount(v)
-			if ( c > 0 ) then
-				c = true
-			end
-			CryolysisPrivate.hasManaStones[i] = c
-		end
 		if not CryolysisPrivate.LoadCheck then
 			if CryolysisPrivate.checkInv then
 				Cryolysis_BagCheck("Force");
@@ -725,7 +698,7 @@ function Cryolysis_OnEvent(event)
 	elseif event == "TRADE_REQUEST_CANCEL" or event == "TRADE_CLOSED" then
 		CryolysisTradeRequest = false;
 		Cryolysis_BagCheck("Update");
-    elseif event == "CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE" then  -- WINTERSCHILL will go here
+	elseif event == "CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE" then  -- WINTERSCHILL will go here
  		for creatureName, spell in string.gmatch(arg1, CRYOLYSIS_DEBUFF_SRCH) do
 			-- Frostbite
 			if spell == CRYOLYSIS_SPELL_TABLE[53].Name then
@@ -2842,6 +2815,33 @@ end
 
 -- Update text on Cryolysis buttons
 function Cryolysis_ButtonTextUpdate()
+	for i, v in ipairs(CryolysisPrivate.waterRanks) do
+		local c = GetItemCount(v)
+		if ( c > 0 ) then
+			CryolysisPrivate.highestWaterId = v
+			CryolysisPrivate.highestWaterCount = c
+			CryolysisDrinkCount:SetText(c)
+			break
+		end
+	end
+	Cryolysis_UpdateDrinkButtonAttributes()
+	for i, v in ipairs(CryolysisPrivate.foodRanks) do
+		local c = GetItemCount(v)
+		if ( c > 0 ) then
+			CryolysisPrivate.highestFoodId = v
+			CryolysisPrivate.highestFoodCount = c
+			CryolysisFoodCount:SetText(c)
+			break
+		end
+	end
+	Cryolysis_UpdateFoodButtonAttributes()
+	for i, v in ipairs(CryolysisPrivate.manaStones) do
+		local c = GetItemCount(v)
+		if ( c > 0 ) then
+			c = true
+		end
+		CryolysisPrivate.hasManaStones[i] = c
+	end
 	if CryolysisConfig.EvocationCooldownText then
 		CryolysisEvocationCooldown:SetText(CryolysisPrivate.EvocationCooldownText);
 	else
@@ -2851,16 +2851,6 @@ function Cryolysis_ButtonTextUpdate()
 		CryolysisManastoneCooldown:SetText(CryolysisPrivate.ManastoneCooldownText);
 	else
 		CryolysisManastoneCooldown:SetText("");
-	end
-	if CryolysisConfig.FoodCountText then
-		CryolysisFoodCount:SetText(Count.Food);
-	else
-		CryolysisFoodCount:SetText("");
-	end
-	if CryolysisConfig.DrinkCountText then
-		CryolysisDrinkCount:SetText(Count.Drink);
-	else
-		CryolysisDrinkCount:SetText("");
 	end
 	if CryolysisConfig.PowderCountText then
 		CryolysisPowderCount:SetText(Count.ArcanePowder);
