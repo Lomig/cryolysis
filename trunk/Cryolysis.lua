@@ -1598,7 +1598,7 @@ function Cryolysis_BuildTooltip(button, type, anchor)
 						affiche = tostring(floor(seconde)).." sec";
 					else
 						minute = tostring(floor(seconde/60))
-						seconde = mod(seconde, 60);
+						seconde = math.fmod(seconde, 60);
 						if seconde < 10 then
 							time = "0"..tostring(floor(seconde));
 						else
@@ -1772,7 +1772,7 @@ function Cryolysis_BuildTooltip(button, type, anchor)
 				affiche = tostring(floor(seconde)).." sec";
 			else
 				minute = tostring(floor(seconde/60))
-				seconde = mod(seconde, 60);
+				seconde = math.fmod(seconde, 60);
 				if seconde < 10 then
 					time = "0"..tostring(floor(seconde));
 				else
@@ -2906,7 +2906,7 @@ function Cryolysis_TimerFunction(seconde)
 		return tostring(floor(seconde));
 	else
 		minute = tostring(floor(seconde/60))
-		seconde = mod(seconde, 60);
+		seconde = math.fmod(seconde, 60);
 		if seconde < 10 then
 			time = "0"..tostring(floor(seconde));
 		else

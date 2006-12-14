@@ -311,7 +311,7 @@ function Cryolysis_DisplayTimer(display, index, SpellGroup, SpellTimer, Graphica
 	else
 		affichage = "0:";
 	end
-	seconds = mod(seconds, 60);
+	seconds = math.fmod(seconds, 60);
 	if (seconds > 9) then
 		affichage = affichage..seconds
 	else
