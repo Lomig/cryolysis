@@ -17,7 +17,7 @@ function Cryolysis_UpdateDrinkButtonAttributes()
 
 		-- Added By Lomig 12/12/06 12:51pm (GMT+1)
 		f:SetAttribute("type3", "Trade");
-		f.Trade = function() Cryolysis_Trade_Water(); end
+		f.Trade = function() Cryolysis_Trade("Drink"); end
 		-- End of adding
 
 	end
@@ -40,7 +40,7 @@ function Cryolysis_UpdateFoodButtonAttributes()
 
 		-- Added By Lomig 12/12/06 13:03pm (GMT+1)
 		f:SetAttribute("type3", "Trade");
-		CryolysisFoodButton.Trade = function() Cryolysis_Trade_Food(); end
+		CryolysisFoodButton.Trade = function() Cryolysis_Trade("Food"); end
 		-- End of adding
 	end
 end
