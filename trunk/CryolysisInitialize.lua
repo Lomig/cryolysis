@@ -464,12 +464,60 @@ end
 
 function Cryolysis_UpdateMenuAnchor()
 
+	-- CryolysisManastoneButton is defined as the anchor of our State Driver.
+	-- In XML, it inherits from SecureAnchorButtonTemplate
+	-- Button, because it has to be clicked to raise events.
+	
+	-- This appears to be needed to raise the state of Anchor's children.
+	-- I do not really understand why we would not want to raise the state of children, as we are using State Driver in this goal
 	CryolysisManastoneButton:SetAttribute("*childraise*", true);
+	-- This is used to change the children state-anchor attribute. Here, state-anchor is changed on click.
+	-- The ^ indicates that the attribute must be set on each click.
+	-- If there is not that symbol, the attribute is set only if the new attribute is different from the former one.
 	CryolysisManastoneButton:SetAttribute("*childstate*", "^click");
+
+	-- CryolysisManaStoneMenu0 is defined as the header of our State Driver.
+	-- I do not know why the hell this has been invented, as far as I am concerned,
+	-- I think that everything could have been done with only an anchor/trigger and child buttons.
+	-- In XML, it inherits SecureStateHeaderTemplate.
+	
+	-- This line manage the state changes.
+	-- When the anchor is clicked, if the state was 0 it becomes 1
+	-- If the state was 1, it becomes 0
 	CryolysisManaStoneMenu0:SetAttribute("statemap-anchor-click", "0-1");
+	-- Set the header as the child of our anchor CryolysisManastoneButton
 	CryolysisManastoneButton:SetAttribute("anchorchild", CryolysisManaStoneMenu0);
+	-- The part I am proud of :P
+	-- This change the position of the header according to its state.
+	-- The position is by default from CENTER, CENTER, from its parent frame. 
+	-- That is why I made CryolysisManaStoneMenu0 a child of CryolysisManastoneButton in XML.
+	-- In state 0, x and y are set to 3000. That is to say, outside the screen even on a 35inches screen :P
+	-- In state 1, you see that our header is quite near our anchor, With the y offset as set in the option menu.
 	CryolysisManaStoneMenu0:SetAttribute("headofsx", "0:3000;1:1");
 	CryolysisManaStoneMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.ManaStoneMenuAnchor);
+
+--[[
+
+	-- What I have not done :
+	for i=1, 4 ,1 do
+		local btn = getglobal("CryolysisManaStoneMenu"..i);
+		CryolysisManaStoneMenu0:SetAttribute("addchild", btn);
+	end
+
+	This would have set every buttons as a child of the header. We cannot set button as child of the anchor, though.
+	With this, the state of all children are also driven by the anchor/header state. I still do not exactly know how.
+	I think too that the anchor/header state can be driven by action on them.
+	But it is only because I am a psychic, and I would ahve done such a system if I was Iriel.
+
+	-- What I will try :
+	-- To include a delay on the header to automatically switch from state 1 to state 0.
+	-- Wish me good luck :P
+
+
+--]]
+
+
+
 
 	CryolysisBuffMenuButton:SetAttribute("*childraise*", true);
 	CryolysisBuffMenuButton:SetAttribute("*childstate*", "^click");
