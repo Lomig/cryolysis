@@ -645,6 +645,7 @@ function Cryolysis_OnEvent(event)
 			if ( c > 0 ) then
 				CryolysisPrivate.highestWaterId = v
 				CryolysisPrivate.highestWaterCount = c
+				CryolysisDrinkCount:SetText(c)
 				break
 			end
 		end
@@ -654,6 +655,7 @@ function Cryolysis_OnEvent(event)
 			if ( c > 0 ) then
 				CryolysisPrivate.highestFoodId = v
 				CryolysisPrivate.highestFoodCount = c
+				CryolysisFoodCount:SetText(c)
 				break
 			end
 		end
@@ -3343,6 +3345,7 @@ function Cryolysis_CreateMenu()
 	Cryolysis_UpdateEvocationAttributes()
 	Cryolysis_UpdateRightSpellAttributes()
 	Cryolysis_UpdateBuffButtonAttributes()
+ 	Cryolysis_UpdateManaStoneButtonAttributes()
 	Cryolysis_UpdatePortalButtonAttributes(PortalTempID)
 end
 
