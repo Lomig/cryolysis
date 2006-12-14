@@ -755,7 +755,7 @@
 					</OnClick>
 				</Scripts>
 			</CheckButton>
-			<CheckButton name="CryolysisRuneText_Button" enableMouse="true" inherits="UICheckButtonTemplate" checked="false">
+		<!--	<CheckButton name="CryolysisRuneText_Button" enableMouse="true" inherits="UICheckButtonTemplate" checked="false">
 				<Size>
 					<AbsDimension x="24" y="24"/>
 				</Size>
@@ -775,7 +775,7 @@
 						end
 					</OnClick>
 				</Scripts>
-			</CheckButton>
+			</CheckButton> -->
 			<Button name="ReorderLeft">
 				<Size>
 					<AbsDimension x="29" y="29"/>
