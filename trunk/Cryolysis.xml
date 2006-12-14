@@ -301,7 +301,7 @@
 	<Button name="CryolysisManaStoneMenu2" inherits="CryolysisMenuButtonTemplate">
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_Gem_Opal_01">
+				<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_Gem_Emerald_02">
 					<Size>
 						<AbsDimension x="25" y="25"/>
 					</Size>
@@ -322,7 +322,7 @@
 	<Button name="CryolysisManaStoneMenu3" inherits="CryolysisMenuButtonTemplate">
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_Gem_Emerald_02">
+				<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_Gem_Opal_01">
 					<Size>
 						<AbsDimension x="25" y="25"/>
 					</Size>
