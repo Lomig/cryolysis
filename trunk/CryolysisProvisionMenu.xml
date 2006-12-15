@@ -258,7 +258,7 @@
 				</Scripts>
 			</Slider>
 
-			<Slider name="CryolysisFood_Slider" inherits="OptionsSliderTemplate" minValue="0" maxValue="100" valueStep="1" virtual="true">
+			<Slider name="CryolysisFood_Slider" inherits="OptionsSliderTemplate" hidden="true" minValue="0" maxValue="100" valueStep="1" virtual="true">
 				<Size>
 					<AbsDimension x="140" y="16"/>
 				</Size>
@@ -285,7 +285,7 @@
 					</OnLeave>
 				</Scripts>
 			</Slider>
-			<Slider name="CryolysisDrink_Slider" inherits="OptionsSliderTemplate" minValue="0" maxValue="100" valueStep="1" virtual="true">
+			<Slider name="CryolysisDrink_Slider" inherits="OptionsSliderTemplate" hidden="true" minValue="0" maxValue="100" valueStep="1" virtual="true">
 				<Size>
 					<AbsDimension x="140" y="16"/>
 				</Size>
