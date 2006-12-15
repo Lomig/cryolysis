@@ -44,7 +44,7 @@ if GetLocale() == "zhCN" then
 CRYOLYSIS_UNIT_MAGE = "法师";
 
 -- Word to search for Fire Vulnerability and Winter's chill  first (.+) is the target, second is the spell
-CRYOLYSIS_DEBUFF_SRCH = "(.+)受到了(.+)效果的影响。"
+CRYOLYSIS_DEBUFF_SRCH = "(.+)�?�到了(.+)效果的影�?。"
 CRYOLYSIS_POLY_SRCH = "(.+)效果从(.+)身上消失。"
 
 function Cryolysis_SpellTableBuild()
@@ -72,15 +72,15 @@ CRYOLYSIS_SPELL_TABLE = {
 	[11] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
 		Name = "造水术",				Length = 0,		Type = 0},
 	[12] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "魔法反制",				Length = 30,	Type = 3},
+		Name = "魔法�??制",				Length = 30,	Type = 3},
 	[13] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
 		Name = "魔法抑制",				Length = 600,	Type = 0},
 	[14] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "火焰冲击",				Length = 8,		Type = 3},
+		Name = "�?�焰冲击",				Length = 8,		Type = 3},
 	[15] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "防护火焰结界",			Length = 30,	Type = 3},
+		Name = "防护�?�焰结界",			Length = 30,	Type = 3},
 	[16] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "火球术",				Length = 8,		Type = 5},
+		Name = "�?��?�术",				Length = 8,		Type = 5},
 	[17] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
 		Name = "烈焰风暴",				Length = 8,		Type = 3},
 	[18] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
@@ -100,39 +100,39 @@ CRYOLYSIS_SPELL_TABLE = {
 	[25] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
 		Name = "法力护盾",				Length = 60,	Type = 0},
 	[26] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "变形术",				Length = 50,	Type = 2},
+		Name = "�?�形术",				Length = 50,	Type = 2},
 	[27] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "传送门：达纳苏斯",		Length = 0,		Type = 0},
+		Name = "传�?门：达纳�?斯",		Length = 0,		Type = 0},
 	[28] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "传送门：铁炉堡",		Length = 0,		Type = 0},
+		Name = "传�?门：�?炉堡",		Length = 0,		Type = 0},
 	[29] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "传送门：暴风城",		Length = 0,		Type = 0},
+		Name = "传�?门：暴风城",		Length = 0,		Type = 0},
 	[30] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "传送门：雷霆崖",		Length = 0,		Type = 0},
+		Name = "传�?门：雷霆崖",		Length = 0,		Type = 0},
 	[31] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "传送门：幽暗城",		Length = 0,		Type = 0},
+		Name = "传�?门：幽暗城",		Length = 0,		Type = 0},
 	[32] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "炎爆术",				Length = 12,	Type = 5},
 	[33] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
 		Name = "解除次级诅咒",			Length = 0,		Type = 0},
 	[34] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "灼烧",				Length = 0,			Type = 0},
+		Name = "�?�烧",				Length = 0,			Type = 0},
 	[35] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "缓落术",				Length = 30,	Type = 0},
+		Name = "缓�?�术",				Length = 30,	Type = 0},
 	[36] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "传送：达纳苏斯",		Length = 0,		Type = 0},
+		Name = "传�?：达纳�?斯",		Length = 0,		Type = 0},
 	[37] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "传送：铁炉堡",			Length = 0,		Type = 0},
+		Name = "传�?：�?炉堡",			Length = 0,		Type = 0},
 	[38] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "传送：奥格瑞玛",		Length = 0,		Type = 0},
+		Name = "传�?：奥格瑞玛",		Length = 0,		Type = 0},
 	[39] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "传送：雷霆崖",				Length = 0,	Type = 0},
+		Name = "传�?：雷霆崖",				Length = 0,	Type = 0},
 	[40] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "传送：幽暗城",			Length = 0,		Type = 0},
+		Name = "传�?：幽暗城",			Length = 0,		Type = 0},
 	[41] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "寒冰屏障",			Length = 300,		Type = 3},
+		Name = "寒冰�?障",			Length = 300,		Type = 3},
 	[42] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "急速冷却",			Length = 600,		Type = 3},
+		Name = "急速冷�?�",			Length = 600,		Type = 3},
 	[43] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
 		Name = "燃烧",					Length = 180,	Type = 3},
 	[44] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
@@ -140,19 +140,19 @@ CRYOLYSIS_SPELL_TABLE = {
 	[45] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
 		Name = "奥术强化",				Length = 180,	Type = 3},
 	[46] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "传送：达纳苏斯",			Length = 0,	Type = 0},
+		Name = "传�?：达纳�?斯",			Length = 0,	Type = 0},
 	[47] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "传送门：奥格瑞玛",		Length = 0,		Type = 0},
+		Name = "传�?门：奥格瑞玛",		Length = 0,		Type = 0},
 	[48] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "变形术：猪",			Length = 50,	Type = 2},
+		Name = "�?�形术：猪",			Length = 50,	Type = 2},
 	[49] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
 		Name = "唤醒",				Length = 480,		Type = 3},
 	[50] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
 		Name = "侦测魔法",				Length = 120,	Type = 5},
 	[51] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "传送：暴风城",				Length = 0,	Type = 0},
+		Name = "传�?：暴风城",				Length = 0,	Type = 0},
 	[52] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "变形术：龟",			Length = 50,	Type = 2},
+		Name = "�?�形术：龟",			Length = 50,	Type = 2},
 	[53] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "刺骨寒冰",				Length = 5,		Type = 6},
 	[54] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
@@ -166,15 +166,15 @@ CRYOLYSIS_SPELL_TABLE = {
 	[58] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "深冬之寒 (5)",			Length = 15,	Type = 6},
 	[59] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "火焰易伤",				Length = 30,	Type = 6},
+		Name = "�?�焰易伤",				Length = 30,	Type = 6},
 	[60] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "火焰易伤 (2)",			Length = 30,	Type = 6},
+		Name = "�?�焰易伤 (2)",			Length = 30,	Type = 6},
 	[61] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "火焰易伤 (3)",			Length = 30,	Type = 6},
+		Name = "�?�焰易伤 (3)",			Length = 30,	Type = 6},
 	[62] = {ID = nil, Rank = nil, 		CastTime = nil, Mana = nil,
-		Name = "火焰易伤 (4)",			Length = 30,	Type = 6},
+		Name = "�?�焰易伤 (4)",			Length = 30,	Type = 6},
 	[63] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "火焰易伤 (5)",			Length = 30,	Type = 6},
+		Name = "�?�焰易伤 (5)",			Length = 30,	Type = 6},
 	[64] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "魔法水晶",				Length = 120,	Type = 3},
 	[65] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
@@ -197,8 +197,8 @@ Cryolysis_SpellTableBuild();
 CRYOLYSIS_ITEM = {
 	["LightFeather"] = "轻羽毛",
 	["ArcanePowder"] = "魔粉",
-	["RuneOfTeleportation"] = "传送符文",
-	["RuneOfPortals"] = "传送门符文",
+	["RuneOfTeleportation"] = "传�?符文",
+	["RuneOfPortals"] = "传�?门符文",
 	["Manastone"] = "法力",
 	["Hearthstone"] = "炉石",
 	["Provision"] = "制造",
@@ -207,13 +207,13 @@ CRYOLYSIS_ITEM = {
 	["Food"] = "魔法食物",
 };
 CRYOLYSIS_FOOD_RANK = {
-	[1] = " 魔法松饼",
-	[2] = " 魔法面包",
-	[3] = " 魔法黑面包",
-	[4] = " 魔法粗面包",
-	[5] = " 魔法酵母",
-	[6] = " 魔法甜面包", 
-	[7] = " 魔法肉桂面包",
+	[1] = " 魔法�?�饼",
+	[2] = " 魔法�?�包",
+	[3] = " 魔法黑�?�包",
+	[4] = " 魔法粗�?�包",
+	[5] = " 魔法酵�?",
+	[6] = " 魔法甜�?�包", 
+	[7] = " 魔法肉桂�?�包",
 };
 CRYOLYSIS_DRINK_RANK = {
 	[1] = " 魔法水",
@@ -221,68 +221,68 @@ CRYOLYSIS_DRINK_RANK = {
 	[3] = " 魔法纯净水",
 	[4] = " 魔法泉水",
 	[5] = " 魔法矿泉水",
-	[6] = " 魔法苏打水",
+	[6] = " 魔法�?打水",
 	[7] = " 魔法晶水",
 };
 CRYOLYSIS_STONE_RANK = {
 	[1] = "玛瑙",		-- Rank Minor
 	[2] = "翡翠",		-- Rank Lesser
 	[3] = "黄水晶",		-- Rank Greater
-	[4] = "红宝石",		-- Rank Major
+	[4] = "红�?石",		-- Rank Major
 };
 CRYOLYSIS_STONE_RANK2 = {
-	[1] = "法力玛瑙",		-- Rank Minor
-	[2] = "法力翡翠",		-- Rank Lesser
-	[3] = "法力黄水晶",		-- Rank Greater
-	[4] = "法力红宝石",		-- Rank Major
+	[1] = "魔法玛瑙",		-- Rank Minor
+	[2] = "�法力翡翠",		-- Rank Lesser
+	[3] = "�法力黄水晶",		-- Rank Greater
+	[4] = "�法力红�?石",		-- Rank Major
 };
 
 CRYOLYSIS_MANASTONE_NAMES = {
 	[1] = "制造魔法玛瑙",
 	[2] = "制造魔法翡翠",
 	[3] = "制造魔法黄水晶",
-	[4] = "制造魔法红宝石",
+	[4] = "制造魔法红�?石",
 };	
 
 
 CRYOLYSIS_CREATE = {
 	[1] = "唤醒",
-	[2] = "制造魔法宝石",
+	[2] = "制造魔法�?石",
 	[3] = "造水术",
 	[4] = "造食术",
 };
 
 CRYOLYSIS_MOUNT_TABLE = {
 	-- [1] Frostwolf Howler Icon
-	{ "霜狼嗥叫者的号角" }, 
+	{ "霜狼嗥�?�者的�?�角" }, 
 	-- [2] Ram Icon
-	{ "雷矛军用坐骑", "黑山羊", "黑色战羊", "棕山羊", "白山羊", "灰山羊", "迅捷棕山羊", "迅捷灰山羊", "迅捷白山羊", },
+	{ "雷矛军用�??骑", "黑山羊", "黑色战羊", "棕山羊", "白山羊", "�?�山羊", "迅�?�棕山羊", "迅�?��?�山羊", "迅�?�白山羊", },
 	-- [3] Raptor Icon            
-	{ "拉扎什迅猛龙", "迅捷蓝色迅猛龙", "迅捷绿色迅猛龙", "迅捷橙色迅猛龙", "黑色战斗迅猛龙之哨", "绿色迅猛龙之哨", "象牙迅猛龙之哨", "红色迅猛龙之哨", "青色迅猛龙之哨", "紫色迅猛龙之哨" },
+	{ "拉扎什迅猛龙", "迅�?��?色迅猛龙", "迅�?�绿色迅猛龙", "迅�?�橙色迅猛龙", "黑色战斗迅猛龙之哨", "绿色迅猛龙之哨", "象牙迅猛龙之哨", "红色迅猛龙之哨", "�?�色迅猛龙之哨", "紫色迅猛龙之哨" },
 	-- [4] Yellow Tiger Icon
-	{ "迅捷祖利安猛虎" },
+	{ "迅�?�祖利安猛虎" },
 	-- [5] Undead Horse Icon
-	{ "蓝色骸骨军马", "蓝色骷髅战马", "死亡军马的缰绳", "棕色骸骨军马", "绿色骸骨军马", "紫色骷髅战马", "红色骸骨军马", "红色骷髅战马" },
+	{ "�?色骸骨军马", "�?色骷髅战马", "死亡军马的缰绳", "棕色骸骨军马", "绿色骸骨军马", "紫色骷髅战马", "红色骸骨军马", "红色骷髅战马" },
 	-- [6] Mechanostrider Icon
-	{ "黑色作战机械陆行鸟", "蓝色机械陆行鸟", "绿色机械陆行鸟", "冰蓝色机械陆行鸟A型", "红色机械陆行鸟", "迅捷绿色机械陆行鸟", "迅捷白色机械陆行鸟", "迅捷黄色机械陆行鸟", "未涂色的机械陆行鸟", "白色机械陆行鸟A型" },
+	{ "黑色作战机械陆行鸟", "�?色机械陆行鸟", "绿色机械陆行鸟", "冰�?色机械陆行鸟A型", "红色机械陆行鸟", "迅�?�绿色机械陆行鸟", "迅�?�白色机械陆行鸟", "迅�?�黄色机械陆行鸟", "未涂色的机械陆行鸟", "白色机械陆行鸟A型" },
 	-- [7] Brown Horse Icon
-	{ "黑马缰绳", "棕马缰绳", "栗色马缰绳", "褐色马缰绳", "杂色马缰绳", "迅捷棕马", "迅捷褐色马", "迅捷白马", "白马缰绳" },
+	{ "黑马缰绳", "棕马缰绳", "栗色马缰绳", "�?色马缰绳", "�?�色马缰绳", "迅�?�棕马", "迅�?��?色马", "迅�?�白马", "白马缰绳" },
 	-- [8] Brown Kodo Icon
 	{ "黑色作战科多兽", "棕色科多兽", "大型棕色科多兽" },
 	-- [9] War Steed Icon
 	{ "黑色战驹缰绳" },
 	-- [10] Gray Kodo Icon
-	{ "灰色科多兽", "大型灰色科多兽", "大型白色科多兽" },
+	{ "�?�色科多兽", "大型�?�色科多兽", "大型白色科多兽" },
 	-- [11] Green Kodo Icon 
-	{ "绿色科多兽", "蓝色科多兽" },
+	{ "绿色科多兽", "�?色科多兽" },
 	-- [12] White Wolf Icon    
-	{ "北极狼号角", "恐狼号角", "迅捷灰狼号角", "迅捷森林狼号角" },
+	{ "北�?狼�?�角", "�??狼�?�角", "迅�?��?�狼�?�角", "迅�?�森林狼�?�角" },
 	-- [13] Black Wolf Icon    
-	{ "黑色战狼号角", "棕狼号角", "赤狼号角", "迅捷棕狼号角", "森林狼号角" },
+	{ "黑色战狼�?�角", "棕狼�?�角", "赤狼�?�角", "迅�?�棕狼�?�角", "森林狼�?�角" },
 	-- [14] Black Tiger Icon   
-	{ "黑色战豹缰绳", "条纹夜刃豹缰绳" },
+	{ "黑色战豹缰绳", "�?�纹夜刃豹缰绳" },
 	-- [15] White Tiger Icon   
-	{ "霜刃豹缰绳", "夜刃豹缰绳", "斑点霜刃豹缰绳", "条纹霜刃豹缰绳", "迅捷霜刃豹缰绳", "迅捷雾刃豹缰绳", "迅捷雷刃豹缰绳" },
+	{ "霜刃豹缰绳", "夜刃豹缰绳", "斑点霜刃豹缰绳", "�?�纹霜刃豹缰绳", "迅�?�霜刃豹缰绳", "迅�?�雾刃豹缰绳", "迅�?�雷刃豹缰绳" },
 	-- [16] Red Tiger Icon
 	{ "冬泉霜刃豹缰绳" },
 	-- [17] Black Qiraji Resonating Crystal
@@ -290,19 +290,19 @@ CRYOLYSIS_MOUNT_TABLE = {
 }
 
 CRYOLYSIS_MOUNT_PREFIX = {
-	"号角",
+	"�?�角",
 	"之哨",
 	"缰绳",	
 }
 
 CRYOLYSIS_AQMOUNT_TABLE = {
-	"蓝色其拉共鸣水晶",
+	"�?色其拉共鸣水晶",
  	"绿色其拉共鸣水晶",
  	"红色其拉共鸣水晶",
 	"黄色其拉共鸣水晶",
 }
 CRYOLYSIS_TRANSLATION = {
-	["Cooldown"] = "冷却时间",
+	["Cooldown"] = "冷�?�时间",
 	["Hearth"] = "炉石",
 	["Rank"] = "等级",
 };

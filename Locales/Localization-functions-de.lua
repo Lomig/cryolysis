@@ -256,10 +256,10 @@ CRYOLYSIS_STONE_RANK = {
 	[4] = "rubin"		-- Rank Major
 };
 CRYOLYSIS_STONE_RANK2 = {
-	[1] = "Achat",		-- Rank Minor
+	[1] = "Manaachat",		-- Rank Minor
 	[2] = "Jadestein",	-- Rank Lesser
-	[3] = "Citrin",	      -- Rank Greater
-	[4] = "Rubin"		-- Rank Major
+	[3] = "Manajadestein",	      -- Rank Greater
+	[4] = "Manarubin"		-- Rank Major
 };
 CRYOLYSIS_MANASTONE_NAMES = {
 	[1] = "Manaachat herbeizaubern",
