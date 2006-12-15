@@ -522,113 +522,140 @@
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalMenuButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
-
-	<Button name="CryolysisPortalMenu1" inherits="CryolysisMenuButtonTemplate">
+	
+	<Button name="CryolysisPortalButtonTemplate" inherits="SecureActionButtonTemplate" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true" virtual="true">
+		<Size>
+			<AbsDimension x="40" y="40"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="17" y="-100"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon">
+					<Size>
+						<AbsDimension x="25" y="25"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
 		<Scripts>
+			<OnLoad>
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+				HideUIPanel(this)
+			</OnLoad>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "T:Org", "ANCHOR_RIGHT");
+				Cryolysis_BuildTooltip(this, this.spell, this.anchor)
 			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportOrgrimmar-01"/>
+		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
+		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu2" inherits="CryolysisMenuButtonTemplate">
+	<Button name="CryolysisPortalMenu1" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
-			<OnEnter>
-				Cryolysis_BuildTooltip(this, "T:UC", "ANCHOR_RIGHT");
-			</OnEnter>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportOrgrimmar", "T:Org", "ANCHOR_RIGHT")
+			</OnLoad>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportUndercity-01"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu3" inherits="CryolysisMenuButtonTemplate">
+	<Button name="CryolysisPortalMenu2" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
-			<OnEnter>
-				Cryolysis_BuildTooltip(this, "T:TB", "ANCHOR_RIGHT");
-			</OnEnter>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportUnderCity", "T:UC", "ANCHOR_RIGHT")
+			</OnLoad>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportThunderbluff-01"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu4" inherits="CryolysisMenuButtonTemplate">
+	<Button name="CryolysisPortalMenu3" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
-			<OnEnter>
-				Cryolysis_BuildTooltip(this, "T:IF", "ANCHOR_RIGHT");
-			</OnEnter>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportThunderBluff", "T:TB", "ANCHOR_RIGHT")
+			</OnLoad>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportIronforge-01"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu5" inherits="CryolysisMenuButtonTemplate">
+	<Button name="CryolysisPortalMenu4" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
-			<OnEnter>
-				Cryolysis_BuildTooltip(this, "T:SW", "ANCHOR_RIGHT");
-			</OnEnter>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportIronForge", "T:IF", "ANCHOR_RIGHT")
+			</OnLoad>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportStormwind-01"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu6" inherits="CryolysisMenuButtonTemplate">
+	<Button name="CryolysisPortalMenu5" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
-			<OnEnter>
-				Cryolysis_BuildTooltip(this, "T:Darn", "ANCHOR_RIGHT");
-			</OnEnter>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportStormWind", "T:SW", "ANCHOR_RIGHT")
+			</OnLoad>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\TeleportDarnassus-01"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu7" inherits="CryolysisMenuButtonTemplate">
+	<Button name="CryolysisPortalMenu6" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
-			<OnEnter>
-				Cryolysis_BuildTooltip(this, "P:Org", "ANCHOR_RIGHT");
-			</OnEnter>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportDarnassus", "T:Darn", "ANCHOR_RIGHT")
+			</OnLoad>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalOrgrimmar-01"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu8" inherits="CryolysisMenuButtonTemplate">
+	<Button name="CryolysisPortalMenu7" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
-			<OnEnter>
-				Cryolysis_BuildTooltip(this, "P:UC", "ANCHOR_RIGHT");
-			</OnEnter>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalOrgrimmar", "P:Org", "ANCHOR_RIGHT")
+			</OnLoad>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalUndercity-01"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu9" inherits="CryolysisMenuButtonTemplate">
+	<Button name="CryolysisPortalMenu8" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
-			<OnEnter>
-				Cryolysis_BuildTooltip(this, "P:TB", "ANCHOR_RIGHT");
-			</OnEnter>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalUnderCity", "P:UC", "ANCHOR_RIGHT")
+			</OnLoad>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalThunderbluff-01"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu10" inherits="CryolysisMenuButtonTemplate">
+	<Button name="CryolysisPortalMenu9" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
-			<OnEnter>
-				Cryolysis_BuildTooltip(this, "P:IF", "ANCHOR_RIGHT");
-			</OnEnter>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalThunderBluff", "P:TB", "ANCHOR_RIGHT")
+			</OnLoad>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalIronforge-01"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu11" inherits="CryolysisMenuButtonTemplate">
+	<Button name="CryolysisPortalMenu10" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
-			<OnEnter>
-				Cryolysis_BuildTooltip(this, "P:SW", "ANCHOR_RIGHT");
-			</OnEnter>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalIronForge", "P:IF", "ANCHOR_RIGHT")
+			</OnLoad>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalStormwind-01"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenu12" inherits="CryolysisMenuButtonTemplate">
+	<Button name="CryolysisPortalMenu11" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
-			<OnEnter>
-				Cryolysis_BuildTooltip(this, "P:Darn", "ANCHOR_RIGHT");
-			</OnEnter>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalStormWind", "P:SW", "ANCHOR_RIGHT")
+			</OnLoad>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalDarnassus-01"/>
+	</Button>
+
+	<Button name="CryolysisPortalMenu12" inherits="CryolysisPortalButtonTemplate">
+		<Scripts>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalDarnassus", "P:Darn", "ANCHOR_RIGHT")
+			</OnLoad>
+		</Scripts>
 	</Button>
 
 	<GameTooltip name="CryolysisTooltip" frameStrata="LOW" toplevel="true" movable="true" parent="UIParent" inherits="GameTooltipTemplate" />
