@@ -255,9 +255,6 @@ function Cryolysis_Localization_Dialog_Cn()
 		["Help"] = {
 			"/cryo recall -- 使Cryolysis和所有按钮居中显示",
 			"/cryo sm -- 将消息替换为简短的团队支持(raid-ready)版本",
-			"/cryo decurse -- 施放解除次级诅咒(调用Decursive的功能)",
-			"/cryo poly -- 随即选择可用的变形术",
-			"/cryo coldblock -- 使用寒冰屏障或者急速冷却",
 		},
 		["EquipMessage"] = "装备 ",
 		["SwitchMessage"] = " 来替换 ",

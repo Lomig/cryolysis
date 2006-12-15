@@ -255,9 +255,6 @@ function Cryolysis_Localization_Dialog_De()
 		["Help"] = {
 			"/cryo recall -- Zentriere Cryolysis und alle Buttons in der Mitte des Bildschirms",
 			"/cryo sm -- Ersetze Nachrichten mit einer kurzen und raidtauglichen Version",
-			"/cryo decurse -- Benutze Fluch entfernen mit der Decursive-F\195\164higkeit",  
-            "/cryo poly -- Benutze zuf\195\164lligen Polymorph-Spruch",  
-        	"/cryo coldblock -- Aktiviere Eisblock oder K\195\164lteeinbruch" 
 		},
 		["EquipMessage"] = "Ausr\195\188ste ",
 		["SwitchMessage"] = " an Stelle von ",

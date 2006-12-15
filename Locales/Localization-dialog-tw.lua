@@ -255,9 +255,6 @@ function Cryolysis_Localization_Dialog_Tw()
 		["Help"] = {
 			"/cryo recall -- Cryolysis 和所有按鈕置於螢幕中央",
 			"/cryo sm -- 置換為簡短訊息（raid-ready）版本",
-			"/cryo decurse -- 施放解除次級詛咒（使用 Decursive 的功能）",
-			"/cryo poly -- 隨機施放可用的變形術（羊、豬、海龜）",
-			"/cryo coldblock -- 使用寒冰護體或急速冷卻",
 		},
 		["EquipMessage"] = "裝備 ",
 		["SwitchMessage"] = " 替代為 ",

@@ -417,18 +417,11 @@ function Cryolysis_LanguageInitialize()
 	CryolysisSTimer_Option:SetText(CRYOLYSIS_CONFIGURATION.STimerLeft);
 	CryolysisIconsLock_Option:SetText(CRYOLYSIS_CONFIGURATION.ButtonLock);
 	CryolysisButtonRotate_SliderText:SetText(CRYOLYSIS_CONFIGURATION.MainRotation);
-
-
-
-
 end
-
-
 
 ------------------------------------------------------------------------------------------------------
 -- FONCTION GERANT LA COMMANDE CONSOLE /CRYO
 ------------------------------------------------------------------------------------------------------
-
 function Cryolysis_SlashHandler(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12)
 	-- Blah blah blah, le joueur est-il bien un D�oniste ? On finira par le savoir !
 	if UnitClass("player") ~= CRYOLYSIS_UNIT_MAGE then
