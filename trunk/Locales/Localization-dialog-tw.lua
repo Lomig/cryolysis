@@ -399,4 +399,18 @@ function Cryolysis_Localization_Dialog_Tw()
 			["SlowFall"] = CRYOLYSIS_SPELL_TABLE[35].Name, -- Slow Fall
 		},		
 	};
+	CRYOLYSIS_BINDING = {
+		["Current"] = " is currently bound to ",
+		["Confirm"] = "Do you want to bind ",
+		["To"] = " to ",
+		["Yes"] = "Yes",
+		["No"] = "No",
+		["InCombat"] = "Sorry, you can't change key bindings while in combat.",
+		["Binding"] = "Bindings",
+		["Unbind"] = "Unbind",
+		["Cancel"] = "Cancel",
+		["Press"] = "Press a key to bind...\n\n",
+		["Now"] = "Currently: ",
+		["NotBound"] = "Not Bound",
+	};
 end

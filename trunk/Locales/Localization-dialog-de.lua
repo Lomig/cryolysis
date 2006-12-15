@@ -400,5 +400,19 @@ function Cryolysis_Localization_Dialog_De()
 			["SlowFall"] = CRYOLYSIS_SPELL_TABLE[35].Name, -- Slow Fall
 		},	
 	};
+	CRYOLYSIS_BINDING = {
+		["Current"] = "  ist im Moment gebunden an ",
+		["Confirm"] = "M\195\182chtest du eine neue Bindung der Taste ",
+		["To"] = " an ",
+		["Yes"] = "Ja",
+		["No"] = "Nein",
+		["InCombat"] = "Sorry, du kannst Tastenk\195\188rzel nicht im Kampf binden..",
+		["Binding"] = "Tastenk\195\188rzel",
+		["Unbind"] = "Verbindung l\195\182sen",
+		["Cancel"] = "Abbrechen",
+		["Press"] = "Dr\195\188cke zu bindende Taste...\n\n",
+		["Now"] = "Aktuell: ",
+		["NotBound"] = "Nicht gebunden",
+	};
 end
 
