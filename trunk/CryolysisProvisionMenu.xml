@@ -145,7 +145,7 @@
 						CryolysisConfig.Button = this:GetValue();
 
 						Cryolysis_UpdateMainButtonAttributes();
-						</OnValueChanged>
+					</OnValueChanged>
 					<OnLeave>
 						GameTooltip:Hide();
 					</OnLeave>

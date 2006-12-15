@@ -1430,6 +1430,9 @@ function Cryolysis_UpdateMainButtonAttributes()
 				break;
 			end
 		end
+	elseif CryolysisConfig.Button == 5 then
+		CryolysisButton:SetAttribute("type1", "spell")
+		CryolysisButton:SetAttribute("spell", CRYOLYSIS_SPELL_TABLE[7].Name)
 	end
 end
 
