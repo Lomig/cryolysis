@@ -3369,7 +3369,7 @@ function Cryolysis_UpdateRevisions(fileName, svnRev)
 			Max = v
 		end
 	end
-	if ( string.len(Max) > 3 ) then
+	if ( string.len(Max) > 2 ) then
 		Max = string.sub(Max, 1, 1).."."..string.sub(Max, 2)
 	else
 		Max = "0."..Max
