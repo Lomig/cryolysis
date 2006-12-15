@@ -254,9 +254,14 @@ function Cryolysis_Initialize()
 --		if (CryolysisConfig.AntiFearAlert) then CryolysisAntiFearAlert_Button:SetChecked(1); end
 --		if (CryolysisConfig.ConcentrationAlert) then CryolysisConcentrationAlert_Button:SetChecked(1); end
 		if (CryolysisConfig.CryolysisLockServ) then CryolysisIconsLock_Button:SetChecked(1); end
+		if (CryolysisConfig.ManaStoneMenuPos == -34) then CryolysisManaStoneMenu_Button:SetChecked(1); end
 		if (CryolysisConfig.BuffMenuPos == -34) then CryolysisBuffMenu_Button:SetChecked(1); end
 		if (CryolysisConfig.PortalMenuPos == -34) then CryolysisPortalMenu_Button:SetChecked(1); end
 		if (CryolysisConfig.NoDragAll) then CryolysisLock_Button:SetChecked(1); end
+		
+		CryolysisManaStoneMenuAnchor_Slider:SetValue(CryolysisConfig.ManaStoneMenuAnchor);
+		CryolysisManaStoneMenuAnchor_SliderLow:SetText("");
+		CryolysisManaStoneMenuAnchor_SliderHigh:SetText("")
 		
 		CryolysisBuffMenuAnchor_Slider:SetValue(CryolysisConfig.BuffMenuAnchor);
 		CryolysisBuffMenuAnchor_SliderLow:SetText("");
@@ -400,6 +405,7 @@ function Cryolysis_LanguageInitialize()
 	----------------------------------------
 
 	CryolysisLock_Option:SetText(CRYOLYSIS_CONFIGURATION.MainLock);
+	CryolysisManaStoneMenu_Option:SetText(CRYOLYSIS_CONFIGURATION.ManaStoneMenu)
 	CryolysisBuffMenu_Option:SetText(CRYOLYSIS_CONFIGURATION.BuffMenu);
 	CryolysisPortalMenu_Option:SetText(CRYOLYSIS_CONFIGURATION.PortalMenu);
 	CryolysisSTimer_Option:SetText(CRYOLYSIS_CONFIGURATION.STimerLeft);

@@ -27,7 +27,7 @@
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="CryolysisGraphOptionMenu" relativeFrom="TOPLEFT">
 							<Offset>
-								<AbsDimension x="60" y="-80"/>
+								<AbsDimension x="60" y="-50"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -37,7 +37,7 @@
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="CryolysisGraphOptionMenu" relativeFrom="TOPLEFT">
 							<Offset>
-								<AbsDimension x="60" y="-100"/>
+								<AbsDimension x="60" y="-70"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -48,6 +48,16 @@
 						<Anchor point="TOPLEFT" relativeTo="CryolysisGraphOptionMenu" relativeFrom="TOPLEFT">
 							<Offset>
 								<AbsDimension x="60" y="-140"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="CryolysisManaStoneMenu_Option" inherits="GameFontNormalSmall">
+					<Color r="1.0" g="1.0" b="1.0" a="1"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="CryolysisGraphOptionMenu" relativeFrom="TOPLEFT">
+							<Offset>
+								<AbsDimension x="60" y="-110"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -171,7 +181,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="CryolysisGraphOptionMenu" relativeFrom="TOPLEFT">
 						<Offset>
-							<AbsDimension x="30" y="-75"/>
+							<AbsDimension x="30" y="-45"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -214,7 +224,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="CryolysisGraphOptionMenu" relativeFrom="TOPLEFT">
 						<Offset>
-							<AbsDimension x="30" y="-95"/>
+							<AbsDimension x="30" y="-65"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -236,6 +246,65 @@
 					</OnClick>
 				</Scripts>
 			</CheckButton>
+			<CheckButton name="CryolysisManaStoneMenu_Button" enableMouse="true" inherits="UICheckButtonTemplate" checked="false">
+				<Size>
+					<AbsDimension x="24" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="CryolysisGraphOptionMenu" relativeFrom="TOPLEFT">
+						<Offset>
+							<AbsDimension x="30" y="-105"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						if (this:GetChecked()) then
+							CryolysisConfig.ManaStoneMenuPos = -34;
+						else
+							CryolysisConfig.ManaStoneMenuPos = 34;
+						end
+						Cryolysis_CreateMenu();							
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Slider name="CryolysisManaStoneMenuAnchor_Slider" inherits="OptionsSliderTemplate" minValue="-50" maxValue="50" valueStep="2" virtual="true">
+				<Size>
+					<AbsDimension x="150" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="CryolysisGraphOptionMenu" relativeFrom="TOP">
+						<Offset>
+							<AbsDimension x="-30" y="95"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						_,_,_,BxOfs,ByOfs = CryolysisManaStoneMenu0:GetPoint();
+						CryolysisManaStoneMenu0:ClearAllPoints();
+						CryolysisManaStoneMenu0:SetPoint("CENTER", 1, CryolysisConfig.ManaStoneMenuAnchor);
+						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+						GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.Anchor.Text);
+					</OnEnter>
+					<OnValueChanged>
+						GameTooltip:SetText(this:GetValue());
+						if CryolysisConfig.ManaStoneMenuAnchor ~= this:GetValue() then
+							CryolysisConfig.ManaStoneMenuAnchor = this:GetValue();
+							CryolysisManaStoneMenu0:ClearAllPoints();
+							CryolysisManaStoneMenu0:SetPoint("CENTER", 1, CryolysisConfig.ManaStoneMenuAnchor);
+						end
+					</OnValueChanged>
+					<OnLeave>
+						GameTooltip:Hide();
+						if BxOfs > 2000 then
+							CryolysisManaStoneMenu0:ClearAllPoints();
+							CryolysisManaStoneMenu0:SetPoint("CENTER", 3000, 3000);
+							end
+						Cryolysis_UpdateMenuAnchor();
+					</OnLeave>
+				</Scripts>
+			</Slider>
 			<CheckButton name="CryolysisBuffMenu_Button" enableMouse="true" inherits="UICheckButtonTemplate" checked="false">
 				<Size>
 					<AbsDimension x="24" y="24"/>

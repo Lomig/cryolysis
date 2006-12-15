@@ -308,6 +308,7 @@ function Cryolysis_Localization_Dialog_En()
 		["ButtonLock"] = "Lock the buttons around the Cryolysis Sphere.",
 		["MainLock"] = "Lock Cryolysis Sphere.",
 		["BagSelect"] = "Selection of Food and drink Container",
+		["ManaStoneMenu"] = "Put mana stone menu on the left.",
 		["BuffMenu"] = "Put buff menu on the left",
 		["PortalMenu"] = "Put portal menu on the left",
 		["STimerLeft"] = "Show timers on the left side of the button",
