@@ -799,6 +799,9 @@ function Cryolysis_OnEvent(event)
 			Cryolysis_PolyCheck("break",spell,creatureName);
 		end
 	elseif event == "PLAYER_REGEN_DISABLED" then
+		if ( _G["CryolysisGeneralFrame"]:IsVisible() ) then
+			_G["CryolysisGeneralFrame"]:Hide()
+		end
 		PlayerCombat = true;
 	elseif event == "MERCHANT_SHOW" then
 		Cryolysis_MerchantCheck();
