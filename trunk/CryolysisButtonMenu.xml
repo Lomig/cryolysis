@@ -63,6 +63,7 @@
 				SerenityButtonTexture.Stones.Base[4] = 0;
 			</OnValueChanged>
 			<OnLeave>
+				Cryolysis_UpdateRightSpellAttributes();
 				GameTooltip:Hide();
 			</OnLeave>
 		</Scripts>
@@ -650,6 +651,7 @@
 					</OnValueChanged>
 					<OnLeave>
 						GameTooltip:Hide();
+					Cryolysis_UpdateLeftSpellAttributes()
 					</OnLeave>
 				</Scripts>
 			</Slider>
@@ -710,6 +712,7 @@
 					</OnValueChanged>
 					<OnLeave>
 						GameTooltip:Hide();
+						Cryolysis_UpdateRightSpellAttributes();
 					</OnLeave>
 				</Scripts>
 			</Slider>
