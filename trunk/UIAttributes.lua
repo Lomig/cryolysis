@@ -88,7 +88,7 @@ end
 function Cryolysis_UpdateLeftSpellAttributes()
 	local spellLeft = {22, 4, 13, 23, 15, 50, 66, 35};
 	local spellRight = {24, 2, 1, 25, 20, 50, 66, 35};
-	local spellName1, spellName2
+	local spellName1, spellName2 = nil, nil
 	if CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.LeftSpell] ].ID then
 		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.LeftSpell] ].ID, "spell");
 	end
@@ -96,11 +96,11 @@ function Cryolysis_UpdateLeftSpellAttributes()
 		spellName2 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.LeftSpell] ].ID, "spell");
 	end
 
-	local f = _G["CryolysisRightSpellButton"]
+	local f = _G["CryolysisLeftSpellButton"]
 	if ( not InCombatLockdown() ) then
 		f:SetAttribute("*type*", "spell")
-		if spellName1 then f:SetAttribute("spell1", spellName1) end
-		if spellName2 then f:SetAttribute("spell2", spellName2) end
+		if spellName1 then f:SetAttribute("spell1", spellName1) else f:SetAttribute("spell1", nil) end
+		if spellName2 then f:SetAttribute("spell2", spellName2) else f:SetAttribute("spell2", nil) end
 	end
 end
 
@@ -115,7 +115,7 @@ end
 function Cryolysis_UpdateRightSpellAttributes()
 	local spellLeft = {22, 4, 13, 23, 15, 50, 66, 35};
 	local spellRight = {24, 2, 1, 25, 20, 50, 66, 35};
-	local spellName1, spellName2
+	local spellName1, spellName2 = nil, nil
 	if CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.RightSpell] ].ID then
 		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.RightSpell] ].ID, "spell");
 	end
@@ -126,8 +126,8 @@ function Cryolysis_UpdateRightSpellAttributes()
 	local f = _G["CryolysisRightSpellButton"]
 	if ( not InCombatLockdown() ) then
 		f:SetAttribute("*type*", "spell")
-		if spellName1 then f:SetAttribute("spell1", spellName1) end
-		if spellName2 then f:SetAttribute("spell2", spellName2) end
+		if spellName1 then f:SetAttribute("spell1", spellName1) else f:SetAttribute("spell1", nil) end
+		if spellName2 then f:SetAttribute("spell2", spellName2) else f:SetAttribute("spell2", nil) end
 	end
 end
 
