@@ -3,7 +3,7 @@
 ## Title: Cryolysis: Reborn
 ## Version: 2.0
 ## Author: The Cryolysis: Reborn Developement Team
-## X-Credits: 
+## X-Credits: Myrridin, Lomig, Philemon
 ## X-eMail: 
 ## X-Category: Mage
 ## Notes: Management of Mage spells, abilities, and reagents
