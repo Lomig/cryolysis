@@ -2917,7 +2917,6 @@ function Cryolysis_UnitHasEffect(unit, effect)
 end
 
 function Cryolysis_Trade(Type)
-	Cryolysis_Msg("Debug : Trade "..Type.." asked", "USER");
 	if Count[Type] > 0 then
 		if (UnitExists("target")
 			and UnitIsPlayer("target")
