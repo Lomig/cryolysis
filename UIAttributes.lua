@@ -140,15 +140,15 @@ function Cryolysis_UpdateRightSpellAttributes()
 	local spellLeft = {22, 4, 13, 23, 15, 50, 66, 35};
 	local spellRight = {24, 2, 1, 25, 20, 50, 66, 35};
 	local spellName1, spellName2 = nil, nil
-	if CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.LeftSpell] ].ID then
-		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.LeftSpell] ].ID, "spell");
-	elseif CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.LeftSpell] ].ID then
-		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.LeftSpell] ].ID, "spell");
+	if CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.RightSpell] ].ID then
+		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.RightSpell] ].ID, "spell");
+	elseif CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.RightSpell] ].ID then
+		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.RightSpell] ].ID, "spell");
 	end
-	if CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.LeftSpell] ].ID then	
-		spellName2 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.LeftSpell] ].ID, "spell");
-	elseif CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.LeftSpell] ].ID then
-		spellName2 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.LeftSpell] ].ID, "spell");
+	if CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.RightSpell] ].ID then	
+		spellName2 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.RightSpell] ].ID, "spell");
+	elseif CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.RightSpell] ].ID then
+		spellName2 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.RightSpell] ].ID, "spell");
 	end
 
 	local f = _G["CryolysisRightSpellButton"]
