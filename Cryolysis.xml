@@ -238,7 +238,7 @@
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
-	<Button name="CryolysisManastoneButton" inherits="SecureAnchorButtonTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisManastoneButton" inherits="SecureAnchorUpDownTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -362,7 +362,7 @@
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
 	</Button>
 
-	<Button name="CryolysisBuffMenuButton" inherits="SecureAnchorButtonTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisBuffMenuButton" inherits="SecureAnchorUpDownTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
@@ -483,7 +483,7 @@
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\SlowFall-01"/>
 	</Button>
 
-	<Button name="CryolysisPortalMenuButton" inherits="SecureAnchorButtonTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisPortalMenuButton" inherits="SecureAnchorUpDownTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>
