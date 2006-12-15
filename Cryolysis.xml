@@ -658,5 +658,5 @@
 		</Scripts>
 	</Button>
 
-	<GameTooltip name="CryolysisTooltip" frameStrata="LOW" toplevel="true" movable="true" parent="UIParent" inherits="GameTooltipTemplate" />
+	<GameTooltip name="CryolysisTooltip" frameStrata="LOW" toplevel="true" movable="true" parent="UIParent" inherits="GameTooltipTemplate" hidden="true"/>
 </Ui>
