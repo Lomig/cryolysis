@@ -1,16 +1,5 @@
 local _G = getfenv(0)
 
-function Cryolysis_InitMenuButton(f, texture, spell, anchor)
-	_G[f:GetName().."Icon"]:SetTexture("Interface\\Icons\\"..texture)
-	local t = f:GetHighlightTexture()
-	t:SetVertexColor( 75/255, 216/255, 241/255 )
-	f:SetHighlightTexture(t)
-	f.spell = spell
-	f.anchor = anchor
-	f:RegisterForClicks("LeftButtonUp", "RightButtonUp")
-	f:Hide()
-end
-
 function Cryolysis_UpdateDrinkButtonAttributes()
 	local f = _G["CryolysisDrinkButton"]
 	assert(f, "Error: Drink button not created or named properly!")
@@ -141,5 +130,16 @@ function Cryolysis_UpdateManaStoneButtonAttributes(Manastone, item)
 			f:SetAttribute("spell2", spellName);
 		end
 	end
+end
+
+function Cryolysis_InitMenuButton(f, texture, spell, anchor)
+	_G[f:GetName().."Icon"]:SetTexture("Interface\\Icons\\"..texture)
+	local t = f:GetHighlightTexture()
+	t:SetVertexColor( 75/255, 216/255, 241/255 )
+	f:SetHighlightTexture(t)
+	f.spell = spell
+	f.anchor = anchor
+	f:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+	f:Hide()
 end
 Cryolysis_UpdateRevisions("UIAttributes.lua", "$Rev$")
