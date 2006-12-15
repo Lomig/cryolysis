@@ -76,6 +76,7 @@ CRYOLYSIS_UNIT_MAGE = "Magier";
 CRYOLYSIS_DEBUFF_SRCH = "(.+) ist von (.+) betroffen."
 CRYOLYSIS_POLY_SRCH = "(.+) schwindet von (.+)."
 
+function Cryolysis_SpellTableBuild()
 CRYOLYSIS_SPELL_TABLE = {
 	[1] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Magie verst\195\164rken",				Length = 600,	Type = 0},
@@ -212,6 +213,8 @@ CRYOLYSIS_SPELL_TABLE = {
 	[67] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Poly Diminished",		Length = 15,	Type = 6},	
 };
+end
+Cryolysis_SpellTableBuild()
 -- Type 0 = No Timer
 -- Type 1 = Principle permanent timer
 -- Type 2 = permanent timer
