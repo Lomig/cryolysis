@@ -460,73 +460,81 @@ end
 
 function Cryolysis_UpdateMenuAnchor()
 
-	-- CryolysisManastoneButton is defined as the anchor of our State Driver.
-	-- In XML, it inherits from SecureAnchorButtonTemplate
-	-- Button, because it has to be clicked to raise events.
-	
-	-- This appears to be needed to raise the state of Anchor's children.
-	-- I do not really understand why we would not want to raise the state of children, as we are using State Driver in this goal
-	CryolysisManastoneButton:SetAttribute("*childraise*", true);
-	-- This is used to change the children state-anchor attribute. Here, state-anchor is changed on click.
-	-- The ^ indicates that the attribute must be set on each click.
-	-- If there is not that symbol, the attribute is set only if the new attribute is different from the former one.
-	CryolysisManastoneButton:SetAttribute("*childstate*", "^click");
+	-- Manastone Menu
+	CryolysisManaStoneMenu0:SetAttribute("statemap-anchor", "$input");
+	CryolysisManaStoneMenu0:SetAttribute("delaystatemap-anchor", "0");
+	CryolysisManaStoneMenu0:SetAttribute("delaytimemap-anchor", "10");
+	CryolysisManaStoneMenu0:SetAttribute("delayhovermap-anchor", "true");
 
-	-- CryolysisManaStoneMenu0 is defined as the header of our State Driver.
-	-- I do not know why the hell this has been invented, as far as I am concerned,
-	-- I think that everything could have been done with only an anchor/trigger and child buttons.
-	-- In XML, it inherits SecureStateHeaderTemplate.
-	
-	-- This line manage the state changes.
-	-- When the anchor is clicked, if the state was 0 it becomes 1
-	-- If the state was 1, it becomes 0
-	CryolysisManaStoneMenu0:SetAttribute("statemap-anchor-click", "0-1");
-	-- Set the header as the child of our anchor CryolysisManastoneButton
-	CryolysisManastoneButton:SetAttribute("anchorchild", CryolysisManaStoneMenu0);
-	-- The part I am proud of :P
-	-- This change the position of the header according to its state.
-	-- The position is by default from CENTER, CENTER, from its parent frame. 
-	-- That is why I made CryolysisManaStoneMenu0 a child of CryolysisManastoneButton in XML.
-	-- In state 0, x and y are set to 3000. That is to say, outside the screen even on a 35inches screen :P
-	-- In state 1, you see that our header is quite near our anchor, With the y offset as set in the option menu.
+	CryolysisManastoneButton:SetAttribute("onmouseupbutton", "mup");
+	CryolysisManastoneButton:SetAttribute("onmousedownbutton", "mdn");
+	CryolysisManastoneButton:SetAttribute("*anchorchild-mdn", CryolysisManaStoneMenu0);
+	CryolysisManastoneButton:SetAttribute("*childofsx-mdn", 0);
+	CryolysisManastoneButton:SetAttribute("*childofsy-mdn", 0);
+	CryolysisManastoneButton:SetAttribute("*childpoint-mdn", "LEFT");
+	CryolysisManastoneButton:SetAttribute("*childrelpoint-mdn", "RIGHT");
+	CryolysisManastoneButton:SetAttribute("*childstate-mdn", "^mousedown");
+	CryolysisManastoneButton:SetAttribute("*childreparent-mdn", "true");
+
+	CryolysisManastoneButton:SetAttribute("*anchorchild-mup", CryolysisManaStoneMenu0);
+	CryolysisManastoneButton:SetAttribute("*childstate-mup", "mouseup");
+	CryolysisManastoneButton:SetAttribute("*childverify-mup", true);
+
+	CryolysisManastoneButton:SetAttribute("state", 0)
+
 	CryolysisManaStoneMenu0:SetAttribute("headofsx", "0:3000;1:1");
 	CryolysisManaStoneMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.ManaStoneMenuAnchor);
 
---[[
+	-- Buff Menu
+	CryolysisBuffMenu0:SetAttribute("statemap-anchor", "$input");
+	CryolysisBuffMenu0:SetAttribute("delaystatemap-anchor", "0");
+	CryolysisBuffMenu0:SetAttribute("delaytimemap-anchor", "10");
+	CryolysisBuffMenu0:SetAttribute("delayhovermap-anchor", "true");
 
-	-- What I have not done :
-	for i=1, 4 ,1 do
-		local btn = getglobal("CryolysisManaStoneMenu"..i);
-		CryolysisManaStoneMenu0:SetAttribute("addchild", btn);
-	end
+	CryolysisBuffMenuButton:SetAttribute("onmouseupbutton", "mup");
+	CryolysisBuffMenuButton:SetAttribute("onmousedownbutton", "mdn");
+	CryolysisBuffMenuButton:SetAttribute("*anchorchild-mdn", CryolysisBuffMenu0);
+	CryolysisBuffMenuButton:SetAttribute("*childofsx-mdn", 0);
+	CryolysisBuffMenuButton:SetAttribute("*childofsy-mdn", 0);
+	CryolysisBuffMenuButton:SetAttribute("*childpoint-mdn", "LEFT");
+	CryolysisBuffMenuButton:SetAttribute("*childrelpoint-mdn", "RIGHT");
+	CryolysisBuffMenuButton:SetAttribute("*childstate-mdn", "^mousedown");
+	CryolysisBuffMenuButton:SetAttribute("*childreparent-mdn", "true");
 
-	This would have set every buttons as a child of the header. We cannot set button as child of the anchor, though.
-	With this, the state of all children are also driven by the anchor/header state. I still do not exactly know how.
-	I think too that the anchor/header state can be driven by action on them.
-	But it is only because I am a psychic, and I would ahve done such a system if I was Iriel.
+	CryolysisBuffMenuButton:SetAttribute("*anchorchild-mup", CryolysisBuffMenu0);
+	CryolysisBuffMenuButton:SetAttribute("*childstate-mup", "mouseup");
+	CryolysisBuffMenuButton:SetAttribute("*childverify-mup", true);
 
-	-- What I will try :
-	-- To include a delay on the header to automatically switch from state 1 to state 0.
-	-- Wish me good luck :P
-
-
---]]
+	CryolysisBuffMenuButton:SetAttribute("state", 0)
 
 
-
-
-	CryolysisBuffMenuButton:SetAttribute("*childraise*", true);
-	CryolysisBuffMenuButton:SetAttribute("*childstate*", "^click");
-	CryolysisBuffMenu0:SetAttribute("statemap-anchor-click", "0-1");
-	CryolysisBuffMenuButton:SetAttribute("anchorchild", CryolysisBuffMenu0);
 	CryolysisBuffMenu0:SetAttribute("headofsx", "0:3000;1:1");
 	CryolysisBuffMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.BuffMenuAnchor);
 
-	CryolysisPortalMenuButton:SetAttribute("*childraise*", true);
-	CryolysisPortalMenuButton:SetAttribute("*childstate*", "^click");
-	CryolysisPortalMenu0:SetAttribute("statemap-anchor-click", "0-1");
-	CryolysisPortalMenuButton:SetAttribute("anchorchild", CryolysisPortalMenu0);
+	-- Portal Menu
+	CryolysisPortalMenu0:SetAttribute("statemap-anchor", "$input");
+	CryolysisPortalMenu0:SetAttribute("delaystatemap-anchor", "0");
+	CryolysisPortalMenu0:SetAttribute("delaytimemap-anchor", "10");
+	CryolysisPortalMenu0:SetAttribute("delayhovermap-anchor", "true");
+
+	CryolysisPortalMenuButton:SetAttribute("onmouseupbutton", "mup");
+	CryolysisPortalMenuButton:SetAttribute("onmousedownbutton", "mdn");
+	CryolysisPortalMenuButton:SetAttribute("*anchorchild-mdn", CryolysisPortalMenu0);
+	CryolysisPortalMenuButton:SetAttribute("*childofsx-mdn", 0);
+	CryolysisPortalMenuButton:SetAttribute("*childofsy-mdn", 0);
+	CryolysisPortalMenuButton:SetAttribute("*childpoint-mdn", "LEFT");
+	CryolysisPortalMenuButton:SetAttribute("*childrelpoint-mdn", "RIGHT");
+	CryolysisPortalMenuButton:SetAttribute("*childstate-mdn", "^mousedown");
+	CryolysisPortalMenuButton:SetAttribute("*childreparent-mdn", "true");
+
+	CryolysisPortalMenuButton:SetAttribute("*anchorchild-mup", CryolysisPortalMenu0);
+	CryolysisPortalMenuButton:SetAttribute("*childstate-mup", "mouseup");
+	CryolysisPortalMenuButton:SetAttribute("*childverify-mup", true);
+
+	CryolysisPortalMenuButton:SetAttribute("state", 0)
+
 	CryolysisPortalMenu0:SetAttribute("headofsx", "0:3000;1:1");
 	CryolysisPortalMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.PortalMenuAnchor);
 end
+
 Cryolysis_UpdateRevisions("CryolysisInitialize.lua", "$Rev$")
