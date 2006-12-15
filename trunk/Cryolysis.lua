@@ -1830,16 +1830,16 @@ function Cryolysis_UpdateIcons()
 		Sphere.display = math.floor(UnitMana("player") / UnitManaMax("player") * 100);
 		Sphere.display = tostring(Sphere.display).."%";
 	elseif CryolysisConfig.CountType == 7 then -- Mana gem cooldown
-		Sphere.display = gsub("A1 B2 C3 D4",tostring(Manastone.currentStone),"("..tostring(Manastone.currentStone)..")");
+		Sphere.display = string.gsub("A1 B2 C3 D4",tostring(Manastone.currentStone),"("..tostring(Manastone.currentStone)..")");
 		for i=4, 1, -1 do
 			if Manastone.OnHand[i] then
-          		Sphere.display = gsub(Sphere.display,string.char(64+i),"<lightGreen2>");
+          		Sphere.display = string.gsub(Sphere.display,string.char(64+i),"<lightGreen2>");
 			elseif PlayerCombat and CryolysisConfig.Button == 4 then
-			    Sphere.display = gsub(Sphere.display,string.char(64+i),"<brightGreen>");
+			    Sphere.display = string.gsub(Sphere.display,string.char(64+i),"<brightGreen>");
 			elseif not Manastone.RankID[i] then
-			    Sphere.display = gsub(Sphere.display," "..string.char(64+i)..tostring(i),"");
+			    Sphere.display = string.gsub(Sphere.display," "..string.char(64+i)..tostring(i),"");
 			else
-			    Sphere.display = gsub(Sphere.display,string.char(64+i),"<red>");
+			    Sphere.display = string.gsub(Sphere.display,string.char(64+i),"<red>");
 			end
 		end
 		if CryolysisPrivate.ManastoneCooldown > 0 then
@@ -2807,8 +2807,6 @@ function Cryolysis_FindSpellAttribute(type, attribute, array)
 	return nil;
 end
 
-
-
 ------------------------------------------------------------------------------------------------------
 -- OTHER FUNCTIONS
 ------------------------------------------------------------------------------------------------------
@@ -2821,6 +2819,7 @@ function Cryolysis_ButtonTextUpdate()
 			CryolysisPrivate.highestWaterId = v
 			CryolysisPrivate.highestWaterCount = c
 			CryolysisDrinkCount:SetText(c)
+			Count.Drink = c
 			break
 		end
 	end
@@ -2831,6 +2830,7 @@ function Cryolysis_ButtonTextUpdate()
 			CryolysisPrivate.highestFoodId = v
 			CryolysisPrivate.highestFoodCount = c
 			CryolysisFoodCount:SetText(c)
+			Count.Food = c
 			break
 		end
 	end
