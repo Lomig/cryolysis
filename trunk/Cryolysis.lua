@@ -1959,7 +1959,6 @@ function Cryolysis_UpdateIcons()
 
 	-- Mana Gem
 	-----------------------------------------------
-
 	-- Mode "I have one" (2)/"I do not have any" (1)
 	for i = 1, StoneMaxRank[2], 1 do
 		if (Manastone.OnHand[i]) then
