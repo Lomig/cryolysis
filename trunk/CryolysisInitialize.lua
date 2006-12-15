@@ -461,6 +461,8 @@ end
 function Cryolysis_UpdateMenuAnchor()
 
 	-- Manastone Menu
+	CryolysisManastoneButton:SetAttribute("*childraise*", true);
+
 	CryolysisManaStoneMenu0:SetAttribute("statemap-anchor", "$input");
 	CryolysisManaStoneMenu0:SetAttribute("delaystatemap-anchor", "0");
 	CryolysisManaStoneMenu0:SetAttribute("delaytimemap-anchor", "10");
@@ -486,6 +488,8 @@ function Cryolysis_UpdateMenuAnchor()
 	CryolysisManaStoneMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.ManaStoneMenuAnchor);
 
 	-- Buff Menu
+	CryolysisBuffMenuButton:SetAttribute("*childraise*", true);
+
 	CryolysisBuffMenu0:SetAttribute("statemap-anchor", "$input");
 	CryolysisBuffMenu0:SetAttribute("delaystatemap-anchor", "0");
 	CryolysisBuffMenu0:SetAttribute("delaytimemap-anchor", "10");
@@ -512,6 +516,8 @@ function Cryolysis_UpdateMenuAnchor()
 	CryolysisBuffMenu0:SetAttribute("headofsy", "0:3000;1:"..CryolysisConfig.BuffMenuAnchor);
 
 	-- Portal Menu
+	CryolysisPortalMenuButton:SetAttribute("*childraise*", true);
+
 	CryolysisPortalMenu0:SetAttribute("statemap-anchor", "$input");
 	CryolysisPortalMenu0:SetAttribute("delaystatemap-anchor", "0");
 	CryolysisPortalMenu0:SetAttribute("delaytimemap-anchor", "10");
