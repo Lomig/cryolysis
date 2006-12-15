@@ -207,13 +207,6 @@ function Cryolysis_Localization_Dialog_En()
 		["PigBreak"] = "Interface\\AddOns\\Cryolysis\\sounds\\Pig02.mp3",
 	};
 
-
---	CRYOLYSIS_NIGHTFALL_TEXT = {
---		["NoBoltSpell"] = "You do not seem to have any Shadow Bolt Spell.",
---		["Message"] = "<white>S<lightPurple1>h<lightPurple2>a<purple>d<darkPurple1>o<darkPurple2>w T<darkPurple1>r<purple>a<lightPurple2>n<lightPurple1>c<white>e"
---	};
-
-
 	CRYOLYSIS_MESSAGE = {
 		["Error"] = {
 			["RuneOfTeleportationNotPresent"] = "You need a Rune of Teleportation to do that!",
@@ -255,12 +248,8 @@ function Cryolysis_Localization_Dialog_En()
 		["Help"] = {
 			"/cryo recall -- Center Cryolysis and all buttons in the middle of the screen",
 			"/cryo sm -- Replace messages with a short raid-ready version",
-			"/cryo decurse -- cast Remove Lesser curse using decursive feature",
-			"/cryo poly -- randomly cast between available polymorph spells",
-			"/cryo coldblock -- Activate Iceblock or Cold Snap",
 			"/cryo reset -- Restore and reload default Cryolysis configurations",
-			"/serenity toggle -- hide/show the main serenity sphere",
-			"change the spell buttons by adjusting the sliders in the button menu",			
+			"/cryo toggle -- hide/show the main Cryolysis sphere",	
 		},
 		["EquipMessage"] = "Equip ",
 		["SwitchMessage"] = " instead of ",
