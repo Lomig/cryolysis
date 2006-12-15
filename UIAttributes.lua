@@ -59,7 +59,12 @@ function Cryolysis_UpdateDrinkButtonAttributes()
 		f:SetAttribute("type3", "Trade");
 		f.Trade = function() Cryolysis_Trade("Drink"); end
 		-- End of adding
-
+		if not CryolysisAlreadyBind["CryolysisDrinkButton"] then
+			CryolysisAlreadyBind["CryolysisDrinkButton"] = true;
+			table.insert(CryolysisBinding, {"Use Water", "CLICK CryolysisDrinkButton:LeftButton"});
+			table.insert(CryolysisBinding, {CRYOLYSIS_SPELL_TABLE[11].Name, "CLICK CryolysisDrinkButton:RightButton"});
+			table.insert(CryolysisBinding, {"Trade Water", "CLICK CryolysisDrinkButton:MiddleButton"});
+		end
 	end
 end
 
@@ -82,6 +87,12 @@ function Cryolysis_UpdateFoodButtonAttributes()
 		f:SetAttribute("type3", "Trade");
 		CryolysisFoodButton.Trade = function() Cryolysis_Trade("Food"); end
 		-- End of adding
+		if not CryolysisAlreadyBind["CryolysisFoodButton"] then
+			CryolysisAlreadyBind["CryolysisFoodButton"] = true;
+			table.insert(CryolysisBinding, {"Use Food", "CLICK CryolysisFoodButton:LeftButton"});
+			table.insert(CryolysisBinding, {CRYOLYSIS_SPELL_TABLE[10].Name, "CLICK CryolysisFoodButton:RightButton"});
+			table.insert(CryolysisBinding, {"Trade Food", "CLICK CryolysisFoodButton:MiddleButton"});
+		end
 	end
 end
 
@@ -91,9 +102,13 @@ function Cryolysis_UpdateLeftSpellAttributes()
 	local spellName1, spellName2 = nil, nil
 	if CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.LeftSpell] ].ID then
 		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.LeftSpell] ].ID, "spell");
+	elseif CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.LeftSpell] ].ID then
+		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.LeftSpell] ].ID, "spell");
 	end
 	if CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.LeftSpell] ].ID then	
 		spellName2 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.LeftSpell] ].ID, "spell");
+	elseif CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.LeftSpell] ].ID then
+		spellName2 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.LeftSpell] ].ID, "spell");
 	end
 
 	local f = _G["CryolysisLeftSpellButton"]
@@ -102,6 +117,11 @@ function Cryolysis_UpdateLeftSpellAttributes()
 		if spellName1 then f:SetAttribute("spell1", spellName1) else f:SetAttribute("spell1", nil) end
 		if spellName2 then f:SetAttribute("spell2", spellName2) else f:SetAttribute("spell2", nil) end
 	end
+	if not CryolysisAlreadyBind["CryolysisLeftSpellButton"] then
+		CryolysisAlreadyBind["CryolysisLeftSpellButton"] = true;
+		table.insert(CryolysisBinding, {"Left Spell Menu (left clicked)", "CLICK CryolysisLeftSpellButton:LeftButton"});
+		table.insert(CryolysisBinding, {"Left Spell Menu (right clicked)", "CLICK CryolysisLeftSpellButton:RightButton"});
+	end
 end
 
 function Cryolysis_UpdateEvocationAttributes()
@@ -109,6 +129,10 @@ function Cryolysis_UpdateEvocationAttributes()
 	if ( not InCombatLockdown() ) then
 		f:SetAttribute("*type*", "spell")
 		f:SetAttribute("spell", CRYOLYSIS_SPELL_TABLE[49].Name)
+		if not CryolysisAlreadyBind["CryolysisEvocationButton"] then
+			CryolysisAlreadyBind["CryolysisEvocationButton"] = true;
+			table.insert(CryolysisBinding, {CRYOLYSIS_SPELL_TABLE[49].Name, "CLICK CryolysisEvocationButton:LeftButton"});
+		end
 	end
 end
 
@@ -116,11 +140,15 @@ function Cryolysis_UpdateRightSpellAttributes()
 	local spellLeft = {22, 4, 13, 23, 15, 50, 66, 35};
 	local spellRight = {24, 2, 1, 25, 20, 50, 66, 35};
 	local spellName1, spellName2 = nil, nil
-	if CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.RightSpell] ].ID then
-		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.RightSpell] ].ID, "spell");
+	if CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.LeftSpell] ].ID then
+		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.LeftSpell] ].ID, "spell");
+	elseif CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.LeftSpell] ].ID then
+		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.LeftSpell] ].ID, "spell");
 	end
-	if CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.RightSpell] ].ID then	
-		spellName2 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.RightSpell] ].ID, "spell");
+	if CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.LeftSpell] ].ID then	
+		spellName2 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellRight[CryolysisConfig.LeftSpell] ].ID, "spell");
+	elseif CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.LeftSpell] ].ID then
+		spellName2 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[CryolysisConfig.LeftSpell] ].ID, "spell");
 	end
 
 	local f = _G["CryolysisRightSpellButton"]
@@ -128,6 +156,11 @@ function Cryolysis_UpdateRightSpellAttributes()
 		f:SetAttribute("*type*", "spell")
 		if spellName1 then f:SetAttribute("spell1", spellName1) else f:SetAttribute("spell1", nil) end
 		if spellName2 then f:SetAttribute("spell2", spellName2) else f:SetAttribute("spell2", nil) end
+	end
+	if not CryolysisAlreadyBind["CryolysisRightSpellButton"] then
+		CryolysisAlreadyBind["CryolysisRightSpellButton"] = true;
+		table.insert(CryolysisBinding, {"Right Spell Menu (left clicked)", "CLICK CryolysisRightSpellButton:LeftButton"});
+		table.insert(CryolysisBinding, {"Right Spell Menu (right clicked)", "CLICK CryolysisRightSpellButton:RightButton"});
 	end
 end
 
@@ -143,11 +176,20 @@ function Cryolysis_UpdateBuffButtonAttributes()
 		f:SetAttribute("*type*", "spell")
 		f:SetAttribute("spell1", CRYOLYSIS_SPELL_TABLE[tonumber(spellOne)].Name)
 		f:SetAttribute("spell2", CRYOLYSIS_SPELL_TABLE[tonumber(spellTwo)].Name)
+		if not CryolysisAlreadyBind["CryolysisBuffMenu"..i] then
+			CryolysisAlreadyBind["CryolysisBuffMenu"..i] = true;
+			table.insert(CryolysisBinding2, {CRYOLYSIS_SPELL_TABLE[tonumber(spellOne)].Name, "CLICK CryolysisBuffMenu"..i..":LeftButton"});
+			table.insert(CryolysisBinding2, {CRYOLYSIS_SPELL_TABLE[tonumber(spellTwo)].Name, "CLICK CryolysisBuffMenu"..i..":RightButton"});
+		end
 	end
 	for i = 6, 8, 1 do
 		local f = _G["CryolysisBuffMenu"..i]
 		f:SetAttribute("*type*", "spell")
 		f:SetAttribute("spell", CRYOLYSIS_SPELL_TABLE[ buffButtonAttr[i] ].Name)
+		if not CryolysisAlreadyBind["CryolysisBuffMenu"..i] then
+			CryolysisAlreadyBind["CryolysisBuffMenu"..i] = true;
+			table.insert(CryolysisBinding2, {CRYOLYSIS_SPELL_TABLE[ buffButtonAttr[i] ].Name, "CLICK CryolysisBuffMenu"..i..":LeftButton"});
+		end
 	end
 end
 
@@ -161,6 +203,11 @@ function Cryolysis_UpdatePortalButtonAttributes(PortalTempID)
 		if CRYOLYSIS_SPELL_TABLE[ PortalTempID[i] ].ID then
 			f:SetAttribute("spell", CRYOLYSIS_SPELL_TABLE[ PortalTempID[i] ].Name);
 		end
+		if not CryolysisAlreadyBind["CryolysisPortalMenu"..i] then
+			CryolysisAlreadyBind["CryolysisPortalMenu"..i] = true;
+			table.insert(CryolysisBinding2, {CRYOLYSIS_SPELL_TABLE[ PortalTempID[i] ].Name, "CLICK CryolysisPortalMenu"..i..":LeftButton"});
+		end
+
 	end
 end
 
@@ -174,6 +221,10 @@ function Cryolysis_UpdateMountButton(MountName, MountType)
 	else
 		CryolysisMountButton:SetAttribute("type1", "item");
 		CryolysisMountButton:SetAttribute("item1", MountName);
+	end
+	if not CryolysisAlreadyBind["CryolysisMountButton"] then
+		CryolysisAlreadyBind["CryolysisMountButton"] = true;
+		table.insert(CryolysisBinding, {MountName, "CLICK CryolysisMountButton:LeftButton"});
 	end
 end
 
@@ -189,6 +240,11 @@ function Cryolysis_UpdateManaStoneButtonAttributes(Manastone, item)
 			local spellName = GetSpellName(Manastone.RankID[i], "spell");
 			f:SetAttribute("item1", CRYOLYSIS_STONE_RANK2[i]);
 			f:SetAttribute("spell2", spellName);
+			if not CryolysisAlreadyBind["CryolysisManaStoneMenu"..i] then
+				CryolysisAlreadyBind["CryolysisManaStoneMenu"..i] = true;
+				table.insert(CryolysisBinding2, {CRYOLYSIS_STONE_RANK2[i], "CLICK CryolysisManaStoneMenu"..i..":LeftButton"});
+				table.insert(CryolysisBinding2, {spellName, "CLICK CryolysisManaStoneMenu"..i..":RightButton"});
+			end
 		end
 	end
 end

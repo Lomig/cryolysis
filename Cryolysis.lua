@@ -129,6 +129,11 @@ Default_CryolysisConfig = {
 };
 
 CryolysisConfig = {};
+CryolysisBinding = {};
+CryolysisBinding2 = {};
+CryolysisAlreadyBind={};
+
+
 local Debug = false;
 Cryolysis_Loaded = false;
 

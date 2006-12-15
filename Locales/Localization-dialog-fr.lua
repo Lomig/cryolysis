@@ -387,4 +387,19 @@ function Cryolysis_Localization_Dialog_Fr()
 			["SlowFall"] = CRYOLYSIS_SPELL_TABLE[35].Name, -- Slow Fall
 		},	
 	};
+
+	CRYOLYSIS_BINDING = {
+		["Current"] = " est actuellement associ\195\169 \195\160 ",
+		["Confirm"] = "Voulez-vous associer ",
+		["To"] = " \195\160 ",
+		["Yes"] = "Oui",
+		["No"] = "Non",
+		["InCombat"] = "D\195\169sol\195\169, vous ne pouvez pas changer les raccourcis claviers en combat.",
+		["Binding"] = "Raccourcis",
+		["Unbind"] = "Supprimer",
+		["Cancel"] = "Annuler",
+		["Press"] = "Appuyez sur la touche\n\n\195\160 associer...\n\n\n\n",
+		["Now"] = "Actuellement : ",
+		["NotBound"] = "Non affect\195\169e",
+	};
 end

@@ -46,3 +46,5 @@ CryolysisMessageMenu.xml
 CryolysisButtonMenu.xml
 CryolysisTimerMenu.xml
 CryolysisGraphOptionMenu.xml
+
+ClickBinder.lua

@@ -759,27 +759,34 @@
 					</OnClick>
 				</Scripts>
 			</CheckButton>
-		<!--	<CheckButton name="CryolysisRuneText_Button" enableMouse="true" inherits="UICheckButtonTemplate" checked="false">
-				<Size>
-					<AbsDimension x="24" y="24"/>
-				</Size>
+			<Button name="Cryolysis_Binding1" inherits="OptionsButtonTemplate" text="Bindings 1">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="CryolysisButtonMenu" relativeFrom="TOPLEFT">
 						<Offset>
-							<AbsDimension x="175" y="-195"/>
+							<AbsDimension x="140" y="-195"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						if (this:GetChecked()) then
-							CryolysisConfig.RuneCountText = true;
-						else
-							CryolysisConfig.RuneCountText = false;
-						end
+						ClickBinder.Open("Cryolysis - "..CRYOLYSIS_BINDING.Binding, CryolysisBinding)
 					</OnClick>
 				</Scripts>
-			</CheckButton> -->
+			</Button>
+			<Button name="Cryolysis_Binding2" inherits="OptionsButtonTemplate" text="Bindings 2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="CryolysisButtonMenu" relativeFrom="TOPLEFT">
+						<Offset>
+							<AbsDimension x="240" y="-195"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						ClickBinder.Open("Cryolysis - "..CRYOLYSIS_BINDING.Binding, CryolysisBinding2)
+					</OnClick>
+				</Scripts>
+			</Button>
 			<Button name="ReorderLeft">
 				<Size>
 					<AbsDimension x="29" y="29"/>
