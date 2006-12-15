@@ -302,6 +302,7 @@ function Cryolysis_Localization_Dialog_Fr()
 		["MainLock"] = "V\195\169rouiller la sph\195\168re de Cryolysis.",
 		["BagSelect"] = "S\195\169lection du sac pour la nourriture et l'eau.",
 		["BuffMenu"] = "Disposer le menu des buffs sur la gauche",
+		["ManaStoneMenu"] = "Put mana stone menu on the left.",
 		["PortalMenu"] = "Disposer le menu des portails sur la gauche",
 		["STimerLeft"] = "Afficher les timers du c\195\180t\195\169 gauche des boutons",
 		["ShowCount"] = "Afficher le nombre d'objets dans Cryolysis",

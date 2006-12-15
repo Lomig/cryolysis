@@ -306,6 +306,7 @@ function Cryolysis_Localization_Dialog_De()
 		["MainLock"] = "Sperre die Cryolysis Sph\195\164re.",
 		["BagSelect"] = "W\195\164hle die Tasche f\195\188r herbeigezaubertes Essen und Wasser",
 		["BuffMenu"] = "Setze das Buffmen\195\188 nach links",
+		["ManaStoneMenu"] = "Put mana stone menu on the left.",
 		["PortalMenu"] = "Setze das Portalmen\195\188 nach links",
 		["STimerLeft"] = "Zeige die Timer auf der linken Seite des Buttons",
 		["ShowCount"] = "Zeige die Anzahl der Items in Cryolysis",

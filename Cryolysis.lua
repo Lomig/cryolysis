@@ -3335,6 +3335,7 @@ function Cryolysis_UpdateRevisions(fileName, svnRev)
 	end
 	CryolysisData.Version = "2."..Max
 	CryolysisData.Label = CryolysisData.AppName.." "..CryolysisData.Version
+	CryolysisVersion:SetText(CryolysisData.Label)
 end
 
 Cryolysis_UpdateRevisions("Cryolysis.lua", "$Rev$")

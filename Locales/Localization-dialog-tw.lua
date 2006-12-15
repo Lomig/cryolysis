@@ -306,6 +306,7 @@ function Cryolysis_Localization_Dialog_Tw()
 		["MainLock"] = "鎖定 Cryolysis 位置。",
 		["BagSelect"] = "選擇食物和飲料放置位置",
 		["BuffMenu"] = "增益魔法清單放置在左邊",
+		["ManaStoneMenu"] = "Put mana stone menu on the left.",
 		["PortalMenu"] = "傳送門清單放置在左邊",
 		["STimerLeft"] = "計時器顯示在按鈕左邊",
 		["ShowCount"] = "在 Cryolysis 顯示物品數量",

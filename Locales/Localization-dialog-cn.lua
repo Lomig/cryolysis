@@ -306,6 +306,7 @@ function Cryolysis_Localization_Dialog_Cn()
 		["MainLock"] = "锁定Cryolysis球形界面",
 		["BagSelect"] = "选择食物和饮水的容器",
 		["BuffMenu"] = "将BUFF菜单置于左边",
+		["ManaStoneMenu"] = "Put mana stone menu on the left.",
 		["PortalMenu"] = "将传送门按钮置于左边",
 		["STimerLeft"] = "在按钮的左边显示计时器",
 		["ShowCount"] = "在Cryolysis中显示物品数量",
