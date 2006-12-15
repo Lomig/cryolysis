@@ -262,7 +262,7 @@
 						</Anchor>
 					</Anchors>
 				</FontString>	
-				<FontString name="CryolysisQuickBuff_Option" inherits="GameFontNormalSmall">
+				<FontString name="CryolysisQuickBuff_Option" hidden="true" inherits="GameFontNormalSmall">
 					<Color r="1.0" g="1.0" b="1.0" a="1"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="CryolysisButtonMenu" relativeFrom="TOPLEFT">
@@ -511,7 +511,7 @@
 					</OnClick>
 				</Scripts>
 			</CheckButton>
-			<CheckButton name="CryolysisQuickBuff_Button" enableMouse="true" inherits="UICheckButtonTemplate" checked="false">
+			<CheckButton name="CryolysisQuickBuff_Button" hidden="true" enableMouse="true" inherits="UICheckButtonTemplate" checked="false">
 				<Size>
 					<AbsDimension x="24" y="24"/>
 				</Size>
@@ -531,7 +531,7 @@
 						end
 					</OnClick>
 				</Scripts>
-			</CheckButton>
+			</CheckButton> 
 			<CheckButton name="CryolysisFoodText_Button" enableMouse="true" inherits="UICheckButtonTemplate" checked="false">
 				<Size>
 					<AbsDimension x="24" y="24"/>
