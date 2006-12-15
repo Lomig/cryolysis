@@ -234,10 +234,10 @@ CRYOLYSIS_STONE_RANK = {
 };
 
 CRYOLYSIS_STONE_RANK2 = {
-	[1] = "Agate",		-- Rank Minor
-	[2] = "Jade",		-- Rank Lesser
-	[3] = "Citrine",	-- Rank Greater
-	[4] = "Ruby"		-- Rank Major
+        [1] = "Mana Agate",        -- Rank Minor
+        [2] = "Mana Jade",        -- Rank Lesser
+        [3] = "Mana Citrine",    -- Rank Greater
+        [4] = "Mana Ruby"        -- Rank Major
 };
 
 CRYOLYSIS_MANASTONE_NAMES = {
