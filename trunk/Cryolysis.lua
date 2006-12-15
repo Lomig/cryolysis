@@ -1364,10 +1364,10 @@ function Cryolysis_UpdateMainButtonAttributes()
 	if CryolysisConfig.Button == 1 then
 		CryolysisButton:SetAttribute("type1", "macro");
 		local itemName1, ItemName2 = nil, nil;
-		if Count.Food > 0 then
+		if Count.Food > 0 and FoodLocation[1] then
 			itemName1, _, _, _, _, _, _, _ , _, _ = GetItemInfo(GetContainerItemLink(FoodLocation[1], FoodLocation[2]));
 		end
-		if Count.Drink > 0 then
+		if Count.Drink > 0 and DrinkLocation[1] then
 			itemName2, _, _, _, _, _, _, _ , _, _ = GetItemInfo(GetContainerItemLink(DrinkLocation[1], DrinkLocation[2]));
 		end
 		if itemName1 and itemName2 then
