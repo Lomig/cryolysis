@@ -1,0 +1,50 @@
+## Interface: 20000
+
+## Title: Cryolysis: Reborn
+## Version: 2.0
+## Author: The Cryolysis: Reborn Developement Team
+## X-Credits: Myrridin, Lomig, Philemon, Gendou, Fish
+## X-eMail: eternally777@gmail.com (Philemon)
+## X-Category: Mage
+## Notes: Management of Mage spells, abilities, and reagents
+
+## OptionalDeps:
+## X-Embeds:
+
+## X-RelSite-Curse: 3425
+## X-RelSite-WoWI: 5137
+
+## SavedVariables:
+## SavedVariablesPerCharacter: CryolysisConfig
+
+CryolysisGeneral.xml
+
+Localization.lua
+Locales\Localization-functions-en.lua
+Locales\Localization-functions-de.lua
+Locales\Localization-functions-fr.lua
+Locales\Localization-functions-tw.lua
+Locales\Localization-functions-cn.lua 
+Locales\Localization-dialog-en.lua
+Locales\Localization-dialog-de.lua
+Locales\Localization-dialog-fr.lua
+Locales\Localization-dialog-tw.lua
+Locales\Localization-dialog-cn.lua
+Locales\Speech.lua
+
+Cryolysis.lua
+CryolysisInitialize.lua
+CryolysisMessage.lua
+CryolysisTimerFunction.lua
+CryolysisGraphicalTimer.lua
+UIAttributes.lua
+
+Cryolysis.xml
+CryolysisTimer.xml
+CryolysisProvisionMenu.xml
+CryolysisMessageMenu.xml
+CryolysisButtonMenu.xml
+CryolysisTimerMenu.xml
+CryolysisGraphOptionMenu.xml
+
+ClickBinder.lua
