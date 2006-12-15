@@ -275,7 +275,7 @@
 			</Layer>
 		</Layers>
 		<Frames>
-			<Slider name="CryolysisManaStoneOrder_Slider" inherits="OptionsSliderTemplate" minValue="1" maxValue="2" valueStep="1" virtual="true">
+			<Slider name="CryolysisManaStoneOrder_Slider" inherits="OptionsSliderTemplate" hidden="true" minValue="1" maxValue="2" valueStep="1" virtual="true">
 				<Size>
 					<AbsDimension x="150" y="16"/>
 				</Size>
