@@ -3080,7 +3080,7 @@ function Cryolysis_CreateMenu()
 	CryolysisManaStoneMenu0:SetPoint("CENTER", "CryolysisManastoneButton", "CENTER", 3000, 3000);
 	if ManaStoneMenuCreate[1] then
 		for i = 1, #ManaStoneMenuCreate, 1 do
-			f = _G[ManaStoneMenuCreate[i]]
+			f = ManaStoneMenuCreate[i]
 			f:Show();
 			CryolysisManaStoneMenu0:SetAttribute("addchild", f)
 			f:SetAttribute("showstates", "!0,*")
@@ -3192,7 +3192,7 @@ function Cryolysis_CreateMenu()
 	CryolysisPortalMenu0:SetPoint("CENTER", "CryolysisPortalMenuButton", "CENTER", 3000, 3000);
 	if PortalMenuCreate[1] then
 		for i = 1, #PortalMenuCreate, 1 do
-			f = _G[PortalMenuCreate[i]]
+			f = PortalMenuCreate[i]
 			f:Show();
 			CryolysisPortalMenu0:SetAttribute("addchild", f)
 			f:SetAttribute("showstates", "!0,*")
@@ -3226,7 +3226,7 @@ function Cryolysis_CreateMenu()
 	CryolysisBuffMenu0:SetPoint("CENTER", "CryolysisBuffMenuButton", "CENTER", 3000, 3000);
 	if BuffMenuCreate[1] then
 		for i = 1, #BuffMenuCreate, 1 do
-			f = _G[BuffMenuCreate[i]];
+			f = BuffMenuCreate[i];
 			f:Show();
 			CryolysisBuffMenu0:SetAttribute("addchild", f)
 			f:SetAttribute("showstates", "!0,*")
