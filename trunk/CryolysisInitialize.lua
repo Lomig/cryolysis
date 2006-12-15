@@ -477,7 +477,7 @@ function Cryolysis_UpdateMenuAnchor()
 
 	CryolysisManaStoneMenu0:SetAttribute("statemap-anchor", "$input");
 	CryolysisManaStoneMenu0:SetAttribute("delaystatemap-anchor", "0");
-	CryolysisManaStoneMenu0:SetAttribute("delaytimemap-anchor", "5");
+	CryolysisManaStoneMenu0:SetAttribute("delaytimemap-anchor", "8");
 	CryolysisManaStoneMenu0:SetAttribute("delayhovermap-anchor", "true");
 
 	CryolysisManastoneButton:SetAttribute("onmouseupbutton", "mup");
@@ -499,7 +499,7 @@ function Cryolysis_UpdateMenuAnchor()
 	CryolysisManaStoneMenu0:SetAttribute("statemap-anchor-mousedown", "1-0");
 	CryolysisManaStoneMenu0:SetAttribute("statemap-anchor-mouseup", "!0:");
 	CryolysisManaStoneMenu0:SetAttribute("delaystatemap-anchor-mouseup", "!0,*:0");
-	CryolysisManaStoneMenu0:SetAttribute("delaytimemap-anchor-mouseup", "5");
+	CryolysisManaStoneMenu0:SetAttribute("delaytimemap-anchor-mouseup", "8");
 	CryolysisManaStoneMenu0:SetAttribute("delayhovermap-anchor-mouseup", "true");
 
 	-- Buff Menu
@@ -507,7 +507,7 @@ function Cryolysis_UpdateMenuAnchor()
 
 	CryolysisBuffMenu0:SetAttribute("statemap-anchor", "$input");
 	CryolysisBuffMenu0:SetAttribute("delaystatemap-anchor", "0");
-	CryolysisBuffMenu0:SetAttribute("delaytimemap-anchor", "5");
+	CryolysisBuffMenu0:SetAttribute("delaytimemap-anchor", "8");
 	CryolysisBuffMenu0:SetAttribute("delayhovermap-anchor", "true");
 
 	CryolysisBuffMenuButton:SetAttribute("onmouseupbutton", "mup");
@@ -529,7 +529,7 @@ function Cryolysis_UpdateMenuAnchor()
 	CryolysisBuffMenu0:SetAttribute("statemap-anchor-mousedown", "1-0");
 	CryolysisBuffMenu0:SetAttribute("statemap-anchor-mouseup", "!0:");
 	CryolysisBuffMenu0:SetAttribute("delaystatemap-anchor-mouseup", "!0,*:0");
-	CryolysisBuffMenu0:SetAttribute("delaytimemap-anchor-mouseup", "5");
+	CryolysisBuffMenu0:SetAttribute("delaytimemap-anchor-mouseup", "8");
 	CryolysisBuffMenu0:SetAttribute("delayhovermap-anchor-mouseup", "true");
 
 	-- Portal Menu
@@ -537,7 +537,7 @@ function Cryolysis_UpdateMenuAnchor()
 
 	CryolysisPortalMenu0:SetAttribute("statemap-anchor", "$input");
 	CryolysisPortalMenu0:SetAttribute("delaystatemap-anchor", "0");
-	CryolysisPortalMenu0:SetAttribute("delaytimemap-anchor", "5");
+	CryolysisPortalMenu0:SetAttribute("delaytimemap-anchor", "8");
 	CryolysisPortalMenu0:SetAttribute("delayhovermap-anchor", "true");
 
 	CryolysisPortalMenuButton:SetAttribute("onmouseupbutton", "mup");
@@ -559,7 +559,7 @@ function Cryolysis_UpdateMenuAnchor()
 	CryolysisPortalMenu0:SetAttribute("statemap-anchor-mousedown", "1-0");
 	CryolysisPortalMenu0:SetAttribute("statemap-anchor-mouseup", "!0:");
 	CryolysisPortalMenu0:SetAttribute("delaystatemap-anchor-mouseup", "!0,*:0");
-	CryolysisPortalMenu0:SetAttribute("delaytimemap-anchor-mouseup", "5");
+	CryolysisPortalMenu0:SetAttribute("delaytimemap-anchor-mouseup", "8");
 	CryolysisPortalMenu0:SetAttribute("delayhovermap-anchor-mouseup", "true");
 
 end
