@@ -710,6 +710,7 @@ function Cryolysis_OnEvent(event)
 	elseif event == "TRADE_REQUEST_CANCEL" or event == "TRADE_CLOSED" then
 		CryolysisTradeRequest = false;
 		Cryolysis_BagCheck("Update");
+		Cryolysis_ButtonTextUpdate()
 	elseif event == "CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE" then  -- WINTERSCHILL will go here
  		for creatureName, spell in string.gmatch(arg1, CRYOLYSIS_DEBUFF_SRCH) do
 			-- Frostbite
