@@ -36,6 +36,7 @@
 ------------------------------------------------------------------------------------------------------
 -- FONCTION D'INITIALISATION
 ------------------------------------------------------------------------------------------------------
+local _G = getfenv(0)
 
 function Cryolysis_Initialize()
 
@@ -277,17 +278,12 @@ function Cryolysis_Initialize()
 		CryolysisStoneScale_SliderLow:SetText("50 %");
 		CryolysisStoneScale_SliderHigh:SetText("150 %");
 		-- On r�le la taille de la pierre et des boutons suivant les r�lages du SavedVariables
-		CryolysisButton:SetScale(CryolysisConfig.CryolysisButtonScale/100);
-		CryolysisFoodButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
-		CryolysisDrinkButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
-		CryolysisManastoneButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
-		CryolysisLeftSpellButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
-		CryolysisEvocationButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
-		CryolysisRightSpellButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
-		CryolysisBuffMenuButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
-		CryolysisMountButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
-		CryolysisPortalMenuButton:SetScale(CryolysisConfig.CryolysisStoneScale/100);
-
+		
+		CryolysisButton:SetScale(CryolysisConfig.CryolysisButtonScale/100)
+		for i, v in ipairs(CryolysisConfig.StoneLocation) do
+			_G[v]:SetScale(CryolysisConfig.CryolysisButtonScale/100)
+		end
+		
 		if CryolysisConfig.NoDragAll then
 			Cryolysis_NoDrag();
 			CryolysisButton:RegisterForDrag("");
