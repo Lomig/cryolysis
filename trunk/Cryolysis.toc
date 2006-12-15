@@ -11,8 +11,8 @@
 ## OptionalDeps:
 ## X-Embeds:
 
-## X-RelSite-Curse:
-## X-RelSite-WoWI:
+## X-RelSite-Curse: 3425
+## X-RelSite-WoWI: 5137
 
 ## SavedVariables:
 ## SavedVariablesPerCharacter: CryolysisConfig
