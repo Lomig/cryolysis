@@ -281,9 +281,7 @@
 				</Anchors>
 				<Scripts>
 					<OnEnter>
-						_,_,_,BxOfs,ByOfs = CryolysisManaStoneMenu0:GetPoint();
-						CryolysisManaStoneMenu0:ClearAllPoints();
-						CryolysisManaStoneMenu0:SetPoint("CENTER", 1, CryolysisConfig.ManaStoneMenuAnchor);
+						Cryolysis_ChangeOfsy("Enter", "ManaStone");
 						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
 						GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.Anchor.Text);
 					</OnEnter>
@@ -291,17 +289,12 @@
 						GameTooltip:SetText(this:GetValue());
 						if CryolysisConfig.ManaStoneMenuAnchor ~= this:GetValue() then
 							CryolysisConfig.ManaStoneMenuAnchor = this:GetValue();
-							CryolysisManaStoneMenu0:ClearAllPoints();
-							CryolysisManaStoneMenu0:SetPoint("CENTER", 1, CryolysisConfig.ManaStoneMenuAnchor);
+							Cryolysis_ChangeOfsy("ValueChange", "ManaStone");
 						end
 					</OnValueChanged>
 					<OnLeave>
 						GameTooltip:Hide();
-						if BxOfs > 2000 then
-							CryolysisManaStoneMenu0:ClearAllPoints();
-							CryolysisManaStoneMenu0:SetPoint("CENTER", 3000, 3000);
-							end
-						Cryolysis_UpdateMenuAnchor();
+						Cryolysis_ChangeOfsy("Leave", "ManaStone");
 					</OnLeave>
 				</Scripts>
 			</Slider>
@@ -340,9 +333,7 @@
 				</Anchors>
 				<Scripts>
 					<OnEnter>
-						_,_,_,BxOfs,ByOfs = CryolysisBuffMenu0:GetPoint();
-						CryolysisBuffMenu0:ClearAllPoints();
-						CryolysisBuffMenu0:SetPoint("CENTER", 1, CryolysisConfig.BuffMenuAnchor);
+						Cryolysis_ChangeOfsy("Enter", "Buff");
 						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
 						GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.Anchor.Text);
 					</OnEnter>
@@ -350,17 +341,12 @@
 						GameTooltip:SetText(this:GetValue());
 						if CryolysisConfig.BuffMenuAnchor ~= this:GetValue() then
 							CryolysisConfig.BuffMenuAnchor = this:GetValue();
-							CryolysisBuffMenu0:ClearAllPoints();
-							CryolysisBuffMenu0:SetPoint("CENTER", 1, CryolysisConfig.BuffMenuAnchor);
+							Cryolysis_ChangeOfsy("ValueChange", "Buff");
 						end
 					</OnValueChanged>
 					<OnLeave>
 						GameTooltip:Hide();
-						if BxOfs > 2000 then
-							CryolysisBuffMenu0:ClearAllPoints();
-							CryolysisBuffMenu0:SetPoint("CENTER", 3000, 3000);
-							end
-						Cryolysis_UpdateMenuAnchor();
+						Cryolysis_ChangeOfsy("Leave", "Buff");
 					</OnLeave>
 				</Scripts>
 			</Slider>
@@ -401,25 +387,18 @@
 					<OnEnter>
 						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
 						GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.Anchor.Text);
-						_,_,_,PxOfs,PyOfs = CryolysisBuffMenu0:GetPoint();
-						CryolysisPortalMenu0:ClearAllPoints();
-						CryolysisPortalMenu0:SetPoint("CENTER", 1, CryolysisConfig.PortalMenuAnchor);
+						Cryolysis_ChangeOfsy("Enter", "Portal");
 					</OnEnter>
 					<OnValueChanged>
 						GameTooltip:SetText(this:GetValue());
 						if CryolysisConfig.PortalMenuAnchor ~= this:GetValue() then
 							CryolysisConfig.PortalMenuAnchor = this:GetValue();
-							CryolysisPortalMenu0:ClearAllPoints();
-							CryolysisPortalMenu0:SetPoint("CENTER", 1, CryolysisConfig.PortalMenuAnchor);
+							Cryolysis_ChangeOfsy("ValueChange", "Portal");
 						end
 					</OnValueChanged>
 					<OnLeave>
 						GameTooltip:Hide();
-						if PxOfs > 2000 then
-							CryolysisPortalMenu0:ClearAllPoints();
-							CryolysisPortalMenu0:SetPoint("CENTER", 3000, 3000);
-						end
-						Cryolysis_UpdateMenuAnchor();
+						Cryolysis_ChangeOfsy("Leave", "Portal");
 					</OnLeave>
 				</Scripts>
 			</Slider>

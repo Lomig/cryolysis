@@ -3076,8 +3076,6 @@ function Cryolysis_CreateMenu()
 	end
 
 	-- Now that all the buttons are placed the ones beside the others (out of the screen), the available ones are displayed
-	CryolysisManaStoneMenu0:ClearAllPoints();
-	CryolysisManaStoneMenu0:SetPoint("CENTER", "CryolysisManastoneButton", "CENTER", 3000, 3000);
 	if ManaStoneMenuCreate[1] then
 		for i = 1, #ManaStoneMenuCreate, 1 do
 			f = ManaStoneMenuCreate[i]
@@ -3188,8 +3186,6 @@ function Cryolysis_CreateMenu()
 		table.insert(PortalMenuCreate, menuVariable);
 	end
 	-- Now that all the buttons are placed the ones beside the others (out of the screen), the available ones are displayed
-	CryolysisPortalMenu0:ClearAllPoints();
-	CryolysisPortalMenu0:SetPoint("CENTER", "CryolysisPortalMenuButton", "CENTER", 3000, 3000);
 	if PortalMenuCreate[1] then
 		for i = 1, #PortalMenuCreate, 1 do
 			f = PortalMenuCreate[i]
@@ -3222,9 +3218,9 @@ function Cryolysis_CreateMenu()
 	end
 
 	-- Now that all the buttons are placed the ones beside the others (out of the screen), the available ones are posted
-	CryolysisBuffMenu0:ClearAllPoints();
-	CryolysisBuffMenu0:SetPoint("CENTER", "CryolysisBuffMenuButton", "CENTER", 3000, 3000);
 	if BuffMenuCreate[1] then
+		BuffMenuCreate[1]:ClearAllPoints();
+		BuffMenuCreate[1]:SetPoint("CENTER", "CryolysisBuffMenu0", "CENTER", ((36 / CryolysisConfig.BuffMenuPos) * 31),CryolysisConfig.BuffMenuAnchor);
 		for i = 1, #BuffMenuCreate, 1 do
 			f = BuffMenuCreate[i];
 			f:Show();
@@ -3360,6 +3356,55 @@ function Cryolysis_UpdateRevisions(fileName, svnRev)
 	CryolysisData.Version = "2."..Max
 	CryolysisData.Label = CryolysisData.AppName.." "..CryolysisData.Version
 	CryolysisVersion:SetText(CryolysisData.Label)
+end
+
+function Cryolysis_ChangeOfsy(Action, Menu)
+	if Menu == "Buff" then
+		if Action == "Enter" then
+			for i=1, #BuffMenuCreate, 1 do
+				f = BuffMenuCreate[i];
+				f:Show();
+			end
+		elseif Action == "Leave" then
+			for i=1, #BuffMenuCreate, 1 do
+				f = BuffMenuCreate[i];
+				f:Hide();
+			end
+		else
+			CryolysisBuffMenu1:ClearAllPoints();
+			CryolysisBuffMenu1:SetPoint("CENTER", "CryolysisBuffMenu0", "CENTER", ((36 / CryolysisConfig.BuffMenuPos) * 31),CryolysisConfig.BuffMenuAnchor);
+		end
+	elseif Menu == "Portal" then
+		if Action == "Enter" then
+			for i=1, #PortalMenuCreate, 1 do
+				f = PortalMenuCreate[i];
+				f:Show();
+			end
+		elseif Action == "Leave" then
+			for i=1, #PortalMenuCreate, 1 do
+				f = PortalMenuCreate[i];
+				f:Hide();
+			end
+		else
+			CryolysisPortalMenu1:ClearAllPoints();
+			CryolysisPortalMenu1:SetPoint("CENTER", "CryolysisPortalMenu0", "CENTER", ((36 / CryolysisConfig.BuffMenuPos) * 31),CryolysisConfig.PortalMenuAnchor);
+		end
+	elseif Menu == "ManaStone" then
+		if Action == "Enter" then
+			for i=1, #ManaStoneMenuCreate, 1 do
+				f = ManaStoneMenuCreate[i];
+				f:Show();
+			end
+		elseif Action == "Leave" then
+			for i=1, #ManaStoneMenuCreate, 1 do
+				f = ManaStoneMenuCreate[i];
+				f:Hide();
+			end
+		else
+			CryolysisManaStoneMenu1:ClearAllPoints();
+			CryolysisManaStoneMenu1:SetPoint("CENTER", "CryolysisManaStoneMenu0", "CENTER", ((36 / CryolysisConfig.BuffMenuPos) * 31),CryolysisConfig.ManaStoneMenuAnchor);
+		end
+	end
 end
 
 Cryolysis_UpdateRevisions("Cryolysis.lua", "$Rev$")
