@@ -238,6 +238,7 @@ end
 -- List Buttons available for the mage in each menu
 local PortalMenuCreate = {};
 local BuffMenuCreate = {};
+local ManaStoneMenuCreate = {};
 CryolysisButtonTexture = {
 	["Skin"] = 0,
 	["Text"] = "",
@@ -2611,7 +2612,7 @@ function Cryolysis_ButtonSetup()
 		if CryolysisConfig.StonePosition[2] and StoneIDInSpellTable[3] then
 			ShowUIPanel(CryolysisDrinkButton)
 		end
-		if CryolysisConfig.StonePosition[3] and StoneIDInSpellTable[2] then
+		if CryolysisConfig.StonePosition[3] and ManaStoneMenuCreate[1] then
 			ShowUIPanel(CryolysisManastoneButton)
 		end
 		if CryolysisConfig.StonePosition[4] then
@@ -2951,7 +2952,7 @@ function Cryolysis_UpdateButtonsScale()
 		local DoesSpellExists = {
 			StoneIDInSpellTable[4],
 			StoneIDInSpellTable[3],
-			StoneIDInSpellTable[2],
+			ManaStoneMenuCreate[1],
 			true,
 			StoneIDInSpellTable[1],
 			true,
@@ -3047,7 +3048,7 @@ function Cryolysis_CreateMenu()
 		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 		ManaStoneButtonPosition = 1;
-		table.insert(PortalMenuCreate, menuVariable);
+		table.insert(ManaStoneMenuCreate, menuVariable);
 	end
 	if Manastone.RankID[2] then
 		menuVariable = getglobal("CryolysisManaStoneMenu2");
@@ -3055,7 +3056,7 @@ function Cryolysis_CreateMenu()
 		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 		ManaStoneButtonPosition = 2;
-		table.insert(PortalMenuCreate, menuVariable);
+		table.insert(ManaStoneMenuCreate, menuVariable);
 	end
 	if Manastone.RankID[3] then
 		menuVariable = getglobal("CryolysisManaStoneMenu3");
@@ -3063,7 +3064,7 @@ function Cryolysis_CreateMenu()
 		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 		ManaStoneButtonPosition = 3;
-		table.insert(PortalMenuCreate, menuVariable);
+		table.insert(ManaStoneMenuCreate, menuVariable);
 	end
 	if Manastone.RankID[4] then
 		menuVariable = getglobal("CryolysisManaStoneMenu4");
@@ -3071,14 +3072,22 @@ function Cryolysis_CreateMenu()
 		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 		ManaStoneButtonPosition = 4;
-		table.insert(PortalMenuCreate, menuVariable);
+		table.insert(ManaStoneMenuCreate, menuVariable);
 	end
 
 	-- Now that all the buttons are placed the ones beside the others (out of the screen), the available ones are displayed
 	CryolysisManaStoneMenu0:ClearAllPoints();
 	CryolysisManaStoneMenu0:SetPoint("CENTER", "CryolysisManastoneButton", "CENTER", 3000, 3000);
-	for i = 1, #PortalMenuCreate, 1 do
-		ShowUIPanel(PortalMenuCreate[i]);
+	if ManaStoneMenuCreate[1] then
+		for i = 1, #ManaStoneMenuCreate, 1 do
+			f = _G[ManaStoneMenuCreate[i]]
+			f:Show();
+			CryolysisManaStoneMenu0:SetAttribute("addchild", f)
+			f:SetAttribute("showstates", "!0,*")
+			f:SetAttribute("anchorchild", CryolysisManaStoneMenu0)
+			f:SetAttribute("childstate", (i + 1))
+			f:SetAttribute("newstate", "0")
+		end
 	end
 
 	-- Start placing portals on the menu
@@ -3181,8 +3190,16 @@ function Cryolysis_CreateMenu()
 	-- Now that all the buttons are placed the ones beside the others (out of the screen), the available ones are displayed
 	CryolysisPortalMenu0:ClearAllPoints();
 	CryolysisPortalMenu0:SetPoint("CENTER", "CryolysisPortalMenuButton", "CENTER", 3000, 3000);
-	for i = 1, #PortalMenuCreate, 1 do
-		ShowUIPanel(PortalMenuCreate[i]);
+	if PortalMenuCreate[1] then
+		for i = 1, #PortalMenuCreate, 1 do
+			f = _G[PortalMenuCreate[i]]
+			f:Show();
+			CryolysisPortalMenu0:SetAttribute("addchild", f)
+			f:SetAttribute("showstates", "!0,*")
+			f:SetAttribute("anchorchild", CryolysisPortalMenu0)
+			f:SetAttribute("childstate", (i + 1))
+			f:SetAttribute("newstate", "0")
+		end
 	end
 
 	local buffAssociations = { 22, 4, 13, 25, 15, 50, 33, 35 }
@@ -3207,8 +3224,16 @@ function Cryolysis_CreateMenu()
 	-- Now that all the buttons are placed the ones beside the others (out of the screen), the available ones are posted
 	CryolysisBuffMenu0:ClearAllPoints();
 	CryolysisBuffMenu0:SetPoint("CENTER", "CryolysisBuffMenuButton", "CENTER", 3000, 3000);
-	for i = 1, #BuffMenuCreate, 1 do
-		ShowUIPanel(BuffMenuCreate[i]);
+	if BuffMenuCreate[1] then
+		for i = 1, #BuffMenuCreate, 1 do
+			f = _G[BuffMenuCreate[i]];
+			f:Show();
+			CryolysisBuffMenu0:SetAttribute("addchild", f)
+			f:SetAttribute("showstates", "!0,*")
+			f:SetAttribute("anchorchild", CryolysisBuffMenu0)
+			f:SetAttribute("childstate", (i + 1))
+			f:SetAttribute("newstate", "0")
+		end
 	end
 
 	-- Spell attribute updates (Eternally777 @ 12:45 GMT 12/13/2006):
