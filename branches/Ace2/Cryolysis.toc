@@ -58,3 +58,4 @@ CryolysisTimerMenu.xml
 CryolysisGraphOptionMenu.xml
 
 ClickBinder.lua
+TestOnUpdate.lua
