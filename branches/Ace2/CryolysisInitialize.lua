@@ -327,7 +327,7 @@ function Cryolysis_Initialize()
 		-- Les boutons sont-ils v�ouill� sur le Shard ?
 		Cryolysis_ButtonSetup();
 		Cryolysis_LanguageInitialize();
-		if CryolysisConfig.SM then
+		if Cryolysis.db.profile.shortMsgs then
 			CRYOLYSIS_EVOCATION_ALERT_MESSAGE = CRYOLYSIS_SHORT_MESSAGES[1];
 			CRYOLYSIS_INVOCATION_MESSAGES = CRYOLYSIS_SHORT_MESSAGES[2];
 		end
@@ -437,6 +437,7 @@ end
 ------------------------------------------------------------------------------------------------------
 -- FONCTION GERANT LA COMMANDE CONSOLE /CRYO
 ------------------------------------------------------------------------------------------------------
+--[[
 function Cryolysis_SlashHandler(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12)
 	-- Blah blah blah, le joueur est-il bien un D�oniste ? On finira par le savoir !
 	if UnitClass("player") ~= CRYOLYSIS_UNIT_MAGE then
@@ -449,11 +450,11 @@ function Cryolysis_SlashHandler(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, 
 		CryolysisSpellTimerButton:SetPoint("CENTER", "UIParent", "CENTER",0,0);
 	elseif string.find(string.lower(arg1), "sm") then
 		if CRYOLYSIS_Evocation_ALERT_MESSAGE == CRYOLYSIS_SHORT_MESSAGES[1] then
-			CryolysisConfig.SM = false;
+			Cryolysis.db.profile.shortMsgs = false;
 			CryolysisLocalization();
 			Cryolysis_Msg("Short Messages : <red>Off", "USER");
 		else
-			CryolysisConfig.SM = true;
+			Cryolysis.db.profile.shortMsgs = true;
 			CRYOLYSIS_Evocation_ALERT_MESSAGE = CRYOLYSIS_SHORT_MESSAGES[1];
 			CRYOLYSIS_INVOCATION_MESSAGES = CRYOLYSIS_SHORT_MESSAGES[2];
 			Cryolysis_Msg("Short Messages : <brightGreen>On", "USER");
@@ -477,7 +478,7 @@ function Cryolysis_SlashHandler(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, 
 		Cryolysis_Toggle();
 	end
 end
-
+--]]
 function Cryolysis_UpdateMenuAnchor()
 
 	-- Manastone Menu

@@ -107,7 +107,6 @@ Default_CryolysisConfig = {
 	Graphical = true;
 	Yellow = true;
 	SensListe = 1;
-	SM = false;                         -- Short message
 	QuickBuff = false;
 	PolyScale = 100;
 	PolyWarn = true;
@@ -403,8 +402,8 @@ function Cryolysis_OnLoad()
 	CryolysisButton:SetFrameLevel(1);
 
 	-- recording console commands
-	SlashCmdList["CryolysisCommand"] = Cryolysis_SlashHandler;
-	SLASH_CryolysisCommand1 = "/cryo";
+	-- SlashCmdList["CryolysisCommand"] = Cryolysis_SlashHandler;
+	-- SLASH_CryolysisCommand1 = "/cryo";
 
 end
 
@@ -1069,7 +1068,7 @@ function Cryolysis_ChatMessage(spell, creatureName)
 		if Mount.Available then
 			if spell == Mount.Title then
 				if CryolysisConfig.SteedMessage and string.find(SpellCastName, Mount.Title) then
-	    			if not CryolysisConfig.SM then
+	    			if not Cryolysis.db.profile.shortMsgs then
 						local tempnum = math.random(1, #(CRYOLYSIS_STEED_MESSAGE));
 						while tempnum == CryolysisPrivate.SteedMess and #(CRYOLYSIS_STEED_MESSAGE) >= 2 do
 							tempnum = math.random(1, #(CRYOLYSIS_STEED_MESSAGE));
@@ -1087,7 +1086,7 @@ function Cryolysis_ChatMessage(spell, creatureName)
 			or spell == CRYOLYSIS_SPELL_TABLE[52].Name then
    			if CryolysisConfig.PolyMessage then
 			    if CryolysisPrivate.PolyTarget ~= creatureName then
-			   		if not CryolysisConfig.SM then
+			   		if not Cryolysis.db.profile.shortMsgs then
 					    -- Sheep
 						if spell == CRYOLYSIS_SPELL_TABLE[26].Name then
 							local tempnum = math.random(1, #(CRYOLYSIS_POLY_MESSAGE.Sheep));
@@ -1113,7 +1112,7 @@ function Cryolysis_ChatMessage(spell, creatureName)
 							CryolysisPrivate.PolyMess = tempnum;
 	      					Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_POLY_MESSAGE.Turtle[tempnum], creatureName), "GROUP");
 			 		    end
-	 				elseif CryolysisConfig.SM then
+	 				elseif Cryolysis.db.profile.shortMsgs then
               			if spell == CRYOLYSIS_SPELL_TABLE[26].Name
 						or spell == CRYOLYSIS_SPELL_TABLE[48].Name
 				 		or spell == CRYOLYSIS_SPELL_TABLE[52].Name then
@@ -1142,7 +1141,7 @@ function Cryolysis_ChatMessage(spell, creatureName)
 				return
 			end
 			if CryolysisConfig.PortalMessage then
-				if not CryolysisConfig.SM then
+				if not Cryolysis.db.profile.shortMsgs then
 					if port <= 6 then
 						local tempnum = math.random(1, #CRYOLYSIS_TELEPORT_MESSAGE);
 						while tempnum == CryolysisPrivate.PortalMess and #(CRYOLYSIS_TELEPORT_MESSAGE) >= 2 do
@@ -1158,7 +1157,7 @@ function Cryolysis_ChatMessage(spell, creatureName)
 						CryolysisPrivate.PortalMess = tempnum;
 						Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_PORTAL_MESSAGE[tempnum], nil, PortalName[port]), "GROUP");
 					end
-				elseif CryolysisConfig.SM then
+				elseif Cryolysis.db.profile.shortMsgs then
 					if port > 6 then
 						Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_SHORT_MESSAGES[1], nil, PortalName[port]), "WORLD");
 					end
@@ -1417,7 +1416,7 @@ function Cryolysis_Toggle()
 			HideUIPanel(CryolysisGeneralFrame);
 			return;
 		else
-			if CryolysisConfig.SM then
+			if Cryolysis.db.profile.shortMsgs then
 				Cryolysis_Msg("!!! Short Messages : <brightGreen>On", "USER");
 			end
 			ShowUIPanel(CryolysisGeneralFrame);
