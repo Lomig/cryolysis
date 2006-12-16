@@ -43,10 +43,6 @@ if GetLocale() == "zhCN" then
 
 CRYOLYSIS_UNIT_MAGE = "法师";
 
--- Word to search for Fire Vulnerability and Winter's chill  first (.+) is the target, second is the spell
-CRYOLYSIS_DEBUFF_SRCH = "(.+)�?�到了(.+)效果的影�?。"
-CRYOLYSIS_POLY_SRCH = "(.+)效果从(.+)身上消失。"
-
 function Cryolysis_SpellTableBuild()
 CRYOLYSIS_SPELL_TABLE = {
 	[1] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,

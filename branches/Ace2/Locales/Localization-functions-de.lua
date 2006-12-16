@@ -72,9 +72,6 @@ CRYOLYSIS_UNIT_MAGE = "Magier";
 --	"Untoter"
 --};
 --
--- Word to search for Fire Vulnerability and Winter's chill  first (.+) is the target, second is the spell
-CRYOLYSIS_DEBUFF_SRCH = "(.+) ist von (.+) betroffen."
-CRYOLYSIS_POLY_SRCH = "(.+) schwindet von (.+)."
 
 function Cryolysis_SpellTableBuild()
 CRYOLYSIS_SPELL_TABLE = {
