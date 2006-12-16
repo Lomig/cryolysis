@@ -32,11 +32,35 @@
 --
 -- Version 12.12.2006
 ------------------------------------------------------------------------------------------------------
-
-
-------------------------------------------------
--- ENGLISH  VERSION TEXTS --
-------------------------------------------------
+AceLibrary("AceLocale-2.2"):new("Cryolysis"):RegisterTranslations("enUS", function()
+	return {
+		
+		["Use Main Cryolysis Button"] = "Use Main Cryolysis Button",
+		
+		["Use Evocation"] = "Use Evocation",
+		["Use Mana Gem"] = "Use Mana Gem",
+		["Conjure Mana Gem"] = "Conjure Mana Gem",
+		
+		["Use Drink"] = "Use Drink",
+		["Trade Drink"] = "Trade Drink",
+		["Conjure Drink"] =  "Conjure Drink",
+		
+		["Use Food"] = "Use Food",
+		["Trade Food"] = "Trade Food",
+		["Conjure Food"] = "Conjure Food",
+		
+		["Recast Last Buff"] = "Recast Last Buff",
+		["Recast Last Portal"] = "Recast Last Portal",
+		["Steed"] = "Steed",
+		["Hearthstone"] = "Hearthstone",
+		
+		["Left Spell Button: Main Function"] = "Left Spell Button: Main Function",
+		["Left Spell Button: Secondary Function"] = "Left Spell Button: Secondary Function",
+		["Right Spell Button: Main Function"] = "Right Spell Button: Main Function",
+		["Right Spell Button: Secondary Function"] = "Right Spell Button: Secondary Function"
+		
+	}
+end)
 
 function Cryolysis_Localization_Dialog_En()
 

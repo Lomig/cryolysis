@@ -32,11 +32,35 @@
 --
 -- Version 12.12.2006
 ------------------------------------------------------------------------------------------------------
-
-
-------------------------------------------------
--- Traditional Chinese  VERSION TEXTS  -- Nightly@布蘭卡德
-------------------------------------------------
+AceLibrary("AceLocale-2.2"):new("Cryolysis"):RegisterTranslations("zhTW", function()
+	return {
+		
+		["Use Main Cryolysis Button"] = "使用主要 Cryolysis 按鈕",
+		
+		["Use Evocation"] = "使用喚醒",
+		["Use Mana Gem"] = "使用法力寶石",
+		["Conjure Mana Gem"] = "製造法力寶石",
+		
+		["Use Drink"] = "喝水",
+		["Trade Drink"] = "交易 - 飲料",
+		["Conjure Drink"] =  "造水術",
+		
+		["Use Food"] = "進食",
+		["Trade Food"] = "交易 - 食物",
+		["Conjure Food"] = "造食術",
+		
+		["Recast Last Buff"] = "重新施放增益魔法",
+		["Recast Last Portal"] = "重新施放傳送門",
+		["Steed"] = "坐騎",
+		["Hearthstone"] = "爐石",
+		
+		["Left Spell Button: Main Function"] = "左鍵施法按鈕：主要功能",
+		["Left Spell Button: Secondary Function"] = "左鍵施法按鈕：次要功能",
+		["Right Spell Button: Main Function"] = "右鍵施法按鈕：主要功能",
+		["Right Spell Button: Secondary Function"] = "右鍵施法按鈕：次要功能"
+		
+	}
+end)
 
 function Cryolysis_Localization_Dialog_Tw()
 

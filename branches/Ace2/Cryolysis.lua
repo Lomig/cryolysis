@@ -686,7 +686,7 @@ function Cryolysis_OnEvent(event)
 		Cryolysis_BagCheck("Update");
 		Cryolysis_ButtonTextUpdate()
 	elseif event == "CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE" then  -- WINTERSCHILL will go here
- 		for creatureName, spell in string.gmatch(arg1, CRYOLYSIS_DEBUFF_SRCH) do
+ 		for creatureName, spell in string.gmatch(arg1, AURAADDEDOTHERHARMFUL) do
 			-- Frostbite
 			if spell == CRYOLYSIS_SPELL_TABLE[53].Name then
 				SpellCastName = spell;
@@ -775,7 +775,7 @@ function Cryolysis_OnEvent(event)
 	elseif event == "CHAT_MSG_SPELL_AURA_GONE_SELF" or event == "CHAT_MSG_SPELL_BREAK_AURA" then
 		Cryolysis_SelfEffect("DEBUFF");
 	elseif event == "CHAT_MSG_SPELL_AURA_GONE_OTHER" then
-		for spell, creatureName in string.gmatch(arg1, CRYOLYSIS_POLY_SRCH) do
+		for spell, creatureName in string.gmatch(arg1, AURAREMOVEDOTHER) do
 			Cryolysis_PolyCheck("break",spell,creatureName);
 		end
 	elseif event == "PLAYER_REGEN_DISABLED" then

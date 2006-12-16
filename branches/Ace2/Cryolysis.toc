@@ -29,7 +29,7 @@ Core.lua
 
 CryolysisGeneral.xml
 
-Localization.lua
+Locales\Babble-Spell-2.2\Babble-Spell-2.2.lua
 Locales\Localization-functions-en.lua
 Locales\Localization-functions-de.lua
 Locales\Localization-functions-fr.lua
@@ -41,6 +41,8 @@ Locales\Localization-dialog-fr.lua
 Locales\Localization-dialog-tw.lua
 Locales\Localization-dialog-cn.lua
 Locales\Speech.lua
+
+Localization.lua
 
 Cryolysis.lua
 CryolysisInitialize.lua
