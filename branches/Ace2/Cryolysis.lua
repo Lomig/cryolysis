@@ -383,32 +383,6 @@ local Original_GameTooltip_ClearMoney;
 
 local Cryolysis_In = true;
 
-local cryoEvents = {
-	"BAG_UPDATE",
-	"CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE",
-	"CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS",
-	"CHAT_MSG_SPELL_AURA_GONE_SELF",
-	"CHAT_MSG_SPELL_AURA_GONE_OTHER",
-	"CHAT_MSG_SPELL_BREAK_AURA",
-	"PLAYER_REGEN_DISABLED",
-	"PLAYER_REGEN_ENABLED",
-	"MERCHANT_SHOW",
-	"MERCHANT_CLOSED",
-	"UNIT_SPELLCAST_FAILED",
-	"UNIT_SPELLCAST_INTERRUPTED",
-	"UNIT_SPELLCAST_SUCCEEDED",
-	"UNIT_SPELLCAST_SENT",
-	"LEARNED_SPELL_IN_TAB",
-	"CHAT_MSG_SPELL_SELF_DAMAGE",
-	"PLAYER_TARGET_CHANGED",
-	"TRADE_REQUEST",
-	"TRADE_REQUEST_CANCEL",
-	"TRADE_SHOW",
-	"TRADE_CLOSED",
-	"VARIABLES_LOADED",
-	"PLAYER_LOGIN"
-}
-
 ------------------------------------------------------------------------------------------------------
 -- FUNCTIONS CRYOLYSIS APPLIES WHEN YOU LOG IN
 ------------------------------------------------------------------------------------------------------
@@ -419,8 +393,8 @@ function Cryolysis_OnLoad()
 	this:RegisterEvent("PLAYER_ENTERING_WORLD");
 	this:RegisterEvent("PLAYER_LEAVING_WORLD");
 	CryolysisButton:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-	for i in ipairs(cryoEvents) do
-		CryolysisButton:RegisterEvent(cryoEvents[i])
+	for i in ipairs(Cryolysis.events) do
+		CryolysisButton:RegisterEvent(Cryolysis.events[i])
 	end
 
 	-- Recording of the graphic components
@@ -843,12 +817,12 @@ end
 -- Basically, speeds up loading time
 function Cryolysis_RegisterManagement(RegistrationType)
 	if RegistrationType == "IN" then
-		for i in ipairs(cryoEvents) do
-			CryolysisButton:RegisterEvent(cryoEvents[i])
+		for i in ipairs(Cryolysis.events) do
+			CryolysisButton:RegisterEvent(Cryolysis.events[i])
 		end
 	else
-		for i in ipairs(cryoEvents) do
-			CryolysisButton:UnregisterEvent(cryoEvents[i])
+		for i in ipairs(Cryolysis.events) do
+			CryolysisButton:UnregisterEvent(Cryolysis.events[i])
 		end
 	end
 end
