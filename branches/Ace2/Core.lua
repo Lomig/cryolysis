@@ -37,11 +37,11 @@ do
 		Cryolysis.consumables[k..":"..v] = 0
 	end
 	tbl = PT:GetSetTable("Reagent - Mage")
-	for k, v in next, reagents do
+	for k, v in next, tbl do
 		Cryolysis.reagents[k..":"..v] = 0
 	end
 	tbl = PT:GetSetTable("Mana Stone")
-	for k, v in next, stones do
+	for k, v in next, tbl do
 		Cryolysis.manaStones[k..":"..v] = 0
 	end
 	tbl = nil
