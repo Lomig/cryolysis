@@ -3,19 +3,23 @@
 ## Title: Cryolysis: Reborn
 ## Version: 2.0
 ## Author: The Cryolysis: Reborn Developement Team
-## X-Credits: Myrridin, Lomig, Philemon, Gendou, Fish
-## X-eMail: eternally777@gmail.com (Philemon)
+## X-Credits: Darklyte, Myrridin, Lomig, Philemon, Gendou, Fish
+## X-eMail: 
 ## X-Category: Mage
 ## Notes: Management of Mage spells, abilities, and reagents
 
-## OptionalDeps:
-## X-Embeds:
+## OptionalDeps: Ace2, Metrognome
+## X-Embeds: Ace2, Metrognome
 
 ## X-RelSite-Curse: 3425
 ## X-RelSite-WoWI: 5137
 
 ## SavedVariables:
 ## SavedVariablesPerCharacter: CryolysisConfig
+
+Libs\AceLibrary\AceLibrary.lua
+Libs\AceOO-2.0\AceOO-2.0.lua
+Libs\Metrognome-2.0\Metrognome-2.0.lua
 
 CryolysisGeneral.xml
 
@@ -48,3 +52,5 @@ CryolysisTimerMenu.xml
 CryolysisGraphOptionMenu.xml
 
 ClickBinder.lua
+
+OnUpdateFix.lua
