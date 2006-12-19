@@ -24,16 +24,18 @@ Libs\Metrognome-2.0\Metrognome-2.0.lua
 CryolysisGeneral.xml
 
 Localization.lua
-Locales\Localization-functions-en.lua
-Locales\Localization-functions-de.lua
-Locales\Localization-functions-fr.lua
-Locales\Localization-functions-tw.lua
-Locales\Localization-functions-cn.lua 
-Locales\Localization-dialog-en.lua
-Locales\Localization-dialog-de.lua
-Locales\Localization-dialog-fr.lua
-Locales\Localization-dialog-tw.lua
-Locales\Localization-dialog-cn.lua
+Locales\Localization-functions-enUS.lua
+Locales\Localization-functions-deDE.lua
+Locales\Localization-functions-frFR.lua
+Locales\Localization-functions-zhTW.lua
+Locales\Localization-functions-zhCN.lua
+Locales\Localization-functions-koKR.lua
+Locales\Localization-dialog-enUS.lua
+Locales\Localization-dialog-deDE.lua
+Locales\Localization-dialog-frFR.lua
+Locales\Localization-dialog-zhTW.lua
+Locales\Localization-dialog-zhCN.lua
+Locales\Localization-dialog-koKR.lua
 Locales\Speech.lua
 
 Cryolysis.lua
