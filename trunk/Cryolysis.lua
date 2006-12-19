@@ -226,6 +226,11 @@ local debuff = {
 	drPlayer = false;
 	drReset = 0;
 };
+
+-- Changes by lomig : adding the new fr / de translation for portals  --- Why the hell this part is not in localization-functions part ?
+-- I can change it myself from that computer because I do not have a UTF-8 compliant editor, but as well...
+--
+--
 -- Order of Portals
 -- Teleports then Portals
 -- Orgrimmar, Undercity, Thunderbluff, Ironforge, Stormwind, Darnassus
@@ -234,13 +239,22 @@ local PortalName = {
 	"Orgrimmar", "Undercity", "Thunder Bluff", "Ironforge", "Stormwind", "Darnassus",  -- 1-6, Teleports
 	"Orgrimmar", "Undercity", "Thunder Bluff", "Ironforge", "Stormwind", "Darnassus"   -- 7-12, Portals
 };
-if CryolysisConfig.CryolysisLanguage == "zhTW" then
+if CryolysisConfig.CryolysisLanguage == "frFR" then
+	PortalName = {
+		"Orgrimmar", "Fossoyeuse", "les Pitons du Tonnerre", "Forgefer", "Hurlevent", "Darnassus",  -- 1-6, Teleports
+		"Orgrimmar", "Fossoyeuse", "les Pitons du Tonnerre", "Forgefer", "Hurlevent", "Darnassus"   -- 7-12, Portals
+	};
+elseif CryolysisConfig.CryolysisLanguage == "deDE" then
+	PortalName = {
+		"Orgrimmar", "Unterstadt", "Donnerfels", "Eisenschmiede", "Sturmwind", "Darnassus",  -- 1-6, Teleports
+		"Orgrimmar", "Unterstadt", "Donnerfels", "Eisenschmiede", "Sturmwind", "Darnassus"   -- 7-12, Portals
+	};
+elseif CryolysisConfig.CryolysisLanguage == "zhTW" then
 	PortalName = {
 	"奧格瑪", "幽暗城", "雷霆崖", "�?��?堡", "暴風城", "�?��?蘇斯",  -- 1-6, Teleports
 	"奧格瑪", "幽暗城", "雷霆崖", "�?��?堡", "暴風城", "�?��?蘇斯"   -- 7-12, Portals
 }
-end
-if CryolysisConfig.CryolysisLanguage == "zhCN" then
+elseif CryolysisConfig.CryolysisLanguage == "zhCN" then
 	PortalName = {
 	"奥格瑞玛", "幽暗城", "雷霆崖", "�?炉堡", "暴风城", "达纳�?斯",  -- 1-6, Teleports
 	"奥格瑞玛", "幽暗城", "雷霆崖", "�?炉堡", "暴风城", "达纳�?斯"   -- 7-12, Portals
