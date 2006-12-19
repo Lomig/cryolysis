@@ -420,6 +420,16 @@
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "ArcaneInt", "ANCHOR_RIGHT");
 			</OnEnter>
+			<PreClick>
+				if not (InCombatLockdown() or UnitIsFriend("player","target")) then
+					this:SetAttribute("unit", "player");
+				end
+			</PreClick>
+			<PostClick>
+				if not InCombatLockdown() then
+					this:SetAttribute("unit", "target")
+				end
+			</PostClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\ArcaneIntellect-01"/>
 	</Button>
@@ -429,6 +439,16 @@
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "DampenMagic", "ANCHOR_RIGHT");
 			</OnEnter>
+			<PreClick>
+				if not (InCombatLockdown() or UnitIsFriend("player","target")) then
+					this:SetAttribute("unit", "player");
+				end
+			</PreClick>
+			<PostClick>
+				if not InCombatLockdown() then
+					this:SetAttribute("unit", "target")
+				end
+			</PostClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\DampenMagic-01"/>
 	</Button>
@@ -465,6 +485,16 @@
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "RemoveCurse", "ANCHOR_RIGHT");
 			</OnEnter>
+			<PreClick>
+				if not (InCombatLockdown() or UnitIsFriend("player","target")) then
+					this:SetAttribute("unit", "player");
+				end
+			</PreClick>
+			<PostClick>
+				if not InCombatLockdown() then
+					this:SetAttribute("unit", "target")
+				end
+			</PostClick>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\RemoveCurse-01"/>
 	</Button>
