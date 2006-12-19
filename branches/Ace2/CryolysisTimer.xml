@@ -1,0 +1,618 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+	
+	<!-- Texture Template -->
+	<Texture name="CryolysisTimerTemplate" hidden="true" vitual="true">
+		<Size>
+			<AbsDimension x="150" y="10"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP">
+				<Offset>
+					<AbsDimension x="3000" y="3000"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Color r="0" g="0" b="0" a="0.5"/>
+	</Texture>
+	
+	<!-- Font String Template -->
+	<FontString name="CryolysisTargetFontStringTemplate" inherits="TextStatusBarText" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="150" y="12"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</FontString>
+	
+	<!-- Out Text FontString Template -->
+	<FontString name="CryolysisOutTextTemplate" inherits="GameFontNormalSmall" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="150" y="10"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-59"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</FontString>
+	
+	<!-- Spark Template -->
+	<Texture name="CryolysisSparkTemplate" file="Interface\CastingBar\UI-CastingBar-Spark" alphaMode="ADD" virtual="true">
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Texture>
+	
+	<!-- Status Bar Template -->
+	<StatusBar name="CryolysisStatusBarTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="150" y="10"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP">
+				<Offset>
+					<AbsDimension x="3000" y="3000"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() - 1)
+			</OnLoad>
+		</Scripts>
+		<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+		<BarColor r="1.0" g="1.0" b="0.0"/>
+	</StatusBar>
+	
+	<Frame name="CryolysisBarTimers" parent="UIParent" movable="true">
+		<Size>
+			<AbsDimension x="100" y="400"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="CryolysisSpellTimerButton" relativeFrom="TOPLEFT">
+				<Offset>
+					<AbsDimension x="130" y="-80"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="CryolysisTimer1Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer2Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer3Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer4Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer5Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer6Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer7Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer8Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer9Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer10Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer11Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer12Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer13Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer14Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer15Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer16Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer17Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer18Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer19Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer20Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer21Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer22Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer23Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer24Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer25Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer26Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer27Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer28Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer29Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer30Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer31Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer32Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer33Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer34Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer35Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer36Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer37Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer38Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer39Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer40Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer41Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer42Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer43Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer44Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer45Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer46Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer47Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer48Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer49Texture" inherits="CryolysisTimerTemplate"/>
+				<Texture name="CryolysisTimer50Texture" inherits="CryolysisTimerTemplate"/>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="CryolysisTarget1Text" inherits="CryolysisTargetFontStringTemplate"/>
+				<FontString name="CryolysisTarget2Text" inherits="CryolysisTargetFontStringTemplate"/>
+				<FontString name="CryolysisTarget3Text" inherits="CryolysisTargetFontStringTemplate"/>
+				<FontString name="CryolysisTarget4Text" inherits="CryolysisTargetFontStringTemplate"/>
+				<FontString name="CryolysisTarget5Text" inherits="CryolysisTargetFontStringTemplate"/>
+				<FontString name="CryolysisTarget6Text" inherits="CryolysisTargetFontStringTemplate"/>
+				<FontString name="CryolysisTarget7Text" inherits="CryolysisTargetFontStringTemplate"/>
+				<FontString name="CryolysisTarget8Text" inherits="CryolysisTargetFontStringTemplate"/>
+				<FontString name="CryolysisTarget9Text" inherits="CryolysisTargetFontStringTemplate"/>
+				<FontString name="CryolysisTarget10Text" inherits="CryolysisTargetFontStringTemplate"/>
+				
+				<FontString name="CryolysisTimer1OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer2OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer3OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer4OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer5OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer6OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer7OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer8OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer9OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer10OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer11OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer12OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer13OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer14OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer15OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer16OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer17OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer18OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer19OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer20OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer21OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer22OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer23OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer24OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer25OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer26OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer27OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer28OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer29OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer30OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer31OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer32OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer33OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer34OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer35OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer36OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer37OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer38OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer39OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer40OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer41OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer42OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer43OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer44OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer45OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer46OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer47OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer48OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer49OutText" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer50OutText" inherits="CryolysisOutTextTemplate"/>
+				
+				<FontString name="CryolysisTimer1Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer2Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer3Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer4Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer5Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer6Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer7Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer8Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer9Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer10Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer11Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer12Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer13Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer14Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer15Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer16Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer17Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer18Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer19Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer20Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer21Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer22Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer23Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer24Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer25Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer26Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer27Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer28Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer29Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer30Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer31Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer32Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer33Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer34Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer35Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer36Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer37Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer38Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer39Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer40Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer41Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer42Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer43Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer44Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer45Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer46Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer47Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer48Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer49Text" inherits="CryolysisOutTextTemplate"/>
+				<FontString name="CryolysisTimer50Text" inherits="CryolysisOutTextTemplate"/>
+			</Layer>
+		</Layers>
+		<Frames>
+			<StatusBar name="CryolysisTimer1Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer1Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer2Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer2Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer3Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer3Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer4Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer4Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer5Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer5Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer6Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer6Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer7Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer7Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer8Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer8Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer9Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer9Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer10Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer10Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer11Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer11Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer12Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer12Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer13Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer13Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer14Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer14Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer15Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer15Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer16Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer16Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer17Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer17Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer18Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer18Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer19Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer19Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer20Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer20Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer21Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer21Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer22Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer22Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer23Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer23Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer24Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer24Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer25Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer25Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer26Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer26Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer27Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer27Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer28Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer28Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer29Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer29Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer30Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer30Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer31Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer31Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer32Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer32Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer33Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer33Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer34Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer34Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer35Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer35Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer36Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer36Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer37Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer37Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer38Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer38Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer39Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer39Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer40Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer40Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer41Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer41Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer42Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer42Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer43Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer43Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer44Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer44Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer45Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer45Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer46Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer46Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer47Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer47Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer48Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer48Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer49Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer49Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="CryolysisTimer50Bar" inherits="CryolysisStatusBarTemplate">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="CryolysisTimer50Spark" inherits="CryolysisSparkTemplate"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				Cryolysis_UpdateRevisions("CryolysisTimer.xml", "$Rev$")
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

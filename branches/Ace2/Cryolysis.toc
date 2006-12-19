@@ -1,0 +1,58 @@
+## Interface: 20000
+
+## Title: Cryolysis: Reborn
+## Version: 2.0
+## Author: The Cryolysis: Reborn Developement Team
+## X-Credits: Darklyte, Myrridin, Lomig, Philemon, Gendou, Fish
+## X-eMail: 
+## X-Category: Mage
+## Notes: Management of Mage spells, abilities, and reagents
+
+## OptionalDeps: Ace2, Metrognome
+## X-Embeds: Ace2, Metrognome
+
+## X-RelSite-Curse: 3425
+## X-RelSite-WoWI: 5137
+
+## SavedVariables:
+## SavedVariablesPerCharacter: CryolysisConfig
+
+Libs\AceLibrary\AceLibrary.lua
+Libs\AceOO-2.0\AceOO-2.0.lua
+Libs\Metrognome-2.0\Metrognome-2.0.lua
+
+CryolysisGeneral.xml
+
+Localization.lua
+Locales\Localization-functions-enUS.lua
+Locales\Localization-functions-deDE.lua
+Locales\Localization-functions-frFR.lua
+Locales\Localization-functions-zhTW.lua
+Locales\Localization-functions-zhCN.lua
+Locales\Localization-functions-koKR.lua
+Locales\Localization-dialog-enUS.lua
+Locales\Localization-dialog-deDE.lua
+Locales\Localization-dialog-frFR.lua
+Locales\Localization-dialog-zhTW.lua
+Locales\Localization-dialog-zhCN.lua
+Locales\Localization-dialog-koKR.lua
+Locales\Speech.lua
+
+Cryolysis.lua
+CryolysisInitialize.lua
+CryolysisMessage.lua
+CryolysisTimerFunction.lua
+CryolysisGraphicalTimer.lua
+UIAttributes.lua
+
+Cryolysis.xml
+CryolysisTimer.xml
+CryolysisProvisionMenu.xml
+CryolysisMessageMenu.xml
+CryolysisButtonMenu.xml
+CryolysisTimerMenu.xml
+CryolysisGraphOptionMenu.xml
+
+ClickBinder.lua
+
+OnUpdateFix.lua
