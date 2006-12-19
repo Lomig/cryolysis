@@ -37,8 +37,10 @@
 --
 -- Version 12.12.2006
 ------------------------------------------------------------------------------------------------------
+Cryo = AceLibrary("AceAddon-2.0"):new("AceEvent-2.0", "AceConsole-2.0")
+local BS = AceLibrary("Babble-Spell-2.2")
+local D = AceLibrary("Deformat-2.0")
 local _G = getfenv(0)
-
 
 -- Default Configuations
 -- In case configuations are lost or version is changed
@@ -410,48 +412,81 @@ local cryoEvents = {
 	"LEARNED_SPELL_IN_TAB",
 	"CHAT_MSG_SPELL_SELF_DAMAGE",
 	"PLAYER_TARGET_CHANGED",
-	"TRADE_REQUEST",
 	"TRADE_REQUEST_CANCEL",
 	"TRADE_SHOW",
 	"TRADE_CLOSED",
-	"VARIABLES_LOADED",
-	"PLAYER_LOGIN"
+	"VARIABLES_LOADED"
 }
 
 ------------------------------------------------------------------------------------------------------
 -- FUNCTIONS CRYOLYSIS APPLIES WHEN YOU LOG IN
 ------------------------------------------------------------------------------------------------------
--- Function applied to login
-function Cryolysis_OnLoad()
-
-	-- Recording events intercepted by Cryolysis
-	this:RegisterEvent("PLAYER_ENTERING_WORLD");
-	this:RegisterEvent("PLAYER_LEAVING_WORLD");
-	CryolysisButton:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-	for i in ipairs(cryoEvents) do
-		CryolysisButton:RegisterEvent(cryoEvents[i])
+function Cryo:OnInitialize()
+	local _, class = UnitClass("player")
+	self.UnitClass = class
+	if ( self.UnitClass ~= "MAGE" ) then
+		return
 	end
-
-	-- Recording of the graphic components
-	CryolysisButton:RegisterForDrag("LeftButton");
-	CryolysisButton:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-	CryolysisButton:SetFrameLevel(1);
-
-	-- recording console commands
-	SlashCmdList["CryolysisCommand"] = Cryolysis_SlashHandler;
-	SLASH_CryolysisCommand1 = "/cryo";
-
 end
 
+function Cryo:OnEnable()
+	self:LoadVariables()
+	self:RegisterEvent("PLAYER_ENTERING_WORLD")
+	self:RegisterEvent("PLAYER_LEAVING_WORLD")
+	self:RegisterBucketEvent("BAG_UPDATE", 1)
+	
+	self:RegisterEvent("UNIT_SPELLCAST_FAILED", "SpellFailed")
+	self:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED", "SpellFailed")
+	
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	self:RegisterEvent("UNIT_SPELLCAST_SENT")
+	
+	self:RegisterEvent("TRADE_SHOW")
+	self:RegisterEvent("TRADE_CLOSED")
+	self:RegisterEvent("LEARNED_SPELL_IN_TAB")
+	self:RegisterEvent("PLAYER_REGEN_ENABLED")
+	self:RegisterEvent("PLAYER_REGEN_DISABLED")
+	self:RegisterEvent("MERCHANT_SHOW")
+	self:RegisterEvent("MERCHANT_CLOSED")
+	self:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS")
+	self:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_SELF", "AuraGoneSelf")
+	self:RegisterEvent("CHAT_MSG_SPELL_BREAK_AURA", "AuraGoneSelf")
+	self:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_OTHER")
+	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE")
+end
+
+function Cryo:OnDisable()
+end
+
+-- Function applied to login
+function Cryo:CryolysisButton_OnLoad()
+	-- Recording events intercepted by Cryolysis
+--	this:RegisterEvent("PLAYER_ENTERING_WORLD")
+--	this:RegisterEvent("PLAYER_LEAVING_WORLD")
+--[[	CryolysisButton:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+	for i in ipairs(cryoEvents) do
+		CryolysisButton:RegisterEvent(cryoEvents[i])
+	end ]]
+
+	-- Recording of the graphic components
+	CryolysisButton:RegisterForDrag("LeftButton")
+	CryolysisButton:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+	CryolysisButton:SetFrameLevel(1)
+
+	-- recording console commands
+	SlashCmdList["CryolysisCommand"] = Cryolysis_SlashHandler
+	SLASH_CryolysisCommand1 = "/cryo"
+end
 
 -- Function applied once parameters of the mods charged
-function Cryolysis_LoadVariables()
+function Cryo:LoadVariables()
 	local _, class = UnitClass("player")
 	if (( Cryolysis_Loaded ) or ( class ~= "MAGE" )) then
 		return
 	end
-	Cryolysis_Initialize();
-	Cryolysis_Loaded = true ;
+	self:Init()
+	Cryolysis_Loaded = true
 end
 
 ------------------------------------------------------------------------------------------------------
@@ -459,110 +494,97 @@ end
 ------------------------------------------------------------------------------------------------------
 
 -- Function launched to the update of the interface (main) -- every 0.1 seconds
-function Cryolysis_OnUpdate()
-	local _, class = UnitClass("player")
-	-- The function is used only if Cryolysis is initialized and the player is a mage
-	if (( not Cryolysis_Loaded ) and ( class ~= "MAGE" )) then
-		return;
+function Cryo:CryolysisButton_OnUpdate()
+	if (( not Cryolysis_Loaded ) and ( self.UnitClass ~= "MAGE" )) then
+		return
 	end
-	-- Only used if loaded and player is not a mage --
-
-
-	-- Check inventory after loading screen
-	if CryolysisPrivate.LoadCheck then
-	    Cryolysis_BagExplore();
-		Cryolysis_UpdateButtonsScale();
-	    CryolysisPrivate.LoadCheck = false;
+	
+	if ( CryolysisPrivate.LoadCheck ) then
+		Cryolysis_BagExplore()
+		Cryolysis_UpdateButtonsScale()
+		CryolysisPrivate.LoadCheck = false
  	end
 	-- Management of Provisions: Sorting every second
-	curTime = GetTime();
-	if ((curTime-ProvisionTime) >= 1) then
+	curTime = GetTime()
+	if (( curTime - ProvisionTime ) >= 1 ) then
 		-- Adjust timers
-		ProvisionTime = curTime;
-		if CryolysisPrivate.PolyWarning == true then
-			CryolysisPrivate.PolyWarnTime = CryolysisPrivate.PolyWarnTime - 1;
+		ProvisionTime = curTime
+		if ( CryolysisPrivate.PolyWarning == true ) then
+			CryolysisPrivate.PolyWarnTime = CryolysisPrivate.PolyWarnTime - 1
 		end
-		if CryolysisConfig.PolyBreak and CryolysisPrivate.PolyBreakTime >= 0 then
-			CryolysisPrivate.PolyBreakTime = CryolysisPrivate.PolyBreakTime -1;
-			if CryolysisPrivate.PolyBreakTime <= 0 then CryolysisPrivate.PolyTarget = nil;  end
+		if (( CryolysisConfig.PolyBreak ) and ( CryolysisPrivate.PolyBreakTime >= 0 )) then
+			CryolysisPrivate.PolyBreakTime = CryolysisPrivate.PolyBreakTime - 1
+			if ( CryolysisPrivate.PolyBreakTime <= 0 ) then
+				CryolysisPrivate.PolyTarget = nil
+			end
 		end
-		if CryolysisPrivate.ManastoneCooldown > 0 then
-			CryolysisPrivate.ManastoneCooldown = CryolysisPrivate.ManastoneCooldown - 1;
-			CryolysisPrivate.ManastoneCooldownText = Cryolysis_TimerFunction(CryolysisPrivate.ManastoneCooldown);
-		elseif CryolysisPrivate.ManastoneCooldown <= 0 then
-			CryolysisPrivate.ManastoneCooldown = 0;
-		    CryolysisPrivate.ManastoneCooldownText = "";
+		if ( CryolysisPrivate.ManastoneCooldown > 0 ) then
+			CryolysisPrivate.ManastoneCooldown = CryolysisPrivate.ManastoneCooldown - 1
+			CryolysisPrivate.ManastoneCooldownText = Cryolysis_TimerFunction(CryolysisPrivate.ManastoneCooldown)
+		elseif ( CryolysisPrivate.ManastoneCooldown <= 0 ) then
+			CryolysisPrivate.ManastoneCooldown = 0
+			CryolysisPrivate.ManastoneCooldownText = ""
 		end
-		if (ProvisionMP > 0) then
-			Cryolysis_ProvisionSwitch("MOVE");
-
+		if ( ProvisionMP > 0 ) then
+			Cryolysis_ProvisionSwitch("MOVE")
 		end
 	end
 	-- Management of Polymorph stuff
-	Cryolysis_PolyCheck("warn");
-	if curTime >= debuff.drReset and debuff.drPlayer then
-		debuff.drTarget = nil;
-		debuff.drApplied = 0;
-		debuff.drDuration = 15;
-		debuff.drPlayer = false;
-		debuff.drReset = 0;
-		SpellCastName = CRYOLYSIS_SPELL_TABLE[67].Name;
-		SpellTargetName = creatureName;
-		Cryolysis_SpellManagement();
+	Cryolysis_PolyCheck("warn")
+	if (( curTime >= debuff.drReset ) and ( debuff.drPlayer )) then
+		debuff.drTarget = nil
+		debuff.drApplied = 0
+		debuff.drDuration = 15
+		debuff.drPlayer = false
+		debuff.drReset = 0
+		SpellCastName = CRYOLYSIS_SPELL_TABLE[67].Name
+		SpellTargetName = creatureName
+		self:SpellManagement()
 	end
 	----------------------------------------------------------
 	-- Management of mage spells
 	----------------------------------------------------------
-
-
-
 	-- Management of spell timers
-	if CryolysisConfig.ShowSpellTimerButton and (not CryolysisSpellTimerButton:IsVisible()) then
-		ShowUIPanel(CryolysisSpellTimerButton);
-	elseif not CryolysisConfig.ShowSpellTimerButton and CryolysisSpellTimerButton:IsVisible() then
-		HideUIPanel(CryolysisSpellTimerButton);
+	if (( CryolysisConfig.ShowSpellTimerButton ) and ( not CryolysisSpellTimerButton:IsVisible() )) then
+		ShowUIPanel(CryolysisSpellTimerButton)
+	elseif (( not CryolysisConfig.ShowSpellTimerButton ) and ( CryolysisSpellTimerButton:IsVisible() )) then
+		HideUIPanel(CryolysisSpellTimerButton)
 	end
-	timerDisplay = "";
-	update = false;
-	if ((curTime - SpellCastTime) >= 1) then
-		SpellCastTime = curTime;
-		update = true;
+	timerDisplay = ""
+	update = false
+	if (( curTime - SpellCastTime ) >= 1 ) then
+		SpellCastTime = curTime
+		update = true
 	end
-	if CryolysisConfig.ShowSpellTimers then
+--[[ TIMERS, O NOEZ!!!!11!one!																			]]
+	if ( CryolysisConfig.ShowSpellTimers ) then
 		-- updates buttons every second
-		-- Parcours du tableau des Timers
-		if CryolysisConfig.ShowSpellTimers then
+		if ( CryolysisConfig.ShowSpellTimers ) then
 			local GraphicalTimer = { texte = {}, TimeMax = {}, Time = {}, titre = {}, temps = {}, Gtimer = {} }
-			if SpellTimer[1] ~= nil then
-				for index = 1, #(SpellTimer), 1 do
-					if SpellTimer[index] then
-						if (GetTime() <= SpellTimer[index].TimeMax) then
-							-- Cr�tion de l'affichage des timers
-							timerDisplay, SpellGroup, GraphicalTimer, TimerTable = Cryolysis_DisplayTimer(timerDisplay, index, SpellGroup, SpellTimer, GraphicalTimer, TimerTable);
+			if ( SpellTimer[1] ~= nil ) then
+				for index = 1, #SpellTimer, 1 do
+					if ( SpellTimer[index] ) then
+						if ( curTime <= SpellTimer[index].TimeMax ) then
+							timerDisplay, SpellGroup, GraphicalTimer, TimerTable = Cryolysis_DisplayTimer(timerDisplay, index, SpellGroup, SpellTimer, GraphicalTimer, TimerTable)
 						end
 						-- Action every second
-						if (update) then
+						if ( update ) then
 							-- Finished timers are removed
-							curTime = GetTime();
-							if curTime >= (SpellTimer[index].TimeMax - 0.5) and SpellTimer[index].TimeMax ~= -1 then
-								if SpellTimer[index].Name ~= CRYOLYSIS_SPELL_TABLE[10].Name then
-									SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(index, SpellTimer, TimerTable);
-									index = 0;
-									break;
+							if (( curTime >= ( SpellTimer[index].TimeMax - 0.5 )) and ( SpellTimer[index].TimeMax ~= -1 )) then
+								if ( SpellTimer[index].Name ~= CRYOLYSIS_SPELL_TABLE[10].Name ) then
+									SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(index, SpellTimer, TimerTable)
+									index = 0
+									break
 								end
 							end
 							-- If the target of the spell is not reached (resists)
-							if SpellTimer and (SpellTimer[index].Type == 4 or SpellTimer[index].Type == 5)
-								and SpellTimer[index].Target == UnitName("target")
-								then
-								-- On triche pour laisser le temps au mob de bien sentir qu'il est d�uff�^^
+							if (( SpellTimer ) and ( SpellTimer[index].Type == 4 ) or ( SpellTimer[index].Type == 5 ) and ( SpellTimer[index].Target == UnitName("target") )) then
 								-- Cheats by leaving timer on mob to detect that it is debuffed
-								if curTime >= ((SpellTimer[index].TimeMax - SpellTimer[index].Time) + 2.5)
-									and SpellTimer[index] ~= 6 then
-									if not Cryolysis_UnitHasEffect("target", SpellTimer[index].Name) then
-										SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(index, SpellTimer, TimerTable);
-										index = 0;
-										break;
+								if ( curTime >= (( SpellTimer[index].TimeMax - SpellTimer[index].Time ) + 2.5 ) and ( SpellTimer[index] ~= 6 )) then
+									if ( not Cryolysis_UnitHasEffect("target", SpellTimer[index].Name) ) then
+										SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(index, SpellTimer, TimerTable)
+										index = 0
+										break
 									end
 								end
 							end
@@ -571,426 +593,312 @@ function Cryolysis_OnUpdate()
 				end
 			else
 				for i = 1, 10, 1 do
-					if _G["CryolysisTarget"..i.."Text"]:IsShown() then
-						_G["CryolysisTarget"..i.."Text"]:Hide();
+					if ( _G["CryolysisTarget"..i.."Text"]:IsShown() ) then
+						_G["CryolysisTarget"..i.."Text"]:Hide()
 					end
 				end
 			end
-
 			if CryolysisConfig.ShowSpellTimers or CryolysisConfig.Graphical then
 				-- If posting text timers
-				if not CryolysisConfig.Graphical then
-					-- Coloration de l'affichage des timers
-					timerDisplay = Cryolysis_MsgAddColor(timerDisplay);
+				if ( not CryolysisConfig.Graphical ) then
+					timerDisplay = Cryolysis_MsgAddColor(timerDisplay)
 					-- Posting the timers
-					CryolysisListSpells:SetText(timerDisplay);
+					CryolysisListSpells:SetText(timerDisplay)
 				else
-					CryolysisListSpells:SetText("");
+					CryolysisListSpells:SetText("")
 				end
-				for i = 4, #(SpellGroup.Name) do
-					SpellGroup.Visible[i] = false;
+				for i = 4, #SpellGroup.Name do
+					SpellGroup.Visible[i] = false
 				end
 			else
-				if (CryolysisSpellTimerButton:IsVisible()) then
-					CryolysisListSpells:SetText("");
-					HideUIPanel(CryolysisSpellTimerButton);
+				if ( CryolysisSpellTimerButton:IsVisible() ) then
+					CryolysisListSpells:SetText("")
+					HideUIPanel(CryolysisSpellTimerButton)
 				end
 			end
 		end
 	end
+--[[ END TIMER SECTION																				]]
 	-- Upcate Evocation cooldown
-	local start, duration
-	if CRYOLYSIS_SPELL_TABLE[49].ID ~= nil then
-		start, duration = GetSpellCooldown(CRYOLYSIS_SPELL_TABLE[49].ID, BOOKTYPE_SPELL);
-	else
-		start = 1;
-		duration = 1;
+	local start, duration = 1, 1
+	if ( CRYOLYSIS_SPELL_TABLE[49].ID ~= nil ) then
+		start, duration = GetSpellCooldown(CRYOLYSIS_SPELL_TABLE[49].ID, BOOKTYPE_SPELL)
 	end
-	if start > 0 and duration > 0 and EvocationUp == false then
-  		CryolysisPrivate.EvocationCooldown = duration - ( GetTime() - start);
-		CryolysisPrivate.EvocationCooldownText = Cryolysis_TimerFunction(CryolysisPrivate.EvocationCooldown);
+	if (( start > 0 ) and ( duration > 0 ) and ( EvocationUp == false )) then
+  		CryolysisPrivate.EvocationCooldown = ( duration - curTime - start )
+		CryolysisPrivate.EvocationCooldownText = Cryolysis_TimerFunction(CryolysisPrivate.EvocationCooldown)
 	else  -- Evocation isn't on cooldown
-		CryolysisPrivate.EvocationCooldown = 0;
-		CryolysisPrivate.EvocationCooldownText = "";
+		CryolysisPrivate.EvocationCooldown = 0
+		CryolysisPrivate.EvocationCooldownText = ""
 	end
-	Cryolysis_UpdateIcons();
+	Cryolysis_UpdateIcons()
 end
 
--- Functions lauched according to the intercepted events
-function Cryolysis_OnEvent(event)
-	if (event == "PLAYER_LOGIN") then
-		Cryolysis_LoadVariables();
-	end
-	if (event == "PLAYER_ENTERING_WORLD") then
-		Cryolysis_In = true;
-		CryolysisPrivate.LoadCheck = true;
-	elseif (event == "PLAYER_LEAVING_WORLD") then
-		Cryolysis_In = false;
-		CryolysisPrivate.LoadCheck = false;
-	end
-	-- Traditional test:  Is the player a mage?
-	-- did the mod load?
-	local _, class = UnitClass("player")
-	if (( not Cryolysis_Loaded ) or ( not Cryolysis_In ) or ( class ~= "MAGE" )) then
-		return;
-	end
+function Cryo:PLAYER_ENTERING_WORLD()
+	Cryolysis_In = true
+	CryolysisPrivate.LoadCheck = true
+end
 
-	-- If bag contents changed, checks to make sure provisions are in the selected bag
-	if (event == "BAG_UPDATE") then
-		if not CryolysisPrivate.LoadCheck then
-			if CryolysisPrivate.checkInv then
-				Cryolysis_BagCheck("Force");
-				CryolysisPrivate.checkInv = false;
-			else
-				Cryolysis_BagCheck();
+function Cryo:PLAYER_LEAVING_WORLD()
+	Cryolysis_In = false
+	CryolysisPrivate.LoadCheck = false
+end
+
+function Cryo:BAG_UPDATE(...)
+	if ( CryolysisPrivate.LoadCheck ) then
+		return
+	end
+	if ( CryolysisPrivate.checkInv ) then
+		Cryolysis_BagCheck("Force")
+		CryolysisPrivate.checkInv = false
+	else
+		Cryolysis_BagCheck()
+	end
+end
+
+function Cryo:SpellFailed(unit)
+	if ( unit == "player" ) then
+		SpellCastName = nil
+		SpellCastRank = nil
+		SpellTargetName = nil
+		SpellTargetLevel = nil
+	end
+end
+
+function Cryo:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, ...)
+	SpellCastUnit, SpellCastName = unit, spellName
+	if ( unit == "player" ) then
+		Cryolysis_PolyCheck("stop", SpellCastName, SpellTargetName)
+		Cryolysis_BagCheck(SpellCastName)
+		self:SpellManagement()
+		CryolysisPrivate.Sitting = false
+	end
+end
+
+function Cryo:UNIT_SPELLCAST_SENT(unit, spell, rank, target)
+	_, SpellCastName, SpellCastRank, SpellTargetName = unit, spell, rank, target or UnitName("target") or ""
+	SpellTargetLevel = UnitLevel("target") or ""
+	Cryolysis_PolyCheck("start", SpellCastName, SpellTargetName)
+	Cryolysis_ChatMessage(SpellCastName, SpellTargetName)
+end
+
+function Cryo:TRADE_SHOW()
+	CryolysisTradeRequest = true
+	Cryolysis_BagCheck("Force")
+end
+
+function Cryo:TRADE_CLOSED()
+	CryolysisTradeRequest = false
+	Cryolysis_BagCheck("Update")
+	Cryolysis_ButtonTextUpdate()
+end
+
+function Cryo:LEARNED_SPELL_IN_TAB(...)
+	Cryolysis_SpellSetup()
+	Cryolysis_CreateMenu()
+	Cryolysis_ButtonSetup()
+end
+
+function Cryo:PLAYER_REGEN_ENABLED()
+	PlayerCombat = false
+	if ( CryolysisConfig.ShowSpellTimers ) then
+		SpellGroup, SpellTimer, TimerTable = Cryolysis_RetraitTimerCombat(SpellGroup, SpellTimer, TimerTable)
+		for i = 1, 10, 1 do
+			if ( _G["CryolysisTarget"..i.."Text"]:IsShown() ) then
+				_G["CryolysisTarget"..i.."Text"]:Hide()
 			end
 		end
---  Removing.  Making bag update based on spellcasting
--- 		if (CryolysisConfig.ProvisionSort) then
---			Cryolysis_ProvisionSwitch("CHECK");
---		else
---			Cryolysis_BagExplore();
---		end
-	-- Management of the end of spellcasting
--- Changed by Lomig :	elseif (event == "SPELLCAST_FAILED") or (event == "SPELLCAST_INTERRUPTED") then
-	elseif (event == "UNIT_SPELLCAST_FAILED") or (event == "UNIT_SPELLCAST_INTERRUPTED") then
-		-- added by Lomig
-		if arg1 == "player" then
-		-- end of adding
-			SpellCastName = nil;
-			SpellCastRank = nil;
-			SpellTargetName = nil;
-			SpellTargetLevel = nil;
-		-- added by Lomig
-		end
-		-- end of adding
---[[ Commented by Lomig 12/12/06 2.00 GMT+1
-	elseif (event == "SPELLCAST_STOP") then
-		Cryolysis_PolyCheck("stop",SpellCastName,SpellTargetName);
-		Cryolysis_SpellManagement();
--- I replace this function by this one :
---]]
-	elseif (event == "UNIT_SPELLCAST_SUCCEEDED") then
-		SpellCastUnit, SpellCastName = arg1, arg2
-		if SpellCastUnit == "player" then
-			Cryolysis_PolyCheck("stop",SpellCastName,SpellTargetName);
-			Cryolysis_BagCheck(SpellCastName);
-			Cryolysis_SpellManagement();
-			CryolysisPrivate.Sitting = false;
-		end
------- end of Lomig's changes.
---[[ commented by Lomig 12/12/06 2.00 GMT+1
-	-- When the mage begins to cast a spell, it grabs the name of the spell and saves the name of the spells target's level
-	elseif (event == "SPELLCAST_START") then
-		CryolysisPrivate.Sitting = false;
-		SpellCastName = arg1;
-		SpellTargetName = UnitName("target");
-		if not SpellTargetName then
-			SpellTargetName = "";
-		end
-		SpellTargetLevel = UnitLevel("target");
-		if not SpellTargetLevel then
-			SpellTargetLevel = "";
-		end
-		Cryolysis_PolyCheck("start",SpellCastName,SpellTargetName);
-		Cryolysis_ChatMessage(SpellCastName, SpellTargetName);
--- I replace this part by this one :
---]]
+	end
+end
 
-	elseif (event == "UNIT_SPELLCAST_SENT") then
-		_, SpellCastName, SpellCastRank, SpellTargetName = arg1, arg2, arg3, arg4;
-		if (not SpellTargetName or SpellTargetName == "") and UnitName("target") then
-			SpellTargetName = UnitName("target");
-		elseif not SpellTargetName then
-			SpellTargetName = "";
-		end
-		SpellTargetLevel = UnitLevel("target");
-		if not SpellTargetLevel then
-			SpellTargetLevel = "";
-		end
-		Cryolysis_PolyCheck("start",SpellCastName,SpellTargetName);
-		Cryolysis_ChatMessage(SpellCastName, SpellTargetName);
+function Cryo:PLAYER_REGEN_DISABLED()
+	if ( _G["CryolysisGeneralFrame"]:IsVisible() ) then
+		_G["CryolysisGeneralFrame"]:Hide()
+	end
+	PlayerCombat = true
+end
 
+function Cryo:MERCHANT_SHOW()
+	Cryolysis_MerchantCheck()
+end
 
------- end of Lomig's changes.
-	-- When the mage stops casting, clear spell data
-	-- Flag if the trade window is open, in order to be able to trade provisions automatically
-	elseif event == "TRADE_REQUEST" or event == "TRADE_SHOW" then
-		CryolysisTradeRequest = true;
-		Cryolysis_BagCheck("Force");
-	elseif event == "TRADE_REQUEST_CANCEL" or event == "TRADE_CLOSED" then
-		CryolysisTradeRequest = false;
-		Cryolysis_BagCheck("Update");
-		Cryolysis_ButtonTextUpdate()
-	elseif event == "CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE" then  -- WINTERSCHILL will go here
- 		for creatureName, spell in string.gmatch(arg1, AURAADDEDOTHERHARMFUL) do
-			-- Frostbite
-			if spell == CRYOLYSIS_SPELL_TABLE[53].Name then
-				SpellCastName = spell;
-				SpellTargetName = creatureName;
-    			Cryolysis_SpellManagement();
-   			-- Winter's Chill
-			elseif spell == CRYOLYSIS_SPELL_TABLE[54].Name
-				or spell == CRYOLYSIS_SPELL_TABLE[55].Name
-				or spell == CRYOLYSIS_SPELL_TABLE[56].Name
-				or spell == CRYOLYSIS_SPELL_TABLE[57].Name
-				or spell == CRYOLYSIS_SPELL_TABLE[58].Name then
-    			for thistimer=#(SpellTimer), 1, -1 do
-					if 	SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[54].Name
-						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[55].Name
-						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[56].Name
-						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[57].Name
-						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[58].Name
-						then
-						SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(thistimer, SpellTimer, TimerTable);
-					end
-				end
-				SpellCastName = spell;
-				SpellTargetName = creatureName;
-				Cryolysis_SpellManagement();
-   			-- Fire Vulnerability
-			elseif spell == CRYOLYSIS_SPELL_TABLE[59].Name
-				or spell == CRYOLYSIS_SPELL_TABLE[60].Name
-				or spell == CRYOLYSIS_SPELL_TABLE[61].Name
-				or spell == CRYOLYSIS_SPELL_TABLE[62].Name
-				or spell == CRYOLYSIS_SPELL_TABLE[63].Name then
-    			for thistimer=#(SpellTimer), 1, -1 do
-					if 	SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[59].Name
-						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[60].Name
-						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[61].Name
-						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[62].Name
-						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[63].Name
-						then
-						SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(thistimer, SpellTimer, TimerTable);
-					end
-				end
-				SpellCastName = spell;
-				SpellTargetName = creatureName;
-				Cryolysis_SpellManagement();
-				debuff.fireApplied = debuff.fireApplied + 1;
-				debuff.fireCount = debuff.fireCount + 1;
-				debuff.fireDuration = 30;
---			-- Freezing Band Proc <3
---			elseif spell == CRYOLYSIS_SPELL_TABLE[65].Name then
---				SpellCastName = spell;
---				SpellTargetName = creatureName;
---				SpellTargetLevel = "";
---				Cryolysis_ChatMessage(SpellCastName, SpellTargetName);
---				Cryolysis_SpellManagement();
-			-- Frost Nova
-			elseif spell == CRYOLYSIS_SPELL_TABLE[19].Name then
-				SpellCastName = CRYOLYSIS_SPELL_TABLE[66].Name
-				SpellTargetName = CRYOLYSIS_SPELL_TABLE[19].Name;
-				SpellTargetLevel = "";
-				Cryolysis_SpellManagement();
-			end
+function Cryo:MERCHANT_CLOSED()
+	StaticPopup_Hide("RESTOCK_CONFIRMATION")
+	Cryolysis_BagExplore()
+end
+
+function Cryo:ZONE_CHANGED_NEW_AREA()
+	if (( string.find(GetRealZoneText(), "Ahn'Qiraj") ) and ( not string.find(GetRealZoneText(), "Gates") ) and ( not string.find(GetRealZoneText(), "Ruins") )) then
+		if ( CryolysisPrivate.AQ == false ) then
+			CryolysisPrivate.AQ = true
+			Mount.AQChecked = false
+			Cryolysis_BagCheck("Force")
 		end
-	-- If mage learns a new spel/rank, the new information is obtained
-	-- If the mage  learns new spell from buff or spell, button is recreated
-	elseif (event == "LEARNED_SPELL_IN_TAB") then
-		Cryolysis_SpellSetup();
-		Cryolysis_CreateMenu();
-		Cryolysis_ButtonSetup();
-	-- At the end of combat, stop announcing Concentration
-	-- And removes the timers for that mob
-	elseif (event == "PLAYER_REGEN_ENABLED") then
-		PlayerCombat = false;
-		if CryolysisConfig.ShowSpellTimers then
-			SpellGroup, SpellTimer, TimerTable = Cryolysis_RetraitTimerCombat(SpellGroup, SpellTimer, TimerTable);
-			for i = 1, 10, 1 do
-				frameName = "CryolysisTarget"..i.."Text";
-				frameItem = getglobal(frameName);
-				if frameItem:IsShown() then
-					frameItem:Hide();
+	elseif ( CryolysisPrivate.AQ == true ) then
+		CryolysisPrivate.AQ = false
+		Mount.AQMount = false
+		Mount.AQChecked = false
+		Mount.Available = false
+		Cryolysis_BagCheck("Force")
+	end
+end
+
+function Cryo:CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS(msg, ...)
+	-- Using Deformat-2.0 here to extract the spell name by matching the global string with the message. See: http://www.wowace.com/wiki/Deformat-2.0
+	local spell = D(msg, AURAADDEDSELFHELPFUL)
+	if ( spell ) then
+		local textureString = "Interface\\Addons\\Cryolysis\\UI\\%s"
+		if (( spell == BS["Evocation"] ) and ( self:PlayerHasSpell(BS["Evocation"]) )) then
+			EvocationUp = false
+			CryolysisEvocationButton:SetNormalTexture( string.format(textureString, "Evocation-03") )
+		elseif (( spell == BS["Ice Barrier"] ) and ( self:PlayerHasSpell(BS["Ice Barrier"]) )) then
+			IceBarrierUp = false
+			CryolysisBuffMenu4:SetNormalTexture( string.format(textureString, "IceBarrier-03") )
+		elseif (( spell == BS["Fire Ward"] ) and ( self:PlayerHasSpell(BS["Fire Ward"]) )) then
+			FireWardUp = false
+			CryolysisBuffMenu5:SetNormalTexture( string.format(textureString, "FireWard-03") )
+		elseif (( spell == BS["Frost Ward"] ) and ( self:PlayerHasSpell(BS["Frost Ward"]) )) then
+			FireWardUp = false
+			CryolysisBuffMenu5:SetNormalTexture( string.format(textureString, "FireWard-03") )
+		end
+	end
+end
+
+function Cryo:AuraGoneSelf(msg, ...) --Called on "CHAT_MSG_SPELL_AURA_GONE_SELF" and "CHAT_MSG_SPELL_BREAK_AURA" events.
+	local spell = D(msg, AURAREMOVEDSELF)
+	if ( spell ) then
+		if ( spell == BS["Combustion"] ) then
+			SpellCastName = BS["Combustion"]
+			CombustionFade = true
+		end
+		if ( spell == BS["Presence of Mind"] ) then
+			SpellCastName = BS["Presence of Mind"]
+			PoMFade = true
+		end
+		if (( CombustionFade == true ) or ( PoMFade == true )) then
+			self:SpellManagement()
+		end
+	end
+end
+
+function Cryo:CHAT_MSG_SPELL_AURA_GONE_OTHER(msg, ...)
+	local spell, creature = D(msg, AURAREMOVEDOTHER)
+	if (( spell ) and ( creature )) then
+		Cryolysis_PolyCheck("break", spell, creature)
+	end
+end
+
+function Cryo:CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE(msg, ...)
+	local creature, spell = D(msg, AURAADDEDOTHERHARMFUL)
+	if (( creature ) and ( spell )) then
+		-- Frostbite
+		if ( spell == BS["Frostbite"] ) then
+			SpellCastName = spell
+			SpellTargetName = creatureName
+			self:SpellManagement()
+   		-- Winter's Chill
+		elseif ( string.find(spell, BS["Winter's Chill"]) ) then
+			for i = #SpellTimer, 1, -1 do
+				if ( string.find(SpellTimer[i].Name, BS["Winter's Chill"]) ) then
+					SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(i, SpellTimer, TimerTable)
 				end
 			end
-		end
-	-- Peronsal actions -- "Buffs"
-	elseif (event == "CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS") then
-		Cryolysis_SelfEffect("BUFF");
-	-- Personal actions -- "Debuffs"
-	elseif event == "CHAT_MSG_SPELL_AURA_GONE_SELF" or event == "CHAT_MSG_SPELL_BREAK_AURA" then
-		Cryolysis_SelfEffect("DEBUFF");
-	elseif event == "CHAT_MSG_SPELL_AURA_GONE_OTHER" then
-		for spell, creatureName in string.gmatch(arg1, AURAREMOVEDOTHER) do
-			Cryolysis_PolyCheck("break",spell,creatureName);
-		end
-	elseif event == "PLAYER_REGEN_DISABLED" then
-		if ( _G["CryolysisGeneralFrame"]:IsVisible() ) then
-			_G["CryolysisGeneralFrame"]:Hide()
-		end
-		PlayerCombat = true;
-	elseif event == "MERCHANT_SHOW" then
-		Cryolysis_MerchantCheck();
-	elseif event == "MERCHANT_CLOSED" then
-		StaticPopup_Hide("RESTOCK_CONFIRMATION");
-		Cryolysis_BagExplore();
-	-- End of the loading screen
-	elseif (event == "ZONE_CHANGED_NEW_AREA") then
-		if string.find(GetRealZoneText(),"Ahn'Qiraj") and not string.find(GetRealZoneText(),"Gates") and not string.find(GetRealZoneText(),"Ruins") then
-			if CryolysisPrivate.AQ == false then
-				CryolysisPrivate.AQ = true;
-				Mount.AQChecked = false;
-				Cryolysis_BagCheck("Force");
+			SpellCastName = spell
+			SpellTargetName = creatureName
+			self:SpellManagement()
+   		-- Fire Vulnerability
+		elseif ( string.find(spell, BS["Fire Vulnerability"]) ) then
+			for i = #SpellTimer, 1, -1 do
+				if ( string.find(SpellTimer[i].Name, BS["Fire Vulnerability"]) ) then
+					SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(i, SpellTimer, TimerTable)
+				end
 			end
-		elseif CryolysisPrivate.AQ == true then
-			CryolysisPrivate.AQ = false;
-			Mount.AQMount = false;
-			Mount.AQChecked = false;
-			Mount.Available = false;
-			Cryolysis_BagCheck("Force");
+			SpellCastName = spell
+			SpellTargetName = creatureName
+			self:SpellManagement()
+			debuff.fireApplied = debuff.fireApplied + 1
+			debuff.fireCount = debuff.fireCount + 1
+			debuff.fireDuration = 30
+		elseif ( spell == BS["Frost Nova"] ) then
+			SpellCastName = CRYOLYSIS_SPELL_TABLE[66].Name
+			SpellTargetName = CRYOLYSIS_SPELL_TABLE[19].Name
+			SpellTargetLevel = ""
+			self:SpellManagement()
 		end
 	end
-	return;
 end
 
 ------------------------------------------------------------------------------------------------------
 -- CRYOLYSIS FUNCTION "ON EVENT"
 ------------------------------------------------------------------------------------------------------
--- Events : PLAYER_ENTERING_WORLD and  PLAYER_LEAVING_WORLD
--- Function applied to each loading screen
--- When leaving a zone, stop supervising events
--- When done loading, starts monitoring again
--- Basically, speeds up loading time
-function Cryolysis_RegisterManagement(RegistrationType)
-	if RegistrationType == "IN" then
-		for i in ipairs(cryoEvents) do
-			CryolysisButton:RegisterEvent(cryoEvents[i])
-		end
-	else
-		for i in ipairs(cryoEvents) do
-			CryolysisButton:UnregisterEvent(cryoEvents[i])
-		end
-	end
-end
-
-function Cryolysis_SelfEffect(action)
-	local nameTalent, icon, tier, column, currRank, maxRank
-	if action == "BUFF" then
-		-- Loading Evocation If it exists
-		if  string.find(arg1, CRYOLYSIS_SPELL_TABLE[49].Name) and CRYOLYSIS_SPELL_TABLE[49].ID ~= nil then
-			EvocationUp = false;
-			CryolysisEvocationButton:SetNormalTexture("Interface\\Addons\\Cryolysis\\UI\\Evocation-03");
-		end
-		if  string.find(arg1, CRYOLYSIS_SPELL_TABLE[23].Name) and CRYOLYSIS_SPELL_TABLE[15].ID ~= nil then
-			IceBarrierUp = false;
-			CryolysisBuffMenu4:SetNormalTexture("Interface\\Addons\\Cryolysis\\UI\\IceBarrier-03");
-		end
-		if  string.find(arg1, CRYOLYSIS_SPELL_TABLE[15].Name) and CRYOLYSIS_SPELL_TABLE[15].ID ~= nil then
-			FireWardUp = false;
-			CryolysisBuffMenu5:SetNormalTexture("Interface\\Addons\\Cryolysis\\UI\\FireWard-03");
-		end
-		if  string.find(arg1, CRYOLYSIS_SPELL_TABLE[20].Name) and CRYOLYSIS_SPELL_TABLE[20].ID ~= nil then
-			FireWardUp = false;
-			CryolysisBuffMenu5:SetNormalTexture("Interface\\Addons\\Cryolysis\\UI\\FireWard-03");
-		end
-	else
-		if string.find(arg1, CRYOLYSIS_SPELL_TABLE[43].Name) then
-		   SpellCastName = CRYOLYSIS_SPELL_TABLE[43].Name
-		   CombustionFade = true;
-		   Cryolysis_SpellManagement()
-
-		end
-		if string.find(arg1, CRYOLYSIS_SPELL_TABLE[44].Name) then
-		   SpellCastName = CRYOLYSIS_SPELL_TABLE[44].Name
-		   PoMFade = true;
-		   Cryolysis_SpellManagement()
-
-		end
-		-- Change Evocation button when mage doesnt have Evocation up
---      if  string.find(arg1, CRYOLYSIS_SPELL_TABLE[49].Name) and CRYOLYSIS_SPELL_TABLE[49].ID ~= nil then
---			EvocationUp = false;
---			CryolysisEvocationButton:SetNormalTexture("Interface\\Addons\\Cryolysis\\UI\\Evocation-01");
---		end
-	end
-	return;
-end
-
--- event : SPELLCAST_STOP
--- Allows to manage all that once touches with the fates their successful incantation
-function Cryolysis_SpellManagement()
-	SortActif = false;
-	if (SpellCastName) then
-		if Mount.Available then
-			if string.find(SpellCastName, Mount.Title) then
-	  	        CryolysisMounted = true;
-				return;
+function Cryo:SpellManagement()
+	SortActif = false
+	if ( SpellCastName ) then
+		if ( Mount.Available ) then
+			if ( string.find(SpellCastName, Mount.Title) ) then
+				CryolysisMounted = true
+				return
 			end
 		end
 		-- If the spell is cold snap, remove frost timers
-		if CryolysisConfig.ShowSpellTimers then
-			if SpellCastName == CRYOLYSIS_SPELL_TABLE[42].Name and CRYOLYSIS_SPELL_TABLE[42].ID ~= nil then
-				for thistimer=#(SpellTimer), 1, -1 do
-					if 	SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[9].Name
-						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[19].Name
-						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[20].Name
-						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[23].Name
-						or SpellTimer[thistimer].Name == CRYOLYSIS_SPELL_TABLE[41].Name
-						then
-						SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(thistimer, SpellTimer, TimerTable);
+		if ( CryolysisConfig.ShowSpellTimers ) then
+			if (( SpellCastName == CRYOLYSIS_SPELL_TABLE[42].Name ) and ( CRYOLYSIS_SPELL_TABLE[42].ID ~= nil )) then
+				for i = #SpellTimer, 1, -1 do
+					if (( SpellTimer[i].Name == BS["Cone of Cold"] ) or ( SpellTimer[i].Name == BS["Frost Nova"] ) or ( SpellTimer[i].Name == BS["Frost Ward"] )
+					   or ( SpellTimer[i].Name == BS["Ice Barrier"] ) or ( SpellTimer[i].Name == BS["Ice Block"] )) then
+						SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(i, SpellTimer, TimerTable)
 					end
 				end
 			end
-	--		-- Pour les autres sorts cast�, tentative de timer si valable
-			for spell=1, #(CRYOLYSIS_SPELL_TABLE), 1 do
-				if SpellCastName == CRYOLYSIS_SPELL_TABLE[spell].Name then -- and not (spell == 10) then  <--- and the spell isn't Enslave Demon
-					-- If a timer already exists, it is updated
-					for thisspell=1, #(SpellTimer), 1 do
-						if SpellTimer[thisspell].Name == SpellCastName
-							and SpellTimer[thisspell].Target == SpellTargetName
-							and SpellTimer[thisspell].TargetLevel == SpellTargetLevel
-							and CRYOLYSIS_SPELL_TABLE[spell].Type ~= 4
-							then
-							-- -- Si c'est sort lanc�d��pr�ent sur un mob, on remet le timer �fond
+			for spell = 1, #CRYOLYSIS_SPELL_TABLE, 1 do
+				local isPolySpell
+				if ( string.find(CRYOLYSIS_SPELL_TABLE[spell].Name, BS["Polymorph"]) ) then
+					isPolySpell = true
+				end
+				if ( SpellCastName == CRYOLYSIS_SPELL_TABLE[spell].Name ) then
+					for i = 1, #SpellTimer, 1 do
+						if (( SpellTimer[i].Name == SpellCastName ) and ( SpellTimer[i].Target == SpellTargetName )
+						   and ( SpellTimer[i].TargetLevel == SpellTargetLevel ) and ( CRYOLYSIS_SPELL_TABLE[spell].Type ~= 4 )) then
 							-- If the timer is already there, reapply it and put it on the bottom
-								SpellTimer[thisspell].Time = CRYOLYSIS_SPELL_TABLE[spell].Length;
-								SpellTimer[thisspell].TimeMax = math.floor(GetTime() + CRYOLYSIS_SPELL_TABLE[spell].Length);
-								-- adjusts the duration for polymorph based on the rank
-								if spell == 26
-									or spell == 48
-									or spell == 52 then
-									if SpellCastRank == nil then SpellCastRank = CRYOLYSIS_SPELL_TABLE[26].Rank; end
-									SpellTimer[thisspell].Time, SpellTimer[thisspell].TimeMax = Cryolysis_PvPPoly(SpellTargetName);
+							SpellTimer[i].Time = CRYOLYSIS_SPELL_TABLE[spell].Length
+							SpellTimer[i].TimeMax = math.floor(GetTime() + CRYOLYSIS_SPELL_TABLE[spell].Length)
+							-- adjusts the duration for polymorph based on the rank
+							if ( isPolySpell ) then
+								if ( SpellCastRank == nil ) then
+									SpellCastRank = CRYOLYSIS_SPELL_TABLE[26].Rank
 								end
-							SortActif = true;
-							break;
+								SpellTimer[i].Time, SpellTimer[i].TimeMax = Cryolysis_PvPPoly(SpellTargetName)
+							end
+							SortActif = true
+							break
 						end
-						-- Si c'est un banish sur une nouvelle cible, on supprime le timer pr��ent
 						-- If it is polymorph on a new target, remove the old polymorph timer
-						if SpellTimer[thisspell].Name == SpellCastName
-							and
-								spell == 26
-								or spell == 48
-								or spell == 52
-							and
-								(SpellTimer[thisspell].Target ~= SpellTargetName
-								or SpellTimer[thisspell].TargetLevel ~= SpellTargetLevel)
-							then
-							SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(thisspell, SpellTimer, TimerTable);
-							SortActif = false;
-							break;
+						if (( SpellTimer[i].Name == SpellCastName ) and ( isPolySpell ) and ( SpellTimer[i].Target ~= SpellTargetName )
+						   or ( SpellTimer[i].TargetLevel ~= SpellTargetLevel )) then
+							SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(i, SpellTimer, TimerTable);
+							SortActif = false
+							break
 						end
-						if SortActif then break; end
+						if ( SortActif ) then
+							break
+						end
 					end
-					if not SortActif and CRYOLYSIS_SPELL_TABLE[spell].Type ~= 0	then
-						if spell == 26
-							or spell == 48
-							or spell == 52 then
-							CRYOLYSIS_SPELL_TABLE[spell].Length = Cryolysis_PvPPoly(SpellTargetName);
+					if (( not SortActif ) and ( CRYOLYSIS_SPELL_TABLE[spell].Type ~= 0 )) then
+						if ( isPolySpell ) then
+							CRYOLYSIS_SPELL_TABLE[spell].Length = Cryolysis_PvPPoly(SpellTargetName)
 						end
-						if (spell ~= 43 or CombustionFade) or (spell ~= 44 or PoMFade) then
-							SpellGroup, SpellTimer, TimerTable = Cryolysis_InsertTimerParTable(spell, SpellTargetName, SpellTargetLevel, SpellGroup, SpellTimer, TimerTable);
-							CombustionFade = false;
+						if (( spell ~= 43 or CombustionFade ) or ( spell ~= 44 or PoMFade )) then
+							SpellGroup, SpellTimer, TimerTable = Cryolysis_InsertTimerParTable(spell, SpellTargetName, SpellTargetLevel, SpellGroup, SpellTimer, TimerTable)
+							CombustionFade = false
 						end
-						break;
+						break
 					end
 				end
 			end
 		end
 	end
-	SpellCastName = nil;
-	SpellCastRank = nil;
-	return;
+	SpellCastName = nil
+	SpellCastRank = nil
 end
 
 --  Prepares sound and announcements for polymorph
@@ -1061,7 +969,7 @@ function Cryolysis_PolyCheck(type,spell,creatureName)
 			debuff.drReset = GetTime() + 15;
 			SpellCastName = CRYOLYSIS_SPELL_TABLE[67].Name;
 			SpellTargetName = creatureName;
-			Cryolysis_SpellManagement();
+			Cryo:SpellManagement();
 		end
 	end
 end
@@ -3439,6 +3347,17 @@ function Cryolysis_ChangeOfsy(Action, Menu)
 	end
 	if Action == "Leave" then
 		Cryolysis_CreateMenu();
+	end
+end
+
+function Cryo:PlayerHasSpell(spell)
+	for i in ipairs(CRYOLYSIS_SPELL_TABLE) do
+		if ( CRYOLYSIS_SPELL_TABLE[i].Name == spell ) then
+			if ( CRYOLYSIS_SPELL_TABLE[i].ID ~= nil ) then
+				return CRYOLYSIS_SPELL_TABLE[i]
+			end
+			break
+		end
 	end
 end
 

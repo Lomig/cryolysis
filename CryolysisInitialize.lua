@@ -44,7 +44,7 @@
 ------------------------------------------------------------------------------------------------------
 local _G = getfenv(0)
 
-function Cryolysis_Initialize()
+function Cryo:Init()
 
 	-- Initilialisation des Textes (VO / VF / VA)
 	if CryolysisConfig ~= {} then
@@ -461,9 +461,9 @@ function Cryolysis_SlashHandler(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, 
 			Cryolysis_Msg("Short Messages : <brightGreen>On", "USER");
 		end
 	elseif string.find(string.lower(arg1), "reset") then
-		CryolysisConfig.Version = "reboot";
-		Cryolysis_Loaded = false;
-		Cryolysis_LoadVariables();
+		CryolysisConfig.Version = "reboot"
+		Cryolysis_Loaded = false
+		Cryo:LoadVariables()
 	elseif string.find(string.lower(arg1), "toggle") then
 		if CryolysisButton:IsVisible() then
 			HideUIPanel(CryolysisButton)

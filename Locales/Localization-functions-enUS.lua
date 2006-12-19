@@ -161,7 +161,7 @@ function Cryolysis_SpellTableBuild()
 		Name = "Winter's Chill (5)",	Length = 15,	Type = 6},
 	[59] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Fire Vulnerability",	Length = 30,	Type = 6},
-    [60] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
+	[60] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Fire Vulnerability (2)",Length = 30,	Type = 6},
 	[61] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Fire Vulnerability (3)",Length = 30,	Type = 6},
