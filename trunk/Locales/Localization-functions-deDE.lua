@@ -1,4 +1,4 @@
---[[
+﻿--[[
     Cryolysis
     Copyright (C) 2006 Cryolysis: Reborn Team
 
@@ -40,41 +40,6 @@
 ------------------------------------------------
 --
 if GetLocale() == "deDE" then
-
-CRYOLYSIS_UNIT_MAGE = "Magier";
-
---CRYOLYSIS_ANTI_FEAR_SPELL = {
---	-- Buffs giving temporary immunity to fear effects
---	["Buff"] = {
---		"Furchtzauberschutz",		-- Dwarf priest racial trait
---		"Wille der Verlassenen",	-- Forsaken racial trait
---		"Furchtlos",				-- Trinket
---		"Berserkerwut",   			-- Warrior Fury talent
---		"Tollk\195\188hnheit",		-- Warrior Fury talent
---		"Todeswunsch",				-- Warrior Fury talent
---		"Zorn des Wildtieres",		-- Hunter Beast Mastery talent (pet only)
---		"Eisblock", 				-- Mage Ice talent
---		"G\195\182ttlicher Schutz",	-- Paladin Holy buff
---		"Gottesschild",   			-- Paladin Holy buff
---		"Totem des Erdsto\195\159es",	-- Shaman totem
---		"Abolish Magic"				-- Majordomo (NPC) spell
---		--  "Grounding Totem" is not considerated, as it can remove other spell than fear, and only one each 10 sec.		
---	},
---
---	-- Debuffs and curses giving temporary immunity to fear effects
---	["Debuff"] = {
---		"Fluch der Tollk\195\188hnheit"	-- Warlock curse
---	}
---};
---
--- Creature type absolutly immune to fear effects
---CRYOLYSIS_ANTI_FEAR_UNIT = {
---	"Untoter"
---};
---
--- Word to search for Fire Vulnerability and Winter's chill  first (.+) is the target, second is the spell
-CRYOLYSIS_DEBUFF_SRCH = "(.+) ist von (.+) betroffen."
-CRYOLYSIS_POLY_SRCH = "(.+) schwindet von (.+)."
 
 function Cryolysis_SpellTableBuild()
 CRYOLYSIS_SPELL_TABLE = {

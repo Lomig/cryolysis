@@ -1,4 +1,4 @@
---[[
+﻿--[[
     Cryolysis
     Copyright (C) 2006 Cryolysis: Reborn Team
 
@@ -40,41 +40,6 @@
 ------------------------------------------------
 --
 if  GetLocale() == "frFR" then
-
-CRYOLYSIS_UNIT_MAGE = "Mage";
-
---CRYOLYSIS_ANTI_FEAR_SPELL = {
---	-- Buffs giving temporary immunity to fear effects
---	["Buff"] = {
---		"Gardien de peur",			-- Dwarf priest racial trait
---		"Volont\195\169 des R\195\169prouv\195\169s",		-- Forsaken racial trait
---		"Dissipation de peur",			-- Trinket
---		"Furie berserker",		-- Warrior Fury talent
---		"T\195\169m\195\169rit\195\169",			-- Warrior Fury talent
---		"Souhait mortel",			-- Warrior Fury talent
---		"Courroux bestial",		-- Hunter Beast Mastery talent (pet only)
---		"Bloc de glace",			-- Mage Ice talent
---		"Protection divine",		-- Paladin Holy buff
---		"Bouclier divin",		-- Paladin Holy buff
---		"Totem de s\195\169isme",			-- Shaman totem
---		"Abolir magie"			-- Majordomo (NPC) spell
---		--  "Grounding Totem" is not considerated, as it can remove other spell than fear, and only one each 10 sec.		
---	},
---
---	-- Debuffs and curses giving temporary immunity to fear effects
---	["Debuff"] = {
---		"Mal\195\169diction de t\195\169m\195\169rit\195\169"		-- Warlock curse
---	}
---};
---
--- Creature type absolutly immune to fear effects
---CRYOLYSIS_ANTI_FEAR_UNIT = {
---	"Morts-Vivants"
---};
---
--- Word to search for Fire Vulnerability and Winter's chill  first (.+) is the target, second is the spell
-CRYOLYSIS_DEBUFF_SRCH = "(.+) subit les effets de (.+)."
-CRYOLYSIS_POLY_SRCH = "(.+) n'est plus sous l'influence de (.+)."
 
 function Cryolysis_SpellTableBuild()
 CRYOLYSIS_SPELL_TABLE = {

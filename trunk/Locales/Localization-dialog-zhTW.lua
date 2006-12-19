@@ -1,4 +1,4 @@
---[[
+﻿--[[
     Cryolysis
     Copyright (C) 2006 Cryolysis: Reborn Team
 

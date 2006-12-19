@@ -432,7 +432,8 @@ end
 
 -- Function applied once parameters of the mods charged
 function Cryolysis_LoadVariables()
-	if Cryolysis_Loaded or UnitClass("player") ~= CRYOLYSIS_UNIT_MAGE then
+	local _, class = UnitClass("player")
+	if (( Cryolysis_Loaded ) or ( class ~= "MAGE" )) then
 		return
 	end
 	Cryolysis_Initialize();
@@ -445,9 +446,9 @@ end
 
 -- Function launched to the update of the interface (main) -- every 0.1 seconds
 function Cryolysis_OnUpdate()
-
+	local _, class = UnitClass("player")
 	-- The function is used only if Cryolysis is initialized and the player is a mage
-	if (not Cryolysis_Loaded) and UnitClass("player") ~= CRYOLYSIS_UNIT_MAGE then
+	if (( not Cryolysis_Loaded ) and ( class ~= "MAGE" )) then
 		return;
 	end
 	-- Only used if loaded and player is not a mage --
@@ -615,7 +616,8 @@ function Cryolysis_OnEvent(event)
 	end
 	-- Traditional test:  Is the player a mage?
 	-- did the mod load?
-	if (not Cryolysis_Loaded) or (not Cryolysis_In) or UnitClass("player") ~= CRYOLYSIS_UNIT_MAGE then
+	local _, class = UnitClass("player")
+	if (( not Cryolysis_Loaded ) or ( not Cryolysis_In ) or ( class ~= "MAGE" )) then
 		return;
 	end
 
@@ -707,7 +709,7 @@ function Cryolysis_OnEvent(event)
 		Cryolysis_BagCheck("Update");
 		Cryolysis_ButtonTextUpdate()
 	elseif event == "CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE" then  -- WINTERSCHILL will go here
- 		for creatureName, spell in string.gmatch(arg1, CRYOLYSIS_DEBUFF_SRCH) do
+ 		for creatureName, spell in string.gmatch(arg1, AURAADDEDOTHERHARMFUL) do
 			-- Frostbite
 			if spell == CRYOLYSIS_SPELL_TABLE[53].Name then
 				SpellCastName = spell;
@@ -796,7 +798,7 @@ function Cryolysis_OnEvent(event)
 	elseif event == "CHAT_MSG_SPELL_AURA_GONE_SELF" or event == "CHAT_MSG_SPELL_BREAK_AURA" then
 		Cryolysis_SelfEffect("DEBUFF");
 	elseif event == "CHAT_MSG_SPELL_AURA_GONE_OTHER" then
-		for spell, creatureName in string.gmatch(arg1, CRYOLYSIS_POLY_SRCH) do
+		for spell, creatureName in string.gmatch(arg1, AURAREMOVEDOTHER) do
 			Cryolysis_PolyCheck("break",spell,creatureName);
 		end
 	elseif event == "PLAYER_REGEN_DISABLED" then

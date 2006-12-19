@@ -1,4 +1,4 @@
---[[
+﻿--[[
     Cryolysis
     Copyright (C) 2006 Cryolysis: Reborn Team
 
@@ -40,12 +40,6 @@
 ------------------------------------------------
 --
 if ( GetLocale() == "enUS" ) or ( GetLocale() == "enGB" ) then
-
-CRYOLYSIS_UNIT_MAGE = "Mage";
-
--- Word to search for Fire Vulnerability and Winter's chill  first (.+) is the target, second is the spell
-CRYOLYSIS_DEBUFF_SRCH = "(.+) is afflicted by (.+)."
-CRYOLYSIS_POLY_SRCH = "(.+) fades from (.+)."
 
 function Cryolysis_SpellTableBuild()
 	CRYOLYSIS_SPELL_TABLE = {

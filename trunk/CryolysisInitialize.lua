@@ -74,7 +74,8 @@ function Cryolysis_Initialize()
 
 	-- On initialise ! Si le joueur n'est pas D�oniste, on cache Cryolysis (chuuuut !)
 	-- On indique aussi que N�rosis est initialis�maintenant
-	if UnitClass("player") ~= CRYOLYSIS_UNIT_MAGE then
+	local _, class = UnitClass("player")
+	if ( class ~= "MAGE" ) then
 		HideUIPanel(CryolysisProvisionMenu);
 		HideUIPanel(CryolysisSpellTimerButton);
 		HideUIPanel(CryolysisButton);
@@ -438,8 +439,9 @@ end
 -- FONCTION GERANT LA COMMANDE CONSOLE /CRYO
 ------------------------------------------------------------------------------------------------------
 function Cryolysis_SlashHandler(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12)
+	local _, class = UnitClass("player")
 	-- Blah blah blah, le joueur est-il bien un D�oniste ? On finira par le savoir !
-	if UnitClass("player") ~= CRYOLYSIS_UNIT_MAGE then
+	if ( class ~= "MAGE" ) then
 		return;
 	end
 	if string.find(string.lower(arg1), "recall") then
