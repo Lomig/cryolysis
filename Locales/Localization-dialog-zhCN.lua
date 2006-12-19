@@ -32,7 +32,13 @@
 --
 -- Version 12.12.2006
 ------------------------------------------------------------------------------------------------------
-
+AceLibrary("AceLocale-2.2"):new("Cryolysis"):RegisterTranslations("zhCN", function()
+	return {
+		
+		["Restock Reagents?"] = "购买施法濿料?",
+		
+	}
+end)
 
 ------------------------------------------------
 -- SIMPLIFIED CHINESE VERSION TEXTS --

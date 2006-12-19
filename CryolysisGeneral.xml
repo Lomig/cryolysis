@@ -43,13 +43,13 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 				getglobal("CryolysisGeneralPageCredits"):SetText(CRYOLYSIS_CONFIGURATION.Credits)
 			</OnShow>
 			<OnDragStart>
-				Cryolysis_OnDragStart(CryolysisGeneralFrame);
+				Cryo:OnDragStart(CryolysisGeneralFrame);
 			</OnDragStart>
 			<OnDragStop>
-				Cryolysis_OnDragStop(CryolysisGeneralFrame);
+				Cryo:OnDragStop(CryolysisGeneralFrame);
 			</OnDragStop>
 			<OnMouseUp>
-				Cryolysis_OnDragStop(CryolysisGeneralFrame);
+				Cryo:OnDragStop(CryolysisGeneralFrame);
 			</OnMouseUp>
 		</Scripts>
 		<HitRectInsets>

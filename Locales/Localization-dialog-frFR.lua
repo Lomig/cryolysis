@@ -32,7 +32,13 @@
 --
 -- Version 12.12.2006
 ------------------------------------------------------------------------------------------------------
-
+AceLibrary("AceLocale-2.2"):new("Cryolysis"):RegisterTranslations("frFR", function()
+	return {
+		
+		["Restock Reagents?"] = "Restock Reagents?",
+		
+	}
+end)
 
 ------------------------------------------------
 -- ENGLISH  VERSION TEXTS --

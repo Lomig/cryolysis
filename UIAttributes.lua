@@ -259,4 +259,5 @@ function Cryolysis_InitMenuButton(f, texture, spell, anchor)
 	f:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 	f:Hide()
 end
+
 Cryolysis_UpdateRevisions("UIAttributes.lua", "$Rev$")
