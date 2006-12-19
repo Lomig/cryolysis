@@ -43,33 +43,33 @@ local _G = getfenv(0)
 -- Default Configuations
 -- In case configuations are lost or version is changed
 Default_CryolysisConfig = {
-	Version = CryolysisData.Version;       	-- The version from Localization.lua
-	ProvisionContainer = 4;                 -- Where food/water is stored.  furthest bag on the keft
-	ProvisionSort = true;                   -- Sort food and drink
-	ProvisionDestroy = false;               -- Destroy Excess food and dirnk
-	ConcentrationAlert = true;				-- Unused
-	ShowSpellTimers = true;					-- Show spell timers
-	ShowSpellTimerButton = true;           -- Hidden anchor
-	ShowCooldowns = true;
-	ShowDurations = true;
-	ShowPolymorph = true;
-	ShowSpellEffects = true;
-	HPLimit = 85;								-- Eat food when under this amount
-	MPLimit = 100;								-- Drink water when under this amount
-	Button = 1;									-- Main button function.  1 = eat/drink, 2 = Evocation, 3 = polymorph
-	Circle = 2;									-- Outside circle display.  0 = None 1 = HP, 2 = Mana, 3 = Evocation
-	ManaStoneOrder = 2;         				-- 1 Weakest manastone first  2 Greatest manastone first
-	ButtonText = true;							-- Show item count on buttons
-	FoodCountText = true;						-- Show food count
-	DrinkCountText = true;						-- Show drink count
-	PowderCountText = false;                    -- Show arcane powder count
-	FeatherCountText = true;                    -- Show light feather count
-	RuneCountText = false;                      -- Show Rune of teleportation/portals count
-	ManastoneCooldownText = true;               -- Show Mana gem cooldown
-	EvocationCooldownText = false;              -- Show evocation cooldown
-	CryolysisLockServ = true;
-	CryolysisAngle = 180;   --          \/          \/
-	StonePosition = {true, true, true, true, true, true, true, true, true};
+	Version = CryolysisData.Version,       	-- The version from Localization.lua
+	ProvisionContainer = 4,                 -- Where food/water is stored.  furthest bag on the keft
+	ProvisionSort = true,                   -- Sort food and drink
+	ProvisionDestroy = false,               -- Destroy Excess food and dirnk
+	ConcentrationAlert = true,				-- Unused
+	ShowSpellTimers = true,					-- Show spell timers
+	ShowSpellTimerButton = true,           -- Hidden anchor
+	ShowCooldowns = true,
+	ShowDurations = true,
+	ShowPolymorph = true,
+	ShowSpellEffects = true,
+	HPLimit = 85,								-- Eat food when under this amount
+	MPLimit = 100,								-- Drink water when under this amount
+	Button = 1,									-- Main button function.  1 = eat/drink, 2 = Evocation, 3 = polymorph
+	Circle = 2,									-- Outside circle display.  0 = None 1 = HP, 2 = Mana, 3 = Evocation
+	ManaStoneOrder = 2,         				-- 1 Weakest manastone first  2 Greatest manastone first
+	ButtonText = true,							-- Show item count on buttons
+	FoodCountText = true,						-- Show food count
+	DrinkCountText = true,						-- Show drink count
+	PowderCountText = false,                    -- Show arcane powder count
+	FeatherCountText = true,                    -- Show light feather count
+	RuneCountText = false,                      -- Show Rune of teleportation/portals count
+	ManastoneCooldownText = true,               -- Show Mana gem cooldown
+	EvocationCooldownText = false,              -- Show evocation cooldown
+	CryolysisLockServ = true,
+	CryolysisAngle = 180,   --          \/          \/
+	StonePosition = {true, true, true, true, true, true, true, true, true},
 	StoneLocation = {
 		"CryolysisFoodButton",
 		"CryolysisDrinkButton",
@@ -80,59 +80,58 @@ Default_CryolysisConfig = {
 		"CryolysisBuffMenuButton",
 		"CryolysisMountButton",
 		"CryolysisPortalMenuButton",
-	};
-	CryolysisToolTip = true;
-	LeftSpell = 4;
-	RightSpell = 5;
-	NoDragAll = false;
-	ManaStoneMenuPos = 34;
-	ManaStoneMenuAnchor = 26;
-	PortalMenuPos = 34;
-	PortalMenuAnchor = -6;
-	BuffMenuPos = 34;
-	BuffMenuAnchor = 20;
-	ChatMsg = true;
-	ChatType = true;
-	CryolysisLanguage = GetLocale();
-	ShowCount = true;
-	CountType = 5;                  -- Inside sphere display.  1 = none, 2 = food/drink, 3 = Evocation cooldown
-	ConcentrationScale = 100;
-	CryolysisButtonScale = 100;
-	CryolysisStoneScale = 100;
-	CryolysisColor = "Aqua";
-	Sound = true;
-	SpellTimerPos = 1;
-	SpellTimerJust = "LEFT";
-	Food = 1;                       -- I dont remember what this is
-	Graphical = true;
-	Yellow = true;
-	SensListe = 1;
-	SM = false;                         -- Short message
-	QuickBuff = false;
-	PolyScale = 100;
-	PolyWarn = true;
-	PolyBreak = true;
-	PolyWarnTime = 7;
-	PolyMessage = true;
-	PortalMessage = true;
-	TeleportMessage = true;
-	SteedMessage = false;
-	CooldownTimers = true;
-	CombatTimers = true;
-	Restock	= true;					-- Ask me if I want to restock.  If false, don't restock at all
-	RestockConfirm = true;			-- Don't bother asking, just restock
-	RestockTeleport = 10;			-- Restock to 10 Rune of Teleportation
-	RestockPortals = 10;			-- Restock to 10 Rune of Portals
-	RestockPowder = 20;				-- Restock to 20 Arcane Powder
-	Skin = 1;
-	AutoSkin = 0;
-};
+	},
+	CryolysisToolTip = true,
+	LeftSpell = 4,
+	RightSpell = 5,
+	NoDragAll = false,
+	ManaStoneMenuPos = 34,
+	ManaStoneMenuAnchor = 26,
+	PortalMenuPos = 34,
+	PortalMenuAnchor = -6,
+	BuffMenuPos = 34,
+	BuffMenuAnchor = 20,
+	ChatMsg = true,
+	ChatType = true,
+	CryolysisLanguage = GetLocale(),
+	ShowCount = true,
+	CountType = 5,                  -- Inside sphere display.  1 = none, 2 = food/drink, 3 = Evocation cooldown
+	ConcentrationScale = 100,
+	CryolysisButtonScale = 100,
+	CryolysisStoneScale = 100,
+	CryolysisColor = "Aqua",
+	Sound = true,
+	SpellTimerPos = 1,
+	SpellTimerJust = "LEFT",
+	Food = 1,                       -- I dont remember what this is
+	Graphical = true,
+	Yellow = true,
+	SensListe = 1,
+	SM = false,                         -- Short message
+	QuickBuff = false,
+	PolyScale = 100,
+	PolyWarn = true,
+	PolyBreak = true,
+	PolyWarnTime = 7,
+	PolyMessage = true,
+	PortalMessage = true,
+	TeleportMessage = true,
+	SteedMessage = false,
+	CooldownTimers = true,
+	CombatTimers = true,
+	Restock	= true,					-- Ask me if I want to restock.  If false, don't restock at all
+	RestockConfirm = true,			-- Don't bother asking, just restock
+	RestockTeleport = 10,			-- Restock to 10 Rune of Teleportation
+	RestockPortals = 10,			-- Restock to 10 Rune of Portals
+	RestockPowder = 20,				-- Restock to 20 Arcane Powder
+	Skin = 1,
+	AutoSkin = 0
+}
 
 CryolysisConfig = {};
 CryolysisBinding = {};
 CryolysisBinding2 = {};
 CryolysisAlreadyBind={};
-
 
 local Debug = false;
 Cryolysis_Loaded = false;
@@ -162,6 +161,7 @@ local TimerTable = {};
 for i = 1, 50, 1 do
 	TimerTable[i] = false;
 end
+
 CryolysisPrivate = {
 	-- Menus : Allows recasting of the last spell by middle clicking
 	LastPortal = 0,
@@ -247,9 +247,9 @@ if CryolysisConfig.CryolysisLanguage == "zhCN" then
 	}
 end
 -- List Buttons available for the mage in each menu
-local PortalMenuCreate = {};
-local BuffMenuCreate = {};
-local ManaStoneMenuCreate = {};
+local PortalMenuCreate = {}
+local BuffMenuCreate = {}
+local ManaStoneMenuCreate = {}
 CryolysisButtonTexture = {
 	["Skin"] = 0,
 	["Text"] = "",
@@ -257,7 +257,7 @@ CryolysisButtonTexture = {
 	["Stones"] = { ["Base"] = {}, ["Highlight"] = {}, ["Text"] = {}, ["Other"] = {}, ["Other2"] = {} },
 	["Portalmenu"] = { ["Base"] = {}, ["Highlight"] = {}, ["Other"] = {} },
 	["Buffmenu"] = { ["Base"] = {}, ["Highlight"] = {}, ["Other"] = {} }
-};
+}
 CryolysisSpellButtons = {
 	{ ["ID"] = 22, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\FrostArmor-0" 	},
 	{ ["ID"] = 04, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\ArcaneIntellect-0" 	},
@@ -267,7 +267,7 @@ CryolysisSpellButtons = {
 	{ ["ID"] = 26, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\DetectMagic-0" 	},
 	{ ["ID"] = 33, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\RemoveCurse-0" 	},
 	{ ["ID"] = 35, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\SlowFall-0" 		}
-};
+}
 
 for i=1, 10, 1 do
 	CryolysisButtonTexture.Stones.Base[i] = 0
@@ -285,12 +285,7 @@ for i=1, 13, 1 do
 	CryolysisButtonTexture.Buffmenu.Highlight[i] = 0
 	CryolysisButtonTexture.Buffmenu.Other[i] = 0
 end
-local Skin = {
-	"Bleu",
-	"Orange",
-	"Turquoise",
-	"Violet"
-}
+local Skin = { "Bleu", "Orange", "Turquoise", "Violet" }
 
 -- Variable uses to manage mounting
 local Mount = {
