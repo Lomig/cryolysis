@@ -33,16 +33,16 @@
 				this:Hide();
 			</OnLoad>
 			<OnDragStart>
-				Cryolysis_OnDragStart(this);
+				Cryo:OnDragStart(this);
 			</OnDragStart>
 			<OnDragStop>
-				Cryolysis_OnDragStop(this);
+				Cryo:OnDragStop(this);
 			</OnDragStop>
 			<OnMouseUp>
-				Cryolysis_OnDragStop(this);
+				Cryo:OnDragStop(this);
 			</OnMouseUp>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "SpellTimer", AnchorSpellTimerTooltip);
+				Cryo:BuildTooltip(this, "SpellTimer", AnchorSpellTimerTooltip);
 			</OnEnter>
 			<OnLeave>
 				GameTooltip:Hide();
@@ -76,16 +76,16 @@
 				this:Hide()
 			</OnLoad>
 			<OnDragStart>
-				Cryolysis_OnDragStart(this);
+				Cryo:OnDragStart(this);
 			</OnDragStart>
 			<OnDragStop>
-				Cryolysis_OnDragStop(this);
+				Cryo:OnDragStop(this);
 			</OnDragStop>
 			<OnMouseUp>
-				Cryolysis_OnDragStop(this);
+				Cryo:OnDragStop(this);
 			</OnMouseUp>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "Main", "ANCHOR_LEFT");
+				Cryo:BuildTooltip(this, "Main", "ANCHOR_LEFT");
 			</OnEnter>
 			<OnLeave>
 				GameTooltip:Hide();
@@ -122,13 +122,13 @@
 				GameTooltip:Hide();
 			</OnLeave>
 			<OnDragStart>
-				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
+				if not CryolysisLockServ then Cryo:OnDragStart(this); end
 			</OnDragStart>
 			<OnDragStop>
-				Cryolysis_OnDragStop(this);
+				Cryo:OnDragStop(this);
 			</OnDragStop>
 			<OnMouseUp>
-				Cryolysis_OnDragStop(this);
+				Cryo:OnDragStop(this);
 			</OnMouseUp>
 		</Scripts>
 	</Button>
@@ -136,7 +136,7 @@
 	<Button name="CryolysisLeftSpellButton" inherits="CryolysisSubButtonTemplate">
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildSpellTooltip(this, "Left", "ANCHOR_LEFT");
+				Cryo:BuildSpellTooltip(this, "Left", "ANCHOR_LEFT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\Shard"/>
@@ -153,7 +153,7 @@
 		</Layers>
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "Evocation", "ANCHOR_LEFT");
+				Cryo:BuildTooltip(this, "Evocation", "ANCHOR_LEFT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\EvocationButton-01"/>
@@ -163,7 +163,7 @@
 	<Button name="CryolysisRightSpellButton" inherits="CryolysisSubButtonTemplate">
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildSpellTooltip(this, "Right", "ANCHOR_RIGHT");
+				Cryo:BuildSpellTooltip(this, "Right", "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\Shard"/>
@@ -180,7 +180,7 @@
 		</Layers>
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "Drink", "ANCHOR_LEFT");
+				Cryo:BuildTooltip(this, "Drink", "ANCHOR_LEFT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\DrinkButton-01"/>
@@ -197,7 +197,7 @@
 		</Layers>
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "Food", "ANCHOR_LEFT");
+				Cryo:BuildTooltip(this, "Food", "ANCHOR_LEFT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\FoodButton-01"/>
@@ -207,7 +207,7 @@
 	<Button name="CryolysisMountButton" inherits="CryolysisSubButtonTemplate">
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "Mount", "ANCHOR_RIGHT");
+				Cryo:BuildTooltip(this, "Mount", "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\MountButton-01"/>
@@ -259,19 +259,19 @@
 				HideUIPanel(this);
 			</OnLoad>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "Manastone", "ANCHOR_LEFT");
+				Cryo:BuildTooltip(this, "Manastone", "ANCHOR_LEFT");
 			</OnEnter>
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
 			<OnDragStart>
-				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
+				if not CryolysisLockServ then Cryo:OnDragStart(this); end
 			</OnDragStart>
 			<OnDragStop>
-				Cryolysis_OnDragStop(this);
+				Cryo:OnDragStop(this);
 			</OnDragStop>
 			<OnMouseUp>
-				Cryolysis_OnDragStop(this);
+				Cryo:OnDragStop(this);
 			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\ManastoneButton-01"/>
@@ -293,7 +293,7 @@
 		</Layers>
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "Manastone", "ANCHOR_RIGHT");
+				Cryo:BuildTooltip(this, "Manastone", "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
@@ -314,7 +314,7 @@
 		</Layers>
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "Manastone", "ANCHOR_RIGHT");
+				Cryo:BuildTooltip(this, "Manastone", "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
@@ -335,7 +335,7 @@
 		</Layers>
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "Manastone", "ANCHOR_RIGHT");
+				Cryo:BuildTooltip(this, "Manastone", "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
@@ -356,7 +356,7 @@
 		</Layers>
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "Manastone", "ANCHOR_RIGHT");
+				Cryo:BuildTooltip(this, "Manastone", "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
@@ -383,19 +383,19 @@
 				HideUIPanel(this);
 			</OnLoad>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "Buff", "ANCHOR_RIGHT");
+				Cryo:BuildTooltip(this, "Buff", "ANCHOR_RIGHT");
 			</OnEnter>
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
 			<OnDragStart>
-				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
+				if not CryolysisLockServ then Cryo:OnDragStart(this); end
 			</OnDragStart>
 			<OnDragStop>
-				Cryolysis_OnDragStop(this);
+				Cryo:OnDragStop(this);
 			</OnDragStop>
 			<OnMouseUp>
-				Cryolysis_OnDragStop(this);
+				Cryo:OnDragStop(this);
 			</OnMouseUp>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\BuffMenuButton-01"/>
@@ -404,7 +404,7 @@
 	<Button name="CryolysisBuffMenu1" inherits="CryolysisMenuButtonTemplate">
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "Armor", "ANCHOR_RIGHT");
+				Cryo:BuildTooltip(this, "Armor", "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\FrostArmor-01"/>
@@ -418,7 +418,7 @@
 		</Layers>
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "ArcaneInt", "ANCHOR_RIGHT");
+				Cryo:BuildTooltip(this, "ArcaneInt", "ANCHOR_RIGHT");
 			</OnEnter>
 			<PreClick>
 				if not (InCombatLockdown() or UnitIsFriend("player","target")) then
@@ -437,7 +437,7 @@
 	<Button name="CryolysisBuffMenu3" inherits="CryolysisMenuButtonTemplate">
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "DampenMagic", "ANCHOR_RIGHT");
+				Cryo:BuildTooltip(this, "DampenMagic", "ANCHOR_RIGHT");
 			</OnEnter>
 			<PreClick>
 				if not (InCombatLockdown() or UnitIsFriend("player","target")) then
@@ -456,7 +456,7 @@
 	<Button name="CryolysisBuffMenu4" inherits="CryolysisMenuButtonTemplate">
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildShieldTooltip(this, "ANCHOR_RIGHT");
+				Cryo:BuildShieldTooltip(this, "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\ManaShield-01"/>
@@ -465,7 +465,7 @@
 	<Button name="CryolysisBuffMenu5" inherits="CryolysisMenuButtonTemplate">
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "FireWard", "ANCHOR_RIGHT");
+				Cryo:BuildTooltip(this, "FireWard", "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\FireWard-01"/>
@@ -474,7 +474,7 @@
 	<Button name="CryolysisBuffMenu6" inherits="CryolysisMenuButtonTemplate">
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "DetectMagic", "ANCHOR_RIGHT");
+				Cryo:BuildTooltip(this, "DetectMagic", "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\DetectMagic-01"/>
@@ -483,7 +483,7 @@
 	<Button name="CryolysisBuffMenu7" inherits="CryolysisMenuButtonTemplate">
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "RemoveCurse", "ANCHOR_RIGHT");
+				Cryo:BuildTooltip(this, "RemoveCurse", "ANCHOR_RIGHT");
 			</OnEnter>
 			<PreClick>
 				if not (InCombatLockdown() or UnitIsFriend("player","target")) then
@@ -507,7 +507,7 @@
 		</Layers>
 		<Scripts>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "SlowFall", "ANCHOR_RIGHT");
+				Cryo:BuildTooltip(this, "SlowFall", "ANCHOR_RIGHT");
 			</OnEnter>
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\SlowFall-01"/>
@@ -531,19 +531,19 @@
 				HideUIPanel(this);
 			</OnLoad>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, "Portal", "ANCHOR_RIGHT");
+				Cryo:BuildTooltip(this, "Portal", "ANCHOR_RIGHT");
 			</OnEnter>
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
 			<OnDragStart>
-				if not CryolysisLockServ then Cryolysis_OnDragStart(this); end
+				if not CryolysisLockServ then Cryo:OnDragStart(this); end
 			</OnDragStart>
 			<OnDragStop>
-				Cryolysis_OnDragStop(this);
+				Cryo:OnDragStop(this);
 			</OnDragStop>
 			<OnMouseUp>
-				Cryolysis_OnDragStop(this);
+				Cryo:OnDragStop(this);
 			</OnMouseUp>
 		</Scripts>
 		<Frames>
@@ -582,7 +582,7 @@
 				HideUIPanel(this)
 			</OnLoad>
 			<OnEnter>
-				Cryolysis_BuildTooltip(this, this.spell, this.anchor)
+				Cryo:BuildTooltip(this, this.spell, this.anchor)
 			</OnEnter>
 			<OnLeave>
 				GameTooltip:Hide();

@@ -169,7 +169,7 @@
 				<Scripts>
 					<OnClick>
 						CryolysisConfig.Graphical = this:GetChecked();
-						Cryolysis_HideGraphTimer();
+						Cryo:HideGraphTimer();
 					</OnClick>
 				</Scripts>
 			</CheckButton>

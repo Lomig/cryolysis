@@ -476,7 +476,7 @@ function Cryolysis_SlashHandler(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, 
 				Cryolysis_Msg(CRYOLYSIS_MESSAGE.Help[i], "USER");
 			end
 		end
-		Cryolysis_Toggle();
+		Cryo:ToggleOptions();
 	end
 end
 
