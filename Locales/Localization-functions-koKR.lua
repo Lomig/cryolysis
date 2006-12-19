@@ -1,4 +1,4 @@
---[[
+癤�--[[
     Cryolysis
     Copyright (C) 2006 Cryolysis: Reborn Team
 
@@ -36,16 +36,10 @@
 
 
 ------------------------------------------------
--- ENGLISH  VERSION FUNCTIONS --
+-- KOREAN VERSION FUNCTIONS --
 ------------------------------------------------
 --
-if ( GetLocale() == "enUS" ) or ( GetLocale() == "enGB" ) then
-
-CRYOLYSIS_UNIT_MAGE = "마법사";
-
--- Word to search for Fire Vulnerability and Winter's chill  first (.+) is the target, second is the spell
-CRYOLYSIS_DEBUFF_SRCH = "(.+) 은 (.+)에 의해 걸림."
-CRYOLYSIS_POLY_SRCH = "(.+) 은 (.+)에서 사라짐."
+if ( GetLocale() == "koKR" ) then
 
 function Cryolysis_SpellTableBuild()
 	CRYOLYSIS_SPELL_TABLE = {
