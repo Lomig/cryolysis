@@ -71,6 +71,10 @@
 			</Layer>
 		</Layers>
 		<Scripts>
+			<OnLoad>
+				Cryo:CryolysisButton_OnLoad()
+				this:Hide()
+			</OnLoad>
 			<OnDragStart>
 				Cryolysis_OnDragStart(this);
 			</OnDragStart>
@@ -86,16 +90,12 @@
 			<OnLeave>
 				GameTooltip:Hide();
 			</OnLeave>
-			<OnLoad>
-				Cryolysis_OnLoad();
-				HideUIPanel(this);
-			</OnLoad>
 			<OnUpdate>
-				Cryolysis_OnUpdate();
+				Cryo:CryolysisButton_OnUpdate()
 			</OnUpdate>
-			<OnEvent>
+		<!--	<OnEvent>
 				Cryolysis_OnEvent(event);
-			</OnEvent>
+			</OnEvent> -->
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\Shard"/>
 	</Button>
