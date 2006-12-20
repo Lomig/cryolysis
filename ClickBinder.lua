@@ -32,6 +32,7 @@
 	You can have different 
 
 ]]
+local _G = getfenv(0)
 
 local VERSION = 0.7 -- change this value always
 
@@ -40,7 +41,7 @@ if not ClickBinder or ClickBinder.version<VERSION then
 	ClickBinder = { version = VERSION }
 
 	function ClickBinder.CreateButton(idx,description,action)
-		local frame = getglobal("ClickBinderEntry"..idx)
+		local frame = _G["ClickBinderEntry"..idx]
 		if not frame then
 			frame = CreateFrame("Frame","ClickBinderEntry"..idx,ClickBinderFrame)
 			frame:SetWidth(248)
@@ -66,8 +67,8 @@ if not ClickBinder or ClickBinder.version<VERSION then
 
 	function ClickBinder.HideButtons()
 		local i=1
-		while getglobal("ClickBinderEntry"..i) do
-			getglobal("ClickBinderEntry"..i):Hide()
+		while _G["ClickBinderEntry"..i] do
+			_G["ClickBinderEntry"..i]:Hide()
 			i=i+1
 		end
 		ClickBinderClose:Hide()
@@ -76,7 +77,7 @@ if not ClickBinder or ClickBinder.version<VERSION then
 	function ClickBinder.ShowButtons()
 		if ClickBinderFrame and tonumber(ClickBinderFrame.numBindings) then
 			for i=1,ClickBinderFrame.numBindings do
-				getglobal("ClickBinderEntry"..i):Show()
+				_G["ClickBinderEntry"..i]:Show()
 			end
 			ClickBinder.DisplayBindings()
 		end
@@ -86,10 +87,10 @@ if not ClickBinder or ClickBinder.version<VERSION then
 	function ClickBinder.DisplayBindings()
 		local frame,key
 		for i=1,ClickBinderFrame.numBindings do
-			frame = getglobal("ClickBinderEntry"..i)
+			frame = _G["ClickBinderEntry"..i]
 			key = frame.action and GetBindingKey(frame.action)
-			getglobal("ClickBinderEntry"..i.."Button"):SetText((key or key~="") and key or NORMAL_FONT_COLOR_CODE..CRYOLYSIS_BINDING.NotBound..FONT_COLOR_CODE_CLOSE)
-			getglobal("ClickBinderEntry"..i.."Label"):SetText(frame.description)
+			_G["ClickBinderEntry"..i.."Button"]:SetText((key or key~="") and key or NORMAL_FONT_COLOR_CODE..CRYOLYSIS_BINDING.NotBound..FONT_COLOR_CODE_CLOSE)
+			_G["ClickBinderEntry"..i.."Label"]:SetText(frame.description)
 		end
 	end
 

@@ -100,7 +100,7 @@
 					<OnMouseUp>
 						GameTooltip:SetText(5-this:GetValue());
 						CryolysisConfig.ProvisionContainer = 4-this:GetValue();
-						Cryolysis_ProvisionSwitch("MOVE");
+						Cryo:ProvisionSwitch("MOVE");
 					</OnMouseUp>
 				</Scripts>
 			</Slider>

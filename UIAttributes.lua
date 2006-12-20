@@ -37,7 +37,6 @@
 --
 -- Version 12.12.2006
 ------------------------------------------------------------------------------------------------------
-
 local _G = getfenv(0)
 
 function Cryolysis_UpdateDrinkButtonAttributes()
@@ -57,7 +56,7 @@ function Cryolysis_UpdateDrinkButtonAttributes()
 
 		-- Added By Lomig 12/12/06 12:51pm (GMT+1)
 		f:SetAttribute("type3", "Trade");
-		f.Trade = function() Cryolysis_Trade("Drink"); end
+		f.Trade = function() Cryo:Trade("Drink"); end
 		-- End of adding
 		if not CryolysisAlreadyBind["CryolysisDrinkButton"] then
 			CryolysisAlreadyBind["CryolysisDrinkButton"] = true;
@@ -85,7 +84,7 @@ function Cryolysis_UpdateFoodButtonAttributes()
 
 		-- Added By Lomig 12/12/06 13:03pm (GMT+1)
 		f:SetAttribute("type3", "Trade");
-		CryolysisFoodButton.Trade = function() Cryolysis_Trade("Food"); end
+		CryolysisFoodButton.Trade = function() Cryo:Trade("Food"); end
 		-- End of adding
 		if not CryolysisAlreadyBind["CryolysisFoodButton"] then
 			CryolysisAlreadyBind["CryolysisFoodButton"] = true;

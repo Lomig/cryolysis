@@ -478,7 +478,7 @@
 						if (this:GetChecked()) then
 							CryolysisConfig.StonePosition[8] = true;
 							ShowUIPanel(CryolysisMountButton);
-							Cryolysis_BagExplore();
+							Cryo:BagExplore();
 						else
 							CryolysisConfig.StonePosition[8] = false;
 							HideUIPanel(CryolysisMountButton);
