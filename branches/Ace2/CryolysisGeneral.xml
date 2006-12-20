@@ -40,7 +40,8 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 				this:RegisterForDrag("LeftButton");
 			</OnLoad>
 			<OnShow>
-				getglobal("CryolysisGeneralPageCredits"):SetText(CRYOLYSIS_CONFIGURATION.Credits)
+				local _G = getfenv(0)
+				_G["CryolysisGeneralPageCredits"]:SetText(CRYOLYSIS_CONFIGURATION.Credits)
 			</OnShow>
 			<OnDragStart>
 				Cryo:OnDragStart(CryolysisGeneralFrame);

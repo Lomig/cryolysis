@@ -490,7 +490,7 @@ function Cryo:LoadVariables()
 	if (( Cryolysis_Loaded ) or ( class ~= "MAGE" )) then
 		return
 	end
-	self:Init()
+	Cryo_Init()
 	Cryolysis_Loaded = true
 end
 
@@ -505,7 +505,7 @@ function Cryo:CryolysisButton_OnUpdate()
 	end
 	
 	if ( CryolysisPrivate.LoadCheck ) then
-		Cryolysis_BagExplore()
+		self:BagExplore()
 		Cryolysis_UpdateButtonsScale()
 		CryolysisPrivate.LoadCheck = false
  	end
@@ -525,13 +525,13 @@ function Cryo:CryolysisButton_OnUpdate()
 		end
 		if ( CryolysisPrivate.ManastoneCooldown > 0 ) then
 			CryolysisPrivate.ManastoneCooldown = CryolysisPrivate.ManastoneCooldown - 1
-			CryolysisPrivate.ManastoneCooldownText = Cryolysis_TimerFunction(CryolysisPrivate.ManastoneCooldown)
+			CryolysisPrivate.ManastoneCooldownText = self:TimerFunction(CryolysisPrivate.ManastoneCooldown)
 		elseif ( CryolysisPrivate.ManastoneCooldown <= 0 ) then
 			CryolysisPrivate.ManastoneCooldown = 0
 			CryolysisPrivate.ManastoneCooldownText = ""
 		end
 		if ( ProvisionMP > 0 ) then
-			Cryolysis_ProvisionSwitch("MOVE")
+			self:ProvisionSwitch("MOVE")
 		end
 	end
 	-- Management of Polymorph stuff
@@ -586,7 +586,7 @@ function Cryo:CryolysisButton_OnUpdate()
 							if (( SpellTimer ) and ( SpellTimer[index].Type == 4 ) or ( SpellTimer[index].Type == 5 ) and ( SpellTimer[index].Target == UnitName("target") )) then
 								-- Cheats by leaving timer on mob to detect that it is debuffed
 								if ( curTime >= (( SpellTimer[index].TimeMax - SpellTimer[index].Time ) + 2.5 ) and ( SpellTimer[index] ~= 6 )) then
-									if ( not Cryolysis_UnitHasEffect("target", SpellTimer[index].Name) ) then
+									if ( not self:UnitHasEffect("target", SpellTimer[index].Name) ) then
 										SpellTimer, TimerTable = Cryolysis_RetraitTimerParIndex(index, SpellTimer, TimerTable)
 										index = 0
 										break
@@ -631,12 +631,12 @@ function Cryo:CryolysisButton_OnUpdate()
 	end
 	if (( start > 0 ) and ( duration > 0 ) and ( EvocationUp == false )) then
   		CryolysisPrivate.EvocationCooldown = ( duration - curTime - start )
-		CryolysisPrivate.EvocationCooldownText = Cryolysis_TimerFunction(CryolysisPrivate.EvocationCooldown)
+		CryolysisPrivate.EvocationCooldownText = self:TimerFunction(CryolysisPrivate.EvocationCooldown)
 	else  -- Evocation isn't on cooldown
 		CryolysisPrivate.EvocationCooldown = 0
 		CryolysisPrivate.EvocationCooldownText = ""
 	end
-	Cryolysis_UpdateIcons()
+	self:UpdateIcons()
 end
 
 function Cryo:PLAYER_ENTERING_WORLD()
@@ -654,10 +654,10 @@ function Cryo:BAG_UPDATE(...)
 		return
 	end
 	if ( CryolysisPrivate.checkInv ) then
-		Cryolysis_BagCheck("Force")
+		self:BagCheck("Force")
 		CryolysisPrivate.checkInv = false
 	else
-		Cryolysis_BagCheck()
+		self:BagCheck()
 	end
 end
 
@@ -674,7 +674,7 @@ function Cryo:UNIT_SPELLCAST_SUCCEEDED(unit, spellName, ...)
 	SpellCastUnit, SpellCastName = unit, spellName
 	if ( unit == "player" ) then
 		self:PolyCheck("stop", SpellCastName, SpellTargetName)
-		Cryolysis_BagCheck(SpellCastName)
+		self:BagCheck(SpellCastName)
 		self:SpellManagement()
 		CryolysisPrivate.Sitting = false
 	end
@@ -689,19 +689,19 @@ end
 
 function Cryo:TRADE_SHOW()
 	CryolysisTradeRequest = true
-	Cryolysis_BagCheck("Force")
+	self:BagCheck("Force")
 end
 
 function Cryo:TRADE_CLOSED()
 	CryolysisTradeRequest = false
-	Cryolysis_BagCheck("Update")
-	Cryolysis_ButtonTextUpdate()
+	self:BagCheck("Update")
+	self:ButtonTextUpdate()
 end
 
 function Cryo:LEARNED_SPELL_IN_TAB(...)
-	Cryolysis_SpellSetup()
+	self:SpellSetup()
 	Cryolysis_CreateMenu()
-	Cryolysis_ButtonSetup()
+	self:ButtonSetup()
 end
 
 function Cryo:PLAYER_REGEN_ENABLED()
@@ -729,7 +729,7 @@ function Cryo:MERCHANT_SHOW()
 		local _, _, id = string.find(GetMerchantItemLink(item), "item:(%d+):")
 		id = tonumber(id)
 		if ( id == 17031 ) then
-			Cryolysis_BagCheck("Force")
+			self:BagCheck("Force")
 			for i = 1, 6, 1 do
 				if ( CRYOLYSIS_SPELL_TABLE[ PortalTempID[i] ].ID ) then
 					display = true
@@ -745,7 +745,7 @@ function Cryo:MERCHANT_SHOW()
 				display = false
 			end
 		elseif ( id == 17032 ) then
-			Cryolysis_BagCheck("Force")
+			self:BagCheck("Force")
 			for i = 7, 12, 1 do
 				if ( CRYOLYSIS_SPELL_TABLE[ PortalTempID[i] ].ID ) then
 					display = true
@@ -761,7 +761,7 @@ function Cryo:MERCHANT_SHOW()
 				display = false
 			end
 		elseif ( id == 17020 ) then
-			Cryolysis_BagCheck("Force")
+			self:BagCheck("Force")
 			if ( CRYOLYSIS_SPELL_TABLE[2].ID ) then
 				display = true
 				color = (( Count.ArcanePowder / CryolysisConfig.RestockPowder ) * 100)
@@ -774,7 +774,7 @@ function Cryo:MERCHANT_SHOW()
 				display = false
 			end
 			if ( Purchase ) then
-				Cryolysis_BagExplore()
+				self:BagExplore()
 				if ( CryolysisConfig.Restock ) then
 					if ( CryolysisConfig.RestockConfirm ) then
 						StaticPopup_Show("RESTOCK_CONFIRMATION")
@@ -789,7 +789,7 @@ end
 
 function Cryo:MERCHANT_CLOSED()
 	StaticPopup_Hide("RESTOCK_CONFIRMATION")
-	Cryolysis_BagExplore()
+	self:BagExplore()
 end
 
 function Cryo:ZONE_CHANGED_NEW_AREA()
@@ -797,14 +797,14 @@ function Cryo:ZONE_CHANGED_NEW_AREA()
 		if ( CryolysisPrivate.AQ == false ) then
 			CryolysisPrivate.AQ = true
 			Mount.AQChecked = false
-			Cryolysis_BagCheck("Force")
+			self:BagCheck("Force")
 		end
 	elseif ( CryolysisPrivate.AQ == true ) then
 		CryolysisPrivate.AQ = false
 		Mount.AQMount = false
 		Mount.AQChecked = false
 		Mount.Available = false
-		Cryolysis_BagCheck("Force")
+		self:BagCheck("Force")
 	end
 end
 
@@ -1202,7 +1202,7 @@ function Cryo:Restock()
 						BuyMerchantItem(item, RestockCount[i])
 						RestockCount[i] = RestockCount[i] - RestockCount[i]
 					end
-					Cryolysis_BagCheck("Update")
+					self:BagCheck("Update")
 				end
 			end
 		end
@@ -1367,7 +1367,7 @@ function Cryo:BuildTooltip(button, Type, anchor)
 		GameTooltip:AddLine(CryolysisTooltipData.Main.LightFeather..Count.LightFeather)
 	elseif ( Type == "Mount" ) then
 		GameTooltip:SetText(CryolysisTooltipData[Type].Label..Mount.Title.."|r")
-		Cryolysis_MoneyToggle()
+		self:MoneyToggle()
 		CryolysisTooltip:SetBagItem(HearthstoneLocation[1], HearthstoneLocation[2])
 		local itemName = tostring(CryolysisTooltipTextLeft5:GetText())
 		if string.find(itemName, CRYOLYSIS_TRANSLATION.Cooldown) then
@@ -1385,7 +1385,7 @@ function Cryo:BuildTooltip(button, Type, anchor)
 		}
 		for i = StoneMaxRank[2], 1, -1  do
 			if ( Manastone.Mode[i] == 2 ) then
-				Cryolysis_MoneyToggle()
+				self:MoneyToggle()
 				local start, duration, enable = GetContainerItemCooldown(Manastone.Location[i][1], Manastone.Location[i][2])
 				if (( start > 0 ) and ( duration > 0 )) then
 					local seconde = duration - ( GetTime() - start )
@@ -1443,7 +1443,7 @@ function Cryo:BuildTooltip(button, Type, anchor)
 		end
 	-- ..... For the timer buttons
 	elseif ( Type == "SpellTimer" ) then
-		Cryolysis_MoneyToggle()
+		self:MoneyToggle()
 		CryolysisTooltip:SetBagItem(HearthstoneLocation[1], HearthstoneLocation[2])
 		local itemName = tostring(CryolysisTooltipTextLeft5:GetText())
 		GameTooltip:AddLine(CryolysisTooltipData[Type].Text)
@@ -1628,7 +1628,7 @@ function Cryo:BuildShieldTooltip(button, anchor)
 end
 
 -- Function updating the Cryolysis buttons and giving the state of the Evocation button
-function Cryolysis_UpdateIcons()
+function Cryo:UpdateIcons()
 	local mana = UnitMana("player")
 	local texture
 	for i = 1, 9, 1 do
@@ -1685,7 +1685,7 @@ function Cryolysis_UpdateIcons()
 			duration = 1
 		end
 		if (( start > 0 ) and ( duration > 0 ) and ( EvocationUp == false )) then
-			Sphere.display = Cryolysis_TimerFunction(duration - ( GetTime() - start))
+			Sphere.display = self:TimerFunction(duration - ( GetTime() - start))
 		else
 			Sphere.display = "Ready"
 		end
@@ -1914,189 +1914,106 @@ function Cryolysis_UpdateIcons()
 			end
 		end
 		if ( spellEnable ) then
-			getglobal(spellButton[button]):Enable()
+			_G[ spellButton[button] ]:Enable()
 		else
 			texture = 3;
-			getglobal(spellButton[button]):Disable();
+			_G[ spellButton[button] ]:Disable();
 		end
 		if ( CryolysisButtonTexture.Stones.Base[3 + button] ~= texture ) then
 			if ( alternative ) then
-				getglobal(spellButton[button]):SetNormalTexture("Interface\\AddOns\\Cryolysis\\UI\\ManaShield-0"..texture);
+				_G[ spellButton[button] ]:SetNormalTexture("Interface\\AddOns\\Cryolysis\\UI\\ManaShield-0"..texture);
 			else
-				getglobal(spellButton[button]):SetNormalTexture(CryolysisSpellButtons[spellNumber[button]].Texture..texture);
+				_G[ spellButton[button] ]:SetNormalTexture(CryolysisSpellButtons[spellNumber[button]].Texture..texture);
 			end
 			CryolysisButtonTexture.Stones.Base[3 + button] = texture;
 		end
 	end
 	if ( Cryolysis_ReorderTexture[1] ) then
 		for i=1, 9, 1 do
-			Cryolysis_ReorderTexture[i] = tostring(getglobal(CryolysisConfig.StoneLocation[i]):GetNormalTexture():GetTexture());
+			Cryolysis_ReorderTexture[i] = tostring( _G[CryolysisConfig.StoneLocation[i] ]:GetNormalTexture():GetTexture());
 		end
 	end
-	Cryolysis_ButtonTextUpdate()
-end
-
-function UpdatePortalMenuIcons()
-	local mana = UnitMana("player");
-	local ManaPortal = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-	-- ManaPortal variables goes teleports then portals, listed in this order:
-	  -- Teleports
-            -- Org, UC, TB, IF, SW, Darn
-          -- Portals
-            -- Org, UC, TB, IF, SW, Darn
-
-
-	-- Grey the button if not enough Mana
-	for i = 1, 12, 1 do
-		if ( CRYOLYSIS_SPELL_TABLE[PortalTempID[i]].ID ) then
-			if (( CRYOLYSIS_SPELL_TABLE[PortalTempID[i]].Mana > mana ) or ( PlayerCombat )) then
-				ManaPortal[i] = 3;
-			end
-		end
-	end
-	if ( Count.RuneOfTeleportation == 0 ) then
-		for i = 1, 6, 1 do
-			ManaPortal[i] = 3;
-		end
-	end
-	if ( Count.RuneOfPortals == 0 ) then
-		for i = 7, 12, 1 do
-			ManaPortal[i] = 3;
-		end
-	end
-	for i = 1, 12, 1 do
-		if ( CryolysisButtonTexture.Portalmenu.Base[i] ~= ManaPortal[i] ) then
-			local texture = getglobal("CryolysisPortalMenu"..i):GetNormalTexture():GetTexture()
-			texture = string.sub(texture, 1, string.len(texture)-1)..ManaPortal[i];
-			getglobal("CryolysisPortalMenu"..i):SetNormalTexture(texture);
-			CryolysisButtonTexture.Portalmenu.Base[i] = ManaPortal[i];
-		end
-	end
-end
-
-function UpdateBuffMenuIcons()
-	local mana = UnitMana("player");
-	ManaSpell = {1, 1, 1, 1, 1, 1, 1, 1};
-	ManaID = {18, 4, 13, 25, 23, 15, 33, 35};
-	-- Coloration du bouton en gris�si pas assez de mana
-	for i=1, 8, 1 do
-		if CRYOLYSIS_SPELL_TABLE[ManaID[i]].ID then
-			if CRYOLYSIS_SPELL_TABLE[ManaID[i]].Mana > mana then
-				ManaSpell[i] = 3;
-			end
-		end
-	end
-	if CRYOLYSIS_SPELL_TABLE[23].ID ~= nil then
-		local start, duration = GetSpellCooldown(CRYOLYSIS_SPELL_TABLE[23].ID, "spell");
-		if start > 0 and duration > 0 and not IceBarrierUp then
-			ManaSpell[4] = 3;
-		else
-			IceBarrierUp = true;
-		end
-	end
-	if CRYOLYSIS_SPELL_TABLE[15].ID then
-		local start, duration = GetSpellCooldown(CRYOLYSIS_SPELL_TABLE[15].ID, "spell");
-		if start > 0 and duration > 0 and not FireWardUp then
-			ManaSpell[5] = 3;
-		else
-			FireWardUp = true
-		end
-	end
-	if Count.LightFeather <= 0 then ManaSpell[8] = 3; end
-	for i=1, 8, 1 do
-		if CryolysisButtonTexture.Buffmenu.Base[i] ~= ManaSpell[i] then
-			local texture = getglobal("CryolysisBuffMenu"..i):GetNormalTexture():GetTexture()
-			texture = string.sub(texture, 1, string.len(texture)-1)..ManaSpell[i];
-			getglobal("CryolysisBuffMenu"..i):SetNormalTexture(texture);
-			CryolysisButtonTexture.Buffmenu.Base[i] = ManaSpell[i];
-		end
-	end
+	self:ButtonTextUpdate()
 end
 
 -- Allows User to sort Button Order
-
---for i=1, 9, 1 do
---	ReorderTexture[i] = CryolysisConfig.StoneLocation[i];
---end
 Reorder = {}
-
 Reorder.Table = {} -- numerically indexed table of anything (just a texture in this case)
 function Reorder.OnLoad()
-  Reorder.Selected = 0
-  Reorder.UpdateOrder()
+	Reorder.Selected = 0
+	Reorder.UpdateOrder()
 end
 
-
 function Reorder.OnClick()
-  local id = this:GetID()
-  if Reorder.Selected == id then
-    Reorder.Selected = 0
-  else
-    Reorder.Selected = id
-  end
-  Reorder.UpdateOrder()
+	local id = this:GetID()
+	if Reorder.Selected == id then
+		Reorder.Selected = 0
+	else
+		Reorder.Selected = id
+	end
+	Reorder.UpdateOrder()
 end
 
 function Reorder.ValidateButtons()
-  ReorderLeft:Disable()
-  ReorderRight:Disable()
-  if Reorder.Selected>1 then
-    ReorderLeft:Enable()
-  end
-  if Reorder.Selected>0 and Reorder.Selected<9 then
-    ReorderRight:Enable()
-  end
+	ReorderLeft:Disable()
+	ReorderRight:Disable()
+	if Reorder.Selected>1 then
+		ReorderLeft:Enable()
+	end
+	if Reorder.Selected>0 and Reorder.Selected<9 then
+		ReorderRight:Enable()
+	end
 end
 
 function Reorder.UpdateOrder()
-  for i=1,9 do
-    if Reorder.Selected==i then
-      getglobal("Reorder"..i):LockHighlight()
-    else
-      getglobal("Reorder"..i):UnlockHighlight()
-    end
-    getglobal("Reorder"..i.."Icon"):SetTexture(Cryolysis_ReorderTexture[i])
-  end
-  Reorder.ValidateButtons()
+	for i = 1, 9, 1 do
+		if Reorder.Selected==i then
+			_G["Reorder"..i]:LockHighlight()
+		else
+			_G["Reorder"..i]:UnlockHighlight()
+		end
+		_G["Reorder"..i.."Icon"]:SetTexture(Cryolysis_ReorderTexture[i])
+	end
+	Reorder.ValidateButtons()
 end
 
 -- moves Reorder.Table entry from Reorder.Select in dir direction (1 or -1)
 function Reorder.Move_OnClick(dir)
-  local id = Reorder.Selected
-  local temp = Cryolysis_ReorderTexture[id]
-  local temp2 = CryolysisConfig.StoneLocation[id]
-  Cryolysis_ReorderTexture[id] = Cryolysis_ReorderTexture[id+dir]
-  Cryolysis_ReorderTexture[id+dir] = temp
-  CryolysisConfig.StoneLocation[id] = CryolysisConfig.StoneLocation[id+dir]
-  CryolysisConfig.StoneLocation[id+dir] = temp2;
-  Reorder.Selected = Reorder.Selected+dir
-  Reorder.UpdateOrder()
-  Cryolysis_UpdateButtonsScale();
+	local id = Reorder.Selected
+	local temp = Cryolysis_ReorderTexture[id]
+	local temp2 = CryolysisConfig.StoneLocation[id]
+	Cryolysis_ReorderTexture[id] = Cryolysis_ReorderTexture[id + dir]
+	Cryolysis_ReorderTexture[id + dir] = temp
+	CryolysisConfig.StoneLocation[id] = CryolysisConfig.StoneLocation[id + dir]
+	CryolysisConfig.StoneLocation[id + dir] = temp2
+	Reorder.Selected = Reorder.Selected + dir
+	Reorder.UpdateOrder()
+	Cryolysis_UpdateButtonsScale()
 end
 
 ------------------------------------------------------------------------------------------------------
 -- FUNCTIONS OF STONES AND STUFF
 ------------------------------------------------------------------------------------------------------
 -- T'AS QU'A SAVOIR OU T'AS MIS TES AFFAIRES !
-function Cryolysis_ProvisionSetup()
-	ProvisionSlotID = 1;
-	for slot=1, #ProvisionSlot, 1 do
-		table.remove(ProvisionSlot, slot);
+function Cryo:ProvisionSetup()
+	ProvisionSlotID = 1
+	for slot = 1, #ProvisionSlot, 1 do
+		table.remove(ProvisionSlot, slot)
 	end
 	for slot = 1, GetContainerNumSlots(CryolysisConfig.ProvisionContainer), 1 do
-		table.insert(ProvisionSlot, nil);
+		table.insert(ProvisionSlot, nil)
 	end
 end
 
 -- Function that looks for items to trade (Food/drink
-function Cryolysis_TradeExplore(type)
-  	for container=0, 4, 1 do
-		for slot=1, GetContainerNumSlots(container), 1 do
-			Cryolysis_MoneyToggle();
+function Cryo:TradeExplore(Type)
+  	for container = 0, 4, 1 do
+		for slot = 1, GetContainerNumSlots(container), 1 do
+			self:MoneyToggle();
    			CryolysisTooltip:SetBagItem(container, slot);
 			local itemName = tostring(CryolysisTooltipTextLeft1:GetText());
 			_, _, locked = GetContainerItemInfo(container, slot);
-			if itemName == type and not locked then
+			if itemName == Type and not locked then
 				PickupContainerItem(container, slot);
 				if ( CursorHasItem() ) then
 					if CryolysisTradeRequest then
@@ -2113,24 +2030,24 @@ function Cryolysis_TradeExplore(type)
 end
 
 -- function that searches for a mount
-function Cryolysis_MountCheck(itemName, container, slot)
+function Cryo:MountCheck(itemName, container, slot)
 	if UnitLevel("player") < 40 then
-		return;
+		return
 	end
 	if CryolysisPrivate.AQ == true then
-		if Cryolysis_AQMountCheck(itemName, container, slot) or Mount.AQMount then
-			return;
+		if self:AQMountCheck(itemName, container, slot) or Mount.AQMount then
+			return
 		end
 	end
-	for icon=1, #(CRYOLYSIS_MOUNT_TABLE), 1 do
-		for i=1, #(CRYOLYSIS_MOUNT_TABLE[icon]), 1 do
+	for icon=1, #CRYOLYSIS_MOUNT_TABLE, 1 do
+		for i=1, #CRYOLYSIS_MOUNT_TABLE[icon], 1 do
 			if itemName == CRYOLYSIS_MOUNT_TABLE[icon][i] then
 			   	Mount.Available = true;
 			   	Mount.Name = CRYOLYSIS_MOUNT_TABLE[icon][i];
 				Mount.Title = Mount.Name;
-			   	for p=1, #(CRYOLYSIS_MOUNT_PREFIX), 1 do
-			   	    if strfind(Mount.Name, CRYOLYSIS_MOUNT_PREFIX[p]) then
-				    	Mount.Title = string.sub(Mount.Name, string.len(CRYOLYSIS_MOUNT_PREFIX[p])+1);
+			   	for p = 1, #CRYOLYSIS_MOUNT_PREFIX, 1 do
+					if string.find(Mount.Name, CRYOLYSIS_MOUNT_PREFIX[p]) then
+						Mount.Title = string.sub(Mount.Name, string.len(CRYOLYSIS_MOUNT_PREFIX[p])+1);
 					end
 			   	end
 				Cryolysis_Msg("Mount Located: "..Mount.Title,"USER");
@@ -2148,7 +2065,7 @@ function Cryolysis_MountCheck(itemName, container, slot)
 	end
 end
 
-function Cryolysis_AQMountCheck(itemName, container, slot)
+function Cryo:AQMountCheck(itemName, container, slot)
 	for i=1, #CRYOLYSIS_AQMOUNT_TABLE, 1 do
 		if itemName == CRYOLYSIS_AQMOUNT_TABLE[i] then
 		   	Mount.Available = true;
@@ -2164,7 +2081,7 @@ function Cryolysis_AQMountCheck(itemName, container, slot)
 	end
 end
 
-function Cryolysis_BagCheck(spell)
+function Cryo:BagCheck(spell)
 	local spellcheck = { 2, 10, 11, 38, 40, 39, 37, 51, 46, 47, 31, 30, 28, 29, 27, 35 } -- Spells that change inv.  Portals, Conjure, mana gems, etc
 	local check = false;
 	local itemName;
@@ -2176,19 +2093,19 @@ function Cryolysis_BagCheck(spell)
 	elseif ( spell ) then
  		for i = 1, #spellcheck, 1 do
 			if ( spell == CRYOLYSIS_SPELL_TABLE[spellcheck[i]].Name ) then
-				Cryolysis_BagCheck("Update");
+				self:BagCheck("Update");
 				break;
 			end
 		end
 		for i = 1, #CRYOLYSIS_MANASTONE_NAMES, 1 do
 			if ( spell == CRYOLYSIS_MANASTONE_NAMES[i] ) then
-				Cryolysis_BagCheck("Update");
+				self:BagCheck("Update");
 				break;
 			end
 		end
 	end
 	if (( not check ) and ( Count.Food > 0 )) then
-		Cryolysis_MoneyToggle();
+		self:MoneyToggle();
 		CryolysisTooltip:SetBagItem(FoodLocation[1], FoodLocation[2]);
 		itemName = tostring(CryolysisTooltipTextLeft1:GetText());
 		if ( itemName ~= FoodName ) then
@@ -2196,7 +2113,7 @@ function Cryolysis_BagCheck(spell)
 		end
 	end
 	if ( not check and  Count.Drink > 0 ) then
-		Cryolysis_MoneyToggle();
+		self:MoneyToggle();
 		CryolysisTooltip:SetBagItem(DrinkLocation[1], DrinkLocation[2]);
 		itemName = tostring(CryolysisTooltipTextLeft1:GetText());
 		if ( itemName ~= DrinkName ) then
@@ -2204,7 +2121,7 @@ function Cryolysis_BagCheck(spell)
 		end
 	end
 	if ( not check and Mount.Available ) then
-		Cryolysis_MoneyToggle();
+		self:MoneyToggle();
 		CryolysisTooltip:SetBagItem(Mount.Location[1], Mount.Location[2]);
 		itemName = tostring(CryolysisTooltipTextLeft1:GetText());
 		if ( itemName ~= Mount.Name ) then
@@ -2215,7 +2132,7 @@ function Cryolysis_BagCheck(spell)
  	if ( not check and StoneMaxRank[2] ~= 0 ) then
 		for i=1, StoneMaxRank[2], 1 do
 			if ( Manastone.OnHand[i] ) then
-				Cryolysis_MoneyToggle();
+				self:MoneyToggle();
 				CryolysisTooltip:SetBagItem(Manastone.Location[i][1], Manastone.Location[i][2]);
 				itemName = tostring(CryolysisTooltipTextLeft1:GetText());
 				if ( not string.find(itemName, CRYOLYSIS_ITEM.Manastone..CRYOLYSIS_STONE_RANK[i]) ) then
@@ -2226,14 +2143,14 @@ function Cryolysis_BagCheck(spell)
 	end
  	if ( check == true ) then
 		if ( CryolysisConfig.ProvisionSort ) then
-			Cryolysis_ProvisionSwitch("CHECK");
+			self:ProvisionSwitch("CHECK")
 		else
-			Cryolysis_BagExplore();
+			self:BagExplore()
 		end
 	end
 end
 -- Funtion that inventories mage reagents: feathers, runes, powder, etc
-function Cryolysis_BagExplore()
+function Cryo:BagExplore()
 	local provision = Provision;
 	Provision = 0;
 	Count.Food = 0;
@@ -2249,7 +2166,7 @@ function Cryolysis_BagExplore()
 	for container=0, 4, 1 do
 		-- For each slot
 		for slot=1, GetContainerNumSlots(container), 1 do
-			Cryolysis_MoneyToggle();
+			self:MoneyToggle();
 			CryolysisTooltip:SetBagItem(container, slot);
 			local itemName = tostring(CryolysisTooltipTextLeft1:GetText());
 --			local itemSwitch = tostring(CryolysisTooltipTextLeft3:GetText());
@@ -2340,7 +2257,7 @@ function Cryolysis_BagExplore()
 					Mount.Available = false;
 				end
 				if not Mount.Available and not Mount.Checked then
-				 	Cryolysis_MountCheck(itemName, container, slot);
+				 	Cryo:MountCheck(itemName, container, slot);
 				end
 			end
 		end
@@ -2350,7 +2267,7 @@ function Cryolysis_BagExplore()
 	end
 	Mount.Checked = true;
 	-- Update as a whole!!
-	Cryolysis_UpdateIcons();
+	Cryo:UpdateIcons();
 
 	-- If there are more provisions than the defined bag can hold, warn the player
 	if (Provision > provision and Provision == GetContainerNumSlots(CryolysisConfig.ProvisionContainer)) then
@@ -2367,38 +2284,35 @@ function Cryolysis_BagExplore()
 end
 
 -- -- Function which makes it possible to find/arrange the provisions in the bags
-function Cryolysis_ProvisionSwitch(type)
+function Cryo:ProvisionSwitch(Type)
 	for container = 0, 4, 1 do
-		if container ~= CryolysisConfig.ProvisionContainer then
-			for slot=1, GetContainerNumSlots(container), 1 do
-				Cryolysis_MoneyToggle();
-				CryolysisTooltip:SetBagItem(container, slot);
-				local itemInfo = tostring(CryolysisTooltipTextLeft1:GetText());
+		if ( container ~= CryolysisConfig.ProvisionContainer ) then
+			for slot = 1, GetContainerNumSlots(container), 1 do
+				self:MoneyToggle()
+				CryolysisTooltip:SetBagItem(container, slot)
+				local itemInfo = tostring(CryolysisTooltipTextLeft1:GetText())
 				if itemInfo == Count.FoodLastName
 					or itemInfo == Count.DrinkLastName then
-					if (type == "CHECK") then
-						ProvisionMP = ProvisionMP + 1;
-					elseif (type == "MOVE") then
-						ProvisionMP = ProvisionMP - 1;
-      					Cryolysis_BagCheck("Update");
-						Cryolysis_FindSlot(container, slot,itemInfo);
+					if (Type == "CHECK") then
+						ProvisionMP = ProvisionMP + 1
+					elseif (Type == "MOVE") then
+						ProvisionMP = ProvisionMP - 1
+      					self:BagCheck("Update")
+						self:FindSlot(container, slot,itemInfo)
 					end
---				elseif type == "MOVE" and ProvisionMP > 0 then
---					ProvisionMP = ProvisionMP - 1;
 				end
 			end
 		end
 	end
-	-- For having all to move, it is necessary to find the sites of the food, drinks, etc, etc
-	Cryolysis_BagExplore();
+	Cryo:BagExplore()
 end
 
 --During the movement of the provisions, it is necessary to find a new site with the moved objects:)
-function Cryolysis_FindSlot(ProvisionIndex, ProvisionSlot, itemInfo)
+function Cryo:FindSlot(ProvisionIndex, ProvisionSlot, itemInfo)
 	local full = true; 																		-- Saying the provision bag is full
 	local foodstuff, StackCount;
 	for slot=1, GetContainerNumSlots(CryolysisConfig.ProvisionContainer), 1 do				-- go through every slot in the provision bag
-		Cryolysis_MoneyToggle();															-- Ignore money!
+		self:MoneyToggle();															-- Ignore money!
  		CryolysisTooltip:SetBagItem(CryolysisConfig.ProvisionContainer, slot);				-- Make the item name in the provision bag
 		foodstuff = tostring(CryolysisTooltipTextLeft1:GetText());							-- Make easy to use item name (foodstuff)
 		_, StackCount = GetContainerItemInfo(CryolysisConfig.ProvisionContainer, slot);		-- Get How many items are in that slot
@@ -2431,15 +2345,14 @@ end
 -- FUNCTIONS OF SPELLS
 ------------------------------------------------------------------------------------------------------
 -- Show or Hide the spell button to each new learned spell
-function Cryolysis_ButtonSetup()
-	if CryolysisConfig.CryolysisLockServ then
-		Cryolysis_NoDrag();
-		Cryolysis_UpdateButtonsScale();
+function Cryo:ButtonSetup()
+	if ( CryolysisConfig.CryolysisLockServ ) then
+		Cryolysis_NoDrag()
+		Cryolysis_UpdateButtonsScale()
 	else
 		for i, v in ipairs(CryolysisConfig.StoneLocation) do
 			HideUIPanel(_G[v])
 		end
-
 		if CryolysisConfig.StonePosition[1] and StoneIDInSpellTable[4] then
 			ShowUIPanel(CryolysisFoodButton)
 		end
@@ -2470,63 +2383,59 @@ function Cryolysis_ButtonSetup()
 	end
 end
 
-
-
 -- My favorite function! It makes the list of the spells known by the mage, and classifies them by rank
 -- For the stones, it selects the highest rank
-function Cryolysis_SpellSetup()
+function Cryo:SpellSetup()
 	Cryolysis_SpellTableBuild()
-	StoneIDInSpellTable = {0, 0, 0, 0};
-	local StoneType = {CRYOLYSIS_ITEM.Evocation, CRYOLYSIS_ITEM.Manastone, CRYOLYSIS_ITEM.Drink, CRYOLYSIS_ITEM.Food};
+	StoneIDInSpellTable = {0, 0, 0, 0}
+	local StoneType = {CRYOLYSIS_ITEM.Evocation, CRYOLYSIS_ITEM.Manastone, CRYOLYSIS_ITEM.Drink, CRYOLYSIS_ITEM.Food}
 	local nameTalent, icon, tier, column, currRank, maxRank = GetTalentInfo(3,7)
 	local CurrentStone = {
 		ID = {},
 		Name = {},
 		subName = {}
-	};
+	}
 
 	local CurrentSpells = {
 		ID = {},
 		Name = {},
 		subName = {}
-	};
+	}
 
-	local spellID = 1;
-	local Invisible = 0;
-	local InvisibleID = 0;
+	
+	local Invisible = 0
+	local InvisibleID = 0
 
-	-- Looks through all spells known by the mage
+	local spellID = 1
 	while true do
-		local spellName, subSpellName = GetSpellName(spellID, BOOKTYPE_SPELL);
+		local spellName, subSpellName = GetSpellName(spellID, BOOKTYPE_SPELL)
 		if not spellName then
-			do break end
+			break
 		end
-		-- For the spells with numbered ranks , compares for each spell ranks 1 to 1
-		-- The higher rank is preserved
-		if (string.find(subSpellName, CRYOLYSIS_TRANSLATION.Rank)) then
-			local found = false;
-			local _, _, rank = string.find(subSpellName, CRYOLYSIS_TRANSLATION.Rank .. " (.+)");
-			rank = tonumber(rank);
-			for index=1, #(CurrentSpells.Name), 1 do
-				if (CurrentSpells.Name[index] == spellName) then
-			found = true;
+		if ( string.find(subSpellName, RANK) ) then
+			local found = false
+			local _, _, rank = string.find(subSpellName, RANK.."%s(%d+)")
+			rank = tonumber(rank)
+			for index = 1, #CurrentSpells.Name, 1 do
+				if ( CurrentSpells.Name[index] == spellName ) then
+					found = true
 					if (CurrentSpells.subName[index] < rank) then
-						CurrentSpells.ID[index] = spellID;
-						CurrentSpells.subName[index] = rank;
+						CurrentSpells.ID[index] = spellID
+						CurrentSpells.subName[index] = rank
 					end
-					break;
+					break
 				end
 			end
 			-- The largest ranks of each numbered spell with row are inserted in the table
-			if (not found) then
-				table.insert(CurrentSpells.ID, spellID);
-				table.insert(CurrentSpells.Name, spellName);
-				table.insert(CurrentSpells.subName, rank);
+			if ( not found ) then
+				table.insert(CurrentSpells.ID, spellID)
+				table.insert(CurrentSpells.Name, spellName)
+				table.insert(CurrentSpells.subName, rank)
 			end
 		end
 		-- Check to see if it is a mana gem.  if it is, note it and its information
-		for i=1, #(CRYOLYSIS_MANASTONE_NAMES), 1 do
-		    if spellName == CRYOLYSIS_MANASTONE_NAMES[i] then
+		for i = 1, #CRYOLYSIS_MANASTONE_NAMES, 1 do
+			if spellName == CRYOLYSIS_MANASTONE_NAMES[i] then
 				if i > StoneMaxRank[2] then
 					StoneMaxRank[2] = i;
 				end
@@ -2601,7 +2510,7 @@ function Cryolysis_SpellSetup()
 		if (spellName) then
 			for index=1, #(CRYOLYSIS_SPELL_TABLE), 1 do
 				if CRYOLYSIS_SPELL_TABLE[index].Name == spellName then
-					Cryolysis_MoneyToggle();
+					self:MoneyToggle();
 					CryolysisTooltip:SetSpell(spellID, 1);
 					local _, _, ManaCost = string.find(CryolysisTooltipTextLeft2:GetText(), "(%d+)");
 					if not CRYOLYSIS_SPELL_TABLE[index].ID then
@@ -2632,21 +2541,11 @@ function Cryolysis_SpellSetup()
 
 end
 
--- Function of extraction of attribute of spells
--- F(type=string, string, int) -> Spell=table
-function Cryolysis_FindSpellAttribute(type, attribute, array)
-	for index=1, #(CRYOLYSIS_SPELL_TABLE), 1 do
-		if string.find(CRYOLYSIS_SPELL_TABLE[index][type], attribute) then return CRYOLYSIS_SPELL_TABLE[index][array]; end
-	end
-	return nil;
-end
-
 ------------------------------------------------------------------------------------------------------
 -- OTHER FUNCTIONS
 ------------------------------------------------------------------------------------------------------
-
 -- Update text on Cryolysis buttons
-function Cryolysis_ButtonTextUpdate()
+function Cryo:ButtonTextUpdate()
 	for i, v in ipairs(CryolysisPrivate.waterRanks) do
 		local c = GetItemCount(v)
 		if ( c > 0 ) then
@@ -2699,53 +2598,46 @@ function Cryolysis_ButtonTextUpdate()
 end
 
 -- Converts seconds into minutes:seconds
-function Cryolysis_TimerFunction(seconde)
-	local affiche, minute, time
+function Cryo:TimerFunction(seconde)
+	local affiche, minute, Time
 	if seconde <= 59 then
-		return tostring(math.floor(seconde));
+		return tostring(math.floor(seconde))
 	else
 		minute = tostring(math.floor(seconde/60))
 		seconde = math.fmod(seconde, 60);
 		if seconde < 10 then
-			time = "0"..tostring(math.floor(seconde));
+			Time = "0"..tostring(math.floor(seconde))
 		else
-			time = tostring(math.floor(seconde));
+			Time = tostring(math.floor(seconde))
 		end
-		affiche = minute..":"..time;
-		return affiche;
+		affiche = minute..":"..Time
+		return affiche
 	end
 end
 
 -- Function to know if a unit undergoes an effect
 -- F(string, string)->bool
-function Cryolysis_UnitHasEffect(unit, effect)
-	local index = 1;
-	while UnitDebuff(unit, index) do
-		Cryolysis_MoneyToggle();
-		CryolysisTooltip:SetUnitDebuff(unit, index);
-		local DebuffName = tostring(CryolysisTooltipTextLeft1:GetText());
-   		if (string.find(DebuffName, effect)) then
-			return true;
+function Cryo:UnitHasEffect(unit, effect)
+	local i = 1
+	while UnitDebuff(unit, i) do
+		local name = UnitDebuff(unit, i)
+   		if ( string.find(name, effect) ) then
+			return true
 		end
-		index = index+1;
+		i = i + 1
 	end
-	return false;
 end
 
-function Cryolysis_Trade(Type)
-	if Count[Type] > 0 then
-		if (UnitExists("target")
-			and UnitIsPlayer("target")
-			and UnitIsFriend("player", "target")
-			and UnitName("target") ~= UnitName("player"))
-		or CryolysisTradeRequest then
-			Cryolysis_TradeExplore(Count[Type.."LastName"]);
+function Cryo:Trade(Type)
+	if ( Count[Type] > 0 ) then
+		if ( UnitExists("target") and UnitIsPlayer("target") and UnitIsFriend("player", "target") and UnitName("target") ~= UnitName("player") ) or CryolysisTradeRequest then
+			self:TradeExplore(Count[Type.."LastName"])
 		end
 	end
 end
 
-function Cryolysis_MoneyToggle()
-	for index=1, 10 do
+function Cryo:MoneyToggle()
+	for index = 1, 10 do
 		local text = _G["CryolysisTooltipTextLeft"..index]
 		if ( text ) then
 			text:SetText(nil);
@@ -2757,10 +2649,6 @@ function Cryolysis_MoneyToggle()
 	end
 	CryolysisTooltip:Hide();
 	CryolysisTooltip:SetOwner(WorldFrame, "ANCHOR_NONE");
-end
-
-function Cryolysis_GameTooltip_ClearMoney()
-    -- Intentionally empty; don't clear money while we use hidden tooltips
 end
 
 --Function to place the buttons around Cryolysis (and to grow/shrink the interface)
@@ -2780,7 +2668,6 @@ function Cryolysis_UpdateButtonsScale()
 		HideUIPanel(CryolysisEvocationButton);
 		HideUIPanel(CryolysisLeftSpellButton);
 		HideUIPanel(CryolysisRightSpellButton);
-
 		local indexScale = -18;
 		local DoesSpellExists = {
 			StoneIDInSpellTable[4],
@@ -2859,24 +2746,24 @@ function Cryolysis_CreateMenu()
 
 	-- Hide manastone menu
 	for i = 1, 4, 1 do
-		menuVariable = getglobal("CryolysisManaStoneMenu"..i);
+		menuVariable = _G["CryolysisManaStoneMenu"..i];
 		menuVariable:Hide();
 	end
 
 	-- Hide portal menu
 	for i = 1, 12, 1 do
-		menuVariable = getglobal("CryolysisPortalMenu"..i);
+		menuVariable = _G["CryolysisPortalMenu"..i];
 		menuVariable:Hide();
 	end
 	-- Hide buff menu
 	for i = 1, 8, 1 do
-		menuVariable = getglobal("CryolysisBuffMenu"..i);
+		menuVariable = _G["CryolysisBuffMenu"..i];
 		menuVariable:Hide();
 	end
 
 	-- Menu des manastones
 	if Manastone.RankID[1] then
-		menuVariable = getglobal("CryolysisManaStoneMenu1");
+		menuVariable = _G["CryolysisManaStoneMenu1"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -2884,7 +2771,7 @@ function Cryolysis_CreateMenu()
 		table.insert(ManaStoneMenuCreate, menuVariable);
 	end
 	if Manastone.RankID[2] then
-		menuVariable = getglobal("CryolysisManaStoneMenu2");
+		menuVariable = _G["CryolysisManaStoneMenu2"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -2892,7 +2779,7 @@ function Cryolysis_CreateMenu()
 		table.insert(ManaStoneMenuCreate, menuVariable);
 	end
 	if Manastone.RankID[3] then
-		menuVariable = getglobal("CryolysisManaStoneMenu3");
+		menuVariable = _G["CryolysisManaStoneMenu3"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -2900,7 +2787,7 @@ function Cryolysis_CreateMenu()
 		table.insert(ManaStoneMenuCreate, menuVariable);
 	end
 	if Manastone.RankID[4] then
-		menuVariable = getglobal("CryolysisManaStoneMenu4");
+		menuVariable = _G["CryolysisManaStoneMenu4"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -2925,7 +2812,7 @@ function Cryolysis_CreateMenu()
 
 	-- Start placing portals on the menu
 	if CRYOLYSIS_SPELL_TABLE[38].ID then
-		menuVariable = getglobal("CryolysisPortalMenu1");
+		menuVariable = _G["CryolysisPortalMenu1"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -2933,7 +2820,7 @@ function Cryolysis_CreateMenu()
 		table.insert(PortalMenuCreate, menuVariable);
 	end
 	if CRYOLYSIS_SPELL_TABLE[40].ID then
-		menuVariable = getglobal("CryolysisPortalMenu2");
+		menuVariable = _G["CryolysisPortalMenu2"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -2941,7 +2828,7 @@ function Cryolysis_CreateMenu()
 		table.insert(PortalMenuCreate, menuVariable);
 	end
 	if CRYOLYSIS_SPELL_TABLE[39].ID then
-		menuVariable = getglobal("CryolysisPortalMenu3");
+		menuVariable = _G["CryolysisPortalMenu3"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -2949,7 +2836,7 @@ function Cryolysis_CreateMenu()
 		table.insert(PortalMenuCreate, menuVariable);
 	end
 	if CRYOLYSIS_SPELL_TABLE[47].ID then
-		menuVariable = getglobal("CryolysisPortalMenu7");
+		menuVariable = _G["CryolysisPortalMenu7"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -2957,7 +2844,7 @@ function Cryolysis_CreateMenu()
 		table.insert(PortalMenuCreate, menuVariable);
 	end
 	if CRYOLYSIS_SPELL_TABLE[31].ID then
-		menuVariable = getglobal("CryolysisPortalMenu8");
+		menuVariable = _G["CryolysisPortalMenu8"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -2965,7 +2852,7 @@ function Cryolysis_CreateMenu()
 		table.insert(PortalMenuCreate, menuVariable);
 	end
 	if CRYOLYSIS_SPELL_TABLE[30].ID then
-		menuVariable = getglobal("CryolysisPortalMenu9");
+		menuVariable = _G["CryolysisPortalMenu9"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -2973,7 +2860,7 @@ function Cryolysis_CreateMenu()
 		table.insert(PortalMenuCreate, menuVariable);
 	end
 	if CRYOLYSIS_SPELL_TABLE[37].ID then
-		menuVariable = getglobal("CryolysisPortalMenu4");
+		menuVariable = _G["CryolysisPortalMenu4"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -2981,7 +2868,7 @@ function Cryolysis_CreateMenu()
 		table.insert(PortalMenuCreate, menuVariable);
 	end
 	if CRYOLYSIS_SPELL_TABLE[51].ID then
-		menuVariable = getglobal("CryolysisPortalMenu5");
+		menuVariable = _G["CryolysisPortalMenu5"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -2989,7 +2876,7 @@ function Cryolysis_CreateMenu()
 		table.insert(PortalMenuCreate, menuVariable);
 	end
 	if CRYOLYSIS_SPELL_TABLE[46].ID then
-		menuVariable = getglobal("CryolysisPortalMenu6");
+		menuVariable = _G["CryolysisPortalMenu6"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -2997,7 +2884,7 @@ function Cryolysis_CreateMenu()
 		table.insert(PortalMenuCreate, menuVariable);
 	end
 	if CRYOLYSIS_SPELL_TABLE[28].ID then
-		menuVariable = getglobal("CryolysisPortalMenu10");
+		menuVariable = _G["CryolysisPortalMenu10"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -3005,7 +2892,7 @@ function Cryolysis_CreateMenu()
 		table.insert(PortalMenuCreate, menuVariable);
 	end
 	if CRYOLYSIS_SPELL_TABLE[29].ID then
-		menuVariable = getglobal("CryolysisPortalMenu11");
+		menuVariable = _G["CryolysisPortalMenu11"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -3013,7 +2900,7 @@ function Cryolysis_CreateMenu()
 		table.insert(PortalMenuCreate, menuVariable);
 	end
 	if CRYOLYSIS_SPELL_TABLE[27].ID then
-		menuVariable = getglobal("CryolysisPortalMenu12");
+		menuVariable = _G["CryolysisPortalMenu12"];
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
 		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
@@ -3082,7 +2969,7 @@ end
 function CryolysisGeneralTab_OnClick(id)
 	local TabName;
 	for index=1, 5, 1 do
-		TabName = getglobal("CryolysisGeneralTab"..index);
+		TabName = _G["CryolysisGeneralTab"..index];
 		if index == id then
 			TabName:SetChecked(1);
 		else
@@ -3134,7 +3021,7 @@ function CryolysisGeneralTab_OnClick(id)
 end
 
 function Cryolysis_UseAction(id, number, onSelf)
-	Cryolysis_MoneyToggle();
+	Cryo:MoneyToggle();
 	CryolysisTooltip:SetAction(id);
 	local tip = tostring(CryolysisTooltipTextLeft1:GetText());
 	if tip then

@@ -44,7 +44,7 @@
 ------------------------------------------------------------------------------------------------------
 local _G = getfenv(0)
 
-function Cryo:Init()
+function Cryo_Init()
 
 	-- Initilialisation des Textes (VO / VF / VA)
 	if CryolysisConfig ~= {} then
@@ -117,9 +117,9 @@ function Cryo:Init()
 		-- Affichage d'un message sur la console
 		Cryolysis_Msg(CRYOLYSIS_MESSAGE.Interface.Welcome, "USER");
 		-- Cr�tion de la liste des sorts disponibles
-		Cryolysis_SpellSetup();
+		Cryo:SpellSetup();
 		-- Cr�tion de la liste des emplacements des fragments
-		Cryolysis_ProvisionSetup();
+		Cryo:ProvisionSetup();
 		-- Cr�tion des menus de buff et d'invocation
 		Cryolysis_CreateMenu();
 
@@ -321,12 +321,12 @@ function Cryo:Init()
 			CryolysisSpellTimerButton:RegisterForDrag("LeftButton");
 		end
 		-- On v�ifie que les fragments sont dans le sac d�ini par le D�oniste
-		-- Cryolysis_ProvisionSwitch("CHECK");
+		-- Cryo:ProvisionSwitch("CHECK");
 
 		-- Le Shard est-il v�ouill�sur l'interface ?
 
 		-- Les boutons sont-ils v�ouill� sur le Shard ?
-		Cryolysis_ButtonSetup();
+		Cryo:ButtonSetup()
 		Cryolysis_LanguageInitialize();
 		if CryolysisConfig.SM then
 			CRYOLYSIS_EVOCATION_ALERT_MESSAGE = CRYOLYSIS_SHORT_MESSAGES[1];

@@ -75,7 +75,7 @@ function CryolysisAfficheTimer(tableau, pointeur)
 				if TimerTarget == 11 then TimerTarget = 1; end
 				-- Title displayed
 				local frameName = "CryolysisTarget"..TimerTarget.."Text";
-				local frameItem = getglobal(frameName);
+				local frameItem = _G[frameName];
 				-- Place the left corner of the frame compared to the center button of the spell timer
 				frameItem:ClearAllPoints();
 				frameItem:SetPoint(CryolysisConfig.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", CryolysisConfig.SpellTimerPos * 23, yPosition);
@@ -91,15 +91,15 @@ function CryolysisAfficheTimer(tableau, pointeur)
 				if CryolysisConfig.SpellTimerJust == "LEFT" then JustifInverse = "RIGHT"; end	
 			
 				local frameName1 = "CryolysisTimer"..tableau.Gtimer[index].."Text";
-				local frameItem1 = getglobal(frameName1);
+				local frameItem1 = _G[frameName1];
 				local frameName2 = "CryolysisTimer"..tableau.Gtimer[index].."Bar";
-				local frameItem2 = getglobal(frameName2);
+				local frameItem2 = _G[frameName2];
 				local frameName3 = "CryolysisTimer"..tableau.Gtimer[index].."Texture";
-				local frameItem3 = getglobal(frameName3);
+				local frameItem3 = _G[frameName3];
 				local frameName4 = "CryolysisTimer"..tableau.Gtimer[index].."Spark";
-				local frameItem4 = getglobal(frameName4);
+				local frameItem4 = _G[frameName4];
 				local frameName5 = "CryolysisTimer"..tableau.Gtimer[index].."OutText";
-				local frameItem5 = getglobal(frameName5);
+				local frameItem5 = _G[frameName5];
 			
 				frameItem1:ClearAllPoints();
 				frameItem1:SetPoint(CryolysisConfig.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", CryolysisConfig.SpellTimerPos * 23, yPosition + 1);
@@ -144,7 +144,7 @@ function CryolysisAfficheTimer(tableau, pointeur)
 		if TimerTarget < 10 then
 			for i = TimerTarget + 1, 10, 1 do
 				local frameName = "CryolysisTarget"..i.."Text";
-				local frameItem = getglobal(frameName);
+				local frameItem = _G[frameName];
 				if frameItem:IsShown() then
 					frameItem:Hide();
 				end
@@ -163,7 +163,7 @@ function Cryolysis_AddFrame(SpellTimer, TimerTable)
 				local elements = {"Text", "Bar", "Texture", "OutText"}
 				for j = 1, 4, 1 do
 					frameName = "CryolysisTimer"..i..elements[j];
-					frameItem = getglobal(frameName);
+					frameItem = _G[frameName];
 					frameItem:Show();					
 				end
 			end
@@ -178,7 +178,7 @@ function Cryolysis_RemoveFrame(Gtime, TimerTable)
 	local elements = {"Text", "Bar", "Texture", "OutText"}
 	for j = 1, 4, 1 do
 		frameName = "CryolysisTimer"..Gtime..elements[j];
-		frameItem = getglobal(frameName);
+		frameItem = _G[frameName];
 		frameItem:Hide();
 	end
 
