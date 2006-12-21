@@ -314,7 +314,7 @@
 							CryolysisConfig.StonePosition[1] = false;
 							HideUIPanel(CryolysisFoodButton);
 						end
-						Cryolysis_UpdateButtonsScale();
+						Cryo:UpdateButtonsScale();
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -338,7 +338,7 @@
 							CryolysisConfig.StonePosition[2] = false;
 							HideUIPanel(CryoylsisDrinkButton);
 						end
-						Cryolysis_UpdateButtonsScale();
+						Cryo:UpdateButtonsScale();
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -357,12 +357,12 @@
 					<OnClick>
 						if (this:GetChecked()) then
 							CryolysisConfig.StonePosition[3] = true;
-							ShowUIPanel(CryolysisManastoneButton);
+							ShowUIPanel(CryolysisManaStoneButton);
 						else
 							CryolysisConfig.StonePosition[3] = false;
-							HideUIPanel(CryolysisManastoneButton);
+							HideUIPanel(CryolysisManaStoneButton);
 						end
-						Cryolysis_UpdateButtonsScale();
+						Cryo:UpdateButtonsScale();
 					</OnClick>
 				</Scripts>
 			</CheckButton>

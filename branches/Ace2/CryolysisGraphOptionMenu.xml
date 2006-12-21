@@ -95,7 +95,7 @@
 						CryolysisConfig.CryolysisAngle = this:GetValue();
 						local x, y = CryolysisButton:GetCenter();
 						GameTooltip:SetText(this:GetValue());
-						Cryolysis_UpdateButtonsScale();
+						Cryo:UpdateButtonsScale();
 					</OnValueChanged>
 					<OnLeave>
 						GameTooltip:Hide();
@@ -128,7 +128,7 @@
 							CryolysisConfig.CryolysisButtonScale = this:GetValue();
 							CryolysisButton:SetPoint("CENTER", "UIParent", "BOTTOMLEFT", NBx / (CryolysisConfig.CryolysisButtonScale / 100), NBy / (CryolysisConfig.CryolysisButtonScale / 100));
 							CryolysisButton:SetScale(CryolysisConfig.CryolysisButtonScale / 100);
-							Cryolysis_UpdateButtonsScale();
+							Cryo:UpdateButtonsScale();
 						end
 					</OnValueChanged>
 					<OnLeave>
@@ -158,15 +158,15 @@
 							CryolysisConfig.CryolysisStoneScale = this:GetValue();
 							CryolysisFoodButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 							CryolysisDrinkButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-							CryolysisManastoneButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+							CryolysisManaStoneButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 							CryolysisLeftSpellButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 							CryolysisEvocationButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 							CryolysisRightSpellButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 							CryolysisBuffMenuButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 							CryolysisMountButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
 							CryolysisPortalMenuButton:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-							Cryolysis_UpdateButtonsScale();
-							Cryolysis_CreateMenu();
+							Cryo:UpdateButtonsScale();
+							Cryo:CreateMenu();
 						end
 					</OnValueChanged>
 					<OnLeave>
@@ -189,26 +189,26 @@
 					<OnClick>
 						if (this:GetChecked()) then
 							CryolysisConfig.CryolysisLockServ = true;
-							Cryolysis_ClearAllPoints();
-							Cryolysis_UpdateButtonsScale();
-							Cryolysis_NoDrag();
+							Cryo:ClearAllPoints();
+							Cryo:UpdateButtonsScale();
+							Cryo:DragControl(false);
 							if not CryolysisConfig.NoDragAll then
 								CryolysisButton:RegisterForDrag("LeftButton");
 								CryolysisSpellTimerButton:RegisterForDrag("LeftButton");
 							end
 						else
 							CryolysisConfig.CryolysisLockServ = false;
-							Cryolysis_ClearAllPoints();
+							Cryo:ClearAllPoints();
 							CryolysisFoodButton:SetPoint("CENTER", "UIParent", "CENTER", -121,-100);
 							CryolysisDrinkButton:SetPoint("CENTER", "UIParent", "CENTER", -87,-100);
-							CryolysisManastoneButton:SetPoint("CENTER", "UIParent", "CENTER", -53,-100);
+							CryolysisManaStoneButton:SetPoint("CENTER", "UIParent", "CENTER", -53,-100);
 							CryolysisLeftSpellButton:SetPoint("CENTER", "UIParent", "CENTER", -17,-100);
 							CryolysisEvocationButton:SetPoint("CENTER", "UIParent", "CENTER", 17,-100);
 							CryolysisRightSpellButton:SetPoint("CENTER", "UIParent", "CENTER", 53,-100);
 							CryolysisBuffMenuButton:SetPoint("CENTER", "UIParent", "CENTER", 87,-100);
 							CryolysisMountButton:SetPoint("CENTER", "UIParent", "CENTER", 121,-100);
 							CryolysisPortalMenuButton:SetPoint("CENTER", "UIParent", "CENTER", 155,-100);
-							Cryolysis_Drag();
+							Cryo:DragControl(true);
 							CryolysisConfig.NoDragAll = false;
 							CryolysisLock_Button:SetChecked(false);
 							CryolysisButton:RegisterForDrag("LeftButton");
@@ -231,13 +231,13 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							Cryolysis_NoDrag();
+							Cryo:DragControl(false);
 							CryolysisButton:RegisterForDrag("");
 							CryolysisSpellTimerButton:RegisterForDrag("");
 							CryolysisConfig.NoDragAll = true;
 						else
 							if not CryolysisConfig.CryolysisLockServ then
-								Cryolysis_Drag();
+								Cryo:DragControl(true);
 							end
 							CryolysisButton:RegisterForDrag("LeftButton");
 							CryolysisSpellTimerButton:RegisterForDrag("LeftButton");
@@ -264,7 +264,7 @@
 						else
 							CryolysisConfig.ManaStoneMenuPos = 34;
 						end
-						Cryolysis_CreateMenu();							
+						Cryo:CreateMenu();							
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -316,7 +316,7 @@
 						else
 							CryolysisConfig.BuffMenuPos = 34;
 						end
-						Cryolysis_CreateMenu();							
+						Cryo:CreateMenu();							
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -368,7 +368,7 @@
 						else
 							CryolysisConfig.PortalMenuPos = 34;
 						end
-						Cryolysis_CreateMenu();						
+						Cryo:CreateMenu();						
 					</OnClick>
 				</Scripts>
 			</CheckButton>
