@@ -1,105 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\FrameXML\UI.xsd">
 
-	<Button name="CryolysisSpellTimerButton" inherits="SecureActionButtonTemplate" frameStrata="MEDIUM" enableMouse="true" movable="true" parent="UIParent">
-		<Size>
-			<AbsDimension x="34" y="34"/>
-		</Size>
-		<Anchors>
-			<Anchor point="CENTER">
-				<Offset>
-					<AbsDimension x="120" y="340"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="CryolysisListSpells" inherits="GameFontNormalSmall" justifyH="LEFT">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-					<Anchors>
-						<Anchor point="LEFT" relativeTo="CryolysisSpellTimerButton">
-							<Offset>
-								<AbsDimension x="23" y="0"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Scripts>
-			<OnLoad>
-				Cryolysis_UpdateRevisions("Cryolysis.xml", "$Rev$")
-				this:RegisterForDrag("LeftButton");
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-				this:Hide();
-			</OnLoad>
-			<OnDragStart>
-				Cryo:OnDragStart(this);
-			</OnDragStart>
-			<OnDragStop>
-				Cryo:OnDragStop(this);
-			</OnDragStop>
-			<OnMouseUp>
-				Cryo:OnDragStop(this);
-			</OnMouseUp>
-			<OnEnter>
-				Cryo:BuildTooltip(this, "SpellTimer", AnchorSpellTimerTooltip);
-			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\SpellTimerButton-Normal"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\SpellTimerButton-Highlight"/>
-	</Button>
-
-	<Button name="CryolysisButton" inherits="SecureActionButtonTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
-		<Size>
-			<AbsDimension x="58" y="58"/>
-		</Size>
-		<Anchors>
-			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER">
-				<Offset>
-					<AbsDimension x="0" y="-100"/>
-				</Offset>
-			</Anchor>
-		</Anchors>
-		<Layers>
-			<Layer level="ARTWORK">
-				<FontString name="CryolysisShardCount" inherits="GameFontNormal" text="">
-					<Color r="1.0" g="1.0" b="1.0" a="1"/>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Scripts>
-			<OnLoad>
-				Cryo:CryolysisButton_OnLoad()
-				this:Hide()
-			</OnLoad>
-			<OnDragStart>
-				Cryo:OnDragStart(this);
-			</OnDragStart>
-			<OnDragStop>
-				Cryo:OnDragStop(this);
-			</OnDragStop>
-			<OnMouseUp>
-				Cryo:OnDragStop(this);
-			</OnMouseUp>
-			<OnEnter>
-				Cryo:BuildTooltip(this, "Main", "ANCHOR_LEFT");
-			</OnEnter>
-			<OnLeave>
-				GameTooltip:Hide();
-			</OnLeave>
-			<OnUpdate>
-				Cryo:CryolysisButton_OnUpdate()
-			</OnUpdate>
-		<!--	<OnEvent>
-				Cryolysis_OnEvent(event);
-			</OnEvent> -->
-		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\Shard"/>
-	</Button>
-
 	<!-- SubButton Template -->
 	<Button name="CryolysisSubButtonTemplate" inherits="SecureActionButtonTemplate" hidden="false" parent="UIParent" movable="true" virtual="true">
 		<Size>
@@ -132,7 +32,7 @@
 			</OnMouseUp>
 		</Scripts>
 	</Button>
-
+<!--
 	<Button name="CryolysisLeftSpellButton" inherits="CryolysisSubButtonTemplate">
 		<Scripts>
 			<OnEnter>
@@ -142,7 +42,7 @@
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\Shard"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
-
+-->
 	<Button name="CryolysisEvocationButton" inherits="CryolysisSubButtonTemplate">
 		<Layers>
 			<Layer level="ARTWORK">

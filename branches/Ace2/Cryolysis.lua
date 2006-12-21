@@ -431,24 +431,14 @@ function Cryo:OnEnable()
 	self:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_OTHER")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE")
 	
+	SlashCmdList["CryolysisCommand"] = Cryolysis_SlashHandler
+	SLASH_CryolysisCommand1 = "/cryo"
+	
 	M:Start("Cryo_UpdateFunc")
 end
 
 function Cryo:OnDisable()
 	M:Stop("Cryo_UpdateFunc")
-end
-
--- Function applied to login
-function Cryo:CryolysisButton_OnLoad()
-
-	-- Recording of the graphic components
-	CryolysisButton:RegisterForDrag("LeftButton")
-	CryolysisButton:RegisterForClicks("LeftButtonUp", "RightButtonUp")
-	CryolysisButton:SetFrameLevel(1)
-
-	-- recording console commands
-	SlashCmdList["CryolysisCommand"] = Cryolysis_SlashHandler
-	SLASH_CryolysisCommand1 = "/cryo"
 end
 
 -- Function applied once parameters of the mods charged
@@ -457,6 +447,7 @@ function Cryo:LoadVariables()
 	if (( Cryolysis_Loaded ) or ( class ~= "MAGE" )) then
 		return
 	end
+	self:CreateAllFrames()
 	Cryo_Init()
 	Cryolysis_Loaded = true
 end
