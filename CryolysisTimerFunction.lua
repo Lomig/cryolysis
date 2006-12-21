@@ -328,7 +328,7 @@ function Cryolysis_DisplayTimer(display, index, SpellGroup, SpellTimer, Graphica
 	-- Crée le tableau qui servira aux timers graphiques
 	if (SpellTimer[index].Type == 1 or SpellTimer[index].Name == CRYOLYSIS_SPELL_TABLE[26].Name)
 	and (SpellTimer[index].Target ~= "") then
-		if CryolysisConfig.SpellTimerPos == 1 then
+		if Cryo.db.profile.SpellTimerPos == 1 then
 			affichage = affichage.." - "..SpellTimer[index].Target;
 		else
 			affichage = SpellTimer[index].Target.." - "..affichage;
@@ -350,7 +350,7 @@ function Cryolysis_DisplayTimer(display, index, SpellGroup, SpellTimer, Graphica
 		display = display.."<close>\n";
 	end
 	-- Affichage des timers graphiques (si sélectionnés)
-	if CryolysisConfig.Graphical then
+	if Cryo.db.profile.Graphical then
 		CryolysisAfficheTimer(GraphicalTimer, TimerTable);
 	end
 

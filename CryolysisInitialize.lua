@@ -47,14 +47,14 @@ local _G = getfenv(0)
 function Cryo_Init()
 
 	-- Initilialisation des Textes (VO / VF / VA)
-	if CryolysisConfig ~= {} then
-		if (CryolysisConfig.CryolysisLanguage == "enUS") or (CryolysisConfig.CryolysisLanguage == "enGB") then
+	if Cryo.db.profile ~= {} then
+		if (Cryo.db.profile.CryolysisLanguage == "enUS") or (Cryo.db.profile.CryolysisLanguage == "enGB") then
 			Cryolysis_Localization_Dialog_En();
-		elseif (CryolysisConfig.CryolysisLanguage == "deDE") then
+		elseif (Cryo.db.profile.CryolysisLanguage == "deDE") then
 			Cryolysis_Localization_Dialog_De();
-		elseif (CryolysisConfig.CryolysisLanguage == "frFR") then
+		elseif (Cryo.db.profile.CryolysisLanguage == "frFR") then
 			Cryolysis_Localization_Dialog_Fr();
-		elseif (CryolysisConfig.CryolysisLanguage == "zhCN") then
+		elseif (Cryo.db.profile.CryolysisLanguage == "zhCN") then
 			Cryolysis_Localization_Dialog_Cn();
 		else
 			Cryolysis_Localization_Dialog_Tw();
@@ -92,30 +92,30 @@ function Cryo_Init()
 --		HideUIPanel(CryolysisConcentrationButton);
 	else
 		-- On charge (ou on cr�) la configuration pour le joueur et on l'affiche sur la console
-		if CryolysisConfig == nil or CryolysisConfig.Version ~= Default_CryolysisConfig.Version then
-			CryolysisConfig = {};
-			CryolysisConfig = Default_CryolysisConfig;
---			if UnitLevel("player") < 40 then CryolysisConfig.StonePosition[8] = false; end
-			Cryolysis_Msg(CRYOLYSIS_MESSAGE.Interface.DefaultConfig, "USER");
+--		if Cryo.db.profile.Version ~= Default_Cryo.db.profile.Version then
+		--	Cryo.db.profile = {};
+		--	Cryo.db.profile = Default_Cryo.db.profile;
+--			if UnitLevel("player") < 40 then Cryo.db.profile.StonePosition[8] = false; end
+--			Cryo:Msg(CRYOLYSIS_MESSAGE.Interface.DefaultConfig, "USER");
 
-			CryolysisButton:ClearAllPoints();
+--			CryolysisButton:ClearAllPoints();
 --			CryolysisConcentrationButton:ClearAllPoints();
 --			CryolysisAntiFearButton:ClearAllPoints();
-			CryolysisSpellTimerButton:ClearAllPoints();
-			CryolysisButton:SetPoint("CENTER", "UIParent", "CENTER",0,-100);
+--			CryolysisSpellTimerButton:ClearAllPoints();
+--			CryolysisButton:SetPoint("CENTER", "UIParent", "CENTER",0,-100);
 --			CryolysisConcentrationButton:SetPoint("CENTER", "UIParent", "CENTER",100,-30);
 --			CryolysisAntiFearButton:SetPoint("CENTER", "UIParent", "CENTER",100,30);
-			CryolysisSpellTimerButton:SetPoint("CENTER", "UIParent", "CENTER",120,340);
+--			CryolysisSpellTimerButton:SetPoint("CENTER", "UIParent", "CENTER",120,340);
 
-		else
-			Cryolysis_Msg(CRYOLYSIS_MESSAGE.Interface.UserConfig, "USER");
-		end
+--		else
+--			Cryo:Msg(CRYOLYSIS_MESSAGE.Interface.UserConfig, "USER");
+--		end
 		-----------------------------------------------------------
 		-- Ex�ution des fonctions de d�arrage
 		-----------------------------------------------------------
 
 		-- Affichage d'un message sur la console
-		Cryolysis_Msg(CRYOLYSIS_MESSAGE.Interface.Welcome, "USER");
+		Cryo:Msg(CRYOLYSIS_MESSAGE.Interface.Welcome, "USER");
 		-- Cr�tion de la liste des sorts disponibles
 		Cryo:SpellSetup();
 		-- Cr�tion de la liste des emplacements des fragments
@@ -126,58 +126,58 @@ function Cryo_Init()
 		-- Lecture de la configuration dans le SavedVariables.lua, �riture dans les variables d�inies
 
 
-		if not CRYOLYSIS_SPELL_TABLE[25].ID then CryolysisConfig.LeftSpell = 1; end
+		if not CRYOLYSIS_SPELL_TABLE[25].ID then Cryo.db.profile.LeftSpell = 1; end
 		if not CRYOLYSIS_SPELL_TABLE[15].ID then
-			CryolysisConfig.RightSpell = 2;
+			Cryo.db.profile.RightSpell = 2;
 			if not CRYOLYSIS_SPELL_TABLE[2].ID then
-				CryolysisConfig.StonePosition[6] = false;
+				Cryo.db.profile.StonePosition[6] = false;
 			end
 		end
 		----------------------------------------
 		-- Inventory Menu Setup
 		----------------------------------------
-		if (CryolysisConfig.ProvisionSort) then CryolysisProvisionSort_Button:SetChecked(1); end
-		if (CryolysisConfig.ProvisionDestroy) then CryolysisProvisionDestroy_Button:SetChecked(1); end
-		if (CryolysisConfig.Restock) then CryolysisRestock_Button:SetChecked(1); end
-		if (CryolysisConfig.RestockConfirm) then CryolysisRestockConfirm_Button:SetChecked(1); end
+		if (Cryo.db.profile.ProvisionSort) then CryolysisProvisionSort_Button:SetChecked(1); end
+		if (Cryo.db.profile.ProvisionDestroy) then CryolysisProvisionDestroy_Button:SetChecked(1); end
+		if (Cryo.db.profile.Restock) then CryolysisRestock_Button:SetChecked(1); end
+		if (Cryo.db.profile.RestockConfirm) then CryolysisRestockConfirm_Button:SetChecked(1); end
 
-		CryolysisBag_Slider:SetValue(4 - CryolysisConfig.ProvisionContainer);
+		CryolysisBag_Slider:SetValue(4 - Cryo.db.profile.ProvisionContainer);
 		CryolysisBag_SliderLow:SetText("5");
 		CryolysisBag_SliderHigh:SetText("1");
 
-  		CryolysisTeleport_Slider:SetValue(CryolysisConfig.RestockTeleport);
+  		CryolysisTeleport_Slider:SetValue(Cryo.db.profile.RestockTeleport);
 		CryolysisTeleport_SliderLow:SetText("");
 		CryolysisTeleport_SliderHigh:SetText("");
 
-  		CryolysisPortal_Slider:SetValue(CryolysisConfig.RestockPortals);
+  		CryolysisPortal_Slider:SetValue(Cryo.db.profile.RestockPortals);
 		CryolysisPortal_SliderLow:SetText("");
 		CryolysisPortal_SliderHigh:SetText("");
 
-  		CryolysisPowder_Slider:SetValue(CryolysisConfig.RestockPowder);
+  		CryolysisPowder_Slider:SetValue(Cryo.db.profile.RestockPowder);
 		CryolysisPowder_SliderLow:SetText("");
 		CryolysisPowder_SliderHigh:SetText("");
 
-  		CryolysisCountType_Slider:SetValue(CryolysisConfig.CountType);
+  		CryolysisCountType_Slider:SetValue(Cryo.db.profile.CountType);
 		CryolysisCountType_SliderLow:SetText("");
 		CryolysisCountType_SliderHigh:SetText("");
 
-		CryolysisButton_Slider:SetValue(CryolysisConfig.Button);
+		CryolysisButton_Slider:SetValue(Cryo.db.profile.Button);
 		CryolysisButton_SliderLow:SetText("");
 		CryolysisButton_SliderHigh:SetText("");
 
-		CryolysisCircle_Slider:SetValue(CryolysisConfig.Circle);
+		CryolysisCircle_Slider:SetValue(Cryo.db.profile.Circle);
 		CryolysisCircle_SliderLow:SetText("");
 		CryolysisCircle_SliderHigh:SetText("");
 
-		CryolysisDrink_Slider:SetValue(CryolysisConfig.MPLimit);
+		CryolysisDrink_Slider:SetValue(Cryo.db.profile.MPLimit);
 		CryolysisDrink_SliderLow:SetText("0%");
 		CryolysisDrink_SliderHigh:SetText("100%");
 
-		CryolysisFood_Slider:SetValue(CryolysisConfig.HPLimit);
+		CryolysisFood_Slider:SetValue(Cryo.db.profile.HPLimit);
 		CryolysisFood_SliderLow:SetText("0%");
 		CryolysisFood_SliderHigh:SetText("100%");
 
-		CryolysisPolyWarn_Slider:SetValue(CryolysisConfig.PolyWarnTime);
+		CryolysisPolyWarn_Slider:SetValue(Cryo.db.profile.PolyWarnTime);
 		CryolysisPolyWarn_SliderLow:SetText("");
 		CryolysisPolyWarn_SliderHigh:SetText("");
 
@@ -185,13 +185,13 @@ function Cryo_Init()
 		-- Message Menu Setup
 		----------------------------------------
 		
-		if CryolysisConfig.CryolysisLanguage == "frFR" then
+		if Cryo.db.profile.CryolysisLanguage == "frFR" then
 			CryolysisLanguage_Slider:SetValue(1);
-		elseif CryolysisConfig.CryolysisLanguage == "enUS" then
+		elseif Cryo.db.profile.CryolysisLanguage == "enUS" then
 			CryolysisLanguage_Slider:SetValue(2);
-		elseif CryolysisConfig.CryolysisLanguage == "deDE" then
+		elseif Cryo.db.profile.CryolysisLanguage == "deDE" then
 			CryolysisLanguage_Slider:SetValue(3);
-		elseif CryolysisConfig.CryolysisLanguage == "zhTW" then
+		elseif Cryo.db.profile.CryolysisLanguage == "zhTW" then
 			CryolysisLanguage_Slider:SetValue(4);
 		else
 			CryolysisLanguage_Slider:SetValue(5);  --"zhCN"
@@ -200,17 +200,17 @@ function Cryo_Init()
 		CryolysisLanguage_SliderLow:SetText("");
 		CryolysisLanguage_SliderHigh:SetText("")
 
-		if (CryolysisConfig.CryolysisToolTip) then CryolysisShowTooltips_Button:SetChecked(1); end
-		if (CryolysisConfig.Sound) then CryolysisSound_Button:SetChecked(1); end
-   		if (CryolysisConfig.ChatMsg) then CryolysisShowMessage_Button:SetChecked(1); end
-		if (CryolysisConfig.QuickBuff) then CryolysisQuickBuff_Button:SetChecked(1); end
-		if (CryolysisConfig.PolyMessage) then CryolysisShowPolyMessage_Button:SetChecked(1); end
-		if (CryolysisConfig.PortalMessage) then CryolysisShowPortalMessage_Button:SetChecked(1); end
-		if (CryolysisConfig.SteedSummon) then CryolysisShowSteedSummon_Button:SetChecked(1); end
-		if not (CryolysisConfig.ChatType) then CryolysisChatType_Button:SetChecked(1); end
-		if (CryolysisConfig.PolyWarn) then CryolysisPolyWarn_Button:SetChecked(1); end
-		if (CryolysisConfig.PolyBreak) then CryolysisPolyBreak_Button:SetChecked(1); end
-		if (CryolysisConfig.SteedMessage) then CryolysisShowSteedMessage_Button:SetChecked(1); end
+		if (Cryo.db.profile.CryolysisToolTip) then CryolysisShowTooltips_Button:SetChecked(1); end
+		if (Cryo.db.profile.Sound) then CryolysisSound_Button:SetChecked(1); end
+   		if (Cryo.db.profile.ChatMsg) then CryolysisShowMessage_Button:SetChecked(1); end
+		if (Cryo.db.profile.QuickBuff) then CryolysisQuickBuff_Button:SetChecked(1); end
+		if (Cryo.db.profile.PolyMessage) then CryolysisShowPolyMessage_Button:SetChecked(1); end
+		if (Cryo.db.profile.PortalMessage) then CryolysisShowPortalMessage_Button:SetChecked(1); end
+		if (Cryo.db.profile.SteedSummon) then CryolysisShowSteedSummon_Button:SetChecked(1); end
+		if not (Cryo.db.profile.ChatType) then CryolysisChatType_Button:SetChecked(1); end
+		if (Cryo.db.profile.PolyWarn) then CryolysisPolyWarn_Button:SetChecked(1); end
+		if (Cryo.db.profile.PolyBreak) then CryolysisPolyBreak_Button:SetChecked(1); end
+		if (Cryo.db.profile.SteedMessage) then CryolysisShowSteedMessage_Button:SetChecked(1); end
 
 
      	----------------------------------------
@@ -218,33 +218,33 @@ function Cryo_Init()
 		----------------------------------------
 		CryolysisShowButton_String:SetText(CRYOLYSIS_CONFIGURATION.Show.Text)
 		CryolysisOnButton_String:SetText(CRYOLYSIS_CONFIGURATION.Text.Text)
-		if (CryolysisConfig.StonePosition[1]) then CryolysisShowFood_Button:SetChecked(1); end
-		if (CryolysisConfig.StonePosition[2]) then CryolysisShowDrink_Button:SetChecked(1); end
-		if (CryolysisConfig.StonePosition[3]) then CryolysisShowManaStone_Button:SetChecked(1); end
-		if (CryolysisConfig.StonePosition[4]) then CryolysisShowLeftSpell_Button:SetChecked(1); end
-		if (CryolysisConfig.StonePosition[5]) then CryolysisShowEvocation_Button:SetChecked(1); end
-		if (CryolysisConfig.StonePosition[6]) then CryolysisShowRightSpell_Button:SetChecked(1); end
-		if (CryolysisConfig.StonePosition[7]) then CryolysisShowBuffMenu_Button:SetChecked(1); end
-		if (CryolysisConfig.StonePosition[8]) then CryolysisShowMount_Button:SetChecked(1); end
-		if (CryolysisConfig.StonePosition[9]) then CryolysisShowPortalMenu_Button:SetChecked(1); end
+		if (Cryo.db.profile.StonePosition[1]) then CryolysisShowFood_Button:SetChecked(1); end
+		if (Cryo.db.profile.StonePosition[2]) then CryolysisShowDrink_Button:SetChecked(1); end
+		if (Cryo.db.profile.StonePosition[3]) then CryolysisShowManaStone_Button:SetChecked(1); end
+		if (Cryo.db.profile.StonePosition[4]) then CryolysisShowLeftSpell_Button:SetChecked(1); end
+		if (Cryo.db.profile.StonePosition[5]) then CryolysisShowEvocation_Button:SetChecked(1); end
+		if (Cryo.db.profile.StonePosition[6]) then CryolysisShowRightSpell_Button:SetChecked(1); end
+		if (Cryo.db.profile.StonePosition[7]) then CryolysisShowBuffMenu_Button:SetChecked(1); end
+		if (Cryo.db.profile.StonePosition[8]) then CryolysisShowMount_Button:SetChecked(1); end
+		if (Cryo.db.profile.StonePosition[9]) then CryolysisShowPortalMenu_Button:SetChecked(1); end
 
-		if (CryolysisConfig.FoodCountText) then CryolysisFoodText_Button:SetChecked(1); end
-		if (CryolysisConfig.DrinkCountText) then CryolysisDrinkText_Button:SetChecked(1); end
-		if (CryolysisConfig.ManastoneCooldownText) then CryolysisManaStoneText_Button:SetChecked(1); end
-		if (CryolysisConfig.EvocationCooldownText) then CryolysisEvocationText_Button:SetChecked(1); end
-		if (CryolysisConfig.PowderCountText) then CryolysisPowderText_Button:SetChecked(1); end
-		if (CryolysisConfig.FeatherCountText) then CryolysisFeatherText_Button:SetChecked(1); end
-		if (CryolysisConfig.RuneCountText) then CryolysisRuneText_Button:SetChecked(1); end
+		if (Cryo.db.profile.FoodCountText) then CryolysisFoodText_Button:SetChecked(1); end
+		if (Cryo.db.profile.DrinkCountText) then CryolysisDrinkText_Button:SetChecked(1); end
+		if (Cryo.db.profile.ManastoneCooldownText) then CryolysisManaStoneText_Button:SetChecked(1); end
+		if (Cryo.db.profile.EvocationCooldownText) then CryolysisEvocationText_Button:SetChecked(1); end
+		if (Cryo.db.profile.PowderCountText) then CryolysisPowderText_Button:SetChecked(1); end
+		if (Cryo.db.profile.FeatherCountText) then CryolysisFeatherText_Button:SetChecked(1); end
+		if (Cryo.db.profile.RuneCountText) then CryolysisRuneText_Button:SetChecked(1); end
 
-		CryolysisLeftSpell_Slider:SetValue(CryolysisConfig.LeftSpell);
+		CryolysisLeftSpell_Slider:SetValue(Cryo.db.profile.LeftSpell);
 		CryolysisLeftSpell_SliderLow:SetText("");
 		CryolysisLeftSpell_SliderHigh:SetText("");
 
-		CryolysisRightSpell_Slider:SetValue(CryolysisConfig.RightSpell);
+		CryolysisRightSpell_Slider:SetValue(Cryo.db.profile.RightSpell);
 		CryolysisRightSpell_SliderLow:SetText("");
 		CryolysisRightSpell_SliderHigh:SetText("");
 
-		CryolysisManaStoneOrder_Slider:SetValue(CryolysisConfig.ManaStoneOrder);
+		CryolysisManaStoneOrder_Slider:SetValue(Cryo.db.profile.ManaStoneOrder);
 		CryolysisManaStoneOrder_SliderLow:SetText("Weakest");
 		CryolysisManaStoneOrder_SliderHigh:SetText("Strongest");
 
@@ -252,69 +252,69 @@ function Cryo_Init()
 		-- Timer Menu Setup
 		----------------------------------------
 		CryolysisListSpells:ClearAllPoints();
-		CryolysisListSpells:SetJustifyH(CryolysisConfig.SpellTimerJust);
-		CryolysisListSpells:SetPoint("TOP"..CryolysisConfig.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", CryolysisConfig.SpellTimerPos * 23, 5);
+		CryolysisListSpells:SetJustifyH(Cryo.db.profile.SpellTimerJust);
+		CryolysisListSpells:SetPoint("TOP"..Cryo.db.profile.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", Cryo.db.profile.SpellTimerPos * 23, 5);
 		ShowUIPanel(CryolysisButton);
 
-		if CryolysisConfig.SpellTimerJust == -23 then
+		if Cryo.db.profile.SpellTimerJust == -23 then
 			AnchorSpellTimerTooltip = "ANCHOR_LEFT";
 		else
 			AnchorSpellTimerTooltip = "ANCHOR_RIGHT";
 		end
 
 
-		if (CryolysisConfig.ShowSpellTimers) then CryolysisShowSpellTimers_Button:SetChecked(1); end
-		if (CryolysisConfig.ShowSpellTimerButton) then CryolysisTimerButton_Button:SetChecked(1); end
-		if (CryolysisConfig.SpellTimerPos == -1) then CryolysisSTimer_Button:SetChecked(1); end
-		if (CryolysisConfig.Graphical) then CryolysisGraphicalTimer_Button:SetChecked(1); end
-		if not (CryolysisConfig.Yellow) then CryolysisTimerColor_Button:SetChecked(1); end
-		if (CryolysisConfig.SensListe == -1) then CryolysisTimerDirection_Button:SetChecked(1); end
+		if (Cryo.db.profile.ShowSpellTimers) then CryolysisShowSpellTimers_Button:SetChecked(1); end
+		if (Cryo.db.profile.ShowSpellTimerButton) then CryolysisTimerButton_Button:SetChecked(1); end
+		if (Cryo.db.profile.SpellTimerPos == -1) then CryolysisSTimer_Button:SetChecked(1); end
+		if (Cryo.db.profile.Graphical) then CryolysisGraphicalTimer_Button:SetChecked(1); end
+		if not (Cryo.db.profile.Yellow) then CryolysisTimerColor_Button:SetChecked(1); end
+		if (Cryo.db.profile.SensListe == -1) then CryolysisTimerDirection_Button:SetChecked(1); end
 
 		----------------------------------------
 		-- Graphical Menu Setup
 		----------------------------------------
---		if (CryolysisConfig.AntiFearAlert) then CryolysisAntiFearAlert_Button:SetChecked(1); end
---		if (CryolysisConfig.ConcentrationAlert) then CryolysisConcentrationAlert_Button:SetChecked(1); end
-		if (CryolysisConfig.CryolysisLockServ) then CryolysisIconsLock_Button:SetChecked(1); end
-		if (CryolysisConfig.ManaStoneMenuPos == -34) then CryolysisManaStoneMenu_Button:SetChecked(1); end
-		if (CryolysisConfig.BuffMenuPos == -34) then CryolysisBuffMenu_Button:SetChecked(1); end
-		if (CryolysisConfig.PortalMenuPos == -34) then CryolysisPortalMenu_Button:SetChecked(1); end
-		if (CryolysisConfig.NoDragAll) then CryolysisLock_Button:SetChecked(1); end
+--		if (Cryo.db.profile.AntiFearAlert) then CryolysisAntiFearAlert_Button:SetChecked(1); end
+--		if (Cryo.db.profile.ConcentrationAlert) then CryolysisConcentrationAlert_Button:SetChecked(1); end
+		if (Cryo.db.profile.CryolysisLockServ) then CryolysisIconsLock_Button:SetChecked(1); end
+		if (Cryo.db.profile.ManaStoneMenuPos == -34) then CryolysisManaStoneMenu_Button:SetChecked(1); end
+		if (Cryo.db.profile.BuffMenuPos == -34) then CryolysisBuffMenu_Button:SetChecked(1); end
+		if (Cryo.db.profile.PortalMenuPos == -34) then CryolysisPortalMenu_Button:SetChecked(1); end
+		if (Cryo.db.profile.NoDragAll) then CryolysisLock_Button:SetChecked(1); end
 		
-		CryolysisManaStoneMenuAnchor_Slider:SetValue(CryolysisConfig.ManaStoneMenuAnchor);
+		CryolysisManaStoneMenuAnchor_Slider:SetValue(Cryo.db.profile.ManaStoneMenuAnchor);
 		CryolysisManaStoneMenuAnchor_SliderLow:SetText("");
 		CryolysisManaStoneMenuAnchor_SliderHigh:SetText("")
 		
-		CryolysisBuffMenuAnchor_Slider:SetValue(CryolysisConfig.BuffMenuAnchor);
+		CryolysisBuffMenuAnchor_Slider:SetValue(Cryo.db.profile.BuffMenuAnchor);
 		CryolysisBuffMenuAnchor_SliderLow:SetText("");
 		CryolysisBuffMenuAnchor_SliderHigh:SetText("")
 
-		CryolysisPortalMenuAnchor_Slider:SetValue(CryolysisConfig.PortalMenuAnchor);
+		CryolysisPortalMenuAnchor_Slider:SetValue(Cryo.db.profile.PortalMenuAnchor);
 		CryolysisPortalMenuAnchor_SliderLow:SetText("");
 		CryolysisPortalMenuAnchor_SliderHigh:SetText("")
 
-		CryolysisButtonRotate_Slider:SetValue(CryolysisConfig.CryolysisAngle);
+		CryolysisButtonRotate_Slider:SetValue(Cryo.db.profile.CryolysisAngle);
 		CryolysisButtonRotate_SliderLow:SetText("0");
 		CryolysisButtonRotate_SliderHigh:SetText("360");
 
-		CryolysisButtonScale_Slider:SetValue(CryolysisConfig.CryolysisButtonScale);
+		CryolysisButtonScale_Slider:SetValue(Cryo.db.profile.CryolysisButtonScale);
 		CryolysisButtonScale_SliderLow:SetText("50 %");
 		CryolysisButtonScale_SliderHigh:SetText("150 %");
 
-		CryolysisStoneScale_Slider:SetValue(CryolysisConfig.CryolysisStoneScale);
+		CryolysisStoneScale_Slider:SetValue(Cryo.db.profile.CryolysisStoneScale);
 		CryolysisStoneScale_SliderLow:SetText("50 %");
 		CryolysisStoneScale_SliderHigh:SetText("150 %");
 		-- On r�le la taille de la pierre et des boutons suivant les r�lages du SavedVariables
 		
-		CryolysisButton:SetScale(CryolysisConfig.CryolysisButtonScale/100)
-		for i, v in ipairs(CryolysisConfig.StoneLocation) do
+		CryolysisButton:SetScale(Cryo.db.profile.CryolysisButtonScale/100)
+		for i, v in ipairs(Cryo.db.profile.StoneLocation) do
 			local f = _G[v]
 			if ( f ) then
-				f:SetScale(CryolysisConfig.CryolysisButtonScale/100)
+				f:SetScale(Cryo.db.profile.CryolysisButtonScale/100)
 			end
 		end
 		
-		if CryolysisConfig.NoDragAll then
+		if Cryo.db.profile.NoDragAll then
 			Cryo:DragControl(false);
 			CryolysisButton:RegisterForDrag("");
 			CryolysisSpellTimerButton:RegisterForDrag("");
@@ -331,7 +331,7 @@ function Cryo_Init()
 		-- Les boutons sont-ils v�ouill� sur le Shard ?
 		Cryo:ButtonSetup()
 		Cryolysis_LanguageInitialize();
-		if CryolysisConfig.SM then
+		if Cryo.db.profile.SM then
 			CRYOLYSIS_EVOCATION_ALERT_MESSAGE = CRYOLYSIS_SHORT_MESSAGES[1];
 			CRYOLYSIS_INVOCATION_MESSAGES = CRYOLYSIS_SHORT_MESSAGES[2];
 		end
@@ -454,17 +454,17 @@ function Cryolysis_SlashHandler(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, 
 		CryolysisSpellTimerButton:SetPoint("CENTER", "UIParent", "CENTER",0,0);
 	elseif string.find(string.lower(arg1), "sm") then
 		if CRYOLYSIS_Evocation_ALERT_MESSAGE == CRYOLYSIS_SHORT_MESSAGES[1] then
-			CryolysisConfig.SM = false;
+			Cryo.db.profile.SM = false;
 			CryolysisLocalization();
-			Cryolysis_Msg("Short Messages : <red>Off", "USER");
+			Cryo:Msg("Short Messages : <red>Off", "USER");
 		else
-			CryolysisConfig.SM = true;
+			Cryo.db.profile.SM = true;
 			CRYOLYSIS_Evocation_ALERT_MESSAGE = CRYOLYSIS_SHORT_MESSAGES[1];
 			CRYOLYSIS_INVOCATION_MESSAGES = CRYOLYSIS_SHORT_MESSAGES[2];
-			Cryolysis_Msg("Short Messages : <brightGreen>On", "USER");
+			Cryo:Msg("Short Messages : <brightGreen>On", "USER");
 		end
 	elseif string.find(string.lower(arg1), "reset") then
-		CryolysisConfig.Version = "reboot"
+		Cryo.db.profile.Version = "reboot"
 		Cryolysis_Loaded = false
 		Cryo:LoadVariables()
 	elseif string.find(string.lower(arg1), "toggle") then
@@ -476,7 +476,7 @@ function Cryolysis_SlashHandler(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, 
 	else
 		if CRYOLYSIS_MESSAGE.Help ~= nil then
 			for i = 1, #(CRYOLYSIS_MESSAGE.Help), 1 do
-				Cryolysis_Msg(CRYOLYSIS_MESSAGE.Help[i], "USER");
+				Cryo:Msg(CRYOLYSIS_MESSAGE.Help[i], "USER");
 			end
 		end
 		Cryo:ToggleOptions();

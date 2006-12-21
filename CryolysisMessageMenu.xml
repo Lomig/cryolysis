@@ -149,23 +149,23 @@
 						GameTooltip:SetText(this:GetValue());
 						if (this:GetValue() == 1) then
 							GameTooltip:SetText("Francais");
-							CryolysisConfig.CryolysisLanguage = "frFR";
+							Cryo.db.profile.CryolysisLanguage = "frFR";
 							Cryolysis_Localization_Dialog_Fr();
 						elseif (this:GetValue() == 2) then
 							GameTooltip:SetText("English");
-							CryolysisConfig.CryolysisLanguage = "enUS";
+							Cryo.db.profile.CryolysisLanguage = "enUS";
 							Cryolysis_Localization_Dialog_En();
 						elseif (this:GetValue() == 3) then
 							GameTooltip:SetText("Deutsch");
-							CryolysisConfig.CryolysisLanguage = "deDE";
+							Cryo.db.profile.CryolysisLanguage = "deDE";
 							Cryolysis_Localization_Dialog_De();
 						elseif (this:GetValue() == 4) then
 							GameTooltip:SetText("ç¹é«”ä¸­æ–‡(Traditional Chinese)");
-							CryolysisConfig.CryolysisLanguage = "zhTW";
+							Cryo.db.profile.CryolysisLanguage = "zhTW";
 							Cryolysis_Localization_Dialog_Tw();
 						else
 							GameTooltip:SetText("ç®€ä½“ä¸­æ–‡(Simplified Chinese)");
-							CryolysisConfig.CryolysisLanguage = "zhCN";
+							Cryo.db.profile.CryolysisLanguage = "zhCN";
 							Cryolysis_Localization_Dialog_Cn();
 						end
 						Cryolysis_LanguageInitialize();
@@ -190,10 +190,10 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.CryolysisToolTip = true;
+							Cryo.db.profile.CryolysisToolTip = true;
 							Cryolysis_Msg(CRYOLYSIS_MESSAGE.Interface.TooltipOn, "USER");
 						else
-							CryolysisConfig.CryolysisToolTip = false;
+							Cryo.db.profile.CryolysisToolTip = false;
 							Cryolysis_Msg(CRYOLYSIS_MESSAGE.Interface.TooltipOff, "USER");
 						end
 						Cryo:UpdateButtonsScale();
@@ -214,9 +214,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.Sound = true;
+							Cryo.db.profile.Sound = true;
 						else
-							CryolysisConfig.Sound = false;
+							Cryo.db.profile.Sound = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -236,9 +236,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.PolyBreak = true;
+							Cryo.db.profile.PolyBreak = true;
 						else
-							CryolysisConfig.PolyBreak = false;
+							Cryo.db.profile.PolyBreak = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -257,9 +257,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.PolyWarn = true;
+							Cryo.db.profile.PolyWarn = true;
 						else
-							CryolysisConfig.PolyWarn = false;
+							Cryo.db.profile.PolyWarn = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -282,7 +282,7 @@
 					</OnEnter>
 					<OnValueChanged>
 						GameTooltip:SetText(this:GetValue().." secs");
-						CryolysisConfig.PolyWarnTime = this:GetValue();
+						Cryo.db.profile.PolyWarnTime = this:GetValue();
 					</OnValueChanged>
 					<OnLeave>
 						GameTooltip:Hide();
@@ -303,9 +303,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.ChatType = false;
+							Cryo.db.profile.ChatType = false;
 						else
-							CryolysisConfig.ChatType = true;
+							Cryo.db.profile.ChatType = true;
 						end
 						Cryolysis_Msg(CRYOLYSIS_MESSAGE.Interface.MessagePosition, "USER");
 					</OnClick>
@@ -326,9 +326,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.ChatMsg = true;
+							Cryo.db.profile.ChatMsg = true;
 						else
-							CryolysisConfig.ChatMsg = false;
+							Cryo.db.profile.ChatMsg = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -347,9 +347,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.PolyMessage = true;
+							Cryo.db.profile.PolyMessage = true;
 						else
-							CryolysisConfig.PolyMessage = false;
+							Cryo.db.profile.PolyMessage = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -368,9 +368,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.PortalMessage = true;
+							Cryo.db.profile.PortalMessage = true;
 						else
-							CryolysisConfig.PortalMessage = false;
+							Cryo.db.profile.PortalMessage = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -389,9 +389,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.SteedMessage = true;
+							Cryo.db.profile.SteedMessage = true;
 						else
-							CryolysisConfig.SteedMessage = false;
+							Cryo.db.profile.SteedMessage = false;
 						end
 					</OnClick>
 				</Scripts>

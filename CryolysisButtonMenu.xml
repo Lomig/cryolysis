@@ -59,7 +59,7 @@
 				elseif (this:GetValue() == 8) then
 					GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.SlowFall);
 				end
-				CryolysisConfig.RightSpell = this:GetValue();
+				Cryo.db.profile.RightSpell = this:GetValue();
 				Cryolysis_UpdateRightSpellAttributes();
 				SerenityButtonTexture.Stones.Base[4] = 0;
 			</OnValueChanged>
@@ -288,8 +288,8 @@
 				</Anchors>
 				<Scripts>	
 					<OnValueChanged>
-						if this:GetValue() ~= CryolysisConfig.ManaStoneOrder then
-							CryolysisConfig.ManaStoneOrder =  this:GetValue();
+						if this:GetValue() ~= Cryo.db.profile.ManaStoneOrder then
+							Cryo.db.profile.ManaStoneOrder =  this:GetValue();
 						end
 					</OnValueChanged>
 				</Scripts>
@@ -308,10 +308,10 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.StonePosition[1] = true;
+							Cryo.db.profile.StonePosition[1] = true;
 							ShowUIPanel(CryolysisFoodButton);
 						else
-							CryolysisConfig.StonePosition[1] = false;
+							Cryo.db.profile.StonePosition[1] = false;
 							HideUIPanel(CryolysisFoodButton);
 						end
 						Cryo:UpdateButtonsScale();
@@ -332,10 +332,10 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.StonePosition[2] = true;
+							Cryo.db.profile.StonePosition[2] = true;
 							ShowUIPanel(CryolysisDrinkButton);
 						else
-							CryolysisConfig.StonePosition[2] = false;
+							Cryo.db.profile.StonePosition[2] = false;
 							HideUIPanel(CryoylsisDrinkButton);
 						end
 						Cryo:UpdateButtonsScale();
@@ -356,10 +356,10 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.StonePosition[3] = true;
+							Cryo.db.profile.StonePosition[3] = true;
 							ShowUIPanel(CryolysisManaStoneButton);
 						else
-							CryolysisConfig.StonePosition[3] = false;
+							Cryo.db.profile.StonePosition[3] = false;
 							HideUIPanel(CryolysisManaStoneButton);
 						end
 						Cryo:UpdateButtonsScale();
@@ -380,10 +380,10 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.StonePosition[4] = true;
+							Cryo.db.profile.StonePosition[4] = true;
 							ShowUIPanel(CryolysisLeftSpellButton);
 						else
-							CryolysisConfig.StonePosition[4] = false;
+							Cryo.db.profile.StonePosition[4] = false;
 							HideUIPanel(CryolysisLeftSpellButton);
 						end
 						Cryolysis_UpdateButtonsScale();
@@ -404,10 +404,10 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.StonePosition[5] = true;
+							Cryo.db.profile.StonePosition[5] = true;
 							ShowUIPanel(CryolysisEvocationButton);
 						else
-							CryolysisConfig.StonePosition[5] = false;
+							Cryo.db.profile.StonePosition[5] = false;
 							HideUIPanel(CryolysisEvocationButton);
 						end
 						Cryolysis_UpdateButtonsScale();
@@ -428,10 +428,10 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.StonePosition[6] = true;
+							Cryo.db.profile.StonePosition[6] = true;
 							ShowUIPanel(CryolysisRightSpellButton);
 						else
-							CryolysisConfig.StonePosition[6] = false;
+							Cryo.db.profile.StonePosition[6] = false;
 							HideUIPanel(CryolysisRightSpellButton);
 						end
 						Cryolysis_UpdateButtonsScale();
@@ -452,10 +452,10 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.StonePosition[7] = true;
+							Cryo.db.profile.StonePosition[7] = true;
 							ShowUIPanel(CryolysisBuffMenuButton);
 						else
-							CryolysisConfig.StonePosition[7] = false;
+							Cryo.db.profile.StonePosition[7] = false;
 							HideUIPanel(CryolysisBuffMenuButton);
 						end
 						Cryolysis_UpdateButtonsScale();
@@ -476,11 +476,11 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.StonePosition[8] = true;
+							Cryo.db.profile.StonePosition[8] = true;
 							ShowUIPanel(CryolysisMountButton);
 							Cryo:BagExplore();
 						else
-							CryolysisConfig.StonePosition[8] = false;
+							Cryo.db.profile.StonePosition[8] = false;
 							HideUIPanel(CryolysisMountButton);
 						end
 						Cryolysis_UpdateButtonsScale();
@@ -501,10 +501,10 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.StonePosition[9] = true;
+							Cryo.db.profile.StonePosition[9] = true;
 							ShowUIPanel(CryolysisPortalMenuButton);
 						else
-							CryolysisConfig.StonePosition[9] = false;
+							Cryo.db.profile.StonePosition[9] = false;
 							HideUIPanel(CryolysisPortalMenuButton);
 						end
 						Cryolysis_UpdateButtonsScale();
@@ -525,9 +525,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.QuickBuff = true;
+							Cryo.db.profile.QuickBuff = true;
 						else
-							CryolysisConfig.QuickBuff = false;
+							Cryo.db.profile.QuickBuff = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -546,9 +546,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.FoodCountText = true;
+							Cryo.db.profile.FoodCountText = true;
 						else
-							CryolysisConfig.FoodCountText = false;
+							Cryo.db.profile.FoodCountText = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -567,9 +567,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.DrinkCountText = true;
+							Cryo.db.profile.DrinkCountText = true;
 						else
-							CryolysisConfig.DrinkCountText = false;
+							Cryo.db.profile.DrinkCountText = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -588,9 +588,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.ManastoneCooldownText = true;
+							Cryo.db.profile.ManastoneCooldownText = true;
 						else
-							CryolysisConfig.ManastoneCooldownText = false;
+							Cryo.db.profile.ManastoneCooldownText = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -646,7 +646,7 @@
 						elseif (this:GetValue() == 8) then
 							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.SlowFall);
 						end
-						CryolysisConfig.LeftSpell = this:GetValue();
+						Cryo.db.profile.LeftSpell = this:GetValue();
 						Cryolysis_UpdateLeftSpellAttributes();
 						CryolysisButtonTexture.Stones.Base[4] = 0;
 					</OnValueChanged>
@@ -670,9 +670,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.EvocationCooldownText = true;
+							Cryo.db.profile.EvocationCooldownText = true;
 						else
-							CryolysisConfig.EvocationCooldownText = false;
+							Cryo.db.profile.EvocationCooldownText = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -708,7 +708,7 @@
 						elseif (this:GetValue() == 8) then
 							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.SpellButton.SlowFall);
 						end
-						CryolysisConfig.RightSpell = this:GetValue();
+						Cryo.db.profile.RightSpell = this:GetValue();
 						Cryolysis_UpdateRightSpellAttributes();
 						CryolysisButtonTexture.Stones.Base[6] = 0;
 					</OnValueChanged>
@@ -731,9 +731,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.FeatherCountText = true;
+							Cryo.db.profile.FeatherCountText = true;
 						else
-							CryolysisConfig.FeatherCountText = false;
+							Cryo.db.profile.FeatherCountText = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -752,9 +752,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.PowderCountText = true;
+							Cryo.db.profile.PowderCountText = true;
 						else
-							CryolysisConfig.PowderCountText = false;
+							Cryo.db.profile.PowderCountText = false;
 						end
 					</OnClick>
 				</Scripts>

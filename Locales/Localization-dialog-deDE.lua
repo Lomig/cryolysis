@@ -37,6 +37,14 @@ AceLibrary("AceLocale-2.2"):new("Cryolysis"):RegisterTranslations("deDE", functi
 		
 		["Restock Reagents?"] = "Restock Reagents?",
 		
+		["Orgrimmar"] = "Orgrimmar",
+		["Undercity"] = "Unterstadt",
+		["Thunder Bluff"] = "Donnerfels",
+		
+		["Ironforge"] = "Eisenschmiede",
+		["Stormwind"] = "Sturmwind",
+		["Darnassus"] = "Darnassus"
+		
 	}
 end)
 
