@@ -430,9 +430,12 @@ function Cryo:OnEnable()
 	self:RegisterEvent("CHAT_MSG_SPELL_BREAK_AURA", "AuraGoneSelf")
 	self:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_OTHER")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE")
+	
+	M:Start("Cryo_UpdateFunc")
 end
 
 function Cryo:OnDisable()
+	M:Stop("Cryo_UpdateFunc")
 end
 
 -- Function applied to login
