@@ -84,7 +84,7 @@ function Cryo_Init()
 		HideUIPanel(CryolysisMountButton);
 		HideUIPanel(CryolysisFoodButton);
 		HideUIPanel(CryolysisDrinkButton);
-		HideUIPanel(CryolysisManastoneButton);
+		HideUIPanel(CryolysisManaStoneButton);
 		HideUIPanel(CryolysisEvocationButton);
 		HideUIPanel(CryolysisLeftSpellButton);
 		HideUIPanel(CryolysisRightSpellButton);
@@ -121,7 +121,7 @@ function Cryo_Init()
 		-- Cr�tion de la liste des emplacements des fragments
 		Cryo:ProvisionSetup();
 		-- Cr�tion des menus de buff et d'invocation
-		Cryolysis_CreateMenu();
+		Cryo:CreateMenu();
 
 		-- Lecture de la configuration dans le SavedVariables.lua, �riture dans les variables d�inies
 
@@ -308,15 +308,18 @@ function Cryo_Init()
 		
 		CryolysisButton:SetScale(CryolysisConfig.CryolysisButtonScale/100)
 		for i, v in ipairs(CryolysisConfig.StoneLocation) do
-			_G[v]:SetScale(CryolysisConfig.CryolysisButtonScale/100)
+			local f = _G[v]
+			if ( f ) then
+				f:SetScale(CryolysisConfig.CryolysisButtonScale/100)
+			end
 		end
 		
 		if CryolysisConfig.NoDragAll then
-			Cryolysis_NoDrag();
+			Cryo:DragControl(false);
 			CryolysisButton:RegisterForDrag("");
 			CryolysisSpellTimerButton:RegisterForDrag("");
 		else
-			Cryolysis_Drag();
+			Cryo:DragControl(true);
 			CryolysisButton:RegisterForDrag("LeftButton");
 			CryolysisSpellTimerButton:RegisterForDrag("LeftButton");
 		end
@@ -333,7 +336,7 @@ function Cryo_Init()
 			CRYOLYSIS_INVOCATION_MESSAGES = CRYOLYSIS_SHORT_MESSAGES[2];
 		end
 		-- Added by Lomig to replace the Toggle function
-		Cryolysis_UpdateMainButtonAttributes();
+		Cryo:UpdateMainButtonAttributes();
 		Cryolysis_UpdateMenuAnchor();
 
 
@@ -483,26 +486,26 @@ end
 function Cryolysis_UpdateMenuAnchor()
 
 	-- Manastone Menu
-	CryolysisManastoneButton:SetAttribute("*childraise*", true);
+	CryolysisManaStoneButton:SetAttribute("*childraise*", true);
 
 	CryolysisManaStoneMenu0:SetAttribute("statemap-anchor", "$input");
 	CryolysisManaStoneMenu0:SetAttribute("delaystatemap-anchor", "0");
 	CryolysisManaStoneMenu0:SetAttribute("delaytimemap-anchor", "8");
 	CryolysisManaStoneMenu0:SetAttribute("delayhovermap-anchor", "true");
 
-	CryolysisManastoneButton:SetAttribute("onmouseupbutton", "mup");
-	CryolysisManastoneButton:SetAttribute("onmousedownbutton", "mdn");
-	CryolysisManastoneButton:SetAttribute("*anchorchild-mdn", CryolysisManaStoneMenu0);
-	CryolysisManastoneButton:SetAttribute("*childofsx-mdn", 0);
-	CryolysisManastoneButton:SetAttribute("*childofsy-mdn", 0);
-	CryolysisManastoneButton:SetAttribute("*childpoint-mdn", "CENTER");
-	CryolysisManastoneButton:SetAttribute("*childrelpoint-mdn", "CENTER");
-	CryolysisManastoneButton:SetAttribute("*childstate-mdn", "^mousedown");
-	CryolysisManastoneButton:SetAttribute("*childreparent-mdn", "true");
+	CryolysisManaStoneButton:SetAttribute("onmouseupbutton", "mup");
+	CryolysisManaStoneButton:SetAttribute("onmousedownbutton", "mdn");
+	CryolysisManaStoneButton:SetAttribute("*anchorchild-mdn", CryolysisManaStoneMenu0);
+	CryolysisManaStoneButton:SetAttribute("*childofsx-mdn", 0);
+	CryolysisManaStoneButton:SetAttribute("*childofsy-mdn", 0);
+	CryolysisManaStoneButton:SetAttribute("*childpoint-mdn", "CENTER");
+	CryolysisManaStoneButton:SetAttribute("*childrelpoint-mdn", "CENTER");
+	CryolysisManaStoneButton:SetAttribute("*childstate-mdn", "^mousedown");
+	CryolysisManaStoneButton:SetAttribute("*childreparent-mdn", "true");
 
-	CryolysisManastoneButton:SetAttribute("*anchorchild-mup", CryolysisManaStoneMenu0);
-	CryolysisManastoneButton:SetAttribute("*childstate-mup", "mouseup");
-	CryolysisManastoneButton:SetAttribute("*childverify-mup", true);
+	CryolysisManaStoneButton:SetAttribute("*anchorchild-mup", CryolysisManaStoneMenu0);
+	CryolysisManaStoneButton:SetAttribute("*childstate-mup", "mouseup");
+	CryolysisManaStoneButton:SetAttribute("*childverify-mup", true);
 
 	CryolysisManaStoneMenu0:SetAttribute("state", 0)
 

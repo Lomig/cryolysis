@@ -238,7 +238,7 @@
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
 
-	<Button name="CryolysisManastoneButton" inherits="SecureAnchorUpDownTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
+	<Button name="CryolysisManaStoneButton" inherits="SecureAnchorUpDownTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
 		</Size>

@@ -163,7 +163,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 						GameTooltip:Hide();
 					</OnLeave>
 					<OnClick>
-						CryolysisGeneralTab_OnClick(1);
+						Cryo:GeneralTab_OnClick(1);
 					</OnClick>
 				</Scripts>
 				<NormalTexture file="Interface\Icons\INV_Misc_Food_16"/>
@@ -185,7 +185,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 						GameTooltip:Hide();
 					</OnLeave>
 					<OnClick>
-						CryolysisGeneralTab_OnClick(2);
+						Cryo:GeneralTab_OnClick(2);
 					</OnClick>
 				</Scripts>
 				<NormalTexture file="Interface\Icons\Spell_Frost_Wisp"/>
@@ -207,7 +207,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 						GameTooltip:Hide();
 					</OnLeave>
 					<OnClick>
-						CryolysisGeneralTab_OnClick(3);
+						Cryo:GeneralTab_OnClick(3);
 					</OnClick>
 				</Scripts>
 				<NormalTexture file="Interface\Icons\Trade_Engineering"/>
@@ -229,7 +229,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 						GameTooltip:Hide();
 					</OnLeave>
 					<OnClick>
-						CryolysisGeneralTab_OnClick(4);
+						Cryo:GeneralTab_OnClick(4);
 					</OnClick>
 				</Scripts>
 				<NormalTexture file="Interface\Icons\Spell_Nature_TimeStop"/>
@@ -251,7 +251,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 						GameTooltip:Hide();
 					</OnLeave>
 					<OnClick>
-						CryolysisGeneralTab_OnClick(5);
+						Cryo:GeneralTab_OnClick(5);
 					</OnClick>
 				</Scripts>
 				<NormalTexture file="Interface\Icons\Ability_Creature_Cursed_04"/>

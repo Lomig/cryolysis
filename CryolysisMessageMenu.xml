@@ -196,7 +196,7 @@
 							CryolysisConfig.CryolysisToolTip = false;
 							Cryolysis_Msg(CRYOLYSIS_MESSAGE.Interface.TooltipOff, "USER");
 						end
-						Cryolysis_UpdateButtonsScale();
+						Cryo:UpdateButtonsScale();
 					</OnClick>
 				</Scripts>
 			</CheckButton>
