@@ -28,8 +28,6 @@ Libs\Deformat-2.0\Deformat-2.0.lua
 Libs\Metrognome-2.0\Metrognome-2.0.lua
 Locales\Babble-Spell-2.2\Babble-Spell-2.2.lua
 
-CryoTables.lua
-
 CryolysisGeneral.xml
 
 Localization.lua
@@ -49,6 +47,7 @@ Locales\Speech.lua
 
 Cryolysis.lua
 CryolysisInitialize.lua
+TempFrames.lua
 CryolysisMessage.lua
 CryolysisTimerFunction.lua
 CryolysisGraphicalTimer.lua
