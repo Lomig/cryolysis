@@ -37,6 +37,14 @@ AceLibrary("AceLocale-2.2"):new("Cryolysis"):RegisterTranslations("frFR", functi
 		
 		["Restock Reagents?"] = "Restock Reagents?",
 		
+		["Orgrimmar"] = "Orgrimmar",
+		["Undercity"] = "Fossoyeuse",
+		["Thunder Bluff"] = "les Pitons du Tonnerre",
+		
+		["Ironforge"] = "Forgefer",
+		["Stormwind"] = "Hurlevent",
+		["Darnassus"] = "Darnassus"
+		
 	}
 end)
 

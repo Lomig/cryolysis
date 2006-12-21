@@ -55,11 +55,11 @@ function CryolysisAfficheTimer(tableau, pointeur)
 	
 	if tableau ~= nil then
 		local TimerTarget = 0;
-		local yPosition = CryolysisConfig.SensListe * 5;
+		local yPosition = Cryo.db.profile.SensListe * 5;
 
 		local PositionTitre = {};
 
-		if CryolysisConfig.SensListe > 0 then
+		if Cryo.db.profile.SensListe > 0 then
 			PositionTitre = {11, 13};
 		else
 			PositionTitre = {-13, -11};
@@ -78,7 +78,7 @@ function CryolysisAfficheTimer(tableau, pointeur)
 				local frameItem = _G[frameName];
 				-- Place the left corner of the frame compared to the center button of the spell timer
 				frameItem:ClearAllPoints();
-				frameItem:SetPoint(CryolysisConfig.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", CryolysisConfig.SpellTimerPos * 23, yPosition);
+				frameItem:SetPoint(Cryo.db.profile.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", Cryo.db.profile.SpellTimerPos * 23, yPosition);
 				yPosition = yPosition - PositionTitre[2];
 				-- The frame is named then displayed
 				frameItem:SetText(tableau.texte[index]);
@@ -88,7 +88,7 @@ function CryolysisAfficheTimer(tableau, pointeur)
 			else
 				-- Similar for DoTs
 				local JustifInverse = "LEFT";
-				if CryolysisConfig.SpellTimerJust == "LEFT" then JustifInverse = "RIGHT"; end	
+				if Cryo.db.profile.SpellTimerJust == "LEFT" then JustifInverse = "RIGHT"; end	
 			
 				local frameName1 = "CryolysisTimer"..tableau.Gtimer[index].."Text";
 				local frameItem1 = _G[frameName1];
@@ -102,8 +102,8 @@ function CryolysisAfficheTimer(tableau, pointeur)
 				local frameItem5 = _G[frameName5];
 			
 				frameItem1:ClearAllPoints();
-				frameItem1:SetPoint(CryolysisConfig.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", CryolysisConfig.SpellTimerPos * 23, yPosition + 1);
-				if CryolysisConfig.Yellow then
+				frameItem1:SetPoint(Cryo.db.profile.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", Cryo.db.profile.SpellTimerPos * 23, yPosition + 1);
+				if Cryo.db.profile.Yellow then
 					frameItem1:SetTextColor(1, 0.82, 0);
 				else
 					frameItem1:SetTextColor(1, 1, 1);
@@ -111,7 +111,7 @@ function CryolysisAfficheTimer(tableau, pointeur)
 				frameItem1:SetJustifyH("LEFT");
 				frameItem1:SetText(tableau.texte[index]);
 					frameItem2:ClearAllPoints();
-				frameItem2:SetPoint(CryolysisConfig.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", CryolysisConfig.SpellTimerPos * 23, yPosition);
+				frameItem2:SetPoint(Cryo.db.profile.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", Cryo.db.profile.SpellTimerPos * 23, yPosition);
 				frameItem2:SetMinMaxValues(tableau.TimeMax[index] - tableau.Time[index], tableau.TimeMax[index]);
 				frameItem2:SetValue(2 * tableau.TimeMax[index] - (tableau.Time[index] + math.floor(GetTime())));
 				local r, g;
@@ -126,11 +126,11 @@ function CryolysisAfficheTimer(tableau, pointeur)
 				end
 				frameItem2:SetStatusBarColor(r, g, b)
 					frameItem3:ClearAllPoints();
-				frameItem3:SetPoint(CryolysisConfig.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", CryolysisConfig.SpellTimerPos * 23, yPosition);
+				frameItem3:SetPoint(Cryo.db.profile.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", Cryo.db.profile.SpellTimerPos * 23, yPosition);
 				frameItem5:ClearAllPoints();
 				frameItem5:SetTextColor(1, 1, 1);
-				frameItem5:SetJustifyH(CryolysisConfig.SpellTimerJust);
-				frameItem5:SetPoint(CryolysisConfig.SpellTimerJust, frameItem2, JustifInverse, CryolysisConfig.SpellTimerPos * 5, 1);
+				frameItem5:SetJustifyH(Cryo.db.profile.SpellTimerJust);
+				frameItem5:SetPoint(Cryo.db.profile.SpellTimerJust, frameItem2, JustifInverse, Cryo.db.profile.SpellTimerPos * 5, 1);
 				frameItem5:SetText(tableau.temps[index]);
 
 				local sparkPosition = 150 - ((math.floor(GetTime()) - (tableau.TimeMax[index] - tableau.Time[index])) / tableau.Time[index]) * 150;
@@ -138,7 +138,7 @@ function CryolysisAfficheTimer(tableau, pointeur)
 					sparkPosition = 1;
 				end
 				frameItem4:SetPoint("CENTER", frameItem2, "LEFT", sparkPosition, 0);
-				yPosition = yPosition - CryolysisConfig.SensListe * 11;
+				yPosition = yPosition - Cryo.db.profile.SensListe * 11;
 			end
 		end
 		if TimerTarget < 10 then
@@ -159,7 +159,7 @@ function Cryolysis_AddFrame(SpellTimer, TimerTable)
 			TimerTable[i] = true;
 			SpellTimer[#(SpellTimer)].Gtimer = i;
 			-- Displaying associated graphic timer
-			if CryolysisConfig.Graphical then
+			if Cryo.db.profile.Graphical then
 				local elements = {"Text", "Bar", "Texture", "OutText"}
 				for j = 1, 4, 1 do
 					frameName = "CryolysisTimer"..i..elements[j];

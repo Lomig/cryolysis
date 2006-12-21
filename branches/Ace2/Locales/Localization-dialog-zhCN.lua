@@ -37,6 +37,14 @@ AceLibrary("AceLocale-2.2"):new("Cryolysis"):RegisterTranslations("zhCN", functi
 		
 		["Restock Reagents?"] = "购买施法濿料?",
 		
+		["Orgrimmar"] = "奥格瑞玛",
+		["Undercity"] = "幽暗城",
+		["Thunder Bluff"] = "雷霆崖",
+		
+		["Ironforge"] = "铿炉堡",
+		["Stormwind"] = "暴风城",
+		["Darnassus"] = "达纳苿斯"
+		
 	}
 end)
 

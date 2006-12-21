@@ -99,9 +99,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.ShowSpellTimers = true;
+							Cryo.db.profile.ShowSpellTimers = true;
 						else
-							CryolysisConfig.ShowSpellTimers = false;
+							Cryo.db.profile.ShowSpellTimers = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -120,9 +120,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.ShowSpellTimerButton = true;
+							Cryo.db.profile.ShowSpellTimerButton = true;
 						else
-							CryolysisConfig.ShowSpellTimerButton = false;
+							Cryo.db.profile.ShowSpellTimerButton = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -141,17 +141,17 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.SpellTimerPos = -1;
-							CryolysisConfig.SpellTimerJust = "RIGHT";
+							Cryo.db.profile.SpellTimerPos = -1;
+							Cryo.db.profile.SpellTimerJust = "RIGHT";
 							AnchorSpellTimerTooltip = "ANCHOR_LEFT"
 						else
-							CryolysisConfig.SpellTimerPos = 1;
-							CryolysisConfig.SpellTimerJust = "LEFT";
+							Cryo.db.profile.SpellTimerPos = 1;
+							Cryo.db.profile.SpellTimerJust = "LEFT";
 							AnchorSpellTimerTooltip = "ANCHOR_RIGHT";
 						end
 						CryolysisListSpells:ClearAllPoints();
-						CryolysisListSpells:SetJustifyH(CryolysisConfig.SpellTimerJust);
-						CryolysisListSpells:SetPoint("TOP"..CryolysisConfig.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", CryolysisConfig.SpellTimerPos * 23, 10);
+						CryolysisListSpells:SetJustifyH(Cryo.db.profile.SpellTimerJust);
+						CryolysisListSpells:SetPoint("TOP"..Cryo.db.profile.SpellTimerJust, "CryolysisSpellTimerButton", "CENTER", Cryo.db.profile.SpellTimerPos * 23, 10);
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -168,7 +168,7 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						CryolysisConfig.Graphical = this:GetChecked();
+						Cryo.db.profile.Graphical = this:GetChecked();
 						Cryo:HideGraphTimer();
 					</OnClick>
 				</Scripts>
@@ -186,7 +186,7 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						CryolysisConfig.Yellow = not this:GetChecked();
+						Cryo.db.profile.Yellow = not this:GetChecked();
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -204,9 +204,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.SensListe = -1;
+							Cryo.db.profile.SensListe = -1;
 						else
-							CryolysisConfig.SensListe = 1;
+							Cryo.db.profile.SensListe = 1;
 						end
 					</OnClick>
 				</Scripts>

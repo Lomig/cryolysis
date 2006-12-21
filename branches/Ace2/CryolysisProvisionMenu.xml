@@ -99,7 +99,7 @@
 					</OnLeave>
 					<OnMouseUp>
 						GameTooltip:SetText(5-this:GetValue());
-						CryolysisConfig.ProvisionContainer = 4-this:GetValue();
+						Cryo.db.profile.ProvisionContainer = 4-this:GetValue();
 						Cryo:ProvisionSwitch("MOVE");
 					</OnMouseUp>
 				</Scripts>
@@ -142,7 +142,7 @@
 						elseif this:GetValue() == 5 then
 							GameTooltip:SetText(CRYOLYSIS_SPELL_TABLE[7].Name);
 						end
-						CryolysisConfig.Button = this:GetValue();
+						Cryo.db.profile.Button = this:GetValue();
 
 						Cryo:UpdateMainButtonAttributes();
 					</OnValueChanged>
@@ -205,7 +205,7 @@
 						else
 							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.Count.Evocation);
 						end
-						CryolysisConfig.CountType = this:GetValue();
+						Cryo.db.profile.CountType = this:GetValue();
 						</OnValueChanged>
 					<OnLeave>
 						GameTooltip:Hide();
@@ -250,7 +250,7 @@
 						else
 							GameTooltip:SetText(CRYOLYSIS_CONFIGURATION.Circle.Evocation);
 						end
-						CryolysisConfig.Circle = this:GetValue();
+						Cryo.db.profile.Circle = this:GetValue();
 					</OnValueChanged>
 					<OnLeave>
 						GameTooltip:Hide();
@@ -275,9 +275,9 @@
 						GameTooltip:SetText(this:GetValue().."%");
 					</OnEnter>
 					<OnValueChanged>
-						if this:GetValue() ~= CryolysisConfig.HPLimit then
+						if this:GetValue() ~= Cryo.db.profile.HPLimit then
 							GameTooltip:SetText(this:GetValue().."%");
-							CryolysisConfig.HPLimit = this:GetValue();
+							Cryo.db.profile.HPLimit = this:GetValue();
 						end
 					</OnValueChanged>
 					<OnLeave>
@@ -302,9 +302,9 @@
 						GameTooltip:SetText(this:GetValue().."%");
 					</OnEnter>
 					<OnValueChanged>
-						if this:GetValue() ~= CryolysisConfig.MPLimit then
+						if this:GetValue() ~= Cryo.db.profile.MPLimit then
 							GameTooltip:SetText(this:GetValue().."%");
-							CryolysisConfig.MPLimit = this:GetValue();
+							Cryo.db.profile.MPLimit = this:GetValue();
 						end
 					</OnValueChanged>
 					<OnLeave>
@@ -340,7 +340,7 @@
 					</OnLeave>
 					<OnMouseUp>
 						GameTooltip:SetText(this:GetValue());
-						CryolysisConfig.RestockTeleport = this:GetValue();
+						Cryo.db.profile.RestockTeleport = this:GetValue();
 					</OnMouseUp>
 				</Scripts>
 			</Slider>
@@ -368,7 +368,7 @@
 					</OnLeave>
 					<OnMouseUp>
 						GameTooltip:SetText(this:GetValue());
-						CryolysisConfig.RestockPortals = this:GetValue();
+						Cryo.db.profile.RestockPortals = this:GetValue();
 					</OnMouseUp>
 				</Scripts>
 			</Slider>
@@ -396,7 +396,7 @@
 					</OnLeave>
 					<OnMouseUp>
 						GameTooltip:SetText(this:GetValue());
-						CryolysisConfig.RestockPowder = this:GetValue();
+						Cryo.db.profile.RestockPowder = this:GetValue();
 					</OnMouseUp>
 				</Scripts>
 			</Slider>
@@ -416,9 +416,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.ProvisionSort = true;
+							Cryo.db.profile.ProvisionSort = true;
 						else
-							CryolysisConfig.ProvisionSort = false;
+							Cryo.db.profile.ProvisionSort = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -437,9 +437,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.ProvisionDestroy = true;
+							Cryo.db.profile.ProvisionDestroy = true;
 						else
-							CryolysisConfig.ProvisionDestroy = false;
+							Cryo.db.profile.ProvisionDestroy = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -458,9 +458,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.Restock = true;
+							Cryo.db.profile.Restock = true;
 						else
-							CryolysisConfig.Restock = false;
+							Cryo.db.profile.Restock = false;
 						end
 					</OnClick>
 				</Scripts>
@@ -479,9 +479,9 @@
 				<Scripts>
 					<OnClick>
 						if (this:GetChecked()) then
-							CryolysisConfig.RestockConfirm = true;
+							Cryo.db.profile.RestockConfirm = true;
 						else
-							CryolysisConfig.RestockConfirm = false;
+							Cryo.db.profile.RestockConfirm = false;
 						end
 					</OnClick>
 				</Scripts>
