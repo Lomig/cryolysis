@@ -42,7 +42,7 @@
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\Shard"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
--->
+
 	<Button name="CryolysisEvocationButton" inherits="CryolysisSubButtonTemplate">
 		<Layers>
 			<Layer level="ARTWORK">
@@ -113,7 +113,7 @@
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\MountButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
-
+-->
 	<!-- Menu Button Template -->
 	<Button name="CryolysisMenuButtonTemplate" inherits="SecureActionButtonTemplate" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true" virtual="true">
 		<Size>
@@ -137,7 +137,7 @@
 		</Scripts>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseBuff-02"/>
 	</Button>
-
+<!--
 	<Button name="CryolysisManaStoneButton" inherits="SecureAnchorUpDownTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
@@ -177,7 +177,7 @@
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\ManastoneButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
-	
+-->
 	<Button name="CryolysisManaStoneMenu1" inherits="CryolysisMenuButtonTemplate">
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -261,7 +261,7 @@
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
 	</Button>
-
+<!--
 	<Button name="CryolysisBuffMenuButton" inherits="SecureAnchorUpDownTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
@@ -301,6 +301,7 @@
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\BuffMenuButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
+-->
 	<Button name="CryolysisBuffMenu1" inherits="CryolysisMenuButtonTemplate">
 		<Scripts>
 			<OnEnter>
@@ -412,7 +413,7 @@
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\SlowFall-01"/>
 	</Button>
-
+<!--
 	<Button name="CryolysisPortalMenuButton" inherits="SecureAnchorUpDownTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
 		<Size>
 			<AbsDimension x="34" y="34"/>
@@ -452,7 +453,7 @@
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalMenuButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
-	
+-->
 	<Button name="CryolysisPortalButtonTemplate" inherits="SecureActionButtonTemplate" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true" virtual="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
