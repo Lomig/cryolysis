@@ -1,25 +1,21 @@
 ï»¿--[[
     Cryolysis
     Copyright (C) 2006 Cryolysis: Reborn Team
-
     This file is part of Cryolysis.
-
     Cryolysis is free software; you can redistribute it and/or modify
+
     it under the terms of the GNU General Public License as published by
+
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
-
     Cryolysis is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
     You should have received a copy of the GNU General Public License
     along with Cryolysis; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --]]
-
-
 ------------------------------------------------------------------------------------------------------
 -- Cryolysis
 --
@@ -32,23 +28,17 @@
 --
 -- Version 12.12.2006
 ------------------------------------------------------------------------------------------------------
-
-
 ------------------------------------------------
 -- ENGLISH  VERSION TEXTS --
 ------------------------------------------------
-
 function Cryolysis_Localization_Dialog_Fr()
-
 	function CryolysisLocalization()
 		Cryolysis_Localization_Speech_Fr();
 	end
-
 	CRYOLYSIS_COOLDOWN = {
 		["Evocation"] = "Temps de recharge d'Evocation",
 		["Manastone"] = "Temps de recharge des Pierres de Mana"
 	};
-
 	CryolysisTooltipData = {
 		["Main"] = {
 			Label = "|c00FFFFFFCryolysis|r",
@@ -69,12 +59,12 @@ function Cryolysis_Localization_Dialog_Fr()
 			["Manastone"] = "Pierre de Mana: ",
   		},
 		["Alt"] = {
-			Left = "Clic droit pour ",
-			Right = "",
+			Left = "Clic gauche pour ",
+			Right = "Clic Droit pour ",
 		},
 		["Soulstone"] = {
 			Label = "|c00FF99FFPierre d'\195\162me|r",
-			Text = {"Créer","Utiliser","Utilis\195\169e","En attente"}			
+			Text = {"Crer","Utiliser","Utilis\195\169e","En attente"}			
 		},
 		["Manastone"] = {
 			Label = "|c00FFFFFFPierre de Mana|r",
@@ -98,7 +88,7 @@ function Cryolysis_Localization_Dialog_Fr()
 			Label = "|c00FFFFFFIllumination des arcanes|r"
 		},
 		["DampenMagic"] = {
-			Label = "|c00FFFFFFAtt\195\169nuer la magie|r"
+			Label = "|c00FFFFFFAtt\195\169nuation de la magie|r"
 		},
 		["AmplifyMagic"] = {
 			Label = "|c00FFFFFFAmplification de la magie|r"
@@ -120,7 +110,7 @@ function Cryolysis_Localization_Dialog_Fr()
 		},
 		["Evocation"] = {
 			Label = "|c00FFFFFFEvocation|r",
-			Text = "Use"
+			Text = "Utiliser"
 		},
 		["ColdSnap"] = {
 			Label = "|c00FFFFFFMorsure de glace|r"
@@ -150,16 +140,16 @@ function Cryolysis_Localization_Dialog_Fr()
 		    Label = "|c00FFFFFFT\195\169l\195\169portation: Orgrimmar|r"
 		},
 		["T:UC"] = {
-		    Label = "|c00FFFFFFT\195\169l\195\169portation: Undercity|r"
+		    Label = "|c00FFFFFFT\195\169l\195\169portation: Fossoyeuse|r"
 		},
 		["T:TB"] = {
-		    Label = "|c00FFFFFFT\195\169l\195\169portation: Thunder Bluff|r"
+		    Label = "|c00FFFFFFT\195\169l\195\169portation: Les Pitons du Tonnerre|r"
 		},
 		["T:IF"] = {
-		    Label = "|c00FFFFFFT\195\169l\195\169portation: Ironforge|r"
+		    Label = "|c00FFFFFFT\195\169l\195\169portation: Forgefer|r"
 		},
 		["T:SW"] = {
-		    Label = "|c00FFFFFFT\195\169l\195\169portation: Stormwind|r"
+		    Label = "|c00FFFFFFT\195\169l\195\169portation: Hurlevent|r"
 		},
 		["T:Darn"] = {
 		    Label = "|c00FFFFFFT\195\169l\195\169portation: Darnassus|r"
@@ -168,16 +158,16 @@ function Cryolysis_Localization_Dialog_Fr()
 		    Label = "|c00FFFFFFPortail: Orgrimmar|r"
 		},
 		["P:UC"] = {
-		    Label = "|c00FFFFFFPortail: Undercity|r"
+		    Label = "|c00FFFFFFPortail: Fossoyeuse|r"
 		},
 		["P:TB"] = {
-		    Label = "|c00FFFFFFPortail: Thunder Bluff|r"
+		    Label = "|c00FFFFFFPortail: Les Pitons du Tonnerre|r"
 		},
 		["P:IF"] = {
-		    Label = "|c00FFFFFFPortail: Ironforge|r"
+		    Label = "|c00FFFFFFPortail: Forgefer|r"
 		},
 		["P:SW"] = {
-		    Label = "|c00FFFFFFPortail: Stormwind|r"
+		    Label = "|c00FFFFFFPortail: Hurlevent|r"
 		},
 		["P:Darn"] = {
 		    Label = "|c00FFFFFFPortail: Darnassus|r"
@@ -199,7 +189,6 @@ function Cryolysis_Localization_Dialog_Fr()
 		},
 	};
 
-
 	CRYOLYSIS_SOUND = {
 		["SheepWarn"] = "Interface\\AddOns\\Cryolysis\\sounds\\Sheep01.mp3",
 		["SheepBreak"] = "Interface\\AddOns\\Cryolysis\\sounds\\Sheep02.mp3",
@@ -207,13 +196,10 @@ function Cryolysis_Localization_Dialog_Fr()
 		["PigBreak"] = "Interface\\AddOns\\Cryolysis\\sounds\\Pig02.mp3",
 	};
 
-
 --	CRYOLYSIS_NIGHTFALL_TEXT = {
 --		["NoBoltSpell"] = "Il semble que vous ne poss\195\169dez pas le Sort Trait de l'Ombre.",
 --		["Message"] = "<white>S<lightPurple1>h<lightPurple2>a<purple>d<darkPurple1>o<darkPurple2>w T<darkPurple1>r<purple>a<lightPurple2>n<lightPurple1>c<white>e"
 --	};
-
-
 	CRYOLYSIS_MESSAGE = {
 		["Error"] = {
 			["RuneOfTeleportationNotPresent"] = "Il vous faut une Rune de T\195\169l\195\169portation pour \195\167a!",
@@ -223,6 +209,7 @@ function Cryolysis_Localization_Dialog_Fr()
 			["NoRiding"] = "Vous n'avez aucune monture \195\160 chevaucher",
 			["NoFoodSpell"] = "Vous ne poss\195\169dez pas de sort d'invocation de nourriture",
 			["NoDrinkSpell"] = "Vous ne poss\195\169dez pas de sort d'invocation d'eau",
+
 			["NoManaStoneSpell"] = "Vous ne poss\195\169dez pas d'invocation de Pierre de Mana",
 			["NoEvocationSpell"] = "Vous ne poss\195\169dez pas de sort d'Evocation",
 			["FullMana"] = "Vous ne pouvez utiliser de Pierre de Mana car votre Mana est au maximum",
@@ -263,10 +250,7 @@ function Cryolysis_Localization_Dialog_Fr()
 			["Restock"] = "Achet\195\169 "
 		},
 	};
-
-
 	-- Gestion XML - Menu de configuration
-
 	CRYOLYSIS_COLOR_TOOLTIP = {
 		["Purple"] = "Violet",
 		["Blue"] = "Bleu",
@@ -302,19 +286,18 @@ function Cryolysis_Localization_Dialog_Fr()
 		["MainLock"] = "V\195\169rouiller la sph\195\168re de Cryolysis.",
 		["BagSelect"] = "S\195\169lection du sac pour la nourriture et l'eau.",
 		["BuffMenu"] = "Disposer le menu des buffs sur la gauche",
-		["ManaStoneMenu"] = "Put mana stone menu on the left.",
+		["ManaStoneMenu"] = "Disposer le menu des pierres de mana sur la gauche.",
 		["PortalMenu"] = "Disposer le menu des portails sur la gauche",
 		["STimerLeft"] = "Afficher les timers du c\195\180t\195\169 gauche des boutons",
-		["ShowCount"] = "Afficher le nombre d'objets dans Cryolysis",
-		["CountType"] = "Ev\195\169nements affich\195\169s sur la Sph\195\168re",
-        ["Food"] = "Seuil Nourriture",
+		["ShowCount"] = "Afficher le nombre d'objets dans Cryolysis",				["CountType"] = "Ev\195\169nements affich\195\169s sur la Sph\195\168re",   
+     		["Food"] = "Seuil Nourriture",
 		["Sound"] = "Activer les sons",
 		["ShowMessage"] = "Messages al\195\169atoires",
 		["ShowPortalMessage"] = "Activer les messages al\195\169atoires (Portail)",
 		["ShowSteedMessage"] = "Activer les messages al\195\169atoires (Monture)",
-		["ShowPolyMessage"] = "Activer les messages al\195\169atoires (M\195\169tamorphose)",
+		["ShowPolyMessage"] = "Activer les messages al\195\169atoires M\195\169tamorphose)",
 		["CryolysisSize"] = "Taille des boutons de Cryolysis",
-		["StoneScale"] = "Size of other buttons",
+		["StoneScale"] = "Taille des autres boutons",
 		["PolymorphSize"] = "Taille du bouton de M\195\169tamorphose",
 		["TranseSize"] = "Taile des boutons de Trance et d'AntiFear",
 		["Skin"] = "Seuil Eau",
@@ -331,35 +314,33 @@ function Cryolysis_Localization_Dialog_Fr()
 			["Tooltips"] = "Afficher les bulles d'aide"
 		},
 		["Text"] = {
-			["Text"] = "On Button:",
-			["Food"] = "Food Count",
-			["Drink"] = "Drink Count",
+			["Text"] = "Sur le bouton:",
+			["Food"] = "Nombre de nouriture",
+			["Drink"] = "Nombre de boisson",
 			["Manastone"] = "Mana Gem Cooldown",
 			["Evocation"] = "Evocation Cooldown",
-			["Powder"] = "Arcane Powder",
+			["Powder"] = "Poudre des arcanes",
 			["Feather"] = "Light Feathers",
-			["Rune"] = "Portal Runes",
+			["Rune"] = "Rune des portails",
 		},
 		["QuickBuff"] = "Ouvrir/Fermer le menu des buffs au passage de la souris",
 		["Count"] = {
-		    ["None"] = "Aucun",
+			["None"] = "Aucun",
 			["Provision"] = "Nourriture et Eau",
 			["Provision2"] = "Eau et Nourriture",
 			["Health"] = "Current Health",
-			["HealthPercent"] = "Health Percent",
+			["HealthPercent"] = "Pourcentage de vie",
 			["Mana"] = "Current Mana",
-			["ManaPercent"] = "Mana Percent",
-			["Manastone"] = "Temps de recharge de Pierre de Mana",
+			["ManaPercent"] = "Pourcentage de mana",								["Manastone"] = "Temps de recharge de Pierre de Mana",
 			["Rune"] = "Runes de T\195\169l\195\169portation et de Portails",
 			["Reagent"] = "Poudre des Arcanes et Plumes L\195\169g\195\168res",
-		},
+		},			
 		["Circle"] = {
 			["Text"] = "Ev\195\169nements affich\195\169s sur la shp\195\168re",
 			["None"] = "Aucun",
 			["Mana"] = "Mana",
 			["Manastone"] = "Temps de recharge de Pierre de Mana",
 			["Evocation"] = "Temps de recharge d'Evocation",
-
 		},
 		["Polymorph"] = {
 			["Warn"] = "Avertir avant que la m\195\169tamorphose ne disparaisse",
@@ -382,12 +363,10 @@ function Cryolysis_Localization_Dialog_Fr()
 			["DampenMagic"] = CRYOLYSIS_SPELL_TABLE[13].Name.."/"..CRYOLYSIS_SPELL_TABLE[1].Name, -- "Dampen Magic / Amplify Magic",
 			["IceBarrier"] = CRYOLYSIS_SPELL_TABLE[23].Name.."/"..CRYOLYSIS_SPELL_TABLE[25].Name, -- "Ice Barrier / Mana Shield",
 			["FireWard"] = CRYOLYSIS_SPELL_TABLE[15].Name.."/"..CRYOLYSIS_SPELL_TABLE[20].Name, -- "Fire Ward / Frost Ward",
-			["DetectMagic"] = CRYOLYSIS_SPELL_TABLE[50].Name, -- "Detect Magic"
-			["RemoveCurse"] = CRYOLYSIS_SPELL_TABLE[33].Name, -- Remove Lesser curse
+			["DetectMagic"] = CRYOLYSIS_SPELL_TABLE[50].Name, -- "Detect Magic"					["RemoveCurse"] = CRYOLYSIS_SPELL_TABLE[33].Name, -- Remove Lesser curse
 			["SlowFall"] = CRYOLYSIS_SPELL_TABLE[35].Name, -- Slow Fall
 		},	
 	};
-
 	CRYOLYSIS_BINDING = {
 		["Current"] = " est actuellement associ\195\169 \195\160 ",
 		["Confirm"] = "Voulez-vous associer ",
