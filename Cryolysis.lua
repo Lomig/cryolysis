@@ -179,6 +179,73 @@ Cryo:RegisterDefaults("char", {
 
 Cryo.textureDir = "Interface\\AddOns\\Cryolysis\\UI\\%s"
 
+-- This is a little trick I learned from the old Ace2 embed called "Compost-2.0".
+-- Basically, this saves A TON of memory when creating/destroying tables.  Instead of 
+-- actually creating or destroying them, you give and take to a pool of tables that this makes.
+-- Whenever you call new(), it either returns an empty table from the pool, or it makes a new table
+-- for you.  del() returns a table that you're done with back into the pool.
+local new, del
+do
+	local cache = setmetatable({}, {__mode='k'})
+	function new(populate, ...)
+		local tbl, key
+		local t = next(cache)
+		if ( t ) then
+			cache[t] = nil
+			tbl = t
+		else
+			tbl = {}
+		end
+		if ( populate ) then
+			local num = select("#", ...)
+			if ( populate == "hash" ) then
+				assert(math.fmod(num, 2) == 0)
+				for i = 1, num do
+					local v = select(i, ...)
+					if ( math.fmod(i, 2) ~= 0 ) then
+						key = v
+					else
+						tbl[key] = v
+						key = nil
+					end
+				end
+			elseif ( populate == "array" ) then
+				for i = 1, num do
+					local v = select(i, ...)
+					table.insert(tbl, i, v)
+				end
+			end
+		end
+		return tbl
+	end
+	function del(t)
+		for k in next, t do
+			t[k] = nil
+		end
+		cache[t] = true
+	end
+end
+
+-- Reagent count table, complete with caching:
+-- Whenever a key in the table Cryo.reagentCount is accessed, (ex. print(Cryo.reagentCount[17020])),
+-- if there is no value in the table for that key, then the function 'GetItemCount()' is called for that
+-- key, and the value in the table is set to the returned value from GetItemCount().  Whenever the bags
+-- are changed though, the values of this table will be set to nil, and will need to be recached upon request.
+Cryo.reagentCount = setmetatable({}, { __index = function(t, k)
+		local itemCount = GetItemCount(k)
+		if ( itemCount ) then
+			t[k] = itemCount
+		end
+		return itemCount
+	end
+})
+Cryo.reagentIds = new("array",
+	17020, -- Arcane Powder
+	17031, -- Rune of Teleportation
+	17032, -- Rune of Portals
+	17056  -- Light Feather
+)
+
 Cryolysis_Loaded = false
 
 CryolysisBinding = {}
@@ -309,16 +376,16 @@ local ProvisionTime = 0;
 -- Variable uses for spellcasting
 -- (mainly counting)
 local Count = {
-	RuneOfTeleportation = 0;
-	RuneofPortals = 0;
-	ArcanePowder = 0;
-	LightFeather = 0;
-	Food = 0;
-	Drink = 0;
-	FoodLastRank = nil;
-	FoodLastName = "none";
-	DrinkLastRank = nil;
-	DrinkLastName = "none";
+	RuneOfTeleportation = 0,
+	RuneofPortals = 0,
+	ArcanePowder = 0,
+	LightFeather = 0,
+	Food = 0,
+	Drink = 0,
+	FoodLastRank = nil,
+	FoodLastName = "none",
+	DrinkLastRank = nil,
+	DrinkLastName = "none"
 }
 -- Variables used for the Spell button mangement and use of the reagents
 local StoneIDInSpellTable = {0, 0, 0, 0}
@@ -409,7 +476,7 @@ function Cryo:OnEnable()
 	self:LoadVariables()
 	self:RegisterEvent("PLAYER_ENTERING_WORLD")
 	self:RegisterEvent("PLAYER_LEAVING_WORLD")
-	self:RegisterBucketEvent("BAG_UPDATE", 1)
+	self:RegisterEvent("SpecialEvents_BagSlotUpdate")
 	
 	self:RegisterEvent("UNIT_SPELLCAST_FAILED", "SpellFailed")
 	self:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED", "SpellFailed")
@@ -607,7 +674,16 @@ function Cryo:PLAYER_LEAVING_WORLD()
 	Cryo.db.char.LoadCheck = false
 end
 
-function Cryo:BAG_UPDATE(...)
+function Cryo:SpecialEvents_BagSlotUpdate(bag, slot, itemLink, ...)
+	local itemId, _
+	if ( itemLink ) then
+		_, _, itemId = string.find(itemLink, "Hitem:(%d+):")
+		DEFAULT_CHAT_FRAME:AddMessage(itemId)
+		itemId = tonumber(itemId)
+		if ( self.reagentCount[itemId] ) then
+			self.reagentCount[itemId] = nil
+		end
+	end
 	if ( Cryo.db.char.LoadCheck ) then
 		return
 	end
