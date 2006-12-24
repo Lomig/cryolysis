@@ -186,44 +186,123 @@ Cryo.textureDir = "Interface\\AddOns\\Cryolysis\\UI\\%s"
 -- for you.  del() returns a table that you're done with back into the pool.
 local new, del
 do
+	-- Metatables have a variety of useful keys in them.  This metatable takes
+	-- advantage of the '__mode' key.  Using this key, we can make the table "weak".
+	-- I don't know if that's a term used in other programming languages, but in this is the
+	-- Lua manual's definition of a weak table:
+	--	"A weak table is a table whose elements are weak references. A weak
+	--	reference is ignored by the garbage collector. In other words, if
+	--	the only references to an object are weak references, then the garbage
+	--	collector will collect this object."
+	--	- (http://www.lua.org/manual/5.1/manual.html; section 2.10.2 for more info)
+	-- The '__mode' key can be one of three values: 'k', 'v', or 'kv'.  If the __mode
+	-- is set to 'k', then the tables keys are weak.  If set to 'v', the tables values
+	-- are weak.  'kv' means both the keys and values are weak.
 	local cache = setmetatable({}, {__mode='k'})
+	-- new() accepts arguments.  The first can be used to define what kind of table this will be:
+	-- an array (ex. {1, 2, 3, 4}) or a hash-table (ex. {["a"] = 1, ["b"] = 2}).  This way,
+	-- I will know whether I should use ipairs() or pairs() to iterate it (since using pairs() to
+	-- iterate an array is significantly slower than ipairs()).  '...' will contain the values to
+	-- populate the table with.
+	-- Ex:
+	--	{ ["a"] = 1, ["b"] = 2, ["c"] = 3 } == new("hash", "a", 1, "b", 2, "c", 3)
+	--	{ 1, 2, 3 } == new("array", 1, 2, 3)
 	function new(populate, ...)
-		local tbl, key
+		-- 'tbl' will represent a table that's either returned from the cache or brand new.
+		local tbl
+		-- 't' is the next table in the cache.
 		local t = next(cache)
 		if ( t ) then
+			-- Remove the reference from 'cache'.
 			cache[t] = nil
 			tbl = t
+		-- if the cache is empty...
 		else
 			tbl = {}
 		end
+		-- If values have been provided to be placed in the table then
 		if ( populate ) then
+			-- Get the number of arguments provided.
 			local num = select("#", ...)
+			-- If it's supposed to be a hash table, then when 'i' is an odd number,
+			-- that argument will be a key, whereas if it's even, that argument is
+			-- to be a value.
 			if ( populate == "hash" ) then
+				-- This makes sure I provided an even number of arguments.
 				assert(math.fmod(num, 2) == 0)
+				-- The 'key' variable will store the odd arguments until we have
+				-- a value to be assigned to that key in the table.
+				local key
 				for i = 1, num do
+					-- Store the argument in local 'v'
 					local v = select(i, ...)
+					-- If 'i' is an odd argument then...
 					if ( math.fmod(i, 2) ~= 0 ) then
+						-- Store it as a key for now
 						key = v
+					-- 'i' is even
 					else
+						-- Assign the argument to the argument before it.
 						tbl[key] = v
+						-- nil 'key' just to play it safe.
 						key = nil
 					end
 				end
 			elseif ( populate == "array" ) then
+				-- We don't have to worry about keys here, we just insert the values
+				-- one-by-one.
 				for i = 1, num do
 					local v = select(i, ...)
 					table.insert(tbl, i, v)
 				end
 			end
 		end
+		-- Return our new table.
 		return tbl
 	end
+	-- del(t) just sets every value in table 't' to nil so that it can safely
+	-- be garbage collected.  In pre-5.1 Lua, if the values weren't set to nil
+	-- before the table itself was set to nil, they wouldn't be garbage collected.
+	-- With the new form of GC included in Lua 5.1, this isn't a problem as much,
+	-- but is still proper etiquette, IMO.
 	function del(t)
+		-- If you haven't noticed, I use the 'next' iterator when iterating
+		-- hash-tables, instead of the 'pairs()' iterator.  They do the
+		-- exact same thing; in fact, pairs(table) just calls 'next, table'.
+		-- So: 'for k in pairs(t) do' == 'for k in next, t do'
 		for k in next, t do
 			t[k] = nil
 		end
+		-- Let the cache know that the table is ready for use again.
 		cache[t] = true
 	end
+--[[
+	I'd like to go off on a tangent here to show you just how big of an impact
+	using the above functions make.  I wrote the following script to benchmark them
+	outside of WoW, in a Lua-5.1 environment:
+	
+		local initTime, initMem = os.time(), collectgarbage("count")
+		for i = 1, 1000 do
+			local tbl = new()
+			for k = 1, 1500 do
+				table.insert(tbl, tostring(k))
+			end
+			local tblTwo = new()
+			for k = 1, 3000 do
+				table.insert(tbl, tostring(k))
+			end
+			del(tbl)
+			del(tblTwo)
+		end
+		print(os.difftime(os.time(), initTime)..", "..collectgarbage("count") - initMem)
+	
+	After running the script like that, I replaced the 'new()' functions with an ordinary '{}'
+	and instead of calling 'del()' I set both tables equal to nil.  Here were the results:
+	
+		Time Spent:   9 seconds;   Memory used:   204.36 KB  -- When using the 'new()' and 'del()' functions.
+		Time Spent:   8 seconds;   Memory used:   128138.74 KB -- When just creating and setting to nil.
+	
+--]]
 end
 
 -- Reagent count table, complete with caching:
