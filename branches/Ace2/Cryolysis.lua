@@ -180,7 +180,7 @@ Cryo:RegisterDefaults("char", {
 Cryo.textureDir = "Interface\\AddOns\\Cryolysis\\UI\\%s"
 
 -- This is a little trick I learned from the old Ace2 embed called "Compost-2.0".
--- Basically, this saves A TON of memory when creating/destroying tables.  Instead of 
+-- Basically, this saves A TON of memory when creating/destroying tables.  Instead of
 -- actually creating or destroying them, you give and take to a pool of tables that this makes.
 -- Whenever you call new(), it either returns an empty table from the pool, or it makes a new table
 -- for you.  del() returns a table that you're done with back into the pool.
@@ -280,7 +280,7 @@ do
 	I'd like to go off on a tangent here to show you just how big of an impact
 	using the above functions make.  I wrote the following script to benchmark them
 	outside of WoW, in a Lua-5.1 environment:
-	
+
 		local initTime, initMem = os.time(), collectgarbage("count")
 		for i = 1, 1000 do
 			local tbl = new()
@@ -295,13 +295,13 @@ do
 			del(tblTwo)
 		end
 		print(os.difftime(os.time(), initTime)..", "..collectgarbage("count") - initMem)
-	
+
 	After running the script like that, I replaced the 'new()' functions with an ordinary '{}'
 	and instead of calling 'del()' I set both tables equal to nil.  Here were the results:
-	
+
 		Time Spent:   9 seconds;   Memory used:   204.36 KB  -- When using the 'new()' and 'del()' functions.
 		Time Spent:   8 seconds;   Memory used:   128138.74 KB -- When just creating and setting to nil.
-	
+
 --]]
 end
 
@@ -344,7 +344,6 @@ local CombustionFade = false
 local PoMFade = false
 -- Initialization of the tables to manage timers
 -- One for spell timers, one for mob groups, and the last allows the association of a timer and graphic frame
--- Le dernier permet l'association d'un timer �une frame graphique
 SpellTimer = {};
 local SpellGroup = {
 	Name = {"Rez", "Main", "Cooldown"},
@@ -377,6 +376,10 @@ local debuff = {
 };
 
 -- Localizations moved to their respective files
+
+-- 28/11/06 -- 22:33
+-- By Lomig : To keep your babbled-aced philosophy, why do not you use Babble zone for this ?
+-- (I feel it must be like using a truck to transport a feather... but Babble Spell as well when you deal wih an addon for a single class :D)
 local PortalTempID = {38, 40, 39, 37, 51, 46, 47, 31, 30, 28, 29, 27}
 local PortalName = {
 	L["Orgrimmar"], L["Undercity"], L["Thunder Bluff"], L["Ironforge"], L["Stormwind"], L["Darnassus"],  -- 1-6, Teleports
@@ -440,7 +443,6 @@ local PlayerCombat = false;
 
 -- Variables used for arcane concentration
 local Concentration = false;
---local AntiFearInUse = false;				-- Disabled... Haven't found a use yet
 local ConcentrationID = -1;
 
 -- Variables used for provision management
@@ -491,7 +493,7 @@ local DrinkLocation = { nil, nil }
 local HearthstoneOnHand = false
 local HearthstoneLocation = { nil, nil }
 
--- Variables used in the management of demons			-- Portals?
+-- Variables used in the management of Portals
 local PortalType = nil;
 
 -- Variables used for trading
@@ -556,13 +558,13 @@ function Cryo:OnEnable()
 	self:RegisterEvent("PLAYER_ENTERING_WORLD")
 	self:RegisterEvent("PLAYER_LEAVING_WORLD")
 	self:RegisterEvent("SpecialEvents_BagSlotUpdate")
-	
+
 	self:RegisterEvent("UNIT_SPELLCAST_FAILED", "SpellFailed")
 	self:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED", "SpellFailed")
-	
+
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 	self:RegisterEvent("UNIT_SPELLCAST_SENT")
-	
+
 	self:RegisterEvent("TRADE_SHOW")
 	self:RegisterEvent("TRADE_CLOSED")
 	self:RegisterEvent("LEARNED_SPELL_IN_TAB")
@@ -576,10 +578,10 @@ function Cryo:OnEnable()
 	self:RegisterEvent("CHAT_MSG_SPELL_BREAK_AURA", "AuraGoneSelf")
 	self:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_OTHER")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE")
-	
+
 	SlashCmdList["CryolysisCommand"] = Cryolysis_SlashHandler
 	SLASH_CryolysisCommand1 = "/cryo"
-	
+
 	M:Start("Cryo_UpdateFunc")
 end
 
@@ -607,7 +609,7 @@ function Cryo:CryolysisButton_OnUpdate()
 	if (( not Cryolysis_Loaded ) and ( self.UnitClass ~= "MAGE" )) then
 		return
 	end
-	
+
 	if ( Cryo.db.char.LoadCheck ) then
 		self:BagExplore()
 		self:UpdateButtonsScale()
@@ -665,7 +667,7 @@ function Cryo:CryolysisButton_OnUpdate()
 		SpellCastTime = curTime
 		update = true
 	end
---[[ TIMERS, O NOEZ!!!!11!one!																			
+--[[ TIMERS, O NOEZ!!!!11!one!
 	if ( Cryo.db.profile.ShowSpellTimers ) then
 		-- updates buttons every second
 		if ( Cryo.db.profile.ShowSpellTimers ) then
@@ -1090,7 +1092,9 @@ function Cryo:PolyCheck(Type, spell, creatureName)
 			-- End of adding (error 1147: attempt to perform arithmatic on a nil value)
 			if (( SpellCastRank == nil ) and ( string.find(CRYOLYSIS_SPELL_TABLE[26].Rank, "(%d+)") )) then
 				SpellCastRank = CRYOLYSIS_SPELL_TABLE[26].Rank
-			else
+			-- Added By Lomig : Changed to avoid error : Every polymorph timers had the same timer :D
+			-- As I do not have the chance to test, I did this theoritically :D
+			elseif not SpellCastRank then
 				SpellCastRank = 1
 			end
 			Cryo.db.char.PolyWarnTime = ( string.find(SpellCastRank, "(%d+)") * 10 + 10) - Cryo.db.profile.PolyWarnTime
@@ -2177,7 +2181,7 @@ function Cryo:MountCheck(itemName, container, slot)
 			   	end
 
 			   	Mount.Location = {container, slot}
-				Cryolysis_UpdateMountButton(Mount.Title, "Normal")
+				Cryolysis_UpdateMountButton(Mount.Name, "Normal")
 			   	break;
 			end
 		end
@@ -2193,7 +2197,7 @@ function Cryo:AQMountCheck(itemName, container, slot)
 			Cryo:Msg("AQ Mount Located: "..Mount.Title,"USER");
 			Mount.Icon = "A"..i;
 		   	Mount.Location = {container, slot}
-			Cryolysis_UpdateMountButton(Mount.Title, "AQ");
+			Cryolysis_UpdateMountButton(Mount.Name, "AQ");
 		   	Mount.AQMount = true;
 		   	return true;
 		end
@@ -2521,7 +2525,7 @@ function Cryo:SpellSetup()
 		subName = {}
 	}
 
-	
+
 	local Invisible = 0
 	local InvisibleID = 0
 
@@ -2845,7 +2849,7 @@ function Cryo:CreateMenu()
 	local BuffButtonPosition = 0
 
 	local types = { "ManaStone", "Buff", "Portal" }
-	
+
 	local f
 	for i = 1, 12, 1 do
 		for j = 1, 3, 1 do
@@ -2855,7 +2859,7 @@ function Cryo:CreateMenu()
 			end
 		end
 	end
-	
+
 	for i = 1, 4, 1 do
 		if ( Manastone.RankID[i] ) then
 			f = _G["CryolysisManaStoneMenu"..i]
