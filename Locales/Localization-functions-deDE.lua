@@ -1,4 +1,4 @@
-﻿--[[
+--[[
     Cryolysis
     Copyright (C) 2006 Cryolysis: Reborn Team
 
@@ -45,105 +45,105 @@ function Cryolysis_SpellTableBuild()
 CRYOLYSIS_SPELL_TABLE = {
 	[1] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Magie verst\195\164rken",				Length = 600,	Type = 0},
-	[2] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[2] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Arkane Brillanz",						Length = 3600,	Type = 0},
-	[3] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[3] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Arkane Explosion",						Length = 0,		Type = 0},
-	[4] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[4] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Arkane Intelligenz",					Length = 1800,	Type = 0},
-	[5] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[5] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Arkane Geschosse",						Length = 0,		Type = 0},
-	[6] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[6] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Druckwelle",							Length = 45,	Type = 3},
-	[7] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[7] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Blinzeln",								Length = 15,	Type = 3},
-	[8] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[8] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Blizzard",								Length = 0,		Type = 0},
-	[9] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[9] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "K\195\164ltekegel",						Length = 10,	Type = 3},
-	[10] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[10] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Essen herbeizaubern",					Length = 0,		Type = 0},
-	[11] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[11] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Wasser herbeizaubern",					Length = 0,		Type = 0},
-	[12] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[12] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Gegenzauber",							Length = 30,	Type = 3},
-	[13] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[13] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Magie d\195\164mpfen",					Length = 600,	Type = 0},
-	[14] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[14] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Feuerschlag",							Length = 8,		Type = 3},
-	[15] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[15] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Feuerzauberschutz",						Length = 30,	Type = 3},
-	[16] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[16] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Feuerball",								Length = 8,		Type = 5},
-	[17] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[17] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Flammensto\195\159",					Length = 8,		Type = 3},
-	[18] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[18] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Frostr\195\188stung",	   				Length = 300,	Type = 0},
-	[19] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[19] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Frostnova",								Length = 25,	Type = 3},
-	[20] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[20] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Frostzauberschutz",						Length = 30,	Type = 3},
-	[21] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[21] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Frostblitz",							Length = 9,		Type = 5},
-	[22] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[22] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Eisr\195\188stung",						Length = 300,	Type = 0},
-	[23] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[23] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Eisbarriere",							Length = 30,	Type = 3},
-	[24] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[24] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Magische R\195\188stung",				Length = 300,	Type = 0},
-	[25] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[25] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Manaschild",							Length = 60,	Type = 0},
-	[26] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[26] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Verwandlung",							Length = 50,	Type = 2},
-	[27] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[27] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Darnassus",						Length = 0,		Type = 0},
-	[28] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[28] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Ironforge",						Length = 0,		Type = 0},
-	[29] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[29] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Stormwind",						Length = 0,		Type = 0},
-	[30] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[30] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Thunder Bluff",					Length = 0,		Type = 0},
-	[31] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[31] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Undercity",						Length = 0,		Type = 0},
-	[32] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[32] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Pyroschlag",							Length = 12,	Type = 5},
 	[33] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Geringen Fluch entfernen",				Length = 0,		Type = 0},
-	[34] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[34] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Versengen",	     					 	Length = 0,		Type = 0},
-	[35] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[35] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Langsamer Fall",						Length = 30,	Type = 0},
-	[36] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[36] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleportieren: Darnassus",				Length = 0,		Type = 0},
-	[37] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[37] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleportieren: Ironforge",				Length = 0,		Type = 0},
-	[38] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[38] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleportieren: Orgrimmar",				Length = 0,		Type = 0},
-	[39] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[39] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleportieren: Thunder Bluff", 			 Length = 0,	Type = 0},
-	[40] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[40] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleportieren: Undercity",				Length = 0,		Type = 0},
-	[41] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[41] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Eisblock",								Length = 300,	Type = 3},
-	[42] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[42] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "K\195\164lteeinbruch",					Length = 600,	Type = 3},
-	[43] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[43] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Verbrennung",							Length = 180,	Type = 3},
-	[44] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[44] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Geistesgegenwart",						Length = 180,	Type = 3},
 	[45] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Arkanes Pulver",						Length = 180,	Type = 3},
-	[46] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[46] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleportieren: Darnassus",				Length = 0,		Type = 0},
-	[47] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[47] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Orgrimmar",						Length = 0,		Type = 0},
-	[48] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[48] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Verwandlung: Schwein",					Length = 50,	Type = 2},
-	[49] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[49] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Hervorrufung",							Length = 480,	Type = 3},
-	[50] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[50] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Magie entdecken",						Length = 120,	Type = 5},
-	[51] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[51] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleportieren: Stormwind",				Length = 0	,	Type = 0},
 	[52] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Verwandlung: Schildkr\195\182te",		Length = 50,	Type = 2},
@@ -174,9 +174,9 @@ CRYOLYSIS_SPELL_TABLE = {
 	[65] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Freeze",								Length = 5,		Type = 5},
 	[66] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Frost nova",			Length = 8,		Type = 6},	
+		Name = "Frost nova",			Length = 8,		Type = 6},
 	[67] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Poly Diminished",		Length = 15,	Type = 6},	
+		Name = "Poly Diminished",		Length = 15,	Type = 6},
 };
 end
 Cryolysis_SpellTableBuild()
@@ -205,7 +205,7 @@ CRYOLYSIS_FOOD_RANK = {
 	[3] = "s Roggenbrot",
 	[4] = "r Pumpernickel",
 	[5] = "r Sauerteig",
-	[6] = "s Milchbr\195\182tchen", 
+	[6] = "s Milchbr\195\182tchen",
 	[7] = " Zimtschnecke",
 };
 CRYOLYSIS_DRINK_RANK = {
@@ -244,10 +244,10 @@ CRYOLYSIS_CREATE = {
 };
 CRYOLYSIS_MOUNT_TABLE = {
 	-- [1] Frostwolf Howler Icon
-	{ "Horn des Frostwolfheulers" }, 
+	{ "Horn des Frostwolfheulers" },
 	-- [2] Ram Icon
 	{ "Streitwidder der Stormpike", "Schwarzer Widder", "Schwarzer Kriegswidder", "Brauner Widder", "Frostwidder", "Grauer Widder", "Schneller brauner Widder", "Schneller grauer Widder", "Schneller wei\195\159er Widder", },
-	-- [3] Raptor Icon            
+	-- [3] Raptor Icon
 	{ "Schneller Razzashiraptor", "Schneller blauer Raptor", "Schneller olivfarbener Raptor", "Schneller orangener Raptor", "Pfeife des schwarzen Kriegsraptors", "Pfeife des smaragdfarbenen Raptors", "Pfeife des elfenbeinfarbenen Raptors", "Pfeife des scheckigen roten Raptors", "Pfeife des t\195\188rkisfarbenen Raptors", "Pfeife des violetten Raptors" },
 	-- [4] Yellow Tiger Icon
 	{ "Schneller zulianischer Tiger" },
@@ -255,7 +255,7 @@ CRYOLYSIS_MOUNT_TABLE = {
 	{ "Blaues Skelettpferd",  "Blaues Skelettschlachtross", "Z\195\188gel des Todesstreitrosses", "Braunes Skelettpferd", "Gr\195\188nes Skelettschlachtross", "Purpurnes Skelettschlachtross", "Rotes Skelettpferd", "Rotes Skelettschlachtross" },
 	-- [6] Blue Mechanostrider Icon
 	{ "Schwarzer Schlachtenschreiter", "Blauer Roboschreiter", "Gr\195\188ner Roboschreiter", "Eisblauer Roboschreiter Mod. A", "Roter Roboschreiter", "Schneller gr\195\188ner Roboschreiter", "Schneller we\195\159er Roboschreiter", "Schneller gelber Roboschreiter", "Unlackierter Roboschreiter", "Wei\195\159 Roboschreiter Mod. A" },
-	-- [7] Brown Horse Icon  
+	-- [7] Brown Horse Icon
 	{ "Schwarzes Schlachtrosszaumzeug", "Braunes Pferd", "Kastanienbraune Stute", "Palominozaumzeug", "Schecke", "Schneller Brauner", "Schnelles Palomino", "Schnelles wei\195\159es Ross", "Schimmelzaumzeug" },
 	-- [8] Brown Kodo Icon
 	{ "Schwarzer Kriegskodo", "Brauner Kodo", "Gro\195\159er brauner Kodo" },
@@ -265,13 +265,13 @@ CRYOLYSIS_MOUNT_TABLE = {
 	{ "Grauer Kodo", "Gro\195\159er grauer Kodo", "Gro\195\159er wei\195\159er Kodo" },
 	-- [11] Green Kodo Icon
 	{ "Gr\195\188ner Kodo", "Graublauer Kodo" },
-	-- [12] White Wolf Icon    
+	-- [12] White Wolf Icon
 	{ "Horn des arktischen Wolfs", "Horn des Terrorwolfs", "Horn des schnellen Grauwolfs", "Horn des schnellen Waldwolfs" },
-	-- [13] Black Wolf Icon    
+	-- [13] Black Wolf Icon
 	{ "Horn des schwarzen Kriegswolfs", "Horn des braunen Wolfs", "Horn des roten Wolfs", "Horn des schnellen braunen Wolfs", "Horn des Waldwolfs" },
-	-- [14] Black Tiger Icon   
+	-- [14] Black Tiger Icon
 	{ "RZ\195\188gel des schwarzen Kriegstigers", "Z\195\188gel des gestreiften Nachts\195\164blers" },
-	-- [15] White Tiger Icon   
+	-- [15] White Tiger Icon
 	{ "Z\195\188gel des Frosts\195\164blers", "Z\195\188gel des Nachts\195\164blers", "Z\195\188gel des gefleckten Frosts\195\164blers", "Z\195\188gel des gestreiften Frosts\195\164blers", "Z\195\188gel des schnellen Frosts\195\164blers", "Z\195\188gel des schnellen Schattens\195\164blers", "Z\195\188gel des schnellen Sturms\195\164blers" },
 	-- [16] Red Tiger Icon
 	{ "Reins of the Winterspring Frostsaber" },
@@ -283,7 +283,7 @@ CRYOLYSIS_MOUNT_TABLE = {
 CRYOLYSIS_MOUNT_PREFIX = {
 	"Horn des ",
 	"Pfeife des ",
-	"Z\195\188gel des ",	
+	"Z\195\188gel des ",
 }
 
 CRYOLYSIS_AQMOUNT_TABLE = {
@@ -296,12 +296,6 @@ CRYOLYSIS_TRANSLATION = {
 	["Cooldown"] = "Abklingzeit",
 	["Hearth"] = "Ruhestein",
 	["Rank"] = "Rang",
-	["Invisible"] = "Unsichtbarkeit entdecken",
-	["LesserInvisible"] = "Geringe Unsichtbarkeit entdecken",
-	["GreaterInvisible"] = "Gro\195\159e Unsichtbarkeit entdecken",
-	["SoulLinkGain"] = "Du bekommst Seelenverbindung.",
-	["SacrificeGain"] = "Du bekommst Opferung.",
-	["SummoningRitual"] = "Ritual der Beschw\195\182rung"
 };
 end
 
