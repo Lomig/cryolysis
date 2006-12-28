@@ -1,4 +1,4 @@
-﻿--[[
+--[[
     Cryolysis
     Copyright (C) 2006 Cryolysis: Reborn Team
 
@@ -45,105 +45,105 @@ function Cryolysis_SpellTableBuild()
 	CRYOLYSIS_SPELL_TABLE = {
 	[1] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Amplify Magic",			Length = 600,	Type = 0},
-	[2] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[2] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Arcane Brilliance",		Length = 3600,	Type = 0},
-	[3] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[3] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Arcane Explosion",		Length = 0,		Type = 0},
-	[4] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[4] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Arcane Intellect",		Length = 1800,	Type = 0},
-	[5] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[5] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Arcane Missiles",		Length = 0,		Type = 0},
-	[6] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[6] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Blast Wave",			Length = 45,	Type = 3},
-	[7] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[7] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Blink",					Length = 15,	Type = 3},
-	[8] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[8] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Blizzard",				Length = 0,		Type = 0},
-	[9] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[9] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Cone of Cold",			Length = 10,	Type = 3},
-	[10] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[10] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Conjure Food",			Length = 0,		Type = 0},
-	[11] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[11] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Conjure Water",			Length = 0,		Type = 0},
-	[12] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[12] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Counterspell",			Length = 30,	Type = 3},
-	[13] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[13] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Dampen Magic",			Length = 600,	Type = 0},
-	[14] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[14] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Fire Blast",			Length = 8,		Type = 3},
-	[15] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[15] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Fire Ward",				Length = 30,	Type = 3},
-	[16] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[16] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Fireball",				Length = 8,		Type = 5},
-	[17] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[17] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Flamestrike",			Length = 8,		Type = 3},
-	[18] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[18] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Frost Armor",			Length = 300,	Type = 0},
-	[19] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[19] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Frost Nova",			Length = 25,	Type = 3},
-	[20] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[20] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Frost Ward",			Length = 30,	Type = 3},
-	[21] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[21] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Frostbolt",				Length = 9,		Type = 5},
-	[22] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[22] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Ice Armor",				Length = 300,	Type = 0},
-	[23] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[23] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Ice Barrier",			Length = 30,	Type = 3},
-	[24] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[24] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Mage Armor",			Length = 300,	Type = 0},
-	[25] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[25] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Mana Shield",			Length = 60,	Type = 0},
-	[26] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[26] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Polymorph",				Length = 50,	Type = 2},
-	[27] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[27] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Darnassus",		Length = 0,		Type = 0},
-	[28] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[28] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Ironforge",		Length = 0,		Type = 0},
-	[29] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[29] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Stormwind",		Length = 0,		Type = 0},
-	[30] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[30] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Thunder Bluff",	Length = 0,		Type = 0},
-	[31] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[31] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Undercity",		Length = 0,		Type = 0},
 	[32] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Pyroblast",				Length = 12,	Type = 5},
-	[33] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[33] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Remove Lesser Curse",	Length = 0,		Type = 0},
-	[34] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[34] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Scorch",			Length = 0,			Type = 0},
-	[35] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[35] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Slow Fall",				Length = 30,	Type = 0},
-	[36] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[36] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleport: Darnassus",	Length = 0,		Type = 0},
-	[37] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[37] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleport: Ironforge",	Length = 0,		Type = 0},
-	[38] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[38] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleport: Orgrimmar",	Length = 0,		Type = 0},
-	[39] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[39] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleport: Thunder Bluff",	Length = 0,	Type = 0},
-	[40] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[40] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleport: Undercity",	Length = 0,		Type = 0},
-	[41] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[41] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Ice Block",			Length = 300,		Type = 3},
-	[42] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[42] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Cold Snap",			Length = 600,		Type = 3},
-	[43] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[43] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Combustion",			Length = 180,	Type = 3},
-	[44] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[44] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Presence of Mind",		Length = 180,	Type = 3},
-	[45] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[45] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Arcane Power",			Length = 180,	Type = 3},
-	[46] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[46] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleport: Darnassus",		Length = 0,	Type = 0},
-	[47] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[47] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Orgrimmar",		Length = 0,		Type = 0},
-	[48] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[48] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Polymorph: Pig",		Length = 50,	Type = 2},
-	[49] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[49] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Evocation",			Length = 480,		Type = 3},
-	[50] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[50] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Detect Magic",			Length = 120,	Type = 5},
-	[51] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[51] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleport: Stormwind",		Length = 0,	Type = 0},
 	[52] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Polymorph: Turtle",		Length = 50,	Type = 2},
@@ -206,7 +206,7 @@ CRYOLYSIS_FOOD_RANK = {
 	" Rye",
 	" Pumpernickel",
 	" Sourdough",
-	" Sweet Roll", 
+	" Sweet Roll",
 	" Cinnamon Roll",
 };
 
@@ -240,7 +240,7 @@ CRYOLYSIS_MANASTONE_NAMES = {
 	[3] = "Conjure Mana Citrine",
 	[4] = "Conjure Mana Ruby"
 };
-	
+
 CRYOLYSIS_CREATE = {
 	[1] = "Evocation",
 	[2] = "Conjure Mana",
@@ -250,10 +250,10 @@ CRYOLYSIS_CREATE = {
 
 CRYOLYSIS_MOUNT_TABLE = {
 	-- [1] Frostwolf Howler Icon
-	{ "Horn of the Frostwolf Howler" }, 
+	{ "Horn of the Frostwolf Howler" },
 	-- [2] Ram Icon
 	{ "Stormpike Battle Charger", "Black Ram", "Black War Ram", "Brown Ram", "Frost Ram", "Gray Ram", "Swift Brown Ram", "Swift Gray Ram", "Swift White Ram", "White Ram", },
-	-- [3] Raptor Icon            
+	-- [3] Raptor Icon
 	{ "Swift Razzashi Raptor", "Swift Blue Raptor", "Swift Olive Raptor", "Swift Orange Raptor", "Whistle of the Black War Raptor", "Whistle of the Emerald Raptor", "Whistle of the Ivory Raptor", "Whistle of the Mottled Red Raptor", "Whistle of the Turquoise Raptor", "Whistle of the Violet Raptor" },
 	-- [4] Yellow Tiger Icon
 	{ "Swift Zulian Tiger" },
@@ -269,15 +269,15 @@ CRYOLYSIS_MOUNT_TABLE = {
 	{ "Black War Steed" },
 	-- [10] Gray Kodo Icon
 	{ "Gray Kodo", "Great Gray Kodo", "Great White Kodo" },
-	-- [11] Green Kodo Icon 
+	-- [11] Green Kodo Icon
 	{ "Green Kodo", "Teal Kodo" },
-	-- [12] White Wolf Icon    
+	-- [12] White Wolf Icon
 	{ "Horn of the Arctic Wolf", "Horn of the Dire Wolf", "Horn of the Swift Gray Wolf", "Horn of the Swift Timber Wolf" },
-	-- [13] Black Wolf Icon    
+	-- [13] Black Wolf Icon
 	{ "Horn of the Black War Wolf", "Horn of the Brown Wolf", "Horn of the Red Wolf", "Horn of the Swift Brown Wolf", "Horn of the Timber Wolf" },
-	-- [14] Black Tiger Icon   
+	-- [14] Black Tiger Icon
 	{ "Reins of the Black War Tiger", "Reins of the Striped Nightsaber" },
-	-- [15] White Tiger Icon   
+	-- [15] White Tiger Icon
 	{ "Reins of the Frostsaber", "Reins of the Nightsaber", "Reins of the Spotted Frostsaber", "Reins of the Striped Frostsaber", "Reins of the Swift Frostsaber", "Reins of the Swift Mistsaber", "Reins of the Swift Stormsaber" },
 	-- [16] Red Tiger Icon
 	{ "Reins of the Winterspring Frostsaber" },
@@ -287,7 +287,7 @@ CRYOLYSIS_MOUNT_TABLE = {
 CRYOLYSIS_MOUNT_PREFIX = {
 	"Horn of the ",
 	"Whistle of the ",
-	"Reins of the ",	
+	"Reins of the ",
 }
 CRYOLYSIS_AQMOUNT_TABLE = {
 	"Blue Qiraji Resonating Crystal",
@@ -307,11 +307,5 @@ CRYOLYSIS_TRANSLATION = {
 	["Cooldown"] = "Cooldown",
 	["Hearth"] = "Hearthstone",
 	["Rank"] = "Rank",
-	["Invisible"] = "Detect Invisibility",
-	["LesserInvisible"] = "Detect Lesser Invisibility",
-	["GreaterInvisible"] = "Detect Greater Invisibility",
-	["SoulLinkGain"] = "You gain Soul Link.",
-	["SacrificeGain"] = "You gain Sacrifice.",
-	["SummoningRitual"] = "Ritual of Summoning"
 };
 end

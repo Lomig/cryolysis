@@ -241,8 +241,8 @@ local PortalName = {
 };
 if CryolysisConfig.CryolysisLanguage == "frFR" then
 	PortalName = {
-		"Orgrimmar", "Fossoyeuse", "les Pitons du Tonnerre", "Forgefer", "Hurlevent", "Darnassus",  -- 1-6, Teleports
-		"Orgrimmar", "Fossoyeuse", "les Pitons du Tonnerre", "Forgefer", "Hurlevent", "Darnassus"   -- 7-12, Portals
+		"Orgrimmar", "Fossoyeuse", "Les Pitons du Tonnerre", "Forgefer", "Hurlevent", "Darnassus",  -- 1-6, Teleports
+		"Orgrimmar", "Fossoyeuse", "Les Pitons du Tonnerre", "Forgefer", "Hurlevent", "Darnassus"   -- 7-12, Portals
 	};
 elseif CryolysisConfig.CryolysisLanguage == "deDE" then
 	PortalName = {
@@ -251,13 +251,13 @@ elseif CryolysisConfig.CryolysisLanguage == "deDE" then
 	};
 elseif CryolysisConfig.CryolysisLanguage == "zhTW" then
 	PortalName = {
-	"奧格瑪", "幽暗城", "雷霆崖", "�?��?堡", "暴風城", "�?��?蘇斯",  -- 1-6, Teleports
-	"奧格瑪", "幽暗城", "雷霆崖", "�?��?堡", "暴風城", "�?��?蘇斯"   -- 7-12, Portals
+	"奧格瑪", "幽暗城", "雷霆崖", "��堡", "暴風城", "��蘇斯",  -- 1-6, Teleports
+	"奧格瑪", "幽暗城", "雷霆崖", "��堡", "暴風城", "��蘇斯"   -- 7-12, Portals
 }
 elseif CryolysisConfig.CryolysisLanguage == "zhCN" then
 	PortalName = {
-	"奥格瑞玛", "幽暗城", "雷霆崖", "�?炉堡", "暴风城", "达纳�?斯",  -- 1-6, Teleports
-	"奥格瑞玛", "幽暗城", "雷霆崖", "�?炉堡", "暴风城", "达纳�?斯"   -- 7-12, Portals
+	"奥格瑞玛", "幽暗城", "雷霆崖", "�炉堡", "暴风城", "达纳�斯",  -- 1-6, Teleports
+	"奥格瑞玛", "幽暗城", "雷霆崖", "�炉堡", "暴风城", "达纳�斯"   -- 7-12, Portals
 	}
 end
 -- List Buttons available for the mage in each menu
@@ -317,7 +317,6 @@ local PlayerCombat = false;
 
 -- Variables used for arcane concentration
 local Concentration = false;
---local AntiFearInUse = false;				-- Disabled... Haven't found a use yet
 local ConcentrationID = -1;
 
 -- Variables used for provision management
@@ -1008,7 +1007,7 @@ function Cryolysis_PolyCheck(type,spell,creatureName)
 			then
 				SpellCastRank = CRYOLYSIS_SPELL_TABLE[26].Rank
 			-- Added by Lomig
-			else
+			elseif not SpellCastRank then
 				SpellCastRank = 1
 			-- End of adding (error 1147: attempt to perform arithmatic on a nil value)
 			end
@@ -1325,9 +1324,9 @@ function Cryolysis_Restock()
 end
 if CryolysisConfig.CryolysisLanguage == "zhTW" then
 	StaticPopupDialogs["RESTOCK_CONFIRMATION"] = {
-	    text = "購買施法�??料？",
+	    text = "購買施法�?料？",
 	    button1 = "確定",
-	    button2 = "�?�消",
+	    button2 = "�消",
 	    OnAccept = function()
 		Cryolysis_Restock();
 	    end,
@@ -1337,9 +1336,9 @@ if CryolysisConfig.CryolysisLanguage == "zhTW" then
 	};
 elseif CryolysisConfig.CryolysisLanguage == "zhCN" then
 	StaticPopupDialogs["RESTOCK_CONFIRMATION"] = {
-	    text = "购买施法�??料?",
+	    text = "购买施法�?料?",
 	    button1 = "是",
-	    button2 = "�?�",
+	    button2 = "�",
 	    OnAccept = function()
 		Cryolysis_Restock();
 	    end,
@@ -2336,7 +2335,7 @@ function Cryolysis_MountCheck(itemName, container, slot)
 			   	end
 
 			   	Mount.Location = {container, slot}
-				Cryolysis_UpdateMountButton(Mount.Title, "Normal")
+				Cryolysis_UpdateMountButton(Mount.Name, "Normal")
 			   	break;
 			end
 		end
@@ -2352,7 +2351,7 @@ function Cryolysis_AQMountCheck(itemName, container, slot)
 			Cryolysis_Msg("AQ Mount Located: "..Mount.Title,"USER");
 			Mount.Icon = "A"..i;
 		   	Mount.Location = {container, slot}
-			Cryolysis_UpdateMountButton(Mount.Title, "AQ");
+			Cryolysis_UpdateMountButton(Mount.Name, "AQ");
 		   	Mount.AQMount = true;
 		   	return true;
 		end
