@@ -44,140 +44,140 @@ if ( GetLocale() == "koKR" ) then
 function Cryolysis_SpellTableBuild()
 	CRYOLYSIS_SPELL_TABLE = {
 	[1] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = " ï¿½ï¿½",			Length = 600,	Type = 0},
+		Name = "¸¶¹ý ÁõÆø",			Length = 600,	Type = 0},
 	[2] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Åºï¿½ï¿½ï¿½ï¿½ï¿½,		Length = 3600,	Type = 0},
+		Name = "½ÅºñÇÑ ÃÑ¸íÇÔ",			Length = 3600,	Type = 0},
 	[3] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Åºï¿½ï¿½ï¿½ï¿½",		Length = 0,		Type = 0},
+		Name = "½ÅºñÇÑ ÆøÆÈ",			Length = 0,	Type = 0},
 	[4] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Åºï¿½ï¿½ï¿½ï¿½,		Length = 1800,	Type = 0},
+		Name = "½ÅºñÇÑ Áö´É",			Length = 1800,	Type = 0},
 	[5] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Åºï¿½ï¿½È­ï¿½,		Length = 0,		Type = 0},
+		Name = "½ÅºñÇÑ È­»ì",			Length = 0,	Type = 0},
 	[6] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È­ ï¿½Ç³",			Length = 45,	Type = 3},
+		Name = "È­¿° ÆøÇ³",			Length = 45,	Type = 3},
 	[7] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "aï¿½,					Length = 15,	Type = 3},
+		Name = "Á¡¸ê",				Length = 15,	Type = 3},
 	[8] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½,				Length = 0,		Type = 0},
+		Name = "´«º¸¶ó",				Length = 0,	Type = 0},
 	[9] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Ã±ï¿½Ç³",			Length = 10,	Type = 3},
+		Name = "³Ã±â µ¹Ç³",			Length = 10,	Type = 3},
 	[10] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "=ï¿½Ã¢v",			Length = 0,		Type = 0},
+		Name = "À½½Ä Ã¢Á¶",			Length = 0,	Type = 0},
 	[11] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "=ï¿½Ã¢v",			Length = 0,		Type = 0},
+		Name = "À½·á Ã¢Á¶",			Length = 0,	Type = 0},
 	[12] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = " ï¿½ï¿½,			Length = 30,	Type = 3},
+		Name = "¸¶¹ý Â÷´Ü",			Length = 30,	Type = 3},
 	[13] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = " ï¿½,			Length = 600,	Type = 0},
+		Name = "¸¶¹ý °¨¼è",			Length = 600,	Type = 0},
 	[14] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È­ ï¿½",			Length = 8,		Type = 3},
+		Name = "È­¿° ÀÛ¿­",			Length = 8,	Type = 3},
 	[15] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È­ï¿½ï¿½",				Length = 30,	Type = 3},
+		Name = "È­¿°°è ¼öÈ£",			Length = 30,	Type = 3},
 	[16] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È­",				Length = 8,		Type = 5},
+		Name = "È­¿°±¸",				Length = 8,	Type = 5},
 	[17] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Ò±ï¿½",			Length = 8,		Type = 3},
+		Name = "ºÒ±âµÕ",				Length = 8,	Type = 3},
 	[18] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Ã±ï¿½ï¿½,			Length = 300,	Type = 0},
+		Name = "³Ã±â °©¿Ê",			Length = 300,	Type = 0},
 	[19] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ È¸8",			Length = 25,	Type = 3},
+		Name = "¾óÀ½ È¸¿À¸®",			Length = 25,	Type = 3},
 	[20] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Ã±ï¿½ ï¿½",			Length = 30,	Type = 3},
+		Name = "³Ã±â°è ¼öÈ£",			Length = 30,	Type = 3},
 	[21] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ È­ï¿½,				Length = 9,		Type = 5},
+		Name = "¾óÀ½ È­»ì",			Length = 9,	Type = 5},
 	[22] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ ï¿½,				Length = 300,	Type = 0},
+		Name = "¾óÀ½ °©¿Ê",			Length = 300,	Type = 0},
 	[23] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ ï¿½ï¿½,			Length = 30,	Type = 3},
+		Name = "¾óÀ½ ¹æÆÐ",			Length = 30,	Type = 3},
 	[24] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ï¿½,			Length = 300,	Type = 0},
+		Name = "¸¶¹ý»ç °©¿Ê",			Length = 300,	Type = 0},
 	[25] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = " È£",			Length = 60,	Type = 0},
+		Name = "¸¶³ª º¸È£¸·",			Length = 60,	Type = 0},
 	[26] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½",				Length = 50,	Type = 2},
+		Name = "º¯ÀÌ",				Length = 50,	Type = 2},
 	[27] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ï¿½ï¿½ : Ù¸",		Length = 0,		Type = 0},
+		Name = "Â÷¿øÀÌµ¿ÀÇ ¹®: ´Ù¸£³ª¼­½º",		Length = 0,	Type = 0},
 	[28] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ï¿½ï¿½ : ï¿½Ì¾ï¿½ï¿½ï¿½,		Length = 0,		Type = 0},
+		Name = "Â÷¿øÀÌµ¿ÀÇ ¹®: ¾ÆÀÌ¾ðÆ÷Áö",		Length = 0,	Type = 0},
 	[29] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ï¿½ï¿½ : ï¿½)ï¿½,		Length = 0,		Type = 0},
+		Name = "Â÷¿øÀÌµ¿ÀÇ ¹®: ½ºÅèÀ©µå",		Length = 0,	Type = 0},
 	[30] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ï¿½ï¿½ : ï¿½í·¯ï¿½",	Length = 0,		Type = 0},
+		Name = "Â÷¿øÀÌµ¿ÀÇ ¹®: ½ã´õºí·¯ÇÁ",	Length = 0,		Type = 0},
 	[31] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ï¿½ï¿½ : ï¿½ï¿½",		Length = 0,		Type = 0},
+		Name = "Â÷¿øÀÌµ¿ÀÇ ¹®: ¾ð´õ½ÃÆ¼",		Length = 0,	Type = 0},
 	[32] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Òµï¿½ ï¿½",				Length = 12,	Type = 5},
+		Name = "ºÒµ¢ÀÌ ÀÛ¿­",			Length = 12,	Type = 5},
 	[33] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ï¿½ï¿½ï¿½ ï¿½f",	Length = 0,		Type = 0},
+		Name = "ÇÏ±Þ ÀúÁÖ ÇØÁ¦",			Length = 0,	Type = 0},
 	[34] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½Â¿ï¿½",			Length = 0,			Type = 0},
+		Name = "ºÒÅÂ¿ì±â",			Length = 0,	Type = 0},
 	[35] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ï¿½ï¿½",				Length = 30,	Type = 0},
+		Name = "Àú¼Ó ³«ÇÏ",			Length = 30,	Type = 0},
 	[36] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½: Ù¸",	Length = 0,		Type = 0},
+		Name = "¼ø°£ÀÌµ¿: ´Ù¸£³ª¼­½º",		Length = 0,	Type = 0},
 	[37] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½: ï¿½Ì¾ï¿½ï¿½ï¿½,	Length = 0,		Type = 0},
+		Name = "¼ø°£ÀÌµ¿: ¾ÆÀÌ¾ðÆ÷Áö",		Length = 0,	Type = 0},
 	[38] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½: 1×¸",	Length = 0,		Type = 0},
+		Name = "¼ø°£ÀÌµ¿: ¿À±×¸®¸¶",		Length = 0,	Type = 0},
 	[39] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½: ï¿½í·¯ï¿½",	Length = 0,	Type = 0},
+		Name = "¼ø°£ÀÌµ¿: ½ã´õºí·¯ÇÁ",		Length = 0,	Type = 0},
 	[40] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½: ï¿½ï¿½",	Length = 0,		Type = 0},
+		Name = "¼ø°£ÀÌµ¿: ¾ð´õ½ÃÆ¼",		Length = 0,	Type = 0},
 	[41] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ ï¿½ï¿½,			Length = 300,		Type = 3},
+		Name = "¾óÀ½ ¹æÆÐ",			Length = 300,	Type = 3},
 	[42] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Å¼ï¿½ï¿½ï¿½",			Length = 600,		Type = 3},
+		Name = "¸Å¼­¿î ÇÑÆÄ",			Length = 600,	Type = 3},
 	[43] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½",			Length = 180,	Type = 3},
+		Name = "¹ßÈ­",				Length = 180,	Type = 3},
 	[44] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½",		Length = 180,	Type = 3},
+		Name = "³ÃÁ¤",				Length = 180,	Type = 3},
 	[45] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "Åºï¿½ï¿½ È­",			Length = 180,	Type = 3},
+		Name = "½ÅºñÇÑ ¸¶¹ý °­È­",		Length = 180,	Type = 3},
 	[46] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½: Ù¸",		Length = 0,	Type = 0},
+		Name = "¼ø°£ÀÌµ¿: ´Ù¸£³ª¼­½º",		Length = 0,	Type = 0},
 	[47] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ï¿½ï¿½ : 1×¸",		Length = 0,		Type = 0},
+		Name = "Â÷¿øÀÌµ¿ÀÇ ¹®: ¿À±×¸®¸¶",		Length = 0,	Type = 0},
 	[48] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½: ï¿½ï¿½,		Length = 50,	Type = 2},
+		Name = "º¯ÀÌ: µÅÁö",			Length = 50,	Type = 2},
 	[49] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È¯ï¿½,			Length = 480,		Type = 3},
+		Name = "È¯±â",				Length = 480,	Type = 3},
 	[50] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = " ï¿½",			Length = 120,	Type = 5},
+		Name = "¸¶¹ý °¨Áö",			Length = 120,	Type = 5},
 	[51] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½: ï¿½)ï¿½,		Length = 0,	Type = 0},
+		Name = "¼ø°£ÀÌµ¿: ½ºÅèÀ©µå",		Length = 0,	Type = 0},
 	[52] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½: Åºï¿½ï¿½,		Length = 50,	Type = 2},
+		Name = "º¯ÀÌ: °ÅºÏÀÌ",			Length = 50,	Type = 2},
 	[53] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½,				Length = 5,		Type = 6},
+		Name = "µ¿»ó",				Length = 5,	Type = 6},
 	[54] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È¤ï¿½ï¿½ ï¿½'",		Length = 15,	Type = 6},
+		Name = "È¤ÇÑÀÇ ÃßÀ§",			Length = 15,	Type = 6},
 	[55] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È¤ï¿½ï¿½ ï¿½' (2)",	Length = 15,	Type = 6},
+		Name = "È¤ÇÑÀÇ ÃßÀ§ (2)",			Length = 15,	Type = 6},
 	[56] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È¤ï¿½ï¿½ ï¿½' (3)",	Length = 15,	Type = 6},
+		Name = "È¤ÇÑÀÇ ÃßÀ§ (3)",			Length = 15,	Type = 6},
 	[57] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È¤ï¿½ï¿½ ï¿½' (4)",	Length = 15,	Type = 6},
+		Name = "È¤ÇÑÀÇ ÃßÀ§ (4)",			Length = 15,	Type = 6},
 	[58] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È¤ï¿½ï¿½ ï¿½' (5)",	Length = 15,	Type = 6},
+		Name = "È¤ÇÑÀÇ ÃßÀ§ (5)",			Length = 15,	Type = 6},
 	[59] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È­ ï¿½ï¿½ï¿½ï¿½",	Length = 30,	Type = 6},
-    [60] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È­ ï¿½ï¿½ï¿½ï¿½ (2)",Length = 30,	Type = 6},
+		Name = "È­¿° ÀúÇ×·Â ¾àÈ­",		Length = 30,	Type = 6},
+	[60] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
+		Name = "È­¿° ÀúÇ×·Â ¾àÈ­ (2)",		Length = 30,	Type = 6},
 	[61] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È­ ï¿½ï¿½ï¿½ï¿½ (3)",Length = 30,	Type = 6},
+		Name = "È­¿° ÀúÇ×·Â ¾àÈ­ (3)",		Length = 30,	Type = 6},
 	[62] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È­ ï¿½ï¿½ï¿½ï¿½ (4)",Length = 30,	Type = 6},
+		Name = "È­¿° ÀúÇ×·Â ¾àÈ­ (4)",		Length = 30,	Type = 6},
 	[63] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "È­ ï¿½ï¿½ï¿½ï¿½ (5)",Length = 30,	Type = 6},
+		Name = "È­¿° ÀúÇ×·Â ¾àÈ­ (5)",		Length = 30,	Type = 6},
 	[64] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "",				Length = 120,	Type = 3},
+		Name = "¸¶³ª¼®",				Length = 120,	Type = 3},
 	[65] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ï¿½",				Length = 5,		Type = 6},
+		Name = "¾ó¾îºÙÀ½",			Length = 5,	Type = 6},
 	[66] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "ï¿½ È¸8",			Length = 8,		Type = 6},
+		Name = "¾óÀ½ È¸¿À¸®",			Length = 8,	Type = 6},
 	[67] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Poly Diminished",		Length = 15,	Type = 6},
-	};
+	}
 end
 Cryolysis_SpellTableBuild();
 -- Type 0 = No Timer
@@ -188,124 +188,124 @@ Cryolysis_SpellTableBuild();
 -- Type 5 = Combat Timer
 -- Type 6 = Non-cast debuff.  Not to be removed by normal means
 CRYOLYSIS_ITEM = {
-	["LightFeather"] = "ï¿½ï¿½ï¿½,
-	["ArcanePowder"] = "Ò°ï¿½ï¿½ï¿½ï¿½,
-	["RuneOfTeleportation"] = "ï¿½ï¿½ ï¿½,
-	["RuneOfPortals"] = "ï¿½ï¿½ï¿½ ï¿½,
-	["Manastone"] = "",
-	["Hearthstone"] = "í¼®",
-	["Provision"] = "Ã¢vï¿½,
-	["Evocation"] = "È¯ï¿½,
-	["Drink"] = "=ï¿½,
-	["Food"] = "=ï¿½,
+	["LightFeather"] = "°¡º­¿î ±êÅÐ",
+	["ArcanePowder"] = "ºÒ°¡»çÀÇÇÑ °¡·ç",
+	["RuneOfTeleportation"] = "¼ø°£ÀÌµ¿ÀÇ ·é",
+	["RuneOfPortals"] = "Â÷¿øÀÌµ¿ÀÇ ·é",
+	["Manastone"] = "¸¶³ª",
+	["Hearthstone"] = "»ý¸í¼®",
+	["Provision"] = "Ã¢Á¶µÈ",
+	["Evocation"] = "È¯±â",
+	["Drink"] = "À½·á",
+	["Food"] = "À½½Ä",
 };
 
 CRYOLYSIS_FOOD_RANK = {
-	" ï¿½ï¿½,
-	" Ä»",
-	" ï¿½",
-	" È£Ð»",
-	" È¿ï¿½,
-	" Ñ»",
-	" ï¿½ï¿½Ñ»",
+	" ¸ÓÇÉ",
+	" ½Ä»§",
+	" Èæ»§",
+	" È£¹Ð»§",
+	" È¿¸ð»§",
+	" ·Ñ»§",
+	" °èÇÇ ·Ñ»§",
 };
 
 CRYOLYSIS_DRINK_RANK = {
-	[1] = " ",
-	[2] = " ï¿½ï¿½ï¿½,
-	[3] = " dfï¿½,
-	[4] = " ï¿½ï¿½,
-	[5] = " Ãµï¿½,
-	[6] = " Åºï¿½",
-	[7] = " ï¿½ï¿½,
+	[1] = " »ù¹°",
+	[2] = " ÁöÇÏ¼ö",
+	[3] = " Á¤Á¦¼ö",
+	[4] = " ¿ëÃµ¼ö",
+	[5] = " ±¤Ãµ¼ö",
+	[6] = " Åº»ê¼ö",
+	[7] = " °áÁ¤¼ö",
 };
 
 CRYOLYSIS_STONE_RANK = {
-	[1] = " ï¿½,		-- Rank Minor
-	[2] = " ï¿½ï¿½,		-- Rank Lesser
-	[3] = " È²ï¿½",	-- Rank Greater
-	[4] = " ï¿½"		-- Rank Major
+	[1] = " ¸¶³ë",		-- Rank Minor
+	[2] = " ºñÃë",		-- Rank Lesser
+	[3] = " È²¼öÁ¤",	-- Rank Greater
+	[4] = " ·çºñ"		-- Rank Major
 };
 
 CRYOLYSIS_STONE_RANK2 = {
-        [1] = " ï¿½,        -- Rank Minor
-        [2] = " ï¿½ï¿½,        -- Rank Lesser
-        [3] = " È²ï¿½",    -- Rank Greater
-        [4] = " ï¿½"        -- Rank Major
+        [1] = "¸¶³ª ¸¶³ë",        -- Rank Minor
+        [2] = "¸¶³ª ºñÃë",        -- Rank Lesser
+        [3] = "¸¶³ª È²¼öÁ¤",    -- Rank Greater
+        [4] = "¸¶³ª ·çºñ"        -- Rank Major
 };
 
 CRYOLYSIS_MANASTONE_NAMES = {
-	[1] = " ï¿½Ã¢v",
-	[2] = " ï¿½ï¿½Ã¢v",
-	[3] = " È²ï¿½ Ã¢v",
-	[4] = " ï¿½ Ã¢v"
+	[1] = "¸¶³ª ¸¶³ë Ã¢Á¶",
+	[2] = "¸¶³ª ºñÃë Ã¢Á¶",
+	[3] = "¸¶³ª È²¼öÁ¤ Ã¢Á¶",
+	[4] = "¸¶³ª ·çºñ Ã¢Á¶"
 };
 
 CRYOLYSIS_CREATE = {
-	[1] = "È¯ï¿½,
-	[2] = "",
-	[3] = "=ï¿½Ã¢v",
-	[4] = "=ï¿½Ã¢v"
+	[1] = "È¯±â",
+	[2] = "¸¶³ª",
+	[3] = "À½·á Ã¢Á¶",
+	[4] = "À½½Ä Ã¢Á¶"
 };
 
 CRYOLYSIS_MOUNT_TABLE = {
-	-- [1] ï¿½ï¿½ tï¿½ï¿½ï¿½ï¿½
-	{ "ï¿½ï¿½ tï¿½" },
-	-- [2] ï¿½ ï¿½ï¿½ï¿½
-	{ "ï¿½ï¿½ï¿½Å© ï¿½ï¿½ï¿½", "ï¿½ ï¿½", "ï¿½ ï¿½ï¿½ï¿½", "ï¿½ï¿½", " ï¿½", "È¸ï¿½ï¿½", "ï¿½ï¿½ï¿½", "ï¿½È¸ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½", },
-	-- [3] ï¿½ ï¿½ï¿½ï¿½
-	{ "ï¿½ï¿½ï¿½ ï¿½", "ï¿½Çª ï¿½", "ï¿½ï¿½ ï¿½", "ï¿½ï¿½È²ï¿½ï¿½", "ï¿½ ï¿½ï¿½ï¿½ È£ï¿½ï¿½, "ï¿½ ï¿½ È£ï¿½ï¿½, "ï¿½ï¿½ï¿½ È£ï¿½ï¿½, "ï¿½ aï¿½ï¿½ï¿½ È£ï¿½ï¿½, "Ã»Ï»ï¿½ï¿½ È£ï¿½ï¿½, "ï¿½ ï¿½ È£ï¿½ï¿½ },
-	-- [4] ï¿½ È£ï¿½ ï¿½ï¿½ï¿½
-	{ "ï¿½ï¿½ï¿½È£ï¿½" },
-	-- [5] ðµ¥µï¿½ ï¿½ï¿½ï¿½
-	{ "ï¿½=ï¿½  ï¿½", "ï¿½ï¿½ï¿½, "ï¿½ ï¿½ñ±º¸", "ï¿½ ï¿½ï¿½", "ï¿½ ï¿½ï¿½, "ï¿½ ï¿½ï¿½ï¿½ï¿½ },
-	-- [6] ï¿½Å¸v ï¿½ï¿½ï¿½
-	{ "ï¿½ ï¿½ï¿½ï¿½Å¸v", "Çª ï¿½Å¸v", "ï¿½ï¿½ ï¿½Å¸v", "ï¿½ï¿½ï¿½ï¿½Å¸v", " ï¿½Å¸v", "ï¿½ï¿½ ï¿½Å¸v", "ï¿½ï¿½ï¿½ï¿½Å¸v", "ï¿½ï¿½ï¿½ï¿½Å¸v", "Ã¶ ï¿½Å¸v", "ï¿½ï¿½ï¿½Å¸v" },
-	-- [7] ï¿½ï¿½ï¿½ï¿½
-	{ "ï¿½ ", "ï¿½", "ï¿½ï¿½ ", "È²ï¿½ ", "ï¿½ ", "ï¿½ï¿½, "ï¿½È²ï¿½", "ï¿½é¸¶", "é¸¶ " },
-	-- [8] ï¿½ï¿½ ï¿½ï¿½ï¿½
-	{ "ï¿½ ï¿½ï¿½ï¿½", "ï¿½ï¿½", "Å´ï¿½ï¿½ï¿½ï¿½" },
-	-- [9] ï¿½ï¿½ ï¿½ï¿½ï¿½
-	{ "ï¿½ ï¿½ï¿½" },
-	-- [10] È¸ï¿½ï¿½ ï¿½ï¿½ï¿½
-	{ "È¸ï¿½ï¿½", "Å´ï¿½ï¿½È¸ï¿½ï¿½", "Å´ï¿½ï¿½ï¿½ï¿½ï¿½" },
-	-- [11] ï¿½ ï¿½ ï¿½ï¿½ï¿½
-	{ "ï¿½ ï¿½", "Ã»ï¿½ï¿½" },
-	-- [12] È¸ï¿½tï¿½ï¿½ï¿½ï¿½
-	{ "Ï±ï¿½tï¿½ï¿½Ç¸", "ï¿½ï¿½ tï¿½ï¿½Ç¸", "ï¿½È¸ï¿½tï¿½ï¿½Ç¸", "ï¿½È¸ï¿½tï¿½ï¿½Ç¸" },
-	-- [13] ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
-	{ "ï¿½ ï¿½ï¿½tï¿½ï¿½Ç¸", "ï¿½tï¿½ï¿½Ç¸", "ï¿½ tï¿½ï¿½Ç¸", "ï¿½ï¿½tï¿½ï¿½Ç¸", "È¸ï¿½tï¿½ï¿½Ç¸" },
-	-- [14] ï¿½ï¿½È£ï¿½ ï¿½ï¿½ï¿½
-	{ "ï¿½ ï¿½ï¿½È£ï¿½ ï¿½", "ï¿½ï¿½ï¿½ ï¿½" },
-	-- [15] È£ ï¿½ï¿½ï¿½
-	{ "È£ ï¿½", "ï¿½È£ ï¿½", "aï¿½ÌºÈ£ ï¿½", "ï¿½ÌºÈ£ ï¿½", "ï¿½Ü¿ï¿½È£ ï¿½", "ï¿½È°È£ï¿½ ï¿½", "ï¿½ï¿½Ç³È£ï¿½ ï¿½" },
-	-- [16] Ü¿ï¿½È£ ï¿½ï¿½ï¿½
-	{ "Ü¿ï¿½È£ ï¿½" },
+	-- [1] ÀüÅõ ¼­¸®´Á´ë ¾ÆÀÌÄÜ
+	{ "ÀüÅõ ¼­¸®´Á´ë ¸¶±¸" },
+	-- [2] »ê¾ç ¾ÆÀÌÄÜ
+	{ "½ºÅèÆÄÀÌÅ© ÀüÅõ»ê¾ç", "°ËÀº »ê¾ç", "°ËÀº ÀüÅõ»ê¾ç", "°¥»ö »ê¾ç", "¼­¸® »ê¾ç", "È¸»ö »ê¾ç", "³¯½Ú °¥»ö »ê¾ç", "³¯½Ú È¸»ö »ê¾ç", "³¯½Ú Èò»ö »ê¾ç", "Èò»ö »ê¾ç", },
+	-- [3] ·¦ÅÍ ¾ÆÀÌÄÜ
+	{ "³¯½Ú ·¡ÁîÀÚ½¬ ·¾ÅÍ", "³¯½Ú Çª¸¥ ·¾ÅÍ", "³¯½Ú ³ì»ö ·¦ÅÍ", "³¯½Ú ÁÖÈ²»ö ·¦ÅÍ", "°ËÀº ÀüÅõ·¦ÅÍ È£·ç¶ó±â", "³ì»ö ·¦ÅÍ È£·ç¶ó±â", "»ó¾Æ»ö ·¦ÅÍ È£·ç¶ó±â", "ºÓÀº Á¡¹ÚÀÌ ·¦ÅÍ È£·ç¶ó±â", "Ã»·Ï»ö ·¦ÅÍ È£·ç¶ó±â", "º¸¶ó»ö ·¦ÅÍ È£·ç¶ó±â" },
+	-- [4] ³ë¶õ È£¶ûÀÌ ¾ÆÀÌÄÜ
+	{ "³¯½Ú ÁÙ¸®¾È È£¶ûÀÌ" },
+	-- [5] ¾ðµ¥µå ¸» ¾ÆÀÌÄÜ
+	{ "Á×À½ÀÇ ±º¸¶ °í»ß", "°¥»ö ÇØ°ñ¸¶", "³ì»ö ÇØ°ñ±º¸¶", "º¸¶ó»ö ÇØ°ñ ±º¸¶", "ºÓÀº ÇØ°ñ¸¶", "ºÓÀº ÀüÅõÇØ°ñ¸¶" },
+	-- [6] ±â°èÅ¸Á¶ ¾ÆÀÌÄÜ
+	{ "°ËÀº ÀüÅõ±â°èÅ¸Á¶", "Çª¸¥ ±â°èÅ¸Á¶", "Çü±¤³ì»ö ±â°èÅ¸Á¶", "Åõ¸íÃ»»ö ±â°èÅ¸Á¶", "»¡°£ ±â°èÅ¸Á¶", "³¯½Ú ³ì»ö ±â°èÅ¸Á¶", "³¯½Ú Èò»ö ±â°èÅ¸Á¶", "³¯½Ú ³ë¶õ»ö ±â°èÅ¸Á¶", "°­Ã¶ ±â°èÅ¸Á¶", "Èò»ö ±â°èÅ¸Á¶" },
+	-- [7] °¥»ö¸¶ ¾ÆÀÌÄÜ
+	{ "Èæ¸¶ ¸¶±¸", "°¥»ö¸¶ ¸¶±¸", "ÀûÅä¸¶ ¸¶±¸", "È²Åä¸¶ ¸¶±¸", "Àû¸¶ ¸¶±¸", "³¯½Ú °¥»ö¸¶", "³¯½Ú È²Åä¸¶", "³¯½Ú ¹é¸¶", "¹é¸¶ ¸¶±¸" },
+	-- [8] °¥»ö ÄÚµµ ¾ÆÀÌÄÜ
+	{ "°ËÀº ÀüÅõÄÚµµ", "°¥»ö ÄÚµµ", "°Å´ëÇÑ °¥»ö ÄÚµµ" },
+	-- [9] ÀüÅõ±º¸¶ ¾ÆÀÌÄÜ
+	{ "°ËÀº ÀüÅõ±º¸¶" },
+	-- [10] È¸»ö ÄÚµµ ¾ÆÀÌÄÜ
+	{ "È¸»ö ÄÚµµ", "°Å´ëÇÑ È¸»ö ÄÚµµ", "°Å´ëÇÑ Èò»ö ÄÚµµ" },
+	-- [11] ³ì»ö ÄÚµµ ¾ÆÀÌÄÜ
+	{ "³ì»ö ÄÚµµ", "Ã»»ö ÄÚµµ" },
+	-- [12] È¸»ö ´Á´ë ¾ÆÀÌÄÜ
+	{ "ºÏ±Ø ´Á´ë »ÔÇÇ¸®", "±¤Æ÷ÇÑ ´Á´ë »ÔÇÇ¸®", "³¯½Ú È¸»ö ´Á´ë »ÔÇÇ¸®", "³¯½Ú È¸°¥»ö ´Á´ë »ÔÇÇ¸®" },
+	-- [13] ÀüÅõ´Á´ë ¾ÆÀÌÄÜ
+	{ "°ËÀº ÀüÅõ´Á´ë »ÔÇÇ¸®", "°¥»ö ´Á´ë »ÔÇÇ¸®", "ºÓÀº ´Á´ë »ÔÇÇ¸®", "³¯½Ú °¥»ö ´Á´ë »ÔÇÇ¸®", "È¸°¥»ö ´Á´ë »ÔÇÇ¸®" },
+	-- [14] ÀüÅõÈ£¶ûÀÌ ¾ÆÀÌÄÜ
+	{ "°ËÀº ÀüÅõÈ£¶ûÀÌ °í»ß", "ÁÙ¹«´ÌÈæÈ£ °í»ß" },
+	-- [15] ºùÈ£ ¾ÆÀÌÄÜ
+	{ "ºùÈ£ °í»ß", "ÈæÈ£ °í»ß", "Á¡¹ÚÀÌºùÈ£ °í»ß", "ÁÙ¹«´ÌºùÈ£ °í»ß", "³¯½Ú °Ü¿ïºùÈ£ °í»ß", "³¯½Ú ¾È°³È£¶ûÀÌ °í»ß", "³¯½Ú ÆøÇ³È£¶ûÀÌ °í»ß" },
+	-- [16] °Ü¿ïºùÈ£ ¾ÆÀÌÄÜ
+	{ "°Ü¿ïºùÈ£ °í»ß" },
 	-- [17] Black Qiraji Resonating Crystal
-	{ "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" },
+	{ "°ø¸íÀÇ °ËÀº Äû¶óÁö ¼öÁ¤" },
 }
 CRYOLYSIS_MOUNT_PREFIX = {
-	"ï¿½Ç¸",
-	"È£ï¿½ï¿½,
-	"ï¿½",
+	"»ÔÇÇ¸®",
+	"È£·ç¶ó±â",
+	"°í»ß",
 }
 CRYOLYSIS_AQMOUNT_TABLE = {
-	"ï¿½ï¿½Çª ï¿½ï¿½ï¿½ï¿½",
- 	"ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½",
- 	"ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½",
-	"ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½",
+	"°ø¸íÀÇ Çª¸¥ Äû¶óÁö ¼öÁ¤",
+ 	"°ø¸íÀÇ ³ì»ö Äû¶óÁö ¼öÁ¤",
+ 	"°ø¸íÀÇ ºÓÀº Äû¶óÁö ¼öÁ¤",
+	"°ø¸íÀÇ ³ë¶õ Äû¶óÁö ¼öÁ¤",
 }
 CRYOLYSIS_AQMOUNT_NAME = {
-	"ï¿½ ï¿½ï¿½ï¿½ï¿½Å© ï¿½",
-	"Çª ï¿½ï¿½ï¿½ï¿½Å© ï¿½",
- 	"ï¿½ ï¿½ï¿½ï¿½ï¿½Å© ï¿½",
- 	"ï¿½ ï¿½ï¿½ï¿½ï¿½Å© ï¿½",
-	"ï¿½ ï¿½ï¿½ï¿½ï¿½Å© ï¿½",
+	"°ËÀº Äû¶óÁö ÅÊÅ© ¼ÒÈ¯",
+	"Çª¸¥ Äû¶óÁö ÅÊÅ© ¼ÒÈ¯",
+ 	"³ì»ö Äû¶óÁö ÅÊÅ© ¼ÒÈ¯",
+ 	"ºÓÀº Äû¶óÁö ÅÊÅ© ¼ÒÈ¯",
+	"³ë¶õ Äû¶óÁö ÅÊÅ© ¼ÒÈ¯",
 }
 
 CRYOLYSIS_TRANSLATION = {
-	["Cooldown"] = "ï¿½ï¿½ ï¿½Ã°",
-	["Hearth"] = "í¼®",
-	["Rank"] = "ï¿½",
+	["Cooldown"] = "Àç»ç¿ë ´ë±â½Ã°£",
+	["Hearth"] = "»ý¸í¼®",
+	["Rank"] = "µî±Þ",
 };
 end
