@@ -1,4 +1,4 @@
-﻿--[[
+--[[
     Cryolysis
     Copyright (C) 2006 Cryolysis: Reborn Team
     This file is part of Cryolysis.
@@ -64,7 +64,7 @@ function Cryolysis_Localization_Dialog_Fr()
 		},
 		["Soulstone"] = {
 			Label = "|c00FF99FFPierre d'\195\162me|r",
-			Text = {"Crer","Utiliser","Utilis\195\169e","En attente"}			
+			Text = {"Crer","Utiliser","Utilis\195\169e","En attente"}
 		},
 		["Manastone"] = {
 			Label = "|c00FFFFFFPierre de Mana|r",
@@ -196,10 +196,6 @@ function Cryolysis_Localization_Dialog_Fr()
 		["PigBreak"] = "Interface\\AddOns\\Cryolysis\\sounds\\Pig02.mp3",
 	};
 
---	CRYOLYSIS_NIGHTFALL_TEXT = {
---		["NoBoltSpell"] = "Il semble que vous ne poss\195\169dez pas le Sort Trait de l'Ombre.",
---		["Message"] = "<white>S<lightPurple1>h<lightPurple2>a<purple>d<darkPurple1>o<darkPurple2>w T<darkPurple1>r<purple>a<lightPurple2>n<lightPurple1>c<white>e"
---	};
 	CRYOLYSIS_MESSAGE = {
 		["Error"] = {
 			["RuneOfTeleportationNotPresent"] = "Il vous faut une Rune de T\195\169l\195\169portation pour \195\167a!",
@@ -259,7 +255,7 @@ function Cryolysis_Localization_Dialog_Fr()
 		["Turquoise"] = "Turquoise",
 		["X"] = "X"
 	};
-	
+
 	CRYOLYSIS_CONFIGURATION = {
 		["Credits"] = "Brought to you by The Cryolysis: Reborn Developement Team",
 		["Menu1"] = "R\195\169glages de l'Inventaire",
@@ -280,7 +276,7 @@ function Cryolysis_Localization_Dialog_Fr()
 		["TranseWarning"] = "Avertir quand j'entre dans un Etat de Trance",
 		["SpellTime"] = "Activer les indicateurs de dur\195\169e des sorts",
 		["AntiFearWarning"] = "Avertir quand ma cible est immunis\195\169e \195\160 la peur.",
-		["GraphicalTimer"] = "Afficher des timers graphiques et non du texte",	
+		["GraphicalTimer"] = "Afficher des timers graphiques et non du texte",
 		["TranceButtonView"] = "Afficher les boutons cach\195\169s pour les d\195\169placer.",
 		["ButtonLock"] = "V\195\169rouiller les boutons autour de la sph\195\168re de Cryolysis.",
 		["MainLock"] = "V\195\169rouiller la sph\195\168re de Cryolysis.",
@@ -289,7 +285,7 @@ function Cryolysis_Localization_Dialog_Fr()
 		["ManaStoneMenu"] = "Disposer le menu des pierres de mana sur la gauche.",
 		["PortalMenu"] = "Disposer le menu des portails sur la gauche",
 		["STimerLeft"] = "Afficher les timers du c\195\180t\195\169 gauche des boutons",
-		["ShowCount"] = "Afficher le nombre d'objets dans Cryolysis",				["CountType"] = "Ev\195\169nements affich\195\169s sur la Sph\195\168re",   
+		["ShowCount"] = "Afficher le nombre d'objets dans Cryolysis",				["CountType"] = "Ev\195\169nements affich\195\169s sur la Sph\195\168re",
      		["Food"] = "Seuil Nourriture",
 		["Sound"] = "Activer les sons",
 		["ShowMessage"] = "Messages al\195\169atoires",
@@ -334,7 +330,7 @@ function Cryolysis_Localization_Dialog_Fr()
 			["ManaPercent"] = "Pourcentage de mana",								["Manastone"] = "Temps de recharge de Pierre de Mana",
 			["Rune"] = "Runes de T\195\169l\195\169portation et de Portails",
 			["Reagent"] = "Poudre des Arcanes et Plumes L\195\169g\195\168res",
-		},			
+		},
 		["Circle"] = {
 			["Text"] = "Ev\195\169nements affich\195\169s sur la shp\195\168re",
 			["None"] = "Aucun",
@@ -357,15 +353,16 @@ function Cryolysis_Localization_Dialog_Fr()
 			["Restock"] = "Refaire automatiquement le stock de composants",
 			["Confirm"] = "Confirmation avant chaque achat",
 		},
-		["SpellButton"] = {	
+		["SpellButton"] = {
 			["Armor"] = CRYOLYSIS_SPELL_TABLE[22].Name.."/"..CRYOLYSIS_SPELL_TABLE[24].Name, -- "Ice Armor / Mage Armor"
 			["ArcaneInt"] = CRYOLYSIS_SPELL_TABLE[4].Name.."/"..CRYOLYSIS_SPELL_TABLE[2].Name, --"Arcane Int / Arcane Brilliance",
 			["DampenMagic"] = CRYOLYSIS_SPELL_TABLE[13].Name.."/"..CRYOLYSIS_SPELL_TABLE[1].Name, -- "Dampen Magic / Amplify Magic",
 			["IceBarrier"] = CRYOLYSIS_SPELL_TABLE[23].Name.."/"..CRYOLYSIS_SPELL_TABLE[25].Name, -- "Ice Barrier / Mana Shield",
 			["FireWard"] = CRYOLYSIS_SPELL_TABLE[15].Name.."/"..CRYOLYSIS_SPELL_TABLE[20].Name, -- "Fire Ward / Frost Ward",
-			["DetectMagic"] = CRYOLYSIS_SPELL_TABLE[50].Name, -- "Detect Magic"					["RemoveCurse"] = CRYOLYSIS_SPELL_TABLE[33].Name, -- Remove Lesser curse
+			["DetectMagic"] = CRYOLYSIS_SPELL_TABLE[50].Name, -- "Detect Magic"
+			["RemoveCurse"] = CRYOLYSIS_SPELL_TABLE[33].Name, -- Remove Lesser curse
 			["SlowFall"] = CRYOLYSIS_SPELL_TABLE[35].Name, -- Slow Fall
-		},	
+		},
 	};
 	CRYOLYSIS_BINDING = {
 		["Current"] = " est actuellement associ\195\169 \195\160 ",
