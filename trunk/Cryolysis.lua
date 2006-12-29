@@ -1018,7 +1018,7 @@ function Cryolysis_PolyCheck(type,spell,creatureName)
 			-- End of adding (error 1147: attempt to perform arithmatic on a nil value)
 			end
 			_, _, CryolysisPrivate.PolyWarnTime = string.find(SpellCastRank, "(%d+)")
-			CryolysisPrivate.PolyWarnTime = tonumber(CryolysisPrivate.PolyWarnTime) * 10 + 10) - tonumber(CryolysisConfig.PolyWarnTime)
+			CryolysisPrivate.PolyWarnTime = (tonumber(CryolysisPrivate.PolyWarnTime) * 10 + 10) - tonumber(CryolysisConfig.PolyWarnTime)
 			_, _, CryolysisPrivate.PolyBreakTime = string.find(SpellCastRank, "(%d+)")
 			CryolysisPrivate.PolyBreakTime = tonumber(CryolysisPrivate.PolyBreakTime) * 10 + 10;
 			CryolysisPrivate.PolyWarning = true;
