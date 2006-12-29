@@ -278,7 +278,7 @@ CryolysisSpellButtons = {
 	{ ["ID"] = 13, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\DampenMagic-0" 	},
 	{ ["ID"] = 23, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\IceBarrier-0" 	},
 	{ ["ID"] = 15, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\FireWard-0" 		},
-	{ ["ID"] = 26, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\DetectMagic-0" 	},
+	{ ["ID"] = 50, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\DetectMagic-0" 	},
 	{ ["ID"] = 33, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\RemoveCurse-0" 	},
 	{ ["ID"] = 35, ["Texture"] = "Interface\\AddOns\\Cryolysis\\UI\\SlowFall-0" 		}
 }
