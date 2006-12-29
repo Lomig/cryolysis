@@ -96,15 +96,15 @@ function Cryolysis_UpdateFoodButtonAttributes()
 end
 
 function Cryolysis_UpdateLeftSpellAttributes()
-	local spellLeft = {22, 4, 13, 23, 15, 50, 66, 35};
-	local spellRight = {24, 2, 1, 25, 20, 50, 66, 35};
+	local spellLeft = {22, 4, 13, 23, 15, 50, 33, 35};
+	local spellRight = {24, 2, 1, 25, 20, 50, 33, 35};
 	local spellName1, spellName2 = nil, nil
 	if CRYOLYSIS_SPELL_TABLE[ spellLeft[Cryo.db.profile.LeftSpell] ].ID then
 		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[Cryo.db.profile.LeftSpell] ].ID, "spell");
 	elseif CRYOLYSIS_SPELL_TABLE[ spellRight[Cryo.db.profile.LeftSpell] ].ID then
 		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellRight[Cryo.db.profile.LeftSpell] ].ID, "spell");
 	end
-	if CRYOLYSIS_SPELL_TABLE[ spellRight[Cryo.db.profile.LeftSpell] ].ID then	
+	if CRYOLYSIS_SPELL_TABLE[ spellRight[Cryo.db.profile.LeftSpell] ].ID then
 		spellName2 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellRight[Cryo.db.profile.LeftSpell] ].ID, "spell");
 	elseif CRYOLYSIS_SPELL_TABLE[ spellLeft[Cryo.db.profile.LeftSpell] ].ID then
 		spellName2 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[Cryo.db.profile.LeftSpell] ].ID, "spell");
@@ -136,15 +136,15 @@ function Cryolysis_UpdateEvocationAttributes()
 end
 
 function Cryolysis_UpdateRightSpellAttributes()
-	local spellLeft = {22, 4, 13, 23, 15, 50, 66, 35};
-	local spellRight = {24, 2, 1, 25, 20, 50, 66, 35};
+	local spellLeft = {22, 4, 13, 23, 15, 50, 33, 35};
+	local spellRight = {24, 2, 1, 25, 20, 50, 33, 35};
 	local spellName1, spellName2 = nil, nil
 	if CRYOLYSIS_SPELL_TABLE[ spellLeft[Cryo.db.profile.RightSpell] ].ID then
 		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[Cryo.db.profile.RightSpell] ].ID, "spell");
 	elseif CRYOLYSIS_SPELL_TABLE[ spellRight[Cryo.db.profile.RightSpell] ].ID then
 		spellName1 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellRight[Cryo.db.profile.RightSpell] ].ID, "spell");
 	end
-	if CRYOLYSIS_SPELL_TABLE[ spellRight[Cryo.db.profile.RightSpell] ].ID then	
+	if CRYOLYSIS_SPELL_TABLE[ spellRight[Cryo.db.profile.RightSpell] ].ID then
 		spellName2 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellRight[Cryo.db.profile.RightSpell] ].ID, "spell");
 	elseif CRYOLYSIS_SPELL_TABLE[ spellLeft[Cryo.db.profile.RightSpell] ].ID then
 		spellName2 = GetSpellName(CRYOLYSIS_SPELL_TABLE[ spellLeft[Cryo.db.profile.RightSpell] ].ID, "spell");
