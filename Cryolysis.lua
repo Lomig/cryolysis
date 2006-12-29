@@ -1097,8 +1097,10 @@ function Cryo:PolyCheck(Type, spell, creatureName)
 			elseif not SpellCastRank then
 				SpellCastRank = 1
 			end
-			Cryo.db.char.PolyWarnTime = ( string.find(SpellCastRank, "(%d+)") * 10 + 10) - Cryo.db.profile.PolyWarnTime
-			Cryo.db.char.PolyBreakTime = string.find(SpellCastRank, "(%d+)") * 10 + 10
+			_, _, Cryo.db.char.PolyWarnTime = string.find(SpellCastRank, "(%d+)")
+			Cryo.db.char.PolyWarnTime = (tonumber(Cryo.db.char.PolyWarnTime) * 10 + 10) - tonumber(Cryo.db.profile.PolyWarnTime)
+			_, _, Cryo.db.char.PolyBreakTime = string.find(SpellCastRank, "(%d+)")
+			Cryo.db.char.PolyBreakTime = tonumber(Cryo.db.char.PolyBreakTime) * 10 + 10
 			Cryo.db.char.PolyWarning = true
 			Cryo.db.char.PolyTarget = creatureName
 		end
@@ -1179,7 +1181,8 @@ function Cryo:PvPPoly(target)
 		if ( SpellCastRank == nil ) then
 			SpellCastRank = CRYOLYSIS_SPELL_TABLE[26].Rank
 		end
-		return string.find(SpellCastRank, "(%d+)") * 10 + 10, math.floor(GetTime() + (string.find(SpellCastRank, "(%d+)") * 10 + 10))
+		local _, _, ranK = string.find(SpellCastRank, "(%d+)")
+		return ranK * 10 + 10, math.floor(GetTime() + ranK * 10 + 10))
 	end
 end
 
