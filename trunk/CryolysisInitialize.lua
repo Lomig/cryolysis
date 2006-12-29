@@ -184,7 +184,7 @@ function Cryolysis_Initialize()
   		----------------------------------------
 		-- Message Menu Setup
 		----------------------------------------
-		
+
 		if CryolysisConfig.CryolysisLanguage == "frFR" then
 			CryolysisLanguage_Slider:SetValue(1);
 		elseif CryolysisConfig.CryolysisLanguage == "enUS" then
@@ -280,11 +280,11 @@ function Cryolysis_Initialize()
 		if (CryolysisConfig.BuffMenuPos == -34) then CryolysisBuffMenu_Button:SetChecked(1); end
 		if (CryolysisConfig.PortalMenuPos == -34) then CryolysisPortalMenu_Button:SetChecked(1); end
 		if (CryolysisConfig.NoDragAll) then CryolysisLock_Button:SetChecked(1); end
-		
+
 		CryolysisManaStoneMenuAnchor_Slider:SetValue(CryolysisConfig.ManaStoneMenuAnchor);
 		CryolysisManaStoneMenuAnchor_SliderLow:SetText("");
 		CryolysisManaStoneMenuAnchor_SliderHigh:SetText("")
-		
+
 		CryolysisBuffMenuAnchor_Slider:SetValue(CryolysisConfig.BuffMenuAnchor);
 		CryolysisBuffMenuAnchor_SliderLow:SetText("");
 		CryolysisBuffMenuAnchor_SliderHigh:SetText("")
@@ -305,12 +305,12 @@ function Cryolysis_Initialize()
 		CryolysisStoneScale_SliderLow:SetText("50 %");
 		CryolysisStoneScale_SliderHigh:SetText("150 %");
 		-- On r�le la taille de la pierre et des boutons suivant les r�lages du SavedVariables
-		
+
 		CryolysisButton:SetScale(CryolysisConfig.CryolysisButtonScale/100)
 		for i, v in ipairs(CryolysisConfig.StoneLocation) do
 			_G[v]:SetScale(CryolysisConfig.CryolysisButtonScale/100)
 		end
-		
+
 		if CryolysisConfig.NoDragAll then
 			Cryolysis_NoDrag();
 			CryolysisButton:RegisterForDrag("");
@@ -483,94 +483,96 @@ end
 function Cryolysis_UpdateMenuAnchor()
 
 	-- Manastone Menu
-	CryolysisManastoneButton:SetAttribute("*childraise*", true);
+	CryolysisManastoneButton:SetAttribute("*childraise*", true)
 
-	CryolysisManaStoneMenu0:SetAttribute("statemap-anchor", "$input");
-	CryolysisManaStoneMenu0:SetAttribute("delaystatemap-anchor", "0");
-	CryolysisManaStoneMenu0:SetAttribute("delaytimemap-anchor", "8");
-	CryolysisManaStoneMenu0:SetAttribute("delayhovermap-anchor", "true");
+	CryolysisManastoneButton:SetAttribute("onmousedownbutton1", "down1")
+	CryolysisManastoneButton:SetAttribute("onmousedownbutton2", "down2")
+	CryolysisManastoneButton:SetAttribute("*anchorchild-down1", CryolysisManaStoneMenu0)
+	CryolysisManastoneButton:SetAttribute("*anchorchild-down2", CryolysisManaStoneMenu0)
 
-	CryolysisManastoneButton:SetAttribute("onmouseupbutton", "mup");
-	CryolysisManastoneButton:SetAttribute("onmousedownbutton", "mdn");
-	CryolysisManastoneButton:SetAttribute("*anchorchild-mdn", CryolysisManaStoneMenu0);
-	CryolysisManastoneButton:SetAttribute("*childofsx-mdn", 0);
-	CryolysisManastoneButton:SetAttribute("*childofsy-mdn", 0);
-	CryolysisManastoneButton:SetAttribute("*childpoint-mdn", "CENTER");
-	CryolysisManastoneButton:SetAttribute("*childrelpoint-mdn", "CENTER");
-	CryolysisManastoneButton:SetAttribute("*childstate-mdn", "^mousedown");
-	CryolysisManastoneButton:SetAttribute("*childreparent-mdn", "true");
+	CryolysisManastoneButton:SetAttribute("*childofsx-down1", 0)
+	CryolysisManastoneButton:SetAttribute("*childofsy-down1", 0)
+	CryolysisManastoneButton:SetAttribute("*childofsx-down2", 0)
+	CryolysisManastoneButton:SetAttribute("*childofsy-down2", 0)
+	CryolysisManastoneButton:SetAttribute("*childpoint-down1", "CENTER")
+	CryolysisManastoneButton:SetAttribute("*childpoint-down2", "CENTER")
+	CryolysisManastoneButton:SetAttribute("*childrelpoint-down1", "CENTER")
+	CryolysisManastoneButton:SetAttribute("*childrelpoint-down2", "CENTER")
 
-	CryolysisManastoneButton:SetAttribute("*anchorchild-mup", CryolysisManaStoneMenu0);
-	CryolysisManastoneButton:SetAttribute("*childstate-mup", "mouseup");
-	CryolysisManastoneButton:SetAttribute("*childverify-mup", true);
+	CryolysisManastoneButton:SetAttribute("*childstate-down1", "^mousedown1")
+	CryolysisManastoneButton:SetAttribute("*childstate-down2", "^mousedown2")
+	CryolysisManastoneButton:SetAttribute("*childreparent-down1", "true")
+	CryolysisManastoneButton:SetAttribute("*childreparent-down2", "true")
 
 	CryolysisManaStoneMenu0:SetAttribute("state", 0)
 
-	CryolysisManaStoneMenu0:SetAttribute("statemap-anchor-mousedown", "1-0");
-	CryolysisManaStoneMenu0:SetAttribute("statemap-anchor-mouseup", "!0:");
-	CryolysisManaStoneMenu0:SetAttribute("delaystatemap-anchor-mouseup", "!0,*:0");
-	CryolysisManaStoneMenu0:SetAttribute("delaytimemap-anchor-mouseup", "8");
-	CryolysisManaStoneMenu0:SetAttribute("delayhovermap-anchor-mouseup", "true");
+	CryolysisManaStoneMenu0:SetAttribute("statemap-anchor-mousedown1", "0-1")
+	CryolysisManaStoneMenu0:SetAttribute("statemap-anchor-mousedown2", "0-1")
+	CryolysisManaStoneMenu0:SetAttribute("delaystatemap-anchor-mousedown1", "*:0")
+	CryolysisManaStoneMenu0:SetAttribute("delaytimemap-anchor-mousedown1", "8")
+	CryolysisManaStoneMenu0:SetAttribute("delayhovermap-anchor-mousedown1", "true")
+
+
 
 	-- Buff Menu
-	CryolysisBuffMenuButton:SetAttribute("*childraise*", true);
+	CryolysisBuffButton:SetAttribute("*childraise*", true)
 
-	CryolysisBuffMenu0:SetAttribute("statemap-anchor", "$input");
-	CryolysisBuffMenu0:SetAttribute("delaystatemap-anchor", "0");
-	CryolysisBuffMenu0:SetAttribute("delaytimemap-anchor", "8");
-	CryolysisBuffMenu0:SetAttribute("delayhovermap-anchor", "true");
+	CryolysisBuffButton:SetAttribute("onmousedownbutton1", "down1")
+	CryolysisBuffButton:SetAttribute("onmousedownbutton2", "down2")
+	CryolysisBuffButton:SetAttribute("*anchorchild-down1", CryolysisBuffMenu0)
+	CryolysisBuffButton:SetAttribute("*anchorchild-down2", CryolysisBuffMenu0)
 
-	CryolysisBuffMenuButton:SetAttribute("onmouseupbutton", "mup");
-	CryolysisBuffMenuButton:SetAttribute("onmousedownbutton", "mdn");
-	CryolysisBuffMenuButton:SetAttribute("*anchorchild-mdn", CryolysisBuffMenu0);
-	CryolysisBuffMenuButton:SetAttribute("*childofsx-mdn", 0);
-	CryolysisBuffMenuButton:SetAttribute("*childofsy-mdn", 0);
-	CryolysisBuffMenuButton:SetAttribute("*childpoint-mdn", "CENTER");
-	CryolysisBuffMenuButton:SetAttribute("*childrelpoint-mdn", "CENTER");
-	CryolysisBuffMenuButton:SetAttribute("*childstate-mdn", "^mousedown");
-	CryolysisBuffMenuButton:SetAttribute("*childreparent-mdn", "true");
+	CryolysisBuffButton:SetAttribute("*childofsx-down1", 0)
+	CryolysisBuffButton:SetAttribute("*childofsy-down1", 0)
+	CryolysisBuffButton:SetAttribute("*childofsx-down2", 0)
+	CryolysisBuffButton:SetAttribute("*childofsy-down2", 0)
+	CryolysisBuffButton:SetAttribute("*childpoint-down1", "CENTER")
+	CryolysisBuffButton:SetAttribute("*childpoint-down2", "CENTER")
+	CryolysisBuffButton:SetAttribute("*childrelpoint-down1", "CENTER")
+	CryolysisBuffButton:SetAttribute("*childrelpoint-down2", "CENTER")
 
-	CryolysisBuffMenuButton:SetAttribute("*anchorchild-mup", CryolysisBuffMenu0);
-	CryolysisBuffMenuButton:SetAttribute("*childstate-mup", "mouseup");
-	CryolysisBuffMenuButton:SetAttribute("*childverify-mup", true);
+	CryolysisBuffButton:SetAttribute("*childstate-down1", "^mousedown1")
+	CryolysisBuffButton:SetAttribute("*childstate-down2", "^mousedown2")
+	CryolysisBuffButton:SetAttribute("*childreparent-down1", "true")
+	CryolysisBuffButton:SetAttribute("*childreparent-down2", "true")
 
 	CryolysisBuffMenu0:SetAttribute("state", 0)
 
-	CryolysisBuffMenu0:SetAttribute("statemap-anchor-mousedown", "1-0");
-	CryolysisBuffMenu0:SetAttribute("statemap-anchor-mouseup", "!0:");
-	CryolysisBuffMenu0:SetAttribute("delaystatemap-anchor-mouseup", "!0,*:0");
-	CryolysisBuffMenu0:SetAttribute("delaytimemap-anchor-mouseup", "8");
-	CryolysisBuffMenu0:SetAttribute("delayhovermap-anchor-mouseup", "true");
+	CryolysisBuffMenu0:SetAttribute("statemap-anchor-mousedown1", "0-1")
+	CryolysisBuffMenu0:SetAttribute("statemap-anchor-mousedown2", "0-1")
+	CryolysisBuffMenu0:SetAttribute("delaystatemap-anchor-mousedown1", "*:0")
+	CryolysisBuffMenu0:SetAttribute("delaytimemap-anchor-mousedown1", "8")
+	CryolysisBuffMenu0:SetAttribute("delayhovermap-anchor-mousedown1", "true")
 
 	-- Portal Menu
-	CryolysisPortalMenuButton:SetAttribute("*childraise*", true);
+	CryolysisPortalButton:SetAttribute("*childraise*", true)
 
-	CryolysisPortalMenu0:SetAttribute("statemap-anchor", "$input");
-	CryolysisPortalMenu0:SetAttribute("delaystatemap-anchor", "0");
-	CryolysisPortalMenu0:SetAttribute("delaytimemap-anchor", "8");
-	CryolysisPortalMenu0:SetAttribute("delayhovermap-anchor", "true");
+	CryolysisPortalButton:SetAttribute("onmousedownbutton1", "down1")
+	CryolysisPortalButton:SetAttribute("onmousedownbutton2", "down2")
+	CryolysisPortalButton:SetAttribute("*anchorchild-down1", CryolysisPortalMenu0)
+	CryolysisPortalButton:SetAttribute("*anchorchild-down2", CryolysisPortalMenu0)
 
-	CryolysisPortalMenuButton:SetAttribute("onmouseupbutton", "mup");
-	CryolysisPortalMenuButton:SetAttribute("onmousedownbutton", "mdn");
-	CryolysisPortalMenuButton:SetAttribute("*anchorchild-mdn", CryolysisPortalMenu0);
-	CryolysisPortalMenuButton:SetAttribute("*childofsx-mdn", 0);
-	CryolysisPortalMenuButton:SetAttribute("*childofsy-mdn", 0);
-	CryolysisPortalMenuButton:SetAttribute("*childpoint-mdn", "CENTER");
-	CryolysisPortalMenuButton:SetAttribute("*childrelpoint-mdn", "CENTER");
-	CryolysisPortalMenuButton:SetAttribute("*childstate-mdn", "^mousedown");
-	CryolysisPortalMenuButton:SetAttribute("*childreparent-mdn", "true");
+	CryolysisPortalButton:SetAttribute("*childofsx-down1", 0)
+	CryolysisPortalButton:SetAttribute("*childofsy-down1", 0)
+	CryolysisPortalButton:SetAttribute("*childofsx-down2", 0)
+	CryolysisPortalButton:SetAttribute("*childofsy-down2", 0)
+	CryolysisPortalButton:SetAttribute("*childpoint-down1", "CENTER")
+	CryolysisPortalButton:SetAttribute("*childpoint-down2", "CENTER")
+	CryolysisPortalButton:SetAttribute("*childrelpoint-down1", "CENTER")
+	CryolysisPortalButton:SetAttribute("*childrelpoint-down2", "CENTER")
 
-	CryolysisPortalMenuButton:SetAttribute("*anchorchild-mup", CryolysisPortalMenu0);
-	CryolysisPortalMenuButton:SetAttribute("*childstate-mup", "mouseup");
-	CryolysisPortalMenuButton:SetAttribute("*childverify-mup", true);
+	CryolysisPortalButton:SetAttribute("*childstate-down1", "^mousedown1")
+	CryolysisPortalButton:SetAttribute("*childstate-down2", "^mousedown2")
+	CryolysisPortalButton:SetAttribute("*childreparent-down1", "true")
+	CryolysisPortalButton:SetAttribute("*childreparent-down2", "true")
 
 	CryolysisPortalMenu0:SetAttribute("state", 0)
 
-	CryolysisPortalMenu0:SetAttribute("statemap-anchor-mousedown", "1-0");
-	CryolysisPortalMenu0:SetAttribute("statemap-anchor-mouseup", "!0:");
-	CryolysisPortalMenu0:SetAttribute("delaystatemap-anchor-mouseup", "!0,*:0");
-	CryolysisPortalMenu0:SetAttribute("delaytimemap-anchor-mouseup", "8");
-	CryolysisPortalMenu0:SetAttribute("delayhovermap-anchor-mouseup", "true");
+	CryolysisPortalMenu0:SetAttribute("statemap-anchor-mousedown1", "0-1")
+	CryolysisPortalMenu0:SetAttribute("statemap-anchor-mousedown2", "0-1")
+	CryolysisPortalMenu0:SetAttribute("delaystatemap-anchor-mousedown1", "*:0")
+	CryolysisPortalMenu0:SetAttribute("delaytimemap-anchor-mousedown1", "8")
+	CryolysisPortalMenu0:SetAttribute("delayhovermap-anchor-mousedown1", "true")
 
 end
 

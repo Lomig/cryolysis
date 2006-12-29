@@ -1017,8 +1017,10 @@ function Cryolysis_PolyCheck(type,spell,creatureName)
 				SpellCastRank = 1
 			-- End of adding (error 1147: attempt to perform arithmatic on a nil value)
 			end
-			CryolysisPrivate.PolyWarnTime = (string.find(SpellCastRank, "(%d+)") * 10 + 10) - CryolysisConfig.PolyWarnTime;
-			CryolysisPrivate.PolyBreakTime = string.find(SpellCastRank, "(%d+)") * 10 + 10;
+			_, _, CryolysisPrivate.PolyWarnTime = string.find(SpellCastRank, "(%d+)")
+			CryolysisPrivate.PolyWarnTime = tonumber(CryolysisPrivate.PolyWarnTime) * 10 + 10) - tonumber(CryolysisConfig.PolyWarnTime)
+			_, _, CryolysisPrivate.PolyBreakTime = string.find(SpellCastRank, "(%d+)")
+			CryolysisPrivate.PolyBreakTime = tonumber(CryolysisPrivate.PolyBreakTime) * 10 + 10;
 			CryolysisPrivate.PolyWarning = true;
 			CryolysisPrivate.PolyTarget = creatureName;
 		end
@@ -1095,9 +1097,11 @@ function Cryolysis_PvPPoly(target)
 			return debuff.drDuration, math.floor(GetTime() + debuff.drDuration);
 		end
 	else
-		if retarget then TargetLastTarget(); end
-		if SpellCastRank == nil then SpellCastRank = CRYOLYSIS_SPELL_TABLE[26].Rank; end
-		return string.find(SpellCastRank, "(%d+)") * 10 + 10, math.floor(GetTime() + (string.find(SpellCastRank, "(%d+)") * 10 + 10));
+		if retarget then TargetLastTarget() end
+		if SpellCastRank == nil then SpellCastRank = CRYOLYSIS_SPELL_TABLE[26].Rank end
+		local _, _, ranK = string.find(SpellCastRank, "(%d+)")
+		ranK = tonumber(ranK)
+		return ranK * 10 + 10, math.floor(GetTime() + (ranK * 10 + 10))
 	end
 end
 
@@ -3118,8 +3122,6 @@ function Cryolysis_CreateMenu()
 			CryolysisManaStoneMenu0:SetAttribute("addchild", f)
 			f:SetAttribute("showstates", "!0,*")
 			f:SetAttribute("anchorchild", CryolysisManaStoneMenu0)
-			f:SetAttribute("childstate", (i + 1))
-			f:SetAttribute("newstate", "0")
 		end
 	end
 
@@ -3230,8 +3232,6 @@ function Cryolysis_CreateMenu()
 			CryolysisPortalMenu0:SetAttribute("addchild", f)
 			f:SetAttribute("showstates", "!0,*")
 			f:SetAttribute("anchorchild", CryolysisPortalMenu0)
-			f:SetAttribute("childstate", (i + 1))
-			f:SetAttribute("newstate", "0")
 		end
 	end
 
@@ -3264,8 +3264,6 @@ function Cryolysis_CreateMenu()
 			CryolysisBuffMenu0:SetAttribute("addchild", f)
 			f:SetAttribute("showstates", "!0,*")
 			f:SetAttribute("anchorchild", CryolysisBuffMenu0)
-			f:SetAttribute("childstate", (i + 1))
-			f:SetAttribute("newstate", "0")
 		end
 	end
 
