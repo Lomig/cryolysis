@@ -722,7 +722,11 @@ function Cryolysis_OnEvent(event)
 		Cryolysis_BagCheck("Update");
 		Cryolysis_ButtonTextUpdate()
 	elseif event == "CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE" then  -- WINTERSCHILL will go here
- 		for creatureName, spell in string.gmatch(arg1, AURAADDEDOTHERHARMFUL) do
+		-- Added by Lomig because of a bug "invalid capture index"
+ 		local Pattern = string.gsub(AURAADDEDOTHERHARMFUL, "%s", "(.+)")
+ 		for creatureName, spell in string.gmatch(arg1, Pattern) do
+ 		--for creatureName, spell in string.gmatch(arg1, AURAADDEDOTHERHARMFUL) do
+ 		-- End of adding
 			-- Frostbite
 			if spell == CRYOLYSIS_SPELL_TABLE[53].Name then
 				SpellCastName = spell;
@@ -811,7 +815,9 @@ function Cryolysis_OnEvent(event)
 	elseif event == "CHAT_MSG_SPELL_AURA_GONE_SELF" or event == "CHAT_MSG_SPELL_BREAK_AURA" then
 		Cryolysis_SelfEffect("DEBUFF");
 	elseif event == "CHAT_MSG_SPELL_AURA_GONE_OTHER" then
-		for spell, creatureName in string.gmatch(arg1, AURAREMOVEDOTHER) do
+		--Changed by Lomig to avoid bug.
+		local Pattern = string.gsub(AURAREMOVEDOTHER, "%s", "(.+)")
+		for spell, creatureName in string.gmatch(arg1, Pattern) do
 			Cryolysis_PolyCheck("break",spell,creatureName);
 		end
 	elseif event == "PLAYER_REGEN_DISABLED" then
