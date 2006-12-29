@@ -142,7 +142,7 @@ CRYOLYSIS_SPELL_TABLE = {
 	[49] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Evocation",						Length = 480,	Type = 3},
 	[50] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
-		Name = "D\195\169tection de la Magie",				Length = 120,	Type = 5},
+		Name = "D\195\169tection de la magie",				Length = 120,	Type = 5},
 	[51] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "T\195\169l\195\169portation : Hurlevent",		Length = 0,	Type = 0},
 	[52] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
