@@ -723,7 +723,7 @@ function Cryolysis_OnEvent(event)
 		Cryolysis_ButtonTextUpdate()
 	elseif event == "CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE" then  -- WINTERSCHILL will go here
 		-- Added by Lomig because of a bug "invalid capture index"
- 		local Pattern = AURAADDEDOTHERHARMFUL:gsub("%%s", "(.+)")
+ 		local Pattern = AURAADDEDOTHERHARMFUL:gsub("%%s", "%(%.%+%)")
  		for creatureName, spell in string.gmatch(arg1, Pattern) do
  		--for creatureName, spell in string.gmatch(arg1, AURAADDEDOTHERHARMFUL) do
  		-- End of adding
@@ -816,7 +816,7 @@ function Cryolysis_OnEvent(event)
 		Cryolysis_SelfEffect("DEBUFF");
 	elseif event == "CHAT_MSG_SPELL_AURA_GONE_OTHER" then
 		--Changed by Lomig to avoid bug.
-		 local Pattern = AURAREMOVEDOTHER:gsub("%%s", "(.+)")
+		 local Pattern = AURAREMOVEDOTHER:gsub("%%s", "%(%.%+%)")
 		for spell, creatureName in string.gmatch(arg1, Pattern) do
 			Cryolysis_PolyCheck("break",spell,creatureName);
 		end
@@ -1006,23 +1006,16 @@ function Cryolysis_PolyCheck(type,spell,creatureName)
 	    if CryolysisConfig.PolyWarn and spell == CRYOLYSIS_SPELL_TABLE[26].Name
 			or spell == CRYOLYSIS_SPELL_TABLE[48].Name
 			or spell == CRYOLYSIS_SPELL_TABLE[52].Name then
-			if SpellCastRank == nil
-				-- Added By lomig
-				and string.find(CRYOLYSIS_SPELL_TABLE[26].Rank, "(%d+)")
-				-- End of adding (error 1147: attempt to perform arithmatic on a nil value)
-			then
+			if not SpellCastRank then
 				SpellCastRank = CRYOLYSIS_SPELL_TABLE[26].Rank
-			-- Added by Lomig
-			elseif not SpellCastRank then
-				SpellCastRank = 1
-			-- End of adding (error 1147: attempt to perform arithmatic on a nil value)
+			elseif not SpellCastRank:find("(%d+)") then
+				SpellCastRank = CRYOLYSIS_SPELL_TABLE[26].Rank
 			end
-			_, _, CryolysisPrivate.PolyWarnTime = string.find(SpellCastRank, "(%d+)")
-			CryolysisPrivate.PolyWarnTime = (tonumber(CryolysisPrivate.PolyWarnTime) * 10 + 10) - tonumber(CryolysisConfig.PolyWarnTime)
-			_, _, CryolysisPrivate.PolyBreakTime = string.find(SpellCastRank, "(%d+)")
-			CryolysisPrivate.PolyBreakTime = tonumber(CryolysisPrivate.PolyBreakTime) * 10 + 10;
-			CryolysisPrivate.PolyWarning = true;
-			CryolysisPrivate.PolyTarget = creatureName;
+			local _, _, ranK = string.find(SpellCastRank, "(%d+)")
+			CryolysisPrivate.PolyWarnTime = (tonumber(ranK) * 10 + 10) - tonumber(ranK)
+			CryolysisPrivate.PolyBreakTime = tonumber(ranK) * 10 + 10
+			CryolysisPrivate.PolyWarning = true
+			CryolysisPrivate.PolyTarget = creatureName
 		end
 	elseif type == "warn" then
 	    if CryolysisConfig.Sound and CryolysisConfig.PolyWarn and CryolysisPrivate.PolyWarning
@@ -2709,11 +2702,11 @@ function Cryolysis_SpellSetup()
 		-- The higher rank is preserved
 		if (string.find(subSpellName, CRYOLYSIS_TRANSLATION.Rank)) then
 			local found = false;
-			local _, _, rank = string.find(subSpellName, CRYOLYSIS_TRANSLATION.Rank .. " (.+)");
+			local _, _, rank = string.find(subSpellName, "(%d+)");
 			rank = tonumber(rank);
 			for index=1, #(CurrentSpells.Name), 1 do
 				if (CurrentSpells.Name[index] == spellName) then
-			found = true;
+					found = true;
 					if (CurrentSpells.subName[index] < rank) then
 						CurrentSpells.ID[index] = spellID;
 						CurrentSpells.subName[index] = rank;
@@ -2811,22 +2804,27 @@ function Cryolysis_SpellSetup()
 					if not CRYOLYSIS_SPELL_TABLE[index].ID then
 						CRYOLYSIS_SPELL_TABLE[index].ID = spellID;
 					end
+					CRYOLYSIS_SPELL_TABLE[index].Rank = subSpellName;
 					CRYOLYSIS_SPELL_TABLE[index].Mana = tonumber(ManaCost);
 				end
 			end
 		end
 	end
 
+	local MaxranK
 	if CRYOLYSIS_SPELL_TABLE[10].ID ~= nil then
-		StoneMaxRank[4] = CRYOLYSIS_SPELL_TABLE[10].Rank
+		_, _, MaxranK = CRYOLYSIS_SPELL_TABLE[10].Rank:find("(%d+)")
+		StoneMaxRank[4] = tonumber(MaxranK)
 		StoneIDInSpellTable[4] = CRYOLYSIS_SPELL_TABLE[10].ID
 	end
 	if CRYOLYSIS_SPELL_TABLE[11].ID ~= nil then
-		StoneMaxRank[3] = CRYOLYSIS_SPELL_TABLE[11].Rank
+		_, _, MaxranK = CRYOLYSIS_SPELL_TABLE[11].Rank:find("(%d+)")
+		StoneMaxRank[3] = tonumber(MaxranK)
 		StoneIDInSpellTable[3] = CRYOLYSIS_SPELL_TABLE[11].ID
 	end
 	if CRYOLYSIS_SPELL_TABLE[49].ID ~= nil then
-		StoneMaxRank[1] = CRYOLYSIS_SPELL_TABLE[49].Rank
+		_, _, MaxranK = CRYOLYSIS_SPELL_TABLE[49].Rank:find("(%d+)")
+		StoneMaxRank[1] = tonumber(MaxranK)
 		StoneIDInSpellTable[1] = CRYOLYSIS_SPELL_TABLE[49].ID
 	end
 
