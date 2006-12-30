@@ -270,7 +270,7 @@ CRYOLYSIS_MOUNT_TABLE = {
 	-- [13] Black Wolf Icon
 	{ "Horn des schwarzen Kriegswolfs", "Horn des braunen Wolfs", "Horn des roten Wolfs", "Horn des schnellen braunen Wolfs", "Horn des Waldwolfs" },
 	-- [14] Black Tiger Icon
-	{ "RZ\195\188gel des schwarzen Kriegstigers", "Z\195\188gel des gestreiften Nachts\195\164blers" },
+	{ "Z\195\188gel des schwarzen Kriegstigers", "Z\195\188gel des gestreiften Nachts\195\164blers" },
 	-- [15] White Tiger Icon
 	{ "Z\195\188gel des Frosts\195\164blers", "Z\195\188gel des Nachts\195\164blers", "Z\195\188gel des gefleckten Frosts\195\164blers", "Z\195\188gel des gestreiften Frosts\195\164blers", "Z\195\188gel des schnellen Frosts\195\164blers", "Z\195\188gel des schnellen Schattens\195\164blers", "Z\195\188gel des schnellen Sturms\195\164blers" },
 	-- [16] Red Tiger Icon
