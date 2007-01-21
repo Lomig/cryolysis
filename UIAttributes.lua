@@ -197,7 +197,7 @@ function Cryolysis_UpdatePortalButtonAttributes(PortalTempID)
 	if ( InCombatLockdown() ) then
 		return
 	end
-	for i=1, 12, 1 do
+	for i=1, 18, 1 do
 		local f = _G["CryolysisPortalMenu"..i];
 		f:SetAttribute("*type*", "spell");
 		if CRYOLYSIS_SPELL_TABLE[ PortalTempID[i] ].ID then

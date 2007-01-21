@@ -177,6 +177,18 @@ CRYOLYSIS_SPELL_TABLE = {
 		Name = "Frost nova",				Length = 8,	Type = 6},
 	[67] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Poly Diminished",			Length = 15,	Type = 6},
+	[68] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+		Name = "Portal: Exodar",		Length = 0,		Type = 0},
+	[69] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+		Name = "Portal: Shattrath",		Length = 0,		Type = 0},
+	[70] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+		Name = "Teleportieren: Exodar",		Length = 0,		Type = 0},
+	[71] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+		Name = "Teleportieren: Shattrath",		Length = 0,		Type = 0},
+	[72] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+		Name = "Portal: Silvermoon",		Length = 0,		Type = 0},
+	[73] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+		Name = "Teleportieren: Silvermoon",		Length = 0,		Type = 0},
 };
 end
 Cryolysis_SpellTableBuild()

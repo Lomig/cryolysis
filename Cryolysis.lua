@@ -177,7 +177,7 @@ CryolysisPrivate = {
 	-- ADDED by Eternally777, 12/11/2006@11:13EST
 	highestWaterId = 0,
 	highestWaterCount = 0,
-	waterRanks = { 8079, 8078, 8077, 3772, 2136, 2288, 5350 }, -- Item IDs for Mage conjured water, in order from highest amount of mana restored to lowest.  ORDER DOES MATTER
+	waterRanks = { 30703, 8080, 8079, 8078, 8077, 3772, 2136, 2288, 5350 }, -- Item IDs for Mage conjured water, in order from highest amount of mana restored to lowest.  ORDER DOES MATTER
 
 	highestFoodId = 0,
 	highestFoodCount = 0,
@@ -234,30 +234,30 @@ local debuff = {
 -- Order of Portals
 -- Teleports then Portals
 -- Orgrimmar, Undercity, Thunderbluff, Ironforge, Stormwind, Darnassus
-local PortalTempID = {38, 40, 39, 37, 51, 46, 47, 31, 30, 28, 29, 27}
+local PortalTempID = {38, 40, 39, 73, 47, 31, 30, 72, 37, 51, 46, 70, 71, 28, 29, 27, 68, 69}
 local PortalName = {
-	"Orgrimmar", "Undercity", "Thunder Bluff", "Ironforge", "Stormwind", "Darnassus",  -- 1-6, Teleports
-	"Orgrimmar", "Undercity", "Thunder Bluff", "Ironforge", "Stormwind", "Darnassus"   -- 7-12, Portals
+	"Orgrimmar", "Undercity", "Thunder Bluff", "Ironforge", "Stormwind", "Darnassus", "Exodar", "Shattrath", "Silvermoon", -- 1-9, Teleports
+	"Orgrimmar", "Undercity", "Thunder Bluff", "Ironforge", "Stormwind", "Darnassus",  "Exodar", "Shattrath", "Silvermoon", -- 10-18, Portals
 };
 if CryolysisConfig.CryolysisLanguage == "frFR" then
 	PortalName = {
-		"Orgrimmar", "Fossoyeuse", "Les Pitons du Tonnerre", "Forgefer", "Hurlevent", "Darnassus",  -- 1-6, Teleports
-		"Orgrimmar", "Fossoyeuse", "Les Pitons du Tonnerre", "Forgefer", "Hurlevent", "Darnassus"   -- 7-12, Portals
+		"Orgrimmar", "Fossoyeuse", "Les Pitons du Tonnerre", "Forgefer", "Hurlevent", "Darnassus", "Exodar", "Shattrath", "Silvermoon",  -- 1-6, Teleports
+		"Orgrimmar", "Fossoyeuse", "Les Pitons du Tonnerre", "Forgefer", "Hurlevent", "Darnassus", "Exodar", "Shattrath", "Silvermoon"   -- 7-12, Portals
 	};
 elseif CryolysisConfig.CryolysisLanguage == "deDE" then
 	PortalName = {
-		"Orgrimmar", "Unterstadt", "Donnerfels", "Eisenschmiede", "Sturmwind", "Darnassus",  -- 1-6, Teleports
-		"Orgrimmar", "Unterstadt", "Donnerfels", "Eisenschmiede", "Sturmwind", "Darnassus"   -- 7-12, Portals
+		"Orgrimmar", "Unterstadt", "Donnerfels", "Eisenschmiede", "Sturmwind", "Darnassus", "Exodar", "Shattrath", "Silvermoon"  -- 1-6, Teleports
+		"Orgrimmar", "Unterstadt", "Donnerfels", "Eisenschmiede", "Sturmwind", "Darnassus", "Exodar", "Shattrath", "Silvermoon"   -- 7-12, Portals
 	};
 elseif CryolysisConfig.CryolysisLanguage == "zhTW" then
 	PortalName = {
-	"奧格瑪", "幽暗城", "雷霆崖", "��堡", "暴風城", "��蘇斯",  -- 1-6, Teleports
-	"奧格瑪", "幽暗城", "雷霆崖", "��堡", "暴風城", "��蘇斯"   -- 7-12, Portals
+	"奧格瑪", "幽暗城", "雷霆崖", "��堡", "暴風城", "��蘇斯", "Exodar", "Shattrath", "Silvermoon"  -- 1-6, Teleports
+	"奧格瑪", "幽暗城", "雷霆崖", "��堡", "暴風城", "��蘇斯", "Exodar", "Shattrath", "Silvermoon"   -- 7-12, Portals
 }
 elseif CryolysisConfig.CryolysisLanguage == "zhCN" then
 	PortalName = {
-	"奥格瑞玛", "幽暗城", "雷霆崖", "�炉堡", "暴风城", "达纳�斯",  -- 1-6, Teleports
-	"奥格瑞玛", "幽暗城", "雷霆崖", "�炉堡", "暴风城", "达纳�斯"   -- 7-12, Portals
+	"奥格瑞玛", "幽暗城", "雷霆崖", "�炉堡", "暴风城", "达纳�斯", "Exodar", "Shattrath", "Silvermoon"  -- 1-6, Teleports
+	"奥格瑞玛", "幽暗城", "雷霆崖", "�炉堡", "暴风城", "达纳�斯" , "Exodar", "Shattrath", "Silvermoon"  -- 7-12, Portals
 	}
 end
 -- List Buttons available for the mage in each menu
@@ -1171,7 +1171,7 @@ function Cryolysis_ChatMessage(spell, creatureName)
 		-- Portals
 		else
 			local port;
-			for i=1, 12, 1 do
+			for i=1, 18, 1 do
 				if spell == CRYOLYSIS_SPELL_TABLE[PortalTempID[i]].Name then
 					port = i;
 					break;
@@ -1182,7 +1182,7 @@ function Cryolysis_ChatMessage(spell, creatureName)
 			end
 			if CryolysisConfig.PortalMessage then
 				if not CryolysisConfig.SM then
-					if port <= 6 then
+					if port <= 9 then
 						local tempnum = math.random(1, #CRYOLYSIS_TELEPORT_MESSAGE);
 						while tempnum == CryolysisPrivate.PortalMess and #(CRYOLYSIS_TELEPORT_MESSAGE) >= 2 do
 							tempnum = math.random(1, #CRYOLYSIS_TELEPORT_MESSAGE);
@@ -1198,7 +1198,7 @@ function Cryolysis_ChatMessage(spell, creatureName)
 						Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_PORTAL_MESSAGE[tempnum], nil, PortalName[port]), "GROUP");
 					end
 				elseif CryolysisConfig.SM then
-					if port > 6 then
+					if port > 9 then
 						Cryolysis_Msg(Cryolysis_MsgReplace(CRYOLYSIS_SHORT_MESSAGES[1], nil, PortalName[port]), "WORLD");
 					end
 				end
@@ -1222,7 +1222,7 @@ function Cryolysis_MerchantCheck()
 			or itemString == CRYOLYSIS_ITEM.RuneOfPortals then
 			Cryolysis_BagCheck("Force");
 			-- Check For teleports
-			for i=1, 6, 1 do
+			for i=1, 9, 1 do
 			    if CRYOLYSIS_SPELL_TABLE[PortalTempID[i]].ID then
                     display = true;
                     color = (Count.RuneOfTeleportation / CryolysisConfig.RestockTeleport) * 100;
@@ -1237,7 +1237,7 @@ function Cryolysis_MerchantCheck()
             	display = false;
 			end
             -- Check for portals
-			for i=7, 12, 1 do
+			for i=10, 18, 1 do
 			    if CRYOLYSIS_SPELL_TABLE[PortalTempID[i]].ID then
 					display = true;
 					color = (Count.RuneOfPortals / CryolysisConfig.RestockPortals) * 100;
@@ -1290,13 +1290,13 @@ function Cryolysis_Restock()
 		[2] = CRYOLYSIS_ITEM.RuneOfPortals;
 		[3] = CRYOLYSIS_ITEM.ArcanePowder;
 	};
-	for i=1, 6, 1 do
+	for i=1, 9, 1 do
 		if CRYOLYSIS_SPELL_TABLE[PortalTempID[i]].ID ~= nil then
 			RestockCount[1] = CryolysisConfig.RestockTeleport - Count.RuneOfTeleportation;
 			break;
 		end
 	end
-	for i=6, 12, 1 do
+	for i=10, 18, 1 do
 		if CRYOLYSIS_SPELL_TABLE[PortalTempID[i]].ID ~= nil then
 			RestockCount[2] = CryolysisConfig.RestockPortals - Count.RuneOfPortals;
 			break;
@@ -1396,7 +1396,7 @@ function Cryolysis_UpdateMainButtonAttributes()
 			CryolysisButton:SetAttribute("macrotext1", "/use "..itemName1.."\n/use "..itemName2);
 		elseif itemName1 then
 			CryolysisButton:SetAttribute("macrotext1", "/use "..itemName1);
-		elseif itemName1 then
+		elseif itemName2 then
 			CryolysisButton:SetAttribute("macrotext1", "/use "..itemName2);
 		end
 	elseif CryolysisConfig.Button == 2 then
@@ -1694,6 +1694,17 @@ function Cryolysis_BuildTooltip(button, type, anchor)
 	elseif (type == "T:Darn") then
 		GameTooltip:AddLine(CRYOLYSIS_SPELL_TABLE[36].Mana.." Mana");
 		GameTooltip:AddLine(CryolysisTooltipData.Main.RuneOfTeleportation..Count.RuneOfTeleportation);
+--added by ayumi
+	elseif (type == "T:Exo") then
+		GameTooltip:AddLine(CRYOLYSIS_SPELL_TABLE[70].Mana.." Mana");
+		GameTooltip:AddLine(CryolysisTooltipData.Main.RuneOfTeleportation..Count.RuneOfTeleportation);
+	elseif (type == "T:Silv") then
+		GameTooltip:AddLine(CRYOLYSIS_SPELL_TABLE[73].Mana.." Mana");
+		GameTooltip:AddLine(CryolysisTooltipData.Main.RuneOfTeleportation..Count.RuneOfTeleportation);
+	elseif (type == "T:Shatt") then
+		GameTooltip:AddLine(CRYOLYSIS_SPELL_TABLE[71].Mana.." Mana");
+		GameTooltip:AddLine(CryolysisTooltipData.Main.RuneOfTeleportation..Count.RuneOfTeleportation);
+--end added by ayumi
 	elseif (type == "P:Org") then
 		GameTooltip:AddLine(CRYOLYSIS_SPELL_TABLE[47].Mana.." Mana");
 		GameTooltip:AddLine(CryolysisTooltipData.Main.RuneOfPortals..Count.RuneOfPortals);
@@ -1712,6 +1723,17 @@ function Cryolysis_BuildTooltip(button, type, anchor)
 	elseif (type == "P:Darn") then
 		GameTooltip:AddLine(CRYOLYSIS_SPELL_TABLE[27].Mana.." Mana");
 		GameTooltip:AddLine(CryolysisTooltipData.Main.RuneOfPortals..Count.RuneOfPortals);
+--added by ayumi
+	elseif (type == "P:Exo") then
+		GameTooltip:AddLine(CRYOLYSIS_SPELL_TABLE[68].Mana.." Mana");
+		GameTooltip:AddLine(CryolysisTooltipData.Main.RuneOfPortals..Count.RuneOfPortals);
+	elseif (type == "P:Silv") then
+		GameTooltip:AddLine(CRYOLYSIS_SPELL_TABLE[72].Mana.." Mana");
+		GameTooltip:AddLine(CryolysisTooltipData.Main.RuneOfPortals..Count.RuneOfPortals);
+	elseif (type == "P:Shatt") then
+		GameTooltip:AddLine(CRYOLYSIS_SPELL_TABLE[69].Mana.." Mana");
+		GameTooltip:AddLine(CryolysisTooltipData.Main.RuneOfPortals..Count.RuneOfPortals);
+--end added by ayumi
 	elseif (type == "DampenMagic") then
 		GameTooltip:AddLine(CRYOLYSIS_SPELL_TABLE[13].Mana.." Mana");
 		if CRYOLYSIS_SPELL_TABLE[1].ID ~= nil then
@@ -2143,7 +2165,7 @@ function UpdatePortalMenuIcons()
 
 
 	-- Grey the button if not enough Mana
-	for i = 1, 12, 1 do
+	for i = 1, 18, 1 do
 		if CRYOLYSIS_SPELL_TABLE[PortalTempID[i]].ID then
 			if CRYOLYSIS_SPELL_TABLE[PortalTempID[i]].Mana > mana or PlayerCombat then
 				ManaPortal[i] = 3;
@@ -2151,16 +2173,16 @@ function UpdatePortalMenuIcons()
 		end
 	end
 	if Count.RuneOfTeleportation == 0 then
-		for i = 1, 6, 1 do
+		for i = 1, 9, 1 do
 			ManaPortal[i] = 3;
 		end
 	end
 	if Count.RuneOfPortals == 0 then
-		for i = 7, 12, 1 do
+		for i = 10, 18, 1 do
 			ManaPortal[i] = 3;
 		end
 	end
-	for i = 1, 12, 1 do
+	for i = 1, 18, 1 do
 		if CryolysisButtonTexture.Portalmenu.Base[i] ~= ManaPortal[i] then
 			local texture = getglobal("CryolysisPortalMenu"..i):GetNormalTexture():GetTexture()
 			texture = string.sub(texture, 1, string.len(texture)-1)..ManaPortal[i];
@@ -3066,7 +3088,7 @@ function Cryolysis_CreateMenu()
 	end
 
 	-- Hide portal menu
-	for i = 1, 12, 1 do
+	for i = 1, 18, 1 do
 		menuVariable = getglobal("CryolysisPortalMenu"..i);
 		menuVariable:Hide();
 	end
@@ -3148,31 +3170,8 @@ function Cryolysis_CreateMenu()
 		PortalButtonPosition = 3;
 		table.insert(PortalMenuCreate, menuVariable);
 	end
-	if CRYOLYSIS_SPELL_TABLE[47].ID then
-		menuVariable = getglobal("CryolysisPortalMenu7");
-		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
-		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-		PortalButtonPosition = 7;
-		table.insert(PortalMenuCreate, menuVariable);
-	end
-	if CRYOLYSIS_SPELL_TABLE[31].ID then
-		menuVariable = getglobal("CryolysisPortalMenu8");
-		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
-		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-		PortalButtonPosition = 8;
-		table.insert(PortalMenuCreate, menuVariable);
-	end
-	if CRYOLYSIS_SPELL_TABLE[30].ID then
-		menuVariable = getglobal("CryolysisPortalMenu9");
-		menuVariable:ClearAllPoints();
-		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
-		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
-		PortalButtonPosition = 9;
-		table.insert(PortalMenuCreate, menuVariable);
-	end
-	if CRYOLYSIS_SPELL_TABLE[37].ID then
+--added by ayumi, teleport to silvermoon
+	if CRYOLYSIS_SPELL_TABLE[73].ID then
 		menuVariable = getglobal("CryolysisPortalMenu4");
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
@@ -3180,7 +3179,8 @@ function Cryolysis_CreateMenu()
 		PortalButtonPosition = 4;
 		table.insert(PortalMenuCreate, menuVariable);
 	end
-	if CRYOLYSIS_SPELL_TABLE[51].ID then
+--end added by ayumi
+	if CRYOLYSIS_SPELL_TABLE[47].ID then
 		menuVariable = getglobal("CryolysisPortalMenu5");
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
@@ -3188,7 +3188,8 @@ function Cryolysis_CreateMenu()
 		PortalButtonPosition = 5;
 		table.insert(PortalMenuCreate, menuVariable);
 	end
-	if CRYOLYSIS_SPELL_TABLE[46].ID then
+	--p:und
+	if CRYOLYSIS_SPELL_TABLE[31].ID then
 		menuVariable = getglobal("CryolysisPortalMenu6");
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
@@ -3196,7 +3197,37 @@ function Cryolysis_CreateMenu()
 		PortalButtonPosition = 6;
 		table.insert(PortalMenuCreate, menuVariable);
 	end
-	if CRYOLYSIS_SPELL_TABLE[28].ID then
+	--p:thund
+	if CRYOLYSIS_SPELL_TABLE[30].ID then
+		menuVariable = getglobal("CryolysisPortalMenu7");
+		menuVariable:ClearAllPoints();
+		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
+		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+		PortalButtonPosition = 7;
+		table.insert(PortalMenuCreate, menuVariable);
+	end
+--added by ayumi portal to silvermoon
+	if CRYOLYSIS_SPELL_TABLE[72].ID then
+		menuVariable = getglobal("CryolysisPortalMenu8");
+		menuVariable:ClearAllPoints();
+		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
+		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+		PortalButtonPosition = 8;
+		table.insert(PortalMenuCreate, menuVariable);
+	end
+
+--end added by ayumi
+	--t:if
+	if CRYOLYSIS_SPELL_TABLE[37].ID then
+		menuVariable = getglobal("CryolysisPortalMenu9");
+		menuVariable:ClearAllPoints();
+		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
+		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+		PortalButtonPosition = 9;
+		table.insert(PortalMenuCreate, menuVariable);
+	end
+	--t:sw
+	if CRYOLYSIS_SPELL_TABLE[51].ID then
 		menuVariable = getglobal("CryolysisPortalMenu10");
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
@@ -3204,7 +3235,8 @@ function Cryolysis_CreateMenu()
 		PortalButtonPosition = 10;
 		table.insert(PortalMenuCreate, menuVariable);
 	end
-	if CRYOLYSIS_SPELL_TABLE[29].ID then
+	--t:darn
+	if CRYOLYSIS_SPELL_TABLE[46].ID then
 		menuVariable = getglobal("CryolysisPortalMenu11");
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
@@ -3212,7 +3244,9 @@ function Cryolysis_CreateMenu()
 		PortalButtonPosition = 11;
 		table.insert(PortalMenuCreate, menuVariable);
 	end
-	if CRYOLYSIS_SPELL_TABLE[27].ID then
+--added by ayumi
+	--t: exo
+	if CRYOLYSIS_SPELL_TABLE[70].ID then
 		menuVariable = getglobal("CryolysisPortalMenu12");
 		menuVariable:ClearAllPoints();
 		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
@@ -3220,6 +3254,63 @@ function Cryolysis_CreateMenu()
 		PortalButtonPosition = 12;
 		table.insert(PortalMenuCreate, menuVariable);
 	end
+	--t:shatt
+	if CRYOLYSIS_SPELL_TABLE[71].ID then
+		menuVariable = getglobal("CryolysisPortalMenu13");
+		menuVariable:ClearAllPoints();
+		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
+		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+		PortalButtonPosition = 13;
+		table.insert(PortalMenuCreate, menuVariable);
+	end
+--end added by ayumi
+	--p:if
+	if CRYOLYSIS_SPELL_TABLE[28].ID then
+		menuVariable = getglobal("CryolysisPortalMenu14");
+		menuVariable:ClearAllPoints();
+		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
+		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+		PortalButtonPosition = 14;
+		table.insert(PortalMenuCreate, menuVariable);
+	end
+	--p:sw
+	if CRYOLYSIS_SPELL_TABLE[29].ID then
+		menuVariable = getglobal("CryolysisPortalMenu15");
+		menuVariable:ClearAllPoints();
+		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
+		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+		PortalButtonPosition = 15;
+		table.insert(PortalMenuCreate, menuVariable);
+	end
+	--p:darn
+	if CRYOLYSIS_SPELL_TABLE[27].ID then
+		menuVariable = getglobal("CryolysisPortalMenu16");
+		menuVariable:ClearAllPoints();
+		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
+		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+		PortalButtonPosition = 16;
+		table.insert(PortalMenuCreate, menuVariable);
+	end
+--added by ayumi
+	--p:exo
+	if CRYOLYSIS_SPELL_TABLE[68].ID then
+		menuVariable = getglobal("CryolysisPortalMenu17");
+		menuVariable:ClearAllPoints();
+		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
+		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+		PortalButtonPosition = 17;
+		table.insert(PortalMenuCreate, menuVariable);
+	end
+	--p:shatt
+	if CRYOLYSIS_SPELL_TABLE[69].ID then
+		menuVariable = getglobal("CryolysisPortalMenu18");
+		menuVariable:ClearAllPoints();
+		menuVariable:SetPoint("CENTER", "CryolysisPortalMenu"..PortalButtonPosition, "CENTER", ((36 / CryolysisConfig.PortalMenuPos) * 31), 0);
+		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+		PortalButtonPosition = 18;
+		table.insert(PortalMenuCreate, menuVariable);
+	end
+--end added by ayumi
 	-- Now that all the buttons are placed the ones beside the others (out of the screen), the available ones are displayed
 	if PortalMenuCreate[1] then
 		PortalMenuCreate[1]:ClearAllPoints();
