@@ -246,8 +246,8 @@ if CryolysisConfig.CryolysisLanguage == "frFR" then
 	};
 elseif CryolysisConfig.CryolysisLanguage == "deDE" then
 	PortalName = {
-		"Orgrimmar", "Unterstadt", "Donnerfels", "Eisenschmiede", "Sturmwind", "Darnassus", "Exodar", "Shattrath", "Silvermoon",  -- 1-6, Teleports
-		"Orgrimmar", "Unterstadt", "Donnerfels", "Eisenschmiede", "Sturmwind", "Darnassus", "Exodar", "Shattrath", "Silvermoon"   -- 7-12, Portals
+		"Orgrimmar", "Unterstadt", "Donnerfels", "Eisenschmiede", "Sturmwind", "Darnassus", "Exodar", "Shattrath", "Silbermond",  -- 1-6, Teleports
+		"Orgrimmar", "Unterstadt", "Donnerfels", "Eisenschmiede", "Sturmwind", "Darnassus", "Exodar", "Shattrath", "Silbermond"   -- 7-12, Portals
 	};
 elseif CryolysisConfig.CryolysisLanguage == "zhTW" then
 	PortalName = {

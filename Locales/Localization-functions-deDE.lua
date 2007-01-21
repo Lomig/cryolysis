@@ -182,13 +182,13 @@ CRYOLYSIS_SPELL_TABLE = {
 	[69] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
 		Name = "Portal: Shattrath",		Length = 0,		Type = 0},
 	[70] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "Teleportieren: Exodar",		Length = 0,		Type = 0},
+		Name = "Teleport: Exodar",		Length = 0,		Type = 0},
 	[71] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
 		Name = "Teleportieren: Shattrath",		Length = 0,		Type = 0},
 	[72] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "Portal: Silvermoon",		Length = 0,		Type = 0},
+		Name = "Portal: Silbermond",		Length = 0,		Type = 0},
 	[73] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "Teleportieren: Silvermoon",		Length = 0,		Type = 0},
+		Name = "Teleportieren: Silbermond",		Length = 0,		Type = 0},
 };
 end
 Cryolysis_SpellTableBuild()
@@ -228,27 +228,28 @@ CRYOLYSIS_DRINK_RANK = {
 	[5] = "s Mineralwasser",
 	[6] = "s Sprudelwasser",
 	[7] = "s Kristallwasser",
+	[8] = "s Astralwasser",
 };
 CRYOLYSIS_STONE_RANK = {
 	[1] = "achat",		-- Rank Minor
 	[2] = "jadestein",	-- Rank Lesser
 	[3] = "citrin",	      -- Rank Greater
 	[4] = "rubin",		-- Rank Major
-	[5] = "emerald"
+	[5] = "smaragd"
 };
 CRYOLYSIS_STONE_RANK2 = {
 	[1] = "Manaachat",		-- Rank Minor
 	[2] = "Jadestein",	-- Rank Lesser
 	[3] = "Manajadestein",	      -- Rank Greater
 	[4] = "Manarubin",		-- Rank Major
-	[5] = "Manaemerald"
+	[5] = "Manasmaragd"
 };
 CRYOLYSIS_MANASTONE_NAMES = {
 	[1] = "Manaachat herbeizaubern",
 	[2] = "Manajadestein herbeizaubern",
 	[3] = "Manacitrin herbeizaubern",
 	[4] = "Manarubin herbeizaubern",
-	[4] = "Manaemerald herbeizaubern"
+	[4] = "Manasmaragd herbeizaubern"
 };
 
 CRYOLYSIS_CREATE = {
