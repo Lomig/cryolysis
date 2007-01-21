@@ -233,20 +233,23 @@ CRYOLYSIS_STONE_RANK = {
 	[1] = " Agate",		-- Rank Minor
 	[2] = " Jade",		-- Rank Lesser
 	[3] = " Citrine",	-- Rank Greater
-	[4] = " Rubis"		-- Rank Major
+	[4] = " Rubis",		-- Rank Major
+	[5] = " Emeraude"
 };
 CRYOLYSIS_STONE_RANK2 = {
 	[1] = "Agate de Mana",		-- Rank Minor
 	[2] = "Jade de Mana",		-- Rank Lesser
 	[3] = "Citrine de Mana",	-- Rank Greater
-	[4] = "Rubis de Mana"		-- Rank Major
+	[4] = "Rubis de Mana",		-- Rank Major
+	[5] = "Emeraude de Mana"
 };
 
 CRYOLYSIS_MANASTONE_NAMES = {
 	[1] = "Invocation d'une agate de mana",
 	[2] = "Invocation d'une jade de mana",
 	[3] = "Invocation d'une citrine de mana",
-	[4] = "Invocation d'un rubis de mana"
+	[4] = "Invocation d'un rubis de mana",
+	[5] = "Invocation d'une \195\169meraude de mana"
 };
 CRYOLYSIS_CREATE = {
 	[1] = "Evocation",
