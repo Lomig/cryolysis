@@ -241,22 +241,22 @@ local PortalName = {
 };
 if CryolysisConfig.CryolysisLanguage == "frFR" then
 	PortalName = {
-		"Orgrimmar", "Fossoyeuse", "Les Pitons du Tonnerre", "Forgefer", "Hurlevent", "Darnassus", "Exodar", "Shattrath", "Silvermoon",  -- 1-6, Teleports
-		"Orgrimmar", "Fossoyeuse", "Les Pitons du Tonnerre", "Forgefer", "Hurlevent", "Darnassus", "Exodar", "Shattrath", "Silvermoon"   -- 7-12, Portals
+		"Orgrimmar", "Fossoyeuse", "Les Pitons du Tonnerre", "Forgefer", "Hurlevent", "Darnassus", "Exodar", "Shattrath", "Lune-d'argent",  -- 1-6, Teleports
+		"Orgrimmar", "Fossoyeuse", "Les Pitons du Tonnerre", "Forgefer", "Hurlevent", "Darnassus", "Exodar", "Shattrath", "Lune-d'argent"   -- 7-12, Portals
 	};
 elseif CryolysisConfig.CryolysisLanguage == "deDE" then
 	PortalName = {
-		"Orgrimmar", "Unterstadt", "Donnerfels", "Eisenschmiede", "Sturmwind", "Darnassus", "Exodar", "Shattrath", "Silvermoon"  -- 1-6, Teleports
+		"Orgrimmar", "Unterstadt", "Donnerfels", "Eisenschmiede", "Sturmwind", "Darnassus", "Exodar", "Shattrath", "Silvermoon",  -- 1-6, Teleports
 		"Orgrimmar", "Unterstadt", "Donnerfels", "Eisenschmiede", "Sturmwind", "Darnassus", "Exodar", "Shattrath", "Silvermoon"   -- 7-12, Portals
 	};
 elseif CryolysisConfig.CryolysisLanguage == "zhTW" then
 	PortalName = {
-	"奧格瑪", "幽暗城", "雷霆崖", "��堡", "暴風城", "��蘇斯", "Exodar", "Shattrath", "Silvermoon"  -- 1-6, Teleports
+	"奧格瑪", "幽暗城", "雷霆崖", "��堡", "暴風城", "��蘇斯", "Exodar", "Shattrath", "Silvermoon" , -- 1-6, Teleports
 	"奧格瑪", "幽暗城", "雷霆崖", "��堡", "暴風城", "��蘇斯", "Exodar", "Shattrath", "Silvermoon"   -- 7-12, Portals
 }
 elseif CryolysisConfig.CryolysisLanguage == "zhCN" then
 	PortalName = {
-	"奥格瑞玛", "幽暗城", "雷霆崖", "�炉堡", "暴风城", "达纳�斯", "Exodar", "Shattrath", "Silvermoon"  -- 1-6, Teleports
+	"奥格瑞玛", "幽暗城", "雷霆崖", "�炉堡", "暴风城", "达纳�斯", "Exodar", "Shattrath", "Silvermoon" , -- 1-6, Teleports
 	"奥格瑞玛", "幽暗城", "雷霆崖", "�炉堡", "暴风城", "达纳�斯" , "Exodar", "Shattrath", "Silvermoon"  -- 7-12, Portals
 	}
 end
