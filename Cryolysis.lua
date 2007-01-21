@@ -3132,6 +3132,15 @@ function Cryolysis_CreateMenu()
 		table.insert(ManaStoneMenuCreate, menuVariable);
 	end
 
+	if Manastone.RankID[5] then
+		menuVariable = getglobal("CryolysisManaStoneMenu5");
+		menuVariable:ClearAllPoints();
+		menuVariable:SetPoint("CENTER", "CryolysisManaStoneMenu"..ManaStoneButtonPosition, "CENTER", ((36 / CryolysisConfig.ManaStoneMenuPos) * 31), 0);
+		menuVariable:SetScale(CryolysisConfig.CryolysisStoneScale / 100);
+		ManaStoneButtonPosition = 5;
+		table.insert(ManaStoneMenuCreate, menuVariable);
+	end
+
 	-- Now that all the buttons are placed the ones beside the others (out of the screen), the available ones are displayed
 	if ManaStoneMenuCreate[1] then
 		ManaStoneMenuCreate[1]:ClearAllPoints();

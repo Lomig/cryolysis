@@ -361,6 +361,26 @@
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
 	</Button>
+	<Button name="CryolysisManaStoneMenu5" inherits="CryolysisMenuButtonTemplate">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_Gem_Ruby_02">
+					<Size>
+						<AbsDimension x="25" y="25"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				Cryolysis_BuildTooltip(this, "Manastone", "ANCHOR_RIGHT");
+			</OnEnter>
+		</Scripts>
+		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
+	</Button>
 
 	<Button name="CryolysisBuffMenuButton" inherits="SecureAnchorUpDownTemplate" hidden="false" enableMouse="true"  toplevel="true" parent="UIParent" movable="true">
 		<Size>

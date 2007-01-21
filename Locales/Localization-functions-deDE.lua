@@ -188,7 +188,7 @@ CRYOLYSIS_SPELL_TABLE = {
 	[72] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
 		Name = "Portal: Silbermond",		Length = 0,		Type = 0},
 	[73] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
-		Name = "Teleportieren: Silbermond",		Length = 0,		Type = 0},
+		Name = "Teleport: Silbermond",		Length = 0,		Type = 0},
 };
 end
 Cryolysis_SpellTableBuild()
