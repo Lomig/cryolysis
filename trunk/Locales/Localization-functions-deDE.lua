@@ -233,19 +233,22 @@ CRYOLYSIS_STONE_RANK = {
 	[1] = "achat",		-- Rank Minor
 	[2] = "jadestein",	-- Rank Lesser
 	[3] = "citrin",	      -- Rank Greater
-	[4] = "rubin"		-- Rank Major
+	[4] = "rubin",		-- Rank Major
+	[5] = "emerald"
 };
 CRYOLYSIS_STONE_RANK2 = {
 	[1] = "Manaachat",		-- Rank Minor
 	[2] = "Jadestein",	-- Rank Lesser
 	[3] = "Manajadestein",	      -- Rank Greater
-	[4] = "Manarubin"		-- Rank Major
+	[4] = "Manarubin",		-- Rank Major
+	[5] = "Manaemerald"
 };
 CRYOLYSIS_MANASTONE_NAMES = {
 	[1] = "Manaachat herbeizaubern",
 	[2] = "Manajadestein herbeizaubern",
 	[3] = "Manacitrin herbeizaubern",
-	[4] = "Manarubin herbeizaubern"
+	[4] = "Manarubin herbeizaubern",
+	[4] = "Manaemerald herbeizaubern"
 };
 
 CRYOLYSIS_CREATE = {

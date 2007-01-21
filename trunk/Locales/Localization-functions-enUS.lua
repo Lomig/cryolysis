@@ -237,21 +237,24 @@ CRYOLYSIS_STONE_RANK = {
 	[1] = " Agate",		-- Rank Minor
 	[2] = " Jade",		-- Rank Lesser
 	[3] = " Citrine",	-- Rank Greater
-	[4] = " Ruby"		-- Rank Major
+	[4] = " Ruby",		-- Rank Major
+	[5] = " Emerald",
 };
 
 CRYOLYSIS_STONE_RANK2 = {
         [1] = "Mana Agate",        -- Rank Minor
         [2] = "Mana Jade",        -- Rank Lesser
         [3] = "Mana Citrine",    -- Rank Greater
-        [4] = "Mana Ruby"        -- Rank Major
+        [4] = "Mana Ruby",        -- Rank Major
+	[5] = "Mana Emerald",
 };
 
 CRYOLYSIS_MANASTONE_NAMES = {
 	[1] = "Conjure Mana Agate",
 	[2] = "Conjure Mana Jade",
 	[3] = "Conjure Mana Citrine",
-	[4] = "Conjure Mana Ruby"
+	[4] = "Conjure Mana Ruby",
+	[5] = "Conjure Mana Emerald",
 };
 
 CRYOLYSIS_CREATE = {
