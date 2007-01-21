@@ -137,23 +137,23 @@ function Cryolysis_Localization_Dialog_Fr()
 			Label = "|c00FFFFFFMenu des Portails|r\nClic droit pour laisser ce menu ouvert"
 		},
 		["T:Exo"] = {
-		    Label = "|c00FFFFFFTeleport: Exodar|r"
+		    Label = "|c00FFFFFFT\195\169l\195\169portation: Exodar|r"
 		},
 		["T:Silv"] = {
-		    Label = "|c00FFFFFFTeleport: Silvermoon|r"
+		    Label = "|c00FFFFFFT\195\169l\195\169portation: Silvermoon|r"
 		},
 		["T:Shatt"] = {
-		    Label = "|c00FFFFFFTeleport: Shattrath|r"
+		    Label = "|c00FFFFFFT\195\169l\195\169portation: Shattrath|r"
 		},
 
 		["P:Exo"] = {
-		    Label = "|c00FFFFFFPortal: Exodar|r"
+		    Label = "|c00FFFFFFPortail: Exodar|r"
 		},
 		["P:Silv"] = {
-		    Label = "|c00FFFFFFPortal: Silvermoon|r"
+		    Label = "|c00FFFFFFPortail: Silvermoon|r"
 		},
 		["P:Shatt"] = {
-		    Label = "|c00FFFFFFPortal: Shattrath|r"
+		    Label = "|c00FFFFFFPortail: Shattrath|r"
 		},
 		["T:Org"] = {
 		    Label = "|c00FFFFFFT\195\169l\195\169portation: Orgrimmar|r"
