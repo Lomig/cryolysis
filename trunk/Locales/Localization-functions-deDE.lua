@@ -249,7 +249,7 @@ CRYOLYSIS_MANASTONE_NAMES = {
 	[2] = "Manajadestein herbeizaubern",
 	[3] = "Manacitrin herbeizaubern",
 	[4] = "Manarubin herbeizaubern",
-	[4] = "Manasmaragd herbeizaubern"
+	[5] = "Manasmaragd herbeizaubern"
 };
 
 CRYOLYSIS_CREATE = {
