@@ -619,7 +619,7 @@
 	<Button name="CryolysisPortalMenu4" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
 			<OnLoad>
-				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportIronForge", "T:IF", "ANCHOR_RIGHT")
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportIronForge", "T:Silv", "ANCHOR_RIGHT")
 			</OnLoad>
 		</Scripts>
 	</Button>
@@ -627,7 +627,7 @@
 	<Button name="CryolysisPortalMenu5" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
 			<OnLoad>
-				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportStormWind", "T:SW", "ANCHOR_RIGHT")
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalOrgrimmar", "P:Org", "ANCHOR_RIGHT")
 			</OnLoad>
 		</Scripts>
 	</Button>
@@ -635,7 +635,7 @@
 	<Button name="CryolysisPortalMenu6" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
 			<OnLoad>
-				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportDarnassus", "T:Darn", "ANCHOR_RIGHT")
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalUnderCity", "P:UC", "ANCHOR_RIGHT")
 			</OnLoad>
 		</Scripts>
 	</Button>
@@ -643,7 +643,7 @@
 	<Button name="CryolysisPortalMenu7" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
 			<OnLoad>
-				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalOrgrimmar", "P:Org", "ANCHOR_RIGHT")
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalThunderBluff", "P:TB", "ANCHOR_RIGHT")
 			</OnLoad>
 		</Scripts>
 	</Button>
@@ -651,7 +651,7 @@
 	<Button name="CryolysisPortalMenu8" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
 			<OnLoad>
-				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalUnderCity", "P:UC", "ANCHOR_RIGHT")
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportIronForge", "P:Silv", "ANCHOR_RIGHT")
 			</OnLoad>
 		</Scripts>
 	</Button>
@@ -659,7 +659,7 @@
 	<Button name="CryolysisPortalMenu9" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
 			<OnLoad>
-				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalThunderBluff", "P:TB", "ANCHOR_RIGHT")
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportIronForge", "T:IF", "ANCHOR_RIGHT")
 			</OnLoad>
 		</Scripts>
 	</Button>
@@ -667,7 +667,7 @@
 	<Button name="CryolysisPortalMenu10" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
 			<OnLoad>
-				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalIronForge", "P:IF", "ANCHOR_RIGHT")
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportStormWind", "T:SW", "ANCHOR_RIGHT")
 			</OnLoad>
 		</Scripts>
 	</Button>
@@ -675,7 +675,7 @@
 	<Button name="CryolysisPortalMenu11" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
 			<OnLoad>
-				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalStormWind", "P:SW", "ANCHOR_RIGHT")
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportDarnassus", "T:Darn", "ANCHOR_RIGHT")
 			</OnLoad>
 		</Scripts>
 	</Button>
@@ -683,10 +683,59 @@
 	<Button name="CryolysisPortalMenu12" inherits="CryolysisPortalButtonTemplate">
 		<Scripts>
 			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportExodar", "T:Exo", "ANCHOR_RIGHT")
+			</OnLoad>
+		</Scripts>
+	</Button>
+
+	<Button name="CryolysisPortalMenu13" inherits="CryolysisPortalButtonTemplate">
+		<Scripts>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_TeleportShattrath", "T:Shatt", "ANCHOR_RIGHT")
+			</OnLoad>
+		</Scripts>
+	</Button>
+
+	<Button name="CryolysisPortalMenu14" inherits="CryolysisPortalButtonTemplate">
+		<Scripts>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalIronForge", "P:IF", "ANCHOR_RIGHT")
+			</OnLoad>
+		</Scripts>
+	</Button>
+
+	<Button name="CryolysisPortalMenu15" inherits="CryolysisPortalButtonTemplate">
+		<Scripts>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalStormWind", "P:SW", "ANCHOR_RIGHT")
+			</OnLoad>
+		</Scripts>
+	</Button>
+
+	<Button name="CryolysisPortalMenu16" inherits="CryolysisPortalButtonTemplate">
+		<Scripts>
+			<OnLoad>
 				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalDarnassus", "P:Darn", "ANCHOR_RIGHT")
 			</OnLoad>
 		</Scripts>
 	</Button>
+
+	<Button name="CryolysisPortalMenu17" inherits="CryolysisPortalButtonTemplate">
+		<Scripts>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalExodar", "P:Exo", "ANCHOR_RIGHT")
+			</OnLoad>
+		</Scripts>
+	</Button>
+
+	<Button name="CryolysisPortalMenu18" inherits="CryolysisPortalButtonTemplate">
+		<Scripts>
+			<OnLoad>
+				Cryolysis_InitMenuButton(this, "Spell_Arcane_PortalShattrath", "P:Shatt", "ANCHOR_RIGHT")
+			</OnLoad>
+		</Scripts>
+	</Button>
+
 
 	<GameTooltip name="CryolysisTooltip" frameStrata="LOW" toplevel="true" movable="true" parent="UIParent" inherits="GameTooltipTemplate" hidden="true"/>
 </Ui>
