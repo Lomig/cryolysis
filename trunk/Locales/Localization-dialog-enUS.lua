@@ -164,6 +164,17 @@ function Cryolysis_Localization_Dialog_En()
 		["T:Darn"] = {
 		    Label = "|c00FFFFFFTeleport: Darnassus|r"
 		},
+--added by ayumi
+		["T:Exo"] = {
+		    Label = "|c00FFFFFFTeleport: Exodar|r"
+		},
+		["T:Silv"] = {
+		    Label = "|c00FFFFFFTeleport: Silvermoon|r"
+		},
+		["T:Shatt"] = {
+		    Label = "|c00FFFFFFTeleport: Shattrath|r"
+		},
+--end added by Ayumi
 		["P:Org"] = {
 		    Label = "|c00FFFFFFPortal: Orgrimmar|r"
 		},
@@ -182,6 +193,17 @@ function Cryolysis_Localization_Dialog_En()
 		["P:Darn"] = {
 		    Label = "|c00FFFFFFPortal: Darnassus|r"
 		},
+--added by ayumi
+		["P:Exo"] = {
+		    Label = "|c00FFFFFFPortal: Exodar|r"
+		},
+		["P:Silv"] = {
+		    Label = "|c00FFFFFFPortal: Silvermoon|r"
+		},
+		["P:Shatt"] = {
+		    Label = "|c00FFFFFFPortal: Shattrath|r"
+		},
+--end added by ayumi
 		["EvocationCooldown"] = "Right click for fast summon",
 		["LastSpell"] = {
 			Left = "Right-click to recast ",      -- <--

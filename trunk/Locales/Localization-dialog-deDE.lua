@@ -149,6 +149,25 @@ function Cryolysis_Localization_Dialog_De()
 		["T:Org"] = {
 		    Label = "|c00FFFFFFTeleport: Orgrimmar|r"
 		},
+		["T:Exo"] = {
+		    Label = "|c00FFFFFFTeleport: Exodar|r"
+		},
+		["T:Silv"] = {
+		    Label = "|c00FFFFFFTeleport: Silvermoon|r"
+		},
+		["T:Shatt"] = {
+		    Label = "|c00FFFFFFTeleport: Shattrath|r"
+		},
+
+		["P:Exo"] = {
+		    Label = "|c00FFFFFFPortal: Exodar|r"
+		},
+		["P:Silv"] = {
+		    Label = "|c00FFFFFFPortal: Silvermoon|r"
+		},
+		["P:Shatt"] = {
+		    Label = "|c00FFFFFFPortal: Shattrath|r"
+		},
 		["T:UC"] = {
 		    Label = "|c00FFFFFFTeleport: Undercity|r"
 		},
