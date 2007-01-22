@@ -19,10 +19,12 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
     Cryolysis: Reborn Team (Alphabetically sorted)
-        - Eternally777
+	- Eternally777
 	- Lom Enfroy
 	- Thomas Hart II
 --]]
+
+
 
 ------------------------------------------------------------------------------------------------------
 -- Cryolysis
@@ -33,8 +35,8 @@
 --
 -- Skins: Eliah, Ner'zhul FR
 --
+-- First changes for the BC Live patch, with all our thanks : Ayumi of Stormscale
 --
--- Version 12.12.2006
 ------------------------------------------------------------------------------------------------------
 
 CryolysisData = {
