@@ -141,10 +141,10 @@ function Cryolysis_Localization_Dialog_De()
 			Label = "|c00FFFFFFReittier: "
 		},
 		["Buff"] = {
-			Label = "|c00FFFFFFSpruchmen\195\188|r\nMittlere Taste, um das Men\195\188 zu \195\182ffnen"
+			Label = "|c00FFFFFFSpruchmen\195\188|r\nLinksklick, um das Men\195\188 zu \195\182ffnen, schlie\195\159en nach 8 Sekunden \nRechtsklick, um das Men\195\188 zu \195\182ffnen, bleibt ge\195\182ffnet"
 		},
-		["Portal"] = {
-			Label = "|c00FFFFFFPortalmen\195\188|r\nMittlere Taste, um das Men\195\188 zu \195\182ffnen"
+    ["Portal"] = {
+			Label = "|c00FFFFFFPortalmen\195\188|r\nLinksklick, um das Men\195\188 zu \195\182ffnen, schlie\195\159en nach 8 Sekunden \nRechtsklick, um das Men\195\188 zu \195\182ffnen, bleibt ge\195\182ffnet"
 		},
 		["T:Org"] = {
 		    Label = "|c00FFFFFFTeleport: Orgrimmar|r"
@@ -153,7 +153,7 @@ function Cryolysis_Localization_Dialog_De()
 		    Label = "|c00FFFFFFTeleport: Exodar|r"
 		},
 		["T:Silv"] = {
-		    Label = "|c00FFFFFFTeleport: Silvermoon|r"
+		    Label = "|c00FFFFFFTeleport: Silbermond|r"
 		},
 		["T:Shatt"] = {
 		    Label = "|c00FFFFFFTeleport: Shattrath|r"
@@ -163,22 +163,22 @@ function Cryolysis_Localization_Dialog_De()
 		    Label = "|c00FFFFFFPortal: Exodar|r"
 		},
 		["P:Silv"] = {
-		    Label = "|c00FFFFFFPortal: Silvermoon|r"
+		    Label = "|c00FFFFFFPortal: Silbermond|r"
 		},
 		["P:Shatt"] = {
 		    Label = "|c00FFFFFFPortal: Shattrath|r"
 		},
 		["T:UC"] = {
-		    Label = "|c00FFFFFFTeleport: Undercity|r"
+		    Label = "|c00FFFFFFTeleport: Unterstadt|r"
 		},
 		["T:TB"] = {
-		    Label = "|c00FFFFFFTeleport: Thunder Bluff|r"
+		    Label = "|c00FFFFFFTeleport: Donnerfels|r"
 		},
 		["T:IF"] = {
-		    Label = "|c00FFFFFFTeleport: Ironforge|r"
+		    Label = "|c00FFFFFFTeleport: Eisenschmiede|r"
 		},
 		["T:SW"] = {
-		    Label = "|c00FFFFFFTeleport: Stormwind|r"
+		    Label = "|c00FFFFFFTeleport: Sturmwind|r"
 		},
 		["T:Darn"] = {
 		    Label = "|c00FFFFFFTeleport: Darnassus|r"
@@ -187,16 +187,16 @@ function Cryolysis_Localization_Dialog_De()
 		    Label = "|c00FFFFFFPortal: Orgrimmar|r"
 		},
 		["P:UC"] = {
-		    Label = "|c00FFFFFFPortal: Undercity|r"
+		    Label = "|c00FFFFFFPortal: Unterstadt|r"
 		},
 		["P:TB"] = {
-		    Label = "|c00FFFFFFPortal: Thunder Bluff|r"
+		    Label = "|c00FFFFFFPortal: Donnerfels|r"
 		},
 		["P:IF"] = {
-		    Label = "|c00FFFFFFPortal: Ironforge|r"
+		    Label = "|c00FFFFFFPortal: Eisenschmiede|r"
 		},
 		["P:SW"] = {
-		    Label = "|c00FFFFFFPortal: Stormwind|r"
+		    Label = "|c00FFFFFFPortal: Sturmwind|r"
 		},
 		["P:Darn"] = {
 		    Label = "|c00FFFFFFPortal: Darnassus|r"
@@ -252,7 +252,7 @@ function Cryolysis_Localization_Dialog_De()
 			["NoFood"] = "Fehler: Du hast kein herbeigezaubertes Essen mit dem h\195\182chsten Rang in deinem Inventar.",
 			["NoDrink"] = "Fehler: Du hast kein herbeigezaubertes Wasser mit dem h\195\182chsten Rang in deinem Inventar.",
 			["ManaStoneCooldown"] = "Fehler: Dein Manaedelstein hat derzeit noch Abklingzeit.",
-			["NoSpell"] = "Fehler: You do not know that spell",
+      ["NoSpell"] = "Fehler: Diesen Zauber kennst du noch nicht.",
 		},
 		["Bag"] = {
 			["FullPrefix"] = "Dein ",
@@ -322,7 +322,7 @@ function Cryolysis_Localization_Dialog_De()
 		["MainLock"] = "Sperre die Cryolysis Sph\195\164re.",
 		["BagSelect"] = "W\195\164hle die Tasche f\195\188r herbeigezaubertes Essen und Wasser",
 		["BuffMenu"] = "Setze das Buffmen\195\188 nach links",
-		["ManaStoneMenu"] = "Put mana stone menu on the left.",
+    ["ManaStoneMenu"] = "Setze das Manastein Men\195\188 nach links",
 		["PortalMenu"] = "Setze das Portalmen\195\188 nach links",
 		["STimerLeft"] = "Zeige die Timer auf der linken Seite des Buttons",
 		["ShowCount"] = "Zeige die Anzahl der Items in Cryolysis",
@@ -335,7 +335,7 @@ function Cryolysis_Localization_Dialog_De()
 		["ShowPolyMessage"] = "Aktiviere Zufallsspr\195\188che (Verwandlung)",		
 		["ChatType"] = "Cryolysis Nachrichten als System-Nachrichten anzeigen",
 		["CryolysisSize"] = "Gr\195\182\195\159e der Cryolysis-Button",
-		["StoneScale"] = "Size of other buttons",
+    ["StoneScale"] = "Gr\195\182\195\159e der restlichen Buttons",
 		["PolymorphSize"] = "Gr\195\182\195\159e der Verwandlungs-Button",
 		["TranseSize"] = "Gr\195\182\195\159e des Trance und Anti-Fear Buttons",
 		["Skin"] = "Erst Trinken ab:",
