@@ -178,9 +178,9 @@
 				</FontString>
 			</Layer>
 			<Layer level="BACKGROUND">
-				<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_Gem_Emerald_01">
+				<Texture name="$parentIcon">
 					<Size>
-						<AbsDimension x="25" y="25"/>
+						<AbsDimension x="22" y="22"/>
 					</Size>
 					<Anchors>
 						<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER"/>
