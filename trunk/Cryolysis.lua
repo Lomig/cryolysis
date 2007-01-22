@@ -183,8 +183,8 @@ CryolysisPrivate = {
 	highestFoodCount = 0,
 	foodRanks = { 22895, 8076, 8075, 1487, 1114, 1113, 5349 }, -- Item IDs for Mage conjured bread, in order from highest amount of health restored to lowest.  ORDER DOES MATTER
 
-	manaStones = { 5513, 5514, 8007, 8008 },
-	hasManaStones = { false, false, false, false },
+	manaStones = { 5513, 5514, 8007, 8008, 22044  },
+	hasManaStones = { false, false, false, false, false },
 
 	-- Cooldown vars
 	EvocationCooldown = 0,
@@ -345,17 +345,18 @@ local Count = {
 -- Variables used for the Spell button mangement and use of the reagents
 local StoneIDInSpellTable = {0, 0, 0, 0}
 local Manastone = {
-	["OnHand"] = {false, false, false, false},
+	["OnHand"] = {false, false, false, false, false},
 	["Location"] = {
 		[1] = {nil, nil},
 		[2] = {nil, nil},
 		[3] = {nil, nil},
-		[4] = {nil, nil}
+		[4] = {nil, nil},
+		[5] = {nil, nil}
 	},
 	["Mode"] = {1, 1, 1, 1},
-	["MP"] = { 530, 800, 1130, 1470 },
-	["Restore"] = { "375-425", "550-650", "775-925", "1000-1200", },
-	["RankID"] = { nil, nil, nil, nil },
+	["MP"] = { 530, 800, 1130, 1470, 1670 },
+	["Restore"] = { "375-425", "550-650", "775-925", "1000-1200", "1136-1364" },
+	["RankID"] = { nil, nil, nil, nil, nil },
 	["currentStone"] = 0; -- Highest rank stone available, or highest rank if none available
 	["conjureStone"] = 1; -- Next stone to be conjured
 	["useableStone"] = 0; -- 0 = Stone not useable; 1 = usable
@@ -2004,7 +2005,7 @@ function Cryolysis_UpdateIcons()
 			CryolysisDrinkButtonIcon:SetDesaturated(1)
 		else												-- Have Mana
 			CryolysisDrinkButtonIcon:SetDesaturated(nil)
-		end
+		end	
 		if CryolysisButtonTexture.Stones.Base[2] ~= texture then
 			local tex = {
 				"INV Drink_06",
@@ -2013,11 +2014,11 @@ function Cryolysis_UpdateIcons()
 				"INV_Drink_10",
 				"INV_Drink_09",
 				"INV_Drink_11",
-				"INV Drink_18",
+				"INV_Drink_18",
 				"INV_Drink_Waterskin_11",
 				"INV_Drink_16"
 			}
-			CryolysisDrinkButtonIcon:SetTexture("Interface\\Icons\\"..tex[StoneMaxRank[3]]);
+			CryolysisDrinkButtonIcon:SetTexture([[Interface\Icons\]]..tex[StoneMaxRank[3]])
 			if texture == 1 then
 				CryolysisDrinkButtonIcon:SetDesaturated(nil)
 			elseif texture == 3 then
