@@ -177,14 +177,23 @@
 					<Color r="1.0" g="1.0" b="1.0" a="1"/>
 				</FontString>
 			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon" file="Interface\Icons\INV_Misc_Gem_Emerald_01">
+					<Size>
+						<AbsDimension x="25" y="25"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
 		</Layers>
 		<Scripts>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "Drink", "ANCHOR_LEFT");
 			</OnEnter>
 		</Scripts>
-		<NormalTexture file="Interface\AddOns\Cryolysis\UI\DrinkButton-01"/>
-		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
+		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
 	</Button>
 
 	<Button name="CryolysisFoodButton" inherits="CryolysisSubButtonTemplate">
@@ -277,7 +286,7 @@
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\ManastoneButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
-	
+
 	<Button name="CryolysisManaStoneMenu1" inherits="CryolysisMenuButtonTemplate">
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -291,6 +300,7 @@
 				</Texture>
 			</Layer>
 		</Layers>
+		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
 		<Scripts>
 			<OnEnter>
 				Cryolysis_BuildTooltip(this, "Manastone", "ANCHOR_RIGHT");
@@ -298,7 +308,7 @@
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
 	</Button>
-	
+
 	<Button name="CryolysisManaStoneMenu2" inherits="CryolysisMenuButtonTemplate">
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -319,7 +329,7 @@
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
 	</Button>
-	
+
 	<Button name="CryolysisManaStoneMenu3" inherits="CryolysisMenuButtonTemplate">
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -340,7 +350,7 @@
 		</Scripts>
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\serenity"/>
 	</Button>
-	
+
 	<Button name="CryolysisManaStoneMenu4" inherits="CryolysisMenuButtonTemplate">
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -572,7 +582,7 @@
 		<NormalTexture file="Interface\AddOns\Cryolysis\UI\PortalMenuButton-01"/>
 		<HighlightTexture file="Interface\AddOns\Cryolysis\UI\BaseMenu-02"/>
 	</Button>
-	
+
 	<Button name="CryolysisPortalButtonTemplate" inherits="SecureActionButtonTemplate" frameStrata="HIGH" hidden="false" enableMouse="true" toplevel="true" parent="UIParent" movable="true" virtual="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
