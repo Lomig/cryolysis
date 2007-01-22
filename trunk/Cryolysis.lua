@@ -1993,7 +1993,7 @@ function Cryolysis_UpdateIcons()
 	-- Drink Button
 	-----------------------------------------------
 
-	-- Si la pierre est �uip�, mode 3
+	-- Si la pierre est équipée, mode 3
 	if StoneIDInSpellTable[3] then
 		if Count.Drink > 0 and not PlayerCombat then				-- Have Food and not in combat
 			texture = 1;
@@ -2001,12 +2001,28 @@ function Cryolysis_UpdateIcons()
 			texture = 3;
 		end
 		if CRYOLYSIS_SPELL_TABLE[11].Mana > mana then		-- No Mana
-			CryolysisDrinkButton:UnlockHighlight()
+			CryolysisDrinkButtonIcon:SetDesaturated(1)
 		else												-- Have Mana
-			CryolysisDrinkButton:LockHighlight()
+			CryolysisDrinkButtonIcon:SetDesaturated(nil)
 		end
 		if CryolysisButtonTexture.Stones.Base[2] ~= texture then
-			CryolysisDrinkButton:SetNormalTexture("Interface\\AddOns\\Cryolysis\\UI\\Water0"..StoneMaxRank[3].."-0"..texture);
+			local tex = {
+				"INV Drink_06",
+				"INV_Drink_07",
+				"INV Drink_Milk_02",
+				"INV_Drink_10",
+				"INV_Drink_09",
+				"INV_Drink_11",
+				"INV Drink_18",
+				"INV_Drink_Waterskin_11",
+				"INV_Drink_16"
+			}
+			CryolysisDrinkButtonIcon:SetTexture("Interface\\Icons\\"..tex[StoneMaxRank[3]]);
+			if texture == 1 then
+				CryolysisDrinkButtonIcon:SetDesaturated(nil)
+			elseif texture == 3 then
+				CryolysisDrinkButtonIcon:SetDesaturated(1)
+			end
 			CryolysisButtonTexture.Stones.Base[2] = texture;
 		end
 	end

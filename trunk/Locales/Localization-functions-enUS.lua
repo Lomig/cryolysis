@@ -177,17 +177,17 @@ function Cryolysis_SpellTableBuild()
 		Name = "Frost nova",			Length = 8,		Type = 6},
 	[67] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Poly Diminished",		Length = 15,	Type = 6},
-	[68] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[68] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Exodar",		Length = 0,		Type = 0},
-	[69] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[69] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Shattrath",		Length = 0,		Type = 0},
-	[70] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[70] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleport: Exodar",		Length = 0,		Type = 0},
-	[71] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[71] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleport: Shattrath",		Length = 0,		Type = 0},
-	[72] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[72] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Portal: Silvermoon",		Length = 0,		Type = 0},
-	[73] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil, 
+	[73] = {ID = nil, Rank = nil, CastTime = nil, Mana = nil,
 		Name = "Teleport: Silvermoon",		Length = 0,		Type = 0},
 	};
 end
@@ -230,7 +230,7 @@ CRYOLYSIS_DRINK_RANK = {
 	[5] = " Mineral Water",
 	[6] = " Sparkling Water",
 	[7] = " Crystal Water",
-	[8] = " Conjured Mountain Spring Water",
+	[8] = " Mountain Spring Water",
 };
 
 CRYOLYSIS_STONE_RANK = {
