@@ -1,0 +1,1 @@
+The WoW-2.0, and possibly Ace2, version of the popular Cryolysis add-on for World of Warcraft.
